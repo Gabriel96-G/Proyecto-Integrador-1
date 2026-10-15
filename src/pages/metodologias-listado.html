@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Listado de Metodologías - CENFOTEC</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <header class="cabecera">
+        <div class="contenedor">
+            <span class="cabecera__nombre">
+                Sistema de Gestión de Cursos
+            </span>
+        </div>
+    </header>
+
+    <main class="contenedor">
+
+        <h1>Listado de metodologías de aprendizaje</h1>
+
+        <p>
+            Consulte las metodologías de aprendizaje
+            registradas en el sistema.
+        </p>
+
+        <section class="formulario__seccion">
+
+            <h2 class="formulario__titulo">
+                Metodologías registradas
+            </h2>
+
+            <!-- Tabla de metodologías -->
+            <table id="tabla-metodologias" class="tabla">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                    </tr>
+                </thead>
+
+                <tbody id="cuerpo-tabla-metodologias">
+
+                    <!-- Los registros se agregarán
+                         dinámicamente con JavaScript -->
+
+                </tbody>
+
+            </table>
+
+            <!-- Mensaje cuando no existen registros -->
+            <p
+                id="mensaje-listado"
+                class="formulario__mensaje"
+                role="status"
+                aria-live="polite"
+            >
+                El listado se cargará al conectar JavaScript.
+            </p>
+
+            <!-- Acciones -->
+            <div class="formulario__acciones">
+
+                <a
+                    href="metodologias-formulario.html"
+                    class="boton boton--principal"
+                >
+                    Registrar nueva metodología
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../js/metodologias-listado.js"></script>
+    
+</body>
+</html>
