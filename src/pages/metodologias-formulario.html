@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registro de Metodologías - CENFOTEC</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <header class="cabecera">
+        <div class="contenedor">
+            <span class="cabecera__nombre">
+                Sistema de Gestión de Cursos
+            </span>
+        </div>
+    </header>
+
+    <main class="contenedor">
+
+        <h1>Registro de metodologías de aprendizaje</h1>
+
+        <p>
+            Complete los siguientes campos para registrar
+            una metodología de aprendizaje.
+        </p>
+
+        <form id="formulario-metodologia" class="formulario">
+
+            <section class="formulario__seccion">
+
+                <h2 class="formulario__titulo">
+                    Información de la metodología
+                </h2>
+
+                <p>* Campo obligatorio</p>
+
+                <div class="formulario__rejilla">
+
+                    <!-- Código -->
+                    <div class="formulario__campo">
+
+                        <label for="codigo" class="formulario__etiqueta">
+                            Código
+                            <span class="formulario__obligatorio">*</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="codigo"
+                            name="codigo"
+                            class="formulario__control"
+                            step="1"
+                            required
+                            aria-describedby="error-codigo"
+                        >
+
+                        <p
+                            id="error-codigo"
+                            class="formulario__mensaje"
+                            aria-live="polite"
+                        ></p>
+
+                    </div>
+
+                    <!-- Nombre -->
+                    <div class="formulario__campo">
+
+                        <label for="nombre" class="formulario__etiqueta">
+                            Nombre
+                            <span class="formulario__obligatorio">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            class="formulario__control"
+                            required
+                            aria-describedby="error-nombre"
+                        >
+
+                        <p
+                            id="error-nombre"
+                            class="formulario__mensaje"
+                            aria-live="polite"
+                        ></p>
+
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="formulario__campo formulario__campo--completo">
+
+                        <label for="descripcion" class="formulario__etiqueta">
+                            Descripción
+                            <span class="formulario__obligatorio">*</span>
+                        </label>
+
+                        <textarea
+                            id="descripcion"
+                            name="descripcion"
+                            class="formulario__control"
+                            rows="5"
+                            required
+                            aria-describedby="error-descripcion"
+                        ></textarea>
+
+                        <p
+                            id="error-descripcion"
+                            class="formulario__mensaje"
+                            aria-live="polite"
+                        ></p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Mensaje general -->
+            <p
+                id="mensaje-resultado"
+                class="formulario__mensaje"
+                role="status"
+                aria-live="polite"
+            ></p>
+
+            <!-- Acciones -->
+            <div class="formulario__acciones">
+
+                <button type="submit" class="boton boton--principal">
+                    Guardar metodología
+                </button>
+
+                <button type="reset" class="boton boton--secundario">
+                    Limpiar formulario
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</body>
+</html>
