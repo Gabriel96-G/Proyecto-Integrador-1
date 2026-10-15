@@ -1,0 +1,64 @@
+<form class="formulario">
+  <p class="formulario__nota">* Campo obligatorio</p>
+
+  <fieldset class="formulario__seccion">
+    <legend class="formulario__titulo">Identificación del curso</legend>
+
+    <div class="formulario__rejilla">
+      <div class="formulario__campo">
+        <label class="formulario__etiqueta" for="escuela">
+          Escuela <span class="formulario__obligatorio">*</span>
+        </label>
+
+        <select
+          class="formulario__control"
+          id="escuela"
+          name="escuela"
+          aria-describedby="escuela-mensaje"
+          required
+        >
+          <option value="">Seleccione una escuela</option>
+        </select>
+
+        <p
+          class="formulario__mensaje"
+          id="escuela-mensaje"
+          aria-live="polite"
+        ></p>
+      </div>
+
+      <div class="formulario__campo">
+        <label class="formulario__etiqueta" for="codigo">
+          Código <span class="formulario__obligatorio">*</span>
+        </label>
+
+        <input
+          class="formulario__control"
+          id="codigo"
+          name="codigo"
+          type="text"
+          required
+        >
+      </div>
+
+      <div class="formulario__campo formulario__campo--completo">
+        <label class="formulario__etiqueta" for="nombre">
+          Nombre del curso <span class="formulario__obligatorio">*</span>
+        </label>
+
+        <input
+          class="formulario__control"
+          id="nombre"
+          name="nombre"
+          type="text"
+          required
+        >
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="formulario__acciones">
+    <a class="boton boton--secundario" href="cursos.html">Cancelar</a>
+    <button class="boton boton--principal" type="submit">Guardar curso</button>
+  </div>
+</form>
