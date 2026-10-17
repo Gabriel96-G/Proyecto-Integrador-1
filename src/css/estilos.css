@@ -1,4 +1,4 @@
-/* SGC · Iteracion 1. Composiciones de las figuras 1 a 15. */
+/* SGC Â· Iteracion 1. Composiciones de las figuras 1 a 15. */
 
 /* Variables */
 :root {
@@ -51,7 +51,7 @@ button, select { cursor: pointer; }
 button, input, select, textarea, fieldset { min-width: 0; }
 img, svg { max-width: 100%; }
 img { display: block; height: auto; }
-[hidden] { display: none; }
+[hidden] { display: none !important; }
 ::selection { color: var(--color-principal); background: var(--color-seleccion); }
 .icono {
   display: inline-block;
@@ -63,6 +63,17 @@ img { display: block; height: auto; }
   stroke-width: 1.65;
   stroke-linecap: round;
   stroke-linejoin: round;
+  vertical-align: middle;
+}
+
+/* Compatibilidad con los iconos guardados como archivos SVG. */
+.icono-menu,
+.icono-usuario {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
   vertical-align: middle;
 }
 
@@ -87,6 +98,13 @@ img { display: block; height: auto; }
   text-decoration: none;
 }
 .cabecera__marca .icono { width: 28px; height: 28px; }
+.cabecera__logo {
+  width: 142px;
+  height: 46px;
+  flex-shrink: 0;
+  object-fit: cover;
+  object-position: center;
+}
 .cabecera__nombre { color: var(--color-texto-secundario); font-size: 20px; }
 .cabecera__usuario {
   display: inline-flex;
@@ -136,7 +154,18 @@ img { display: block; height: auto; }
 }
 .navegacion__enlace:hover { color: white; background: rgb(255 255 255 / 12%); }
 .navegacion__enlace[aria-current="page"] { color: var(--color-principal); background: white; }
-.navegacion__salir { margin-top: auto; padding: 10px 6px; color: white; text-decoration: none; }
+.icono-menu { filter: brightness(0) invert(1); }
+.navegacion__enlace:hover .icono-menu,
+.navegacion__enlace[aria-current="page"] .icono-menu { filter: none; }
+.navegacion__salir {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 10px 6px;
+  color: white;
+  text-decoration: none;
+}
 .navegacion__salir:hover { color: white; text-decoration: underline; }
 
 /* Controles comunes */
@@ -329,8 +358,10 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
 .catalogo__cabecera .boton { margin-left: auto; }
 .catalogo-formulario { display: grid; gap: 20px; min-width: 0; }
 .catalogo-formulario__ficha { display: grid; align-content: start; gap: 16px; padding: 28px; border-radius: 16px; color: var(--color-principal); background: var(--color-seleccion); }
-.catalogo-formulario__ficha .icono { justify-self: center; width: 80px; height: 80px; margin-bottom: 16px; }
+.catalogo-formulario__ficha .icono,
+.catalogo-formulario__ficha .catalogo-resumen__icono { justify-self: center; width: 80px; height: 80px; margin-bottom: 16px; object-fit: contain; }
 .catalogo-formulario__ficha p { color: var(--color-texto-secundario); font-size: 20px; }
+.catalogo-formulario > .formulario { padding: 20px; border-radius: 14px; background: white; }
 
 /* Figuras 9 y 10: listado con llamada lateral e indice de ocho secciones. */
 .cursos-listado { display: grid; align-items: start; gap: 20px; min-width: 0; }
@@ -451,6 +482,8 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
   .aplicacion { position: relative; display: flow-root; }
   .aplicacion > .cabecera { min-height: 46px; margin: 16px 16px 0; padding: 8px 12px; border-radius: 8px; color: white; background: var(--color-principal); }
   .aplicacion .cabecera__marca { color: white; font-size: 18px; }
+  .aplicacion .cabecera__marca:has(.cabecera__logo)::after { content: "CENFOTEC"; }
+  .aplicacion .cabecera__logo { display: none; }
   .aplicacion .cabecera__marca .icono, .aplicacion .cabecera__nombre,
   .aplicacion .cabecera__usuario { display: none; }
   .aplicacion > .navegacion { margin: 0 16px; padding: 0; border-radius: 0 0 8px 8px; }
