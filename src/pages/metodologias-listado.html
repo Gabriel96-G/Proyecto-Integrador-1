@@ -1,150 +1,206 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Listado de Metodologías - CENFOTEC</title>
-
+    <title>Listado de metodologías - CENFOTEC</title>
     <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/metodologias-listado.js" defer></script>
 </head>
 
 <body>
+    <div class="aplicacion">
 
-    <header class="cabecera">
-        <div class="contenedor">
-            <span class="cabecera__nombre">
-                Sistema de Gestión de Cursos
+        <!-- Cabecera institucional -->
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img class="cabecera__logo"
+                    src="../assets/img/logo-cenfotec.png"
+                    alt="Universidad CENFOTEC">
+            </a>
+
+            <span class="cabecera__nombre">Gestión curricular</span>
+
+            <span class="cabecera__usuario">
+                <img class="icono-usuario"
+                    src="../assets/icons/usuario.svg" alt="">
+                Administrador
             </span>
-        </div>
-    </header>
+        </header>
 
-    <main class="contenedor">
+        <!-- Menú lateral -->
+        <nav class="navegacion" aria-label="Menú principal">
+            <ul class="navegacion__lista">
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="inicio.html">
+                        <img class="icono-menu"
+                            src="../assets/icons/inicio.svg" alt="">
+                        Inicio
+                    </a>
+                </li>
 
-        <h1>Listado de metodologías de aprendizaje</h1>
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="usuarios.html">
+                        <img class="icono-menu"
+                            src="../assets/icons/usuarios.svg" alt="">
+                        Usuarios
+                    </a>
+                </li>
 
-        <p>
-            Consulte las metodologías de aprendizaje
-            registradas en el sistema.
-        </p>
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace"
+                        href="catalogos.html" aria-current="page">
+                        <img class="icono-menu"
+                            src="../assets/icons/catalogos.svg" alt="">
+                        Catálogos
+                    </a>
+                </li>
 
-        <section class="formulario__seccion">
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="cursos.html">
+                        <img class="icono-menu"
+                            src="../assets/icons/cursos.svg" alt="">
+                        Cursos
+                    </a>
+                </li>
+            </ul>
 
-            <h2 class="formulario__titulo">
-                Metodologías registradas
-            </h2>
+            <a class="navegacion__salir" href="../index.html">
+                <img class="icono-menu"
+                    src="../assets/icons/cerrar.svg" alt="">
+                Cerrar sesión
+            </a>
+        </nav>
 
-            <!-- HU-40: Búsqueda y filtrado de metodologías -->
-            <form id="formulario-filtros-metodologias" class="formulario" role="search">
+        <!-- Contenido principal -->
+        <main class="contenido">
 
-                <div class="formulario__rejilla">
-
-                    <!-- Búsqueda general -->
-                    <div class="formulario__campo formulario__campo--completo">
-
-                        <label for="buscar-metodologias" class="formulario__etiqueta">
-                            Buscar por código o nombre
-                        </label>
-
-                        <input type="search" id="buscar-metodologias" name="busqueda" class="formulario__control"
-                            placeholder="Ingrese un código o nombre">
-
-                    </div>
-
-                    <!-- Filtro por código -->
-                    <div class="formulario__campo">
-
-                        <label for="filtro-codigo" class="formulario__etiqueta">
-                            Filtrar por código
-                        </label>
-
-                        <input type="text" id="filtro-codigo" name="filtroCodigo" class="formulario__control"
-                            placeholder="Código">
-
-                    </div>
-
-                    <!-- Filtro por nombre -->
-                    <div class="formulario__campo">
-
-                        <label for="filtro-nombre" class="formulario__etiqueta">
-                            Filtrar por nombre
-                        </label>
-
-                        <input type="text" id="filtro-nombre" name="filtroNombre" class="formulario__control"
-                            placeholder="Nombre">
-
-                    </div>
-
-                    <!-- Filtro por descripción -->
-                    <div class="formulario__campo formulario__campo--completo">
-
-                        <label for="filtro-descripcion" class="formulario__etiqueta">
-                            Filtrar por descripción
-                        </label>
-
-                        <input type="text" id="filtro-descripcion" name="filtroDescripcion" class="formulario__control"
-                            placeholder="Descripción">
-
-                    </div>
-
-                </div>
-
-                <div class="formulario__acciones">
-
-                    <button type="submit" class="boton boton--principal">
-                        Buscar y filtrar
-                    </button>
-
-                    <button type="reset" class="boton boton--secundario">
-                        Limpiar filtros
-                    </button>
-
-                </div>
-
-            </form>
-
-
-            <!-- Tabla de metodologías -->
-            <table id="tabla-metodologias" class="tabla">
-
-                <thead>
-                    <tr>
-                        <th scope="col">Código</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripción</th>
-                    </tr>
-                </thead>
-
-                <tbody id="cuerpo-tabla-metodologias">
-
-                    <!-- Los registros se agregarán
-                         dinámicamente con JavaScript -->
-
-                </tbody>
-
-            </table>
-
-            <!-- Mensaje cuando no existen registros -->
-            <p id="mensaje-listado" class="formulario__mensaje" role="status" aria-live="polite">
-                El listado se cargará al conectar JavaScript.
+            <p class="ruta">
+                Catálogos / Metodologías de aprendizaje / Listado
             </p>
 
-            <!-- Acciones -->
-            <div class="formulario__acciones">
+            <h1>Listado de metodologías de aprendizaje</h1>
 
-                <a href="metodologias-formulario.html" class="boton boton--principal">
-                    Registrar nueva metodología
-                </a>
+            <p>
+                Consulte las metodologías de aprendizaje
+                registradas en el sistema.
+            </p>
 
-            </div>
+            <section class="formulario__seccion">
 
-        </section>
+                <h2 class="formulario__titulo">
+                    Metodologías registradas
+                </h2>
 
-    </main>
+                <!-- HU-40: Búsqueda y filtrado -->
+                <form id="formulario-filtros-metodologias"
+                    class="formulario" role="search">
 
-    <script src="../js/metodologias-listado.js"></script>
+                    <div class="formulario__rejilla">
 
+                        <!-- Búsqueda general -->
+                        <div class="formulario__campo formulario__campo--completo">
+                            <label for="buscar-metodologias"
+                                class="formulario__etiqueta">
+                                Buscar por código o nombre
+                            </label>
+
+                            <input type="search"
+                                id="buscar-metodologias"
+                                name="busqueda"
+                                class="formulario__control"
+                                placeholder="Ingrese un código o nombre">
+                        </div>
+
+                        <!-- Filtro por código -->
+                        <div class="formulario__campo">
+                            <label for="filtro-codigo"
+                                class="formulario__etiqueta">
+                                Filtrar por código
+                            </label>
+
+                            <input type="text"
+                                id="filtro-codigo"
+                                name="filtroCodigo"
+                                class="formulario__control"
+                                placeholder="Código">
+                        </div>
+
+                        <!-- Filtro por nombre -->
+                        <div class="formulario__campo">
+                            <label for="filtro-nombre"
+                                class="formulario__etiqueta">
+                                Filtrar por nombre
+                            </label>
+
+                            <input type="text"
+                                id="filtro-nombre"
+                                name="filtroNombre"
+                                class="formulario__control"
+                                placeholder="Nombre">
+                        </div>
+
+                        <!-- Filtro por descripción -->
+                        <div class="formulario__campo formulario__campo--completo">
+                            <label for="filtro-descripcion"
+                                class="formulario__etiqueta">
+                                Filtrar por descripción
+                            </label>
+
+                            <input type="text"
+                                id="filtro-descripcion"
+                                name="filtroDescripcion"
+                                class="formulario__control"
+                                placeholder="Descripción">
+                        </div>
+
+                    </div>
+
+                    <div class="formulario__acciones">
+                        <button type="submit" class="boton boton--principal">
+                            Buscar y filtrar
+                        </button>
+
+                        <button type="reset" class="boton boton--secundario">
+                            Limpiar filtros
+                        </button>
+                    </div>
+                </form>
+
+                <!-- HU-39: Tabla de metodologías -->
+                <table id="tabla-metodologias" class="tabla">
+                    <thead>
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="cuerpo-tabla-metodologias">
+                        <!-- Registros cargados con JavaScript -->
+                    </tbody>
+                </table>
+
+                <p id="mensaje-listado"
+                    class="formulario__mensaje"
+                    role="status"
+                    aria-live="polite">
+                    El listado se cargará al conectar JavaScript.
+                </p>
+
+                <div class="formulario__acciones">
+                    <a href="metodologias-formulario.html"
+                        class="boton boton--principal">
+                        Registrar nueva metodología
+                    </a>
+                </div>
+
+            </section>
+        </main>
+    </div>
 </body>
 
 </html>

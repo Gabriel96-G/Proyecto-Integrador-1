@@ -1,152 +1,165 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Registro de Metodologías - CENFOTEC</title>
-
+    <title>Registrar metodología de aprendizaje</title>
     <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/metodologias.js" defer></script>
 </head>
 
 <body>
+    <div class="aplicacion">
 
-    <header class="cabecera">
-        <div class="contenedor">
+        <!-- Cabecera institucional -->
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img class="cabecera__logo" src="../assets/img/logo-cenfotec.png" alt="Universidad CENFOTEC">
+            </a>
+
             <span class="cabecera__nombre">
-                Sistema de Gestión de Cursos
+                Gestión curricular
             </span>
-        </div>
-    </header>
 
-    <main class="contenedor">
+            <span class="cabecera__usuario">
+                <img class="icono-usuario" src="../assets/icons/usuario.svg" alt="">
+                Administrador
+            </span>
+        </header>
 
-        <h1>Registro de metodologías de aprendizaje</h1>
+        <!-- Menú lateral -->
+        <nav class="navegacion" aria-label="Menú principal">
+            <ul class="navegacion__lista">
 
-        <p>
-            Complete los siguientes campos para registrar
-            una metodología de aprendizaje.
-        </p>
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="inicio.html">
+                        <img class="icono-menu" src="../assets/icons/inicio.svg" alt="">
+                        Inicio
+                    </a>
+                </li>
 
-        <form id="formulario-metodologia" class="formulario">
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="usuarios.html">
+                        <img class="icono-menu" src="../assets/icons/usuarios.svg" alt="">
+                        Usuarios
+                    </a>
+                </li>
 
-            <section class="formulario__seccion">
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
+                        <img class="icono-menu" src="../assets/icons/catalogos.svg" alt="">
+                        Catálogos
+                    </a>
+                </li>
 
-                <h2 class="formulario__titulo">
-                    Información de la metodología
-                </h2>
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="cursos.html">
+                        <img class="icono-menu" src="../assets/icons/cursos.svg" alt="">
+                        Cursos
+                    </a>
+                </li>
 
-                <p>* Campo obligatorio</p>
+            </ul>
 
-                <div class="formulario__rejilla">
+            <a class="navegacion__salir" href="../index.html">
+                <img class="icono-menu" src="../assets/icons/cerrar.svg" alt="">
+                Cerrar sesión
+            </a>
+        </nav>
 
-                    <!-- Código -->
-                    <div class="formulario__campo">
+        <!-- Contenido del formulario -->
+        <main class="contenido">
 
-                        <label for="codigo" class="formulario__etiqueta">
-                            Código
-                            <span class="formulario__obligatorio">*</span>
-                        </label>
+            <p class="ruta">
+                Catálogos / Metodologías de aprendizaje / Nuevo registro
+            </p>
 
-                        <input
-                            type="number"
-                            id="codigo"
-                            name="codigo"
-                            class="formulario__control"
-                            step="1"
-                            required
-                            aria-describedby="error-codigo"
-                        >
+            <h1>Registrar metodología de aprendizaje</h1>
 
-                        <p
-                            id="error-codigo"
-                            class="formulario__mensaje"
-                            aria-live="polite"
-                        ></p>
+            <section class="catalogo-formulario">
 
-                    </div>
+                <!-- Tarjeta informativa -->
+                <div class="catalogo-formulario__ficha">
+                    <img class="catalogo-resumen__icono" src="../assets/icons/catalogos.svg" alt="">
 
-                    <!-- Nombre -->
-                    <div class="formulario__campo">
+                    <h2>Metodología de aprendizaje</h2>
 
-                        <label for="nombre" class="formulario__etiqueta">
-                            Nombre
-                            <span class="formulario__obligatorio">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            id="nombre"
-                            name="nombre"
-                            class="formulario__control"
-                            required
-                            aria-describedby="error-nombre"
-                        >
-
-                        <p
-                            id="error-nombre"
-                            class="formulario__mensaje"
-                            aria-live="polite"
-                        ></p>
-
-                    </div>
-
-                    <!-- Descripción -->
-                    <div class="formulario__campo formulario__campo--completo">
-
-                        <label for="descripcion" class="formulario__etiqueta">
-                            Descripción
-                            <span class="formulario__obligatorio">*</span>
-                        </label>
-
-                        <textarea
-                            id="descripcion"
-                            name="descripcion"
-                            class="formulario__control"
-                            rows="5"
-                            required
-                            aria-describedby="error-descripcion"
-                        ></textarea>
-
-                        <p
-                            id="error-descripcion"
-                            class="formulario__mensaje"
-                            aria-live="polite"
-                        ></p>
-
-                    </div>
-
+                    <p>
+                        Código, nombre y descripción
+                        de la metodología.
+                    </p>
                 </div>
 
+                <!-- Formulario HU-38 -->
+                <form id="formulario-metodologia" class="formulario formulario__seccion">
+
+                    <div class="formulario__rejilla formulario__rejilla--codigo">
+
+                        <!-- Código -->
+                        <div class="formulario__campo">
+                            <label for="codigo" class="formulario__etiqueta">
+                                Código
+                                <span class="formulario__obligatorio">*</span>
+                            </label>
+
+                            <input type="number" id="codigo" name="codigo" class="formulario__control" step="1" required
+                                aria-describedby="error-codigo">
+
+                            <p id="error-codigo" class="formulario__mensaje" aria-live="polite"></p>
+                        </div>
+
+                        <!-- Nombre -->
+                        <div class="formulario__campo">
+                            <label for="nombre" class="formulario__etiqueta">
+                                Nombre
+                                <span class="formulario__obligatorio">*</span>
+                            </label>
+
+                            <input type="text" id="nombre" name="nombre" class="formulario__control" required
+                                aria-describedby="error-nombre">
+
+                            <p id="error-nombre" class="formulario__mensaje" aria-live="polite"></p>
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="formulario__campo formulario__campo--completo">
+                            <label for="descripcion" class="formulario__etiqueta">
+                                Descripción
+                                <span class="formulario__obligatorio">*</span>
+                            </label>
+
+                            <textarea id="descripcion" name="descripcion" class="formulario__control" rows="5" required
+                                aria-describedby="error-descripcion"></textarea>
+
+                            <p id="error-descripcion" class="formulario__mensaje" aria-live="polite"></p>
+                        </div>
+
+                    </div>
+
+                    <p class="formulario__nota">
+                        * Campo obligatorio
+                    </p>
+
+                    <p id="mensaje-resultado" class="formulario__mensaje" role="status" aria-live="polite"></p>
+
+                    <div class="formulario__acciones">
+                        <button type="submit" class="boton boton--principal">
+                            Guardar metodología
+                        </button>
+
+                        <button type="reset" class="boton boton--secundario">
+                            Limpiar formulario
+                        </button>
+                        <a href="metodologias-listado.html" class="boton boton--secundario">
+                            Cancelar
+                        </a>
+                    </div>
+
+                </form>
             </section>
-
-            <!-- Mensaje general -->
-            <p
-                id="mensaje-resultado"
-                class="formulario__mensaje"
-                role="status"
-                aria-live="polite"
-            ></p>
-
-            <!-- Acciones -->
-            <div class="formulario__acciones">
-
-                <button type="submit" class="boton boton--principal">
-                    Guardar metodología
-                </button>
-
-                <button type="reset" class="boton boton--secundario">
-                    Limpiar formulario
-                </button>
-
-            </div>
-
-        </form>
-
-    </main>
-    
-    <script src="../js/metodologias.js"></script>
-
+        </main>
+    </div>
 </body>
+
 </html>
