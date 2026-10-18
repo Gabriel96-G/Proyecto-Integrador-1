@@ -1,10 +1,8 @@
-/* Persistencia local para las ocho historias en curso de SGCS. */
 window.SGC = window.SGC || {};
 SGC.Datos = (() => {
   const clave = 'sgc.aylin.sprint1.v1';
   const colecciones = ['usuarios', 'carreras', 'sefia', 'tematicas'];
   const roles = ['administrador', 'desarrollo', 'director', 'rectoria', 'vicerrectoria'];
-  // Datos de demostración: las escuelas reales pertenecen a otro módulo del equipo.
   const escuelas = [
     { id: 'esc-demo-1', codigo: 'ESC-01', nombre: 'Escuela de Tecnologías Digitales' },
     { id: 'esc-demo-2', codigo: 'ESC-02', nombre: 'Escuela de Ciberseguridad' },
