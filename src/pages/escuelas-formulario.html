@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar escuela</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/escuelas.js" defer></script>
+</head>
+
+<body>
+    <div class="aplicacion">
+
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img class="cabecera__logo" src="../assets/img/logo-cenfotec.png" alt="Universidad CENFOTEC">
+            </a>
+
+            <span class="cabecera__nombre">Gestión curricular</span>
+
+            <span class="cabecera__usuario">
+                <img class="icono-usuario" src="../assets/icons/usuario.svg" alt="">
+                Administrador
+            </span>
+        </header>
+
+        <nav class="navegacion" aria-label="Menú principal">
+            <ul class="navegacion__lista">
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="inicio.html">
+                        <img class="icono-menu" src="../assets/icons/inicio.svg" alt="">
+                        Inicio
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="usuarios.html">
+                        <img class="icono-menu" src="../assets/icons/usuarios.svg" alt="">
+                        Usuarios
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
+                        <img class="icono-menu" src="../assets/icons/catalogos.svg" alt="">
+                        Catálogos
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="cursos.html">
+                        <img class="icono-menu" src="../assets/icons/cursos.svg" alt="">
+                        Cursos
+                    </a>
+                </li>
+            </ul>
+
+            <a class="navegacion__salir" href="../index.html">
+                <img class="icono-menu" src="../assets/icons/cerrar.svg" alt="">
+                Cerrar sesión
+            </a>
+        </nav>
+
+        <main class="contenido">
+            <p class="ruta">Catálogos / Escuelas / Nuevo registro</p>
+            <h1>Registrar escuela</h1>
+
+            <section class="catalogo-formulario">
+
+                <div class="catalogo-formulario__ficha">
+                    <img class="catalogo-resumen__icono" src="../assets/icons/escuela.svg" alt="">
+                    <h2>Escuela</h2>
+                    <p>Código, nombre y director asociado.</p>
+                </div>
+
+                <form id="formulario-escuela" class="formulario formulario__seccion" novalidate>
+                    <div class="formulario__rejilla formulario__rejilla--codigo">
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="codigo">
+                                Código <span class="formulario__obligatorio">*</span>
+                            </label>
+                            <input class="formulario__control" id="codigo" name="codigo" type="text"
+                                   aria-describedby="codigo-ayuda codigo-mensaje" required>
+                            <p id="codigo-ayuda" class="formulario__ayuda">El código debe ser único.</p>
+                            <p id="codigo-mensaje" class="formulario__mensaje"></p>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="nombre">
+                                Nombre <span class="formulario__obligatorio">*</span>
+                            </label>
+                            <input class="formulario__control" id="nombre" name="nombre" type="text"
+                                   aria-describedby="nombre-mensaje" required>
+                            <p id="nombre-mensaje" class="formulario__mensaje"></p>
+                        </div>
+
+                        <div class="formulario__campo formulario__campo--completo">
+                            <label class="formulario__etiqueta" for="director-asociado">
+                                Director asociado <span class="formulario__obligatorio">*</span>
+                            </label>
+                            <select class="formulario__control" id="director-asociado"
+                                    name="directorAsociado" aria-describedby="director-mensaje" required>
+                                <option value="">Seleccionar director</option>
+                                <option value="Director de prueba">Director de prueba</option>
+                            </select>
+                            <p id="director-mensaje" class="formulario__mensaje"></p>
+                        </div>
+
+                    </div>
+
+                    <p class="formulario__nota">* Campo obligatorio</p>
+                    <div id="mensaje-resultado" class="aviso" role="status" hidden></div>
+
+                    <div class="formulario__acciones">
+                        <button class="boton boton--principal" type="submit">Guardar registro</button>
+                        <a class="boton boton--secundario" href="escuelas-listado.html">Cancelar</a>
+                    </div>
+                </form>
+
+            </section>
+        </main>
+    </div>
+</body>
+</html>
