@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prueba de integración de catálogos - CENFOTEC</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/cursos-catalogos.js" defer></script>
+</head>
+
+<body>
+
+    <header class="cabecera">
+        <div class="contenedor">
+            <span class="cabecera__nombre">
+                Sistema de Gestión de Cursos
+            </span>
+        </div>
+    </header>
+
+    <main class="contenedor">
+
+        <h1>Prueba de integración de catálogos</h1>
+
+        <p>
+            Esta página permite comprobar que las metodologías
+            de aprendizaje y las casas certificadoras registradas
+            estén disponibles al seleccionar los datos de un curso.
+        </p>
+
+        <section class="formulario__seccion">
+
+            <h2 class="formulario__titulo">
+                Catálogos del curso
+            </h2>
+
+            <div class="formulario__rejilla">
+
+                <!-- HU-38 / CP-089 -->
+                <div class="formulario__campo">
+
+                    <label
+                        for="metodologia-curso"
+                        class="formulario__etiqueta">
+                        Metodología de aprendizaje
+                    </label>
+
+                    <select
+                        id="metodologia-curso"
+                        name="metodologia"
+                        class="formulario__control"
+                        aria-describedby="mensaje-metodologias">
+                        <option value="">
+                            Cargando metodologías...
+                        </option>
+                    </select>
+
+                    <p
+                        id="mensaje-metodologias"
+                        class="formulario__mensaje"
+                        role="status">
+                    </p>
+
+                </div>
+
+                <!-- HU-48 / CP-113 -->
+                <div class="formulario__campo">
+
+                    <label
+                        for="casa-certificadora-curso"
+                        class="formulario__etiqueta">
+                        Casa certificadora
+                    </label>
+
+                    <select
+                        id="casa-certificadora-curso"
+                        name="casaCertificadora"
+                        class="formulario__control"
+                        aria-describedby="mensaje-casas-certificadoras">
+                        <option value="">
+                            Cargando casas certificadoras...
+                        </option>
+                    </select>
+
+                    <p
+                        id="mensaje-casas-certificadoras"
+                        class="formulario__mensaje"
+                        role="status">
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <p class="formulario__nota">
+            Esta página es únicamente una prueba de integración.
+            No registra ni modifica cursos.
+        </p>
+
+    </main>
+
+</body>
+</html>
