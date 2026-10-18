@@ -1,4 +1,3 @@
-/* SGCS-101 HU-05 y SGCS-102 HU-06: registro y listado. */
 (() => {
   const { t, elemento, aviso, fallo, errores, estadoVacio } = SGC.UI;
   const formulario = document.getElementById('usuario-form');
