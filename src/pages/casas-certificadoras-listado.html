@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Casas Certificadoras - CENFOTEC</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+    <main class="contenedor">
+
+        <h1>Listado de Casas Certificadoras</h1>
+
+        <p>
+            Consulte las casas certificadoras registradas
+            en el Sistema de Gestión Curricular.
+        </p>
+
+        <section class="formulario__seccion">
+
+            <h2 class="formulario__titulo">
+                Casas certificadoras registradas
+            </h2>
+
+            <p id="mensaje-listado" role="status"></p>
+
+            <table id="tabla-casas-certificadoras"
+                   class="tabla"
+                   hidden>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                    </tr>
+                </thead>
+
+                <tbody id="cuerpo-tabla-casas">
+                </tbody>
+
+            </table>
+
+            <div class="formulario__acciones">
+                <a href="casas-certificadoras-formulario.html"
+                   class="boton boton--principal">
+                    Registrar nueva casa certificadora
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../js/casas-certificadoras-listado.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Casas Certificadoras - CENFOTEC</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+    <main class="contenedor">
+        <h1>Registro de Casas Certificadoras</h1>
+
+        <p>
+            Complete los siguientes campos para registrar
+            una casa certificadora.
+        </p>
+
+        <form id="formulario-casa-certificadora" class="formulario">
+
+            <section class="formulario__seccion">
+                <h2 class="formulario__titulo">
+                    Información de la casa certificadora
+                </h2>
+
+                <div class="formulario__rejilla">
+
+                    <div class="formulario__campo">
+                        <label for="codigo" class="formulario__etiqueta">
+                            Código *
+                        </label>
+                        <input
+                            type="text"
+                            id="codigo"
+                            name="codigo"
+                            class="formulario__control"
+                            inputmode="numeric"
+                            pattern="[0-9]+"
+                            required
+                        >
+                        <p id="error-codigo" class="formulario__mensaje"></p>
+                    </div>
+
+                    <div class="formulario__campo">
+                        <label for="nombre" class="formulario__etiqueta">
+                            Nombre *
+                        </label>
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            class="formulario__control"
+                            required
+                        >
+                        <p id="error-nombre" class="formulario__mensaje"></p>
+                    </div>
+
+                </div>
+
+                <p id="mensaje-registro"
+                   class="formulario__mensaje"
+                   role="status">
+                </p>
+
+                <div class="formulario__acciones">
+                    <button type="submit" class="boton boton--principal">
+                        Registrar
+                    </button>
+
+                    <button type="reset" class="boton boton--secundario">
+                        Limpiar
+                    </button>
+                </div>
+            </section>
+
+        </form>
+    </main>
+    <script src="../js/casas-certificadoras.js"></script>
+</body>
+</html>
