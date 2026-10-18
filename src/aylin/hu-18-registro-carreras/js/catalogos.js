@@ -1,4 +1,3 @@
-/* SGCS-76/77, 88/85 y 89/90: registro y listado de tres catálogos. */
 (() => {
   const { t, elemento, aviso, fallo, errores, estadoVacio } = SGC.UI;
   const parametros = new URLSearchParams(location.search);
