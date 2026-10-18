@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -36,6 +35,76 @@
                 Metodologías registradas
             </h2>
 
+            <!-- HU-40: Búsqueda y filtrado de metodologías -->
+            <form id="formulario-filtros-metodologias" class="formulario" role="search">
+
+                <div class="formulario__rejilla">
+
+                    <!-- Búsqueda general -->
+                    <div class="formulario__campo formulario__campo--completo">
+
+                        <label for="buscar-metodologias" class="formulario__etiqueta">
+                            Buscar por código o nombre
+                        </label>
+
+                        <input type="search" id="buscar-metodologias" name="busqueda" class="formulario__control"
+                            placeholder="Ingrese un código o nombre">
+
+                    </div>
+
+                    <!-- Filtro por código -->
+                    <div class="formulario__campo">
+
+                        <label for="filtro-codigo" class="formulario__etiqueta">
+                            Filtrar por código
+                        </label>
+
+                        <input type="text" id="filtro-codigo" name="filtroCodigo" class="formulario__control"
+                            placeholder="Código">
+
+                    </div>
+
+                    <!-- Filtro por nombre -->
+                    <div class="formulario__campo">
+
+                        <label for="filtro-nombre" class="formulario__etiqueta">
+                            Filtrar por nombre
+                        </label>
+
+                        <input type="text" id="filtro-nombre" name="filtroNombre" class="formulario__control"
+                            placeholder="Nombre">
+
+                    </div>
+
+                    <!-- Filtro por descripción -->
+                    <div class="formulario__campo formulario__campo--completo">
+
+                        <label for="filtro-descripcion" class="formulario__etiqueta">
+                            Filtrar por descripción
+                        </label>
+
+                        <input type="text" id="filtro-descripcion" name="filtroDescripcion" class="formulario__control"
+                            placeholder="Descripción">
+
+                    </div>
+
+                </div>
+
+                <div class="formulario__acciones">
+
+                    <button type="submit" class="boton boton--principal">
+                        Buscar y filtrar
+                    </button>
+
+                    <button type="reset" class="boton boton--secundario">
+                        Limpiar filtros
+                    </button>
+
+                </div>
+
+            </form>
+
+
             <!-- Tabla de metodologías -->
             <table id="tabla-metodologias" class="tabla">
 
@@ -57,22 +126,14 @@
             </table>
 
             <!-- Mensaje cuando no existen registros -->
-            <p
-                id="mensaje-listado"
-                class="formulario__mensaje"
-                role="status"
-                aria-live="polite"
-            >
+            <p id="mensaje-listado" class="formulario__mensaje" role="status" aria-live="polite">
                 El listado se cargará al conectar JavaScript.
             </p>
 
             <!-- Acciones -->
             <div class="formulario__acciones">
 
-                <a
-                    href="metodologias-formulario.html"
-                    class="boton boton--principal"
-                >
+                <a href="metodologias-formulario.html" class="boton boton--principal">
                     Registrar nueva metodología
                 </a>
 
@@ -83,6 +144,7 @@
     </main>
 
     <script src="../js/metodologias-listado.js"></script>
-    
+
 </body>
+
 </html>
