@@ -1,8 +1,9 @@
-// HU-14: Listado de escuelas
+// HU-14 y HU-15: Listado y bÃºsqueda de escuelas
 
 const tablaEscuelas = document.getElementById("tabla-escuelas");
 const cuerpoTabla = document.getElementById("cuerpo-tabla-escuelas");
 const mensajeListado = document.getElementById("mensaje-listado");
+const campoBusqueda = document.getElementById("buscar-escuela");
 
 // Obtiene las escuelas guardadas por la HU-13.
 function obtenerEscuelas() {
@@ -39,21 +40,37 @@ function agregarFila(escuela) {
     cuerpoTabla.appendChild(fila);
 }
 
-// Muestra todas las escuelas registradas.
-function mostrarEscuelas() {
-    const escuelas = obtenerEscuelas();
+// Muestra las escuelas recibidas en la tabla.
+function mostrarEscuelas(escuelas, mensajeVacio) {
+    cuerpoTabla.innerHTML = "";
 
     if (escuelas.length === 0) {
         tablaEscuelas.hidden = true;
+        mensajeListado.textContent = mensajeVacio;
         mensajeListado.hidden = false;
         return;
     }
 
-    cuerpoTabla.innerHTML = "";
     mensajeListado.hidden = true;
     tablaEscuelas.hidden = false;
 
     escuelas.forEach(agregarFila);
 }
 
-mostrarEscuelas();
+const escuelas = obtenerEscuelas();
+
+mostrarEscuelas(escuelas, "No existen escuelas registradas.");
+
+// Filtra las escuelas mientras el usuario escribe.
+campoBusqueda.addEventListener("input", function () {
+    const texto = campoBusqueda.value.trim().toLowerCase();
+
+    const escuelasFiltradas = escuelas.filter(function (escuela) {
+        return escuela.nombre.toLowerCase().includes(texto);
+    });
+
+    mostrarEscuelas(
+        escuelasFiltradas,
+        "No se encontraron escuelas con ese nombre."
+    );
+});
