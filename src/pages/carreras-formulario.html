@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Registrar carrera | SGC
+  </title>
+  <link href="../css/estilos.css" rel="stylesheet"/>
+  <script defer="" src="../js/almacenamiento-aylin.js">
+  </script>
+  <script defer="" src="../js/validacion-aylin.js">
+  </script>
+  <script defer="" src="../js/interfaz-aylin.js">
+  </script>
+  <script defer="" src="../js/carreras.js">
+  </script>
+ </head>
+ <body class="pagina-aylin">
+  <a class="salto-contenido" href="#contenido">
+   Saltar al contenido
+  </a>
+  <div class="aplicacion">
+   <header class="cabecera">
+    <a class="cabecera__marca" href="inicio.html">
+     <img alt="Universidad CENFOTEC" class="cabecera__logo" src="../assets/img/logo-cenfotec.png"/>
+    </a>
+    <span class="cabecera__nombre">
+     Gestión curricular
+    </span>
+    <span class="cabecera__usuario">
+     <img alt="" class="icono-usuario" src="../assets/icons/usuario.svg"/>
+     Administrador
+    </span>
+   </header>
+   <nav aria-label="Menú principal" class="navegacion">
+    <details class="navegacion__desplegable" open="">
+     <summary class="navegacion__alternar">
+      Menú
+     </summary>
+     <ul class="navegacion__lista">
+      <li class="navegacion__item">
+       <a class="navegacion__enlace" href="inicio.html">
+        <img alt="" class="icono-menu" src="../assets/icons/inicio.svg"/>
+        Inicio
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <a class="navegacion__enlace" href="usuarios.html">
+        <img alt="" class="icono-menu" src="../assets/icons/usuarios.svg"/>
+        Usuarios
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <a aria-current="page" class="navegacion__enlace" href="catalogos.html">
+        <img alt="" class="icono-menu" src="../assets/icons/catalogos.svg"/>
+        Catálogos
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <a class="navegacion__enlace" href="cursos.html">
+        <img alt="" class="icono-menu" src="../assets/icons/cursos.svg"/>
+        Cursos
+       </a>
+      </li>
+     </ul>
+    </details>
+    <a class="navegacion__salir" href="../index.html">
+     <img alt="" class="icono-menu" src="../assets/icons/cerrar.svg"/>
+     Cerrar sesión
+    </a>
+   </nav>
+   <main class="contenido" id="contenido">
+    <header class="pagina__encabezado">
+     <h1 id="titulo">
+      Registrar carrera
+     </h1>
+     <p class="ruta" id="ruta">
+      Catálogos / Carreras / Nuevo registro
+     </p>
+    </header>
+    <div class="catalogo-formulario">
+     <aside class="catalogo-formulario__ficha">
+      <img alt="" class="catalogo-resumen__icono" src="../assets/icons/cursos.svg"/>
+      <h2>
+       Carreras
+      </h2>
+      <p>
+       Código, nombre y escuela asociada.
+      </p>
+     </aside>
+     <form class="formulario" id="catalogo-form" novalidate="">
+      <div class="formulario__rejilla formulario__rejilla--codigo">
+       <div class="formulario__campo">
+        <label class="formulario__etiqueta" for="codigo">
+         Código *
+        </label>
+        <input aria-describedby="codigo-mensaje" class="formulario__control" id="codigo" maxlength="40" name="codigo" required="" type="text"/>
+        <p aria-live="polite" class="formulario__mensaje" data-error-for="codigo" id="codigo-mensaje">
+        </p>
+       </div>
+       <div class="formulario__campo">
+        <label class="formulario__etiqueta" for="nombre">
+         Nombre *
+        </label>
+        <input aria-describedby="nombre-mensaje" class="formulario__control" id="nombre" maxlength="150" name="nombre" required="" type="text"/>
+        <p aria-live="polite" class="formulario__mensaje" data-error-for="nombre" id="nombre-mensaje">
+        </p>
+       </div>
+       <div class="formulario__campo formulario__campo--completo">
+        <label class="formulario__etiqueta" for="escuela">
+         Escuela asociada *
+        </label>
+        <select aria-describedby="escuela-mensaje" class="formulario__control" id="escuela" name="escuela" required="">
+         <option value="">
+          Seleccione una escuela
+         </option>
+        </select>
+        <p aria-live="polite" class="formulario__mensaje" data-error-for="escuela" id="escuela-mensaje">
+        </p>
+       </div>
+      </div>
+      <p class="formulario__nota">
+       * Campo obligatorio
+      </p>
+      <div class="formulario__acciones">
+       <button class="boton boton--principal" id="guardar" type="submit">
+        Guardar registro
+       </button>
+       <a class="boton boton--secundario" href="carreras-listado.html">
+        Cancelar
+       </a>
+      </div>
+     </form>
+    </div>
+    <a class="enlace-accion" href="carreras-listado.html">
+     ‹ Volver a carreras
+    </a>
+    <p class="aviso" hidden="" id="aviso">
+    </p>
+   </main>
+  </div>
+ </body>
+</html>
