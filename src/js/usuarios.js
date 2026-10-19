@@ -78,6 +78,15 @@
         if (guardado) { document.getElementById('aviso').hidden = true; guardado = false; }
     });
 
+    function ajustarContrasena() {
+        const tieneContrasena = typeof actual.contrasena === 'string' && actual.contrasena.length > 0;
+        control('clave').required = !tieneContrasena;
+        document.querySelector('label[for="clave"]').textContent = tieneContrasena ? 'Contraseña' : 'Contraseña *';
+        document.getElementById('clave-ayuda').textContent = tieneContrasena
+            ? 'Deje este campo vacío para conservar la contraseña actual. Si la cambia, use de 8 a 15 caracteres con mayúscula, minúscula y número.'
+            : 'Ingrese una contraseña para guardar los cambios: de 8 a 15 caracteres con mayúscula, minúscula y número.';
+    }
+
     try {
         const registros = SGC.Datos.leer('usuarios');
         if (id) {
@@ -95,9 +104,7 @@
             document.getElementById('titulo').textContent = 'Modificar usuario';
             document.getElementById('ruta').textContent = 'Usuarios / Modificación';
             guardar.textContent = 'Guardar cambios';
-            control('clave').required = false;
-            document.querySelector('label[for="clave"]').textContent = 'Contraseña';
-            document.getElementById('clave-ayuda').textContent = 'Deje este campo vacío para conservar la contraseña actual. Si la cambia, use de 8 a 15 caracteres con mayúscula, minúscula y número.';
+            ajustarContrasena();
         }
         mostrarEdad();
         mostrarImagen();
@@ -148,16 +155,6 @@
         } finally { if (turno === seleccion) imagenPendiente = false; }
     });
 
-    async function prepararCredencial(clave) {
-        if (!crypto.subtle) throw new Error('Abra el proyecto con Live Server para preparar la contraseña.');
-        const sal = crypto.getRandomValues(new Uint8Array(16));
-        const material = await crypto.subtle.importKey('raw', new TextEncoder().encode(clave), 'PBKDF2', false, ['deriveBits']);
-        const hash = await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: sal,
-            iterations: 100000 }, material, 256);
-        const base64 = bytes => btoa(String.fromCharCode(...bytes));
-        return { algoritmo: 'PBKDF2-SHA-256', iteraciones: 100000, sal: base64(sal), hash: base64(new Uint8Array(hash)) };
-    }
-
     formulario.addEventListener('submit', async evento => {
         evento.preventDefault();
         if (guardar.disabled) return;
@@ -167,17 +164,21 @@
             if (actual) entrada.id = actual.id;
             const clave = control('clave').value;
             const campos = SGC.Validacion.usuario(entrada, SGC.Datos.leer('usuarios'), clave);
+            if (actual && !actual.contrasena && !clave) campos.clave = 'Ingrese una contraseña para guardar los cambios.';
             if (imagenError) campos.imagen = imagenError;
             if (imagenPendiente) campos.imagen = 'Espere a que termine de cargar la imagen.';
             if (!errores(formulario, campos)) return;
             guardar.disabled = true;
             guardar.textContent = 'Guardando…';
-            entrada.credencial = clave ? await prepararCredencial(clave) : actual.credencial;
+            entrada.contrasena = clave || actual.contrasena;
             entrada.imagen = imagen;
             // Conserva el estado de las cuentas creadas con la versión anterior.
             entrada.estado = actual?.estado || 'activo';
             const registro = await SGC.Datos.guardar('usuarios', entrada);
-            if (actual) actual = registro;
+            if (actual) {
+                actual = registro;
+                ajustarContrasena();
+            }
             else {
                 formulario.reset();
                 imagen = '';
