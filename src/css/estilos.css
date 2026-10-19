@@ -1,4 +1,4 @@
-/* SGC Â· Iteracion 1. Composiciones de las figuras 1 a 15. */
+/* SGC · Iteracion 1. Composiciones de las figuras 1 a 15. */
 
 /* Variables */
 :root {
@@ -517,4 +517,22 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none; transition: none; scroll-behavior: auto; }
+}
+
+/* Ajustes de las pantallas de usuarios, carreras y áreas SEFIA. */
+.pagina-aylin .cabecera__logo { width: 142px; height: 64px; object-fit: cover; }
+.pagina-aylin .tabla__avatar { object-fit: cover; }
+.pagina-aylin .perfil__datos { display: grid; gap: 4px; }
+.pagina-aylin .perfil__silueta .icono-usuario { width: 56px; height: 56px; }
+.pagina-aylin .catalogo__cabecera > img { width: 44px; height: 44px; }
+.pagina-aylin .tabla-contenedor:focus-visible { outline: 3px solid var(--color-accion); outline-offset: 2px; }
+.pagina-aylin .navegacion__desplegable { min-width: 0; }
+@media (min-width: 768px) {
+  .pagina-aylin .navegacion__desplegable > .navegacion__lista { display: flex; }
+}
+@media (max-width: 767px) {
+  .pagina-aylin .cabecera__marca:has(.cabecera__logo)::after { content: none; }
+  .pagina-aylin .cabecera__logo { display: block; width: 112px; height: 52px; padding: 4px; border-radius: 4px; background: white; }
+  .pagina-aylin .navegacion__alternar { color: white; cursor: pointer; }
+  .pagina-aylin .pestanas__boton { flex: 1 1 100%; padding: 8px; }
 }
