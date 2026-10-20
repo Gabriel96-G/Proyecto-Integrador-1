@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Temáticas | SGC
+  </title>
+  <link href="../css/estilos.css" rel="stylesheet"/>
+  <script defer="" src="../js/interfaz.js">
+  </script>
+  <script defer="" src="../js/tematicas-listado.js">
+  </script>
+ </head>
+ <body class="pagina-aylin">
+  <a class="salto-contenido" href="#contenido">
+   Saltar al contenido
+  </a>
+  <div class="aplicacion">
+   <header class="cabecera">
+    <span class="cabecera__marca" role="link" aria-disabled="true">
+     <img alt="Universidad CENFOTEC" class="cabecera__logo" src="../assets/img/logo-cenfotec.png"/>
+    </span>
+    <span class="cabecera__nombre">
+     Gestión curricular
+    </span>
+    <span class="cabecera__usuario">
+     <img alt="" class="icono-usuario" src="../assets/icons/usuario.svg"/>
+     Administrador
+    </span>
+   </header>
+   <nav aria-label="Menú principal" class="navegacion">
+    <details class="navegacion__desplegable" open="">
+     <summary class="navegacion__alternar">
+      Menú
+     </summary>
+     <ul class="navegacion__lista">
+      <li class="navegacion__item">
+       <span class="navegacion__enlace" role="link" aria-disabled="true">
+        <img alt="" class="icono-menu" src="../assets/icons/inicio.svg"/>
+        Inicio
+       </span>
+      </li>
+      <li class="navegacion__item">
+       <a class="navegacion__enlace" href="usuarios.html">
+        <img alt="" class="icono-menu" src="../assets/icons/usuarios.svg"/>
+        Usuarios
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <a aria-current="page" class="navegacion__enlace" href="catalogos.html">
+        <img alt="" class="icono-menu" src="../assets/icons/catalogos.svg"/>
+        Catálogos
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <span class="navegacion__enlace" role="link" aria-disabled="true">
+        <img alt="" class="icono-menu" src="../assets/icons/cursos.svg"/>
+        Cursos
+       </span>
+      </li>
+     </ul>
+    </details>
+    <span class="navegacion__salir" role="link" aria-disabled="true">
+     <img alt="" class="icono-menu" src="../assets/icons/cerrar.svg"/>
+     Cerrar sesión
+    </span>
+   </nav>
+   <main class="contenido" id="contenido">
+    <p class="ruta">Catálogos / Temáticas</p>
+    <section class="catalogo__cabecera">
+     <img class="icono" src="../assets/icons/catalogos.svg" alt=""/>
+     <div>
+      <h1>Temáticas</h1>
+      <p>Catálogo institucional</p>
+     </div>
+     <a class="boton boton--principal" href="tematicas-formulario.html">Registrar temática</a>
+    </section>
+    <section class="listado" aria-label="Temáticas registradas">
+     <div class="listado__herramientas">
+      <div class="busqueda">
+       <label class="busqueda__etiqueta" for="buscar">Buscar por nombre</label>
+       <input class="busqueda__control" id="buscar" type="search" placeholder="Buscar temática…"/>
+      </div>
+     </div>
+     <p class="formulario__ayuda" id="cantidad" role="status"></p>
+     <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0">
+      <table class="tabla tabla--catalogo">
+       <thead>
+        <tr>
+         <th scope="col">Código</th>
+         <th scope="col">Nombre</th>
+         <th scope="col">Descripción</th>
+        </tr>
+       </thead>
+       <tbody id="registros"></tbody>
+      </table>
+      <p class="estado-vacio" id="vacio" hidden=""></p>
+     </div>
+     <a class="enlace-accion" href="catalogos.html">‹ Volver a catálogos</a>
+    </section>
+    <p class="aviso" id="aviso" hidden=""></p>
+   </main>
+  </div>
+ </body>
+</html>
