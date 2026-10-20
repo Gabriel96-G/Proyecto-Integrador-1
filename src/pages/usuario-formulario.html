@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Registrar usuario | SGC
+  </title>
+  <link href="../css/estilos.css" rel="stylesheet"/>
+  <script defer="" src="../js/almacenamiento-aylin.js">
+  </script>
+  <script defer="" src="../js/validacion-aylin.js">
+  </script>
+  <script defer="" src="../js/interfaz-aylin.js">
+  </script>
+  <script defer="" src="../js/usuarios.js">
+  </script>
+ </head>
+ <body class="pagina-aylin">
+  <a class="salto-contenido" href="#contenido">
+   Saltar al contenido
+  </a>
+  <div class="aplicacion">
+   <header class="cabecera">
+    <a class="cabecera__marca" href="inicio.html">
+     <img alt="Universidad CENFOTEC" class="cabecera__logo" src="../assets/img/logo-cenfotec.png"/>
+    </a>
+    <span class="cabecera__nombre">
+     Gestión curricular
+    </span>
+    <span class="cabecera__usuario">
+     <img alt="" class="icono-usuario" src="../assets/icons/usuario.svg"/>
+     Administrador
+    </span>
+   </header>
+   <nav aria-label="Menú principal" class="navegacion">
+    <details class="navegacion__desplegable" open="">
+     <summary class="navegacion__alternar">
+      Menú
+     </summary>
+     <ul class="navegacion__lista">
+      <li class="navegacion__item">
+       <a class="navegacion__enlace" href="inicio.html">
+        <img alt="" class="icono-menu" src="../assets/icons/inicio.svg"/>
+        Inicio
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <a aria-current="page" class="navegacion__enlace" href="usuarios.html">
+        <img alt="" class="icono-menu" src="../assets/icons/usuarios.svg"/>
+        Usuarios
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <a class="navegacion__enlace" href="catalogos.html">
+        <img alt="" class="icono-menu" src="../assets/icons/catalogos.svg"/>
+        Catálogos
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <a class="navegacion__enlace" href="cursos.html">
+        <img alt="" class="icono-menu" src="../assets/icons/cursos.svg"/>
+        Cursos
+       </a>
+      </li>
+     </ul>
+    </details>
+    <a class="navegacion__salir" href="../index.html">
+     <img alt="" class="icono-menu" src="../assets/icons/cerrar.svg"/>
+     Cerrar sesión
+    </a>
+   </nav>
+   <main class="contenido" id="contenido">
+    <header class="pagina__encabezado">
+     <h1 id="titulo">
+      Registrar usuario
+     </h1>
+     <p class="ruta" id="ruta">
+      Usuarios / Nuevo registro
+     </p>
+    </header>
+    <form class="usuario-formulario" id="usuario-form" novalidate="">
+     <aside class="perfil">
+      <span class="perfil__silueta" id="perfil-silueta">
+       <img alt="" class="icono-usuario" src="../assets/icons/usuario.svg"/>
+      </span>
+      <img alt="" class="perfil__imagen" hidden="" id="perfil-imagen"/>
+      <strong>
+       Imagen opcional
+      </strong>
+      <label class="perfil__selector" for="imagen">
+       Elegir imagen
+      </label>
+      <input accept="image/*" aria-describedby="imagen-ayuda imagen-mensaje" class="solo-lectores perfil__archivo" id="imagen" name="imagen" type="file"/>
+      <p class="formulario__ayuda" id="imagen-ayuda">
+       Archivo de imagen de hasta 2 MB. La imagen se ajustará al perfil.
+      </p>
+      <p aria-live="polite" class="formulario__mensaje" data-error-for="imagen" id="imagen-mensaje">
+      </p>
+      <div class="perfil__datos">
+       <label for="edad">
+        Edad calculada
+       </label>
+       <output for="nacimiento" id="edad">
+        Desde el nacimiento
+       </output>
+      </div>
+     </aside>
+     <div class="formulario formulario__seccion">
+      <div aria-label="Datos personales" class="pestanas" role="tablist">
+       <button aria-controls="panel-1" aria-selected="true" class="pestanas__boton" id="tab-1" role="tab" tabindex="0" type="button">
+        01 Personales
+       </button>
+       <button aria-controls="panel-2" aria-selected="false" class="pestanas__boton" id="tab-2" role="tab" tabindex="-1" type="button">
+        02 Contacto
+       </button>
+       <button aria-controls="panel-3" aria-selected="false" class="pestanas__boton" id="tab-3" role="tab" tabindex="-1" type="button">
+        03 Acceso
+       </button>
+      </div>
+      <section aria-labelledby="tab-1" id="panel-1" role="tabpanel" tabindex="0">
+       <div class="formulario__rejilla">
+        <div class="formulario__campo">
+         <label class="formulario__etiqueta" for="nombre">
+          <span>
+           Nombre
+          </span>
+          <span aria-hidden="true">
+           *
+          </span>
+         </label>
+         <input aria-describedby="nombre-mensaje" autocomplete="given-name" class="formulario__control" id="nombre" maxlength="100" name="nombre" required="" type="text"/>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="nombre" id="nombre-mensaje">
+         </p>
+        </div>
+        <div class="formulario__campo">
+         <label class="formulario__etiqueta" for="primerApellido">
+          <span>
+           Primer apellido
+          </span>
+          <span aria-hidden="true">
+           *
+          </span>
+         </label>
+         <input aria-describedby="primerApellido-mensaje" autocomplete="family-name" class="formulario__control" id="primerApellido" maxlength="100" name="primerApellido" required="" type="text"/>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="primerApellido" id="primerApellido-mensaje">
+         </p>
+        </div>
+        <div class="formulario__campo">
+         <label class="formulario__etiqueta" for="identificacion">
+          <span>
+           Identificación
+          </span>
+          <span aria-hidden="true">
+           *
+          </span>
+         </label>
+         <input aria-describedby="identificacion-mensaje" class="formulario__control" id="identificacion" maxlength="40" name="identificacion" required="" type="text"/>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="identificacion" id="identificacion-mensaje">
+         </p>
+        </div>
+        <div class="formulario__campo">
+         <label class="formulario__etiqueta" for="segundoApellido">
+          <span>
+           Segundo apellido
+          </span>
+         </label>
+         <input aria-describedby="segundoApellido-mensaje" class="formulario__control" id="segundoApellido" maxlength="100" name="segundoApellido" type="text"/>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="segundoApellido" id="segundoApellido-mensaje">
+         </p>
+        </div>
+        <div class="formulario__campo">
+         <label class="formulario__etiqueta" for="nacimiento">
+          <span>
+           Fecha de nacimiento
+          </span>
+         </label>
+         <input aria-describedby="nacimiento-mensaje" autocomplete="bday" class="formulario__control" id="nacimiento" name="nacimiento" type="date"/>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="nacimiento" id="nacimiento-mensaje">
+         </p>
+        </div>
+        <div class="formulario__campo">
+         <label class="formulario__etiqueta" for="sexo">
+          <span>
+           Sexo
+          </span>
+         </label>
+         <select aria-describedby="sexo-mensaje" class="formulario__control" id="sexo" name="sexo">
+          <option value="">
+           Seleccione una opción
+          </option>
+          <option value="femenino">
+           Femenino
+          </option>
+          <option value="masculino">
+           Masculino
+          </option>
+          <option value="otro">
+           Otro
+          </option>
+          <option value="no-indica">
+           Prefiero no indicarlo
+          </option>
+         </select>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="sexo" id="sexo-mensaje">
+         </p>
+        </div>
+       </div>
+      </section>
+      <section aria-labelledby="tab-2" hidden="" id="panel-2" role="tabpanel" tabindex="0">
+       <div class="formulario__rejilla">
+        <div class="formulario__campo">
+         <label class="formulario__etiqueta" for="correo">
+          <span>
+           Correo institucional
+          </span>
+          <span aria-hidden="true">
+           *
+          </span>
+         </label>
+         <input aria-describedby="correo-mensaje" autocomplete="email" class="formulario__control" id="correo" maxlength="254" name="correo" required="" type="email"/>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="correo" id="correo-mensaje">
+         </p>
+        </div>
+        <div class="formulario__campo">
+         <label class="formulario__etiqueta" for="correoPersonal">
+          <span>
+           Correo personal
+          </span>
+         </label>
+         <input aria-describedby="correoPersonal-mensaje" class="formulario__control" id="correoPersonal" maxlength="254" name="correoPersonal" type="email"/>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="correoPersonal" id="correoPersonal-mensaje">
+         </p>
+        </div>
+        <div class="formulario__campo formulario__campo--completo">
+         <label class="formulario__etiqueta" for="telefono">
+          <span>
+           Teléfono celular
+          </span>
+         </label>
+         <input aria-describedby="telefono-mensaje telefono-ayuda" autocomplete="tel" class="formulario__control" id="telefono" maxlength="30" name="telefono" type="tel"/>
+         <p class="formulario__ayuda" id="telefono-ayuda">
+          Entre 8 y 15 dígitos. Puede incluir espacios, +, guiones y paréntesis.
+         </p>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="telefono" id="telefono-mensaje">
+         </p>
+        </div>
+       </div>
+      </section>
+      <section aria-labelledby="tab-3" hidden="" id="panel-3" role="tabpanel" tabindex="0">
+       <div class="formulario__rejilla">
+        <div class="formulario__campo formulario__campo--completo">
+         <label class="formulario__etiqueta" for="rol">
+          <span>
+           Rol
+          </span>
+          <span aria-hidden="true">
+           *
+          </span>
+         </label>
+         <select aria-describedby="rol-mensaje rol-ayuda" class="formulario__control" id="rol" name="rol" required="">
+          <option value="">
+           Seleccione una opción
+          </option>
+          <option value="administrador">
+           Administrador
+          </option>
+         </select>
+         <p class="formulario__ayuda" id="rol-ayuda">
+          Rol disponible en esta iteración: administrador.
+         </p>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="rol" id="rol-mensaje">
+         </p>
+        </div>
+        <div class="formulario__campo formulario__campo--completo">
+         <label class="formulario__etiqueta" for="clave">
+          <span>
+           Contraseña
+          </span>
+          <span aria-hidden="true">
+           *
+          </span>
+         </label>
+         <input aria-describedby="clave-mensaje clave-ayuda" autocomplete="new-password" class="formulario__control" id="clave" maxlength="15" minlength="8" name="clave" required="" type="password"/>
+         <p class="formulario__ayuda" id="clave-ayuda">
+          De 8 a 15 caracteres; al menos una mayúscula, una minúscula y un número.
+         </p>
+         <p aria-live="polite" class="formulario__mensaje" data-error-for="clave" id="clave-mensaje">
+         </p>
+        </div>
+       </div>
+      </section>
+      <p class="formulario__nota">
+       * Campo obligatorio
+      </p>
+      <div class="formulario__acciones">
+       <button class="boton boton--principal" id="guardar" type="submit">
+        Guardar usuario
+       </button>
+       <a class="boton boton--secundario" href="usuarios.html">
+        Cancelar
+       </a>
+      </div>
+     </div>
+    </form>
+    <p class="aviso" hidden="" id="aviso">
+    </p>
+   </main>
+  </div>
+ </body>
+</html>

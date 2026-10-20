@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Directorio de usuarios | SGC
+  </title>
+  <link href="../css/estilos.css" rel="stylesheet"/>
+  <script defer="" src="../js/almacenamiento-aylin.js">
+  </script>
+  <script defer="" src="../js/validacion-aylin.js">
+  </script>
+  <script defer="" src="../js/interfaz-aylin.js">
+  </script>
+  <script defer="" src="../js/usuarios.js">
+  </script>
+ </head>
+ <body class="pagina-aylin">
+  <a class="salto-contenido" href="#contenido">
+   Saltar al contenido
+  </a>
+  <div class="aplicacion">
+   <header class="cabecera">
+    <a class="cabecera__marca" href="inicio.html">
+     <img alt="Universidad CENFOTEC" class="cabecera__logo" src="../assets/img/logo-cenfotec.png"/>
+    </a>
+    <span class="cabecera__nombre">
+     Gestión curricular
+    </span>
+    <span class="cabecera__usuario">
+     <img alt="" class="icono-usuario" src="../assets/icons/usuario.svg"/>
+     Administrador
+    </span>
+   </header>
+   <nav aria-label="Menú principal" class="navegacion">
+    <details class="navegacion__desplegable" open="">
+     <summary class="navegacion__alternar">
+      Menú
+     </summary>
+     <ul class="navegacion__lista">
+      <li class="navegacion__item">
+       <a class="navegacion__enlace" href="inicio.html">
+        <img alt="" class="icono-menu" src="../assets/icons/inicio.svg"/>
+        Inicio
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <a aria-current="page" class="navegacion__enlace" href="usuarios.html">
+        <img alt="" class="icono-menu" src="../assets/icons/usuarios.svg"/>
+        Usuarios
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <a class="navegacion__enlace" href="catalogos.html">
+        <img alt="" class="icono-menu" src="../assets/icons/catalogos.svg"/>
+        Catálogos
+       </a>
+      </li>
+      <li class="navegacion__item">
+       <a class="navegacion__enlace" href="cursos.html">
+        <img alt="" class="icono-menu" src="../assets/icons/cursos.svg"/>
+        Cursos
+       </a>
+      </li>
+     </ul>
+    </details>
+    <a class="navegacion__salir" href="../index.html">
+     <img alt="" class="icono-menu" src="../assets/icons/cerrar.svg"/>
+     Cerrar sesión
+    </a>
+   </nav>
+   <main class="contenido" id="contenido">
+    <header class="pagina__encabezado">
+     <h1>
+      Directorio de usuarios
+     </h1>
+     <p class="ruta">
+      Usuarios / Consulta y edición
+     </p>
+    </header>
+    <section aria-label="Usuarios registrados" class="listado">
+     <div class="listado__herramientas">
+      <div class="busqueda">
+       <label class="busqueda__etiqueta" for="buscar">
+        Buscar por nombre
+       </label>
+       <input class="busqueda__control" id="buscar" placeholder="Buscar usuario…" type="search"/>
+      </div>
+      <a class="boton boton--principal" href="usuario-formulario.html">
+       Registrar usuario
+      </a>
+     </div>
+     <p class="formulario__ayuda" id="cantidad" role="status">
+     </p>
+     <div aria-label="Listado con desplazamiento horizontal" class="tabla-contenedor" role="region" tabindex="0">
+      <table class="tabla">
+       <thead>
+        <tr>
+         <th scope="col">
+          Nombre y correo
+         </th>
+         <th scope="col">
+          Rol
+         </th>
+         <th scope="col">
+          Acción
+         </th>
+        </tr>
+       </thead>
+       <tbody id="registros">
+       </tbody>
+      </table>
+      <p class="estado-vacio" hidden="" id="vacio">
+      </p>
+     </div>
+    </section>
+    <p class="aviso" hidden="" id="aviso">
+    </p>
+   </main>
+  </div>
+ </body>
+</html>
