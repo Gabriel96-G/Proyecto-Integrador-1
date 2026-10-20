@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de integración de catálogos - CENFOTEC</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/cursos-catalogos.js" defer></script>
+</head>
+
+<body>
+    <div class="aplicacion">
+
+        <!-- Cabecera institucional -->
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img
+                    class="cabecera__logo"
+                    src="../assets/img/logo-cenfotec.png"
+                    alt="Universidad CENFOTEC">
+            </a>
+
+            <span class="cabecera__nombre">
+                Gestión curricular
+            </span>
+
+            <span class="cabecera__usuario">
+                <img
+                    class="icono-usuario"
+                    src="../assets/icons/usuario.svg"
+                    alt="">
+                Administrador
+            </span>
+        </header>
+
+        <!-- Menú lateral -->
+        <nav class="navegacion" aria-label="Menú principal">
+            <ul class="navegacion__lista">
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="inicio.html">
+                        <img class="icono-menu"
+                             src="../assets/icons/inicio.svg" alt="">
+                        Inicio
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="usuarios.html">
+                        <img class="icono-menu"
+                             src="../assets/icons/usuarios.svg" alt="">
+                        Usuarios
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace"
+                       href="catalogos.html"
+                       aria-current="page">
+                        <img class="icono-menu"
+                             src="../assets/icons/catalogos.svg" alt="">
+                        Catálogos
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="cursos.html">
+                        <img class="icono-menu"
+                             src="../assets/icons/cursos.svg" alt="">
+                        Cursos
+                    </a>
+                </li>
+
+            </ul>
+
+            <a class="navegacion__salir" href="../index.html">
+                <img class="icono-menu"
+                     src="../assets/icons/cerrar.svg" alt="">
+                Cerrar sesión
+            </a>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="contenido">
+
+            <p class="ruta">
+                Catálogos / Prueba de integración
+            </p>
+
+            <h1>Prueba de integración de catálogos</h1>
+
+            <p>
+                Esta página permite comprobar que las metodologías
+                de aprendizaje y las casas certificadoras registradas
+                estén disponibles al seleccionar los datos de un curso.
+            </p>
+
+            <section class="formulario__seccion">
+
+                <h2 class="formulario__titulo">
+                    Catálogos del curso
+                </h2>
+
+                <div class="formulario__rejilla">
+
+                    <!-- HU-38: Metodologías -->
+                    <div class="formulario__campo">
+                        <label
+                            for="metodologia-curso"
+                            class="formulario__etiqueta">
+                            Metodología de aprendizaje
+                        </label>
+
+                        <select
+                            id="metodologia-curso"
+                            name="metodologia"
+                            class="formulario__control"
+                            aria-describedby="mensaje-metodologias">
+                            <option value="">
+                                Cargando metodologías...
+                            </option>
+                        </select>
+
+                        <p
+                            id="mensaje-metodologias"
+                            class="formulario__mensaje"
+                            role="status">
+                        </p>
+                    </div>
+
+                    <!-- HU-48: Casas certificadoras -->
+                    <div class="formulario__campo">
+                        <label
+                            for="casa-certificadora-curso"
+                            class="formulario__etiqueta">
+                            Casa certificadora
+                        </label>
+
+                        <select
+                            id="casa-certificadora-curso"
+                            name="casaCertificadora"
+                            class="formulario__control"
+                            aria-describedby="mensaje-casas-certificadoras">
+                            <option value="">
+                                Cargando casas certificadoras...
+                            </option>
+                        </select>
+
+                        <p
+                            id="mensaje-casas-certificadoras"
+                            class="formulario__mensaje"
+                            role="status">
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Botón solicitado en la revisión -->
+                <div class="formulario__acciones">
+                    <a
+                        href="metodologias-listado.html"
+                        class="boton boton--secundario">
+                        Cancelar
+                    </a>
+                </div>
+
+            </section>
+
+            <p class="formulario__nota">
+                Esta página es únicamente una prueba de integración.
+                No registra ni modifica cursos.
+            </p>
+
+        </main>
+    </div>
+</body>
+
+</html>
