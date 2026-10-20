@@ -1,25 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Registrar casa certificadora - CENFOTEC</title>
+
     <link rel="stylesheet" href="../css/estilos.css">
     <script src="../js/casas-certificadoras.js" defer></script>
+
+    <style>
+        /* Ajustes exclusivos del formulario HU-48 */
+        .contenido--casas .ruta {
+            margin-top: 8px;
+        }
+
+        .contenido--casas .catalogo-formulario {
+            margin-top: 16px;
+        }
+
+        .contenido--casas .catalogo-resumen__icono {
+            filter: brightness(0) saturate(100%) invert(24%) sepia(77%) saturate(1575%) hue-rotate(190deg);
+        }
+    </style>
 </head>
 
 <body>
     <div class="aplicacion">
 
-        <!-- Cabecera institucional -->
+        <!-- Cabecera institucional: logo original -->
         <header class="cabecera">
+
             <a class="cabecera__marca" href="inicio.html">
-                <img
-                    class="cabecera__logo"
-                    src="../assets/img/logo-cenfotec.png"
-                    alt="Universidad CENFOTEC">
+                <img class="cabecera__logo" src="../assets/img/logo-cenfotec.png" alt="Universidad CENFOTEC">
             </a>
 
             <span class="cabecera__nombre">
@@ -27,48 +41,41 @@
             </span>
 
             <span class="cabecera__usuario">
-                <img
-                    class="icono-usuario"
-                    src="../assets/icons/usuario.svg"
-                    alt="">
+                <img class="icono-usuario" src="../assets/icons/usuario.svg" alt="">
                 Administrador
             </span>
+
         </header>
 
-        <!-- Menú lateral izquierdo -->
+        <!-- Menú lateral institucional -->
         <nav class="navegacion" aria-label="Menú principal">
+
             <ul class="navegacion__lista">
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu"
-                             src="../assets/icons/inicio.svg" alt="">
+                        <img class="icono-menu" src="../assets/icons/inicio.svg" alt="">
                         Inicio
                     </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu"
-                             src="../assets/icons/usuarios.svg" alt="">
+                        <img class="icono-menu" src="../assets/icons/usuarios.svg" alt="">
                         Usuarios
                     </a>
                 </li>
 
                 <li class="navegacion__item">
-                    <a class="navegacion__enlace"
-                       href="catalogos.html"
-                       aria-current="page">
-                        <img class="icono-menu"
-                             src="../assets/icons/catalogos.svg" alt="">
+                    <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
+                        <img class="icono-menu" src="../assets/icons/catalogos.svg" alt="">
                         Catálogos
                     </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="cursos.html">
-                        <img class="icono-menu"
-                             src="../assets/icons/cursos.svg" alt="">
+                        <img class="icono-menu" src="../assets/icons/cursos.svg" alt="">
                         Cursos
                     </a>
                 </li>
@@ -76,86 +83,67 @@
             </ul>
 
             <a class="navegacion__salir" href="../index.html">
-                <img class="icono-menu"
-                     src="../assets/icons/cerrar.svg" alt="">
+                <img class="icono-menu" src="../assets/icons/cerrar.svg" alt="">
                 Cerrar sesión
             </a>
+
         </nav>
 
-        <!-- Contenido principal -->
-        <main class="contenido">
+        <!-- HU-48: Registro de casas certificadoras -->
+        <main class="contenido contenido--casas">
+
+            <h1>Registrar casa certificadora</h1>
 
             <p class="ruta">
                 Catálogos / Casas certificadoras / Nuevo registro
             </p>
 
-            <h1>Registrar casa certificadora</h1>
-
             <section class="catalogo-formulario">
 
                 <!-- Tarjeta informativa -->
                 <div class="catalogo-formulario__ficha">
-                    <img
-                        class="catalogo-resumen__icono"
-                        src="../assets/icons/catalogos.svg"
-                        alt="">
+
+                    <img class="catalogo-resumen__icono" src="../assets/icons/catalogos.svg" alt="">
 
                     <h2>Casa certificadora</h2>
 
                     <p>
                         Código y nombre de la casa certificadora.
                     </p>
+
                 </div>
 
-                <!-- Formulario HU-48 -->
-                <form
-                    id="formulario-casa-certificadora"
-                    class="formulario formulario__seccion">
+                <!-- Formulario de registro -->
+                <form id="formulario-casa-certificadora" class="formulario formulario__seccion" novalidate>
 
                     <div class="formulario__rejilla formulario__rejilla--codigo">
 
                         <!-- Código -->
                         <div class="formulario__campo">
+
                             <label for="codigo" class="formulario__etiqueta">
-                                Código
-                                <span class="formulario__obligatorio">*</span>
+                                Código *
                             </label>
 
-                            <input
-                                type="text"
-                                id="codigo"
-                                name="codigo"
-                                class="formulario__control"
-                                inputmode="numeric"
-                                pattern="[0-9]+"
-                                required
-                                aria-describedby="error-codigo">
+                            <input type="text" id="codigo" name="codigo" class="formulario__control" inputmode="numeric"
+                                pattern="[0-9]+" required aria-describedby="error-codigo">
 
-                            <p
-                                id="error-codigo"
-                                class="formulario__mensaje"
-                                aria-live="polite"></p>
+                            <p id="error-codigo" class="formulario__mensaje" aria-live="polite"></p>
+
                         </div>
 
                         <!-- Nombre -->
                         <div class="formulario__campo">
+
                             <label for="nombre" class="formulario__etiqueta">
-                                Nombre
-                                <span class="formulario__obligatorio">*</span>
+                                Nombre *
                             </label>
 
-                            <input
-                                type="text"
-                                id="nombre"
-                                name="nombre"
-                                class="formulario__control"
-                                required
+                            <input type="text" id="nombre" name="nombre" class="formulario__control" required
                                 aria-describedby="error-nombre">
 
-                            <p
-                                id="error-nombre"
-                                class="formulario__mensaje"
-                                aria-live="polite"></p>
+                            <p id="error-nombre" class="formulario__mensaje" aria-live="polite"></p>
+
                         </div>
 
                     </div>
@@ -164,31 +152,17 @@
                         * Campo obligatorio
                     </p>
 
-                    <!-- Mensaje del registro -->
-                    <p
-                        id="mensaje-registro"
-                        class="formulario__mensaje"
-                        role="status"
-                        aria-live="polite"></p>
+                    <!-- Retroalimentación del registro -->
+                    <p id="mensaje-registro" class="aviso" role="status" aria-live="polite" hidden></p>
 
-                    <!-- Botones del formulario -->
+                    <!-- Acciones -->
                     <div class="formulario__acciones">
 
-                        <button
-                            type="submit"
-                            class="boton boton--principal">
-                            Registrar
+                        <button type="submit" class="boton boton--principal">
+                            Guardar registro
                         </button>
 
-                        <button
-                            type="reset"
-                            class="boton boton--secundario">
-                            Limpiar
-                        </button>
-
-                        <a
-                            href="casas-certificadoras-listado.html"
-                            class="boton boton--secundario">
+                        <a href="casas-certificadoras-listado.html" class="boton boton--secundario">
                             Cancelar
                         </a>
 
@@ -197,7 +171,28 @@
                 </form>
 
             </section>
+
+            <!-- Opción para volver al listado de casas certificadoras -->
+            <a href="casas-certificadoras-listado.html" class="enlace-volver-catalogos" style="display: inline-flex;
+                       align-items: center;
+                       gap: 6px;
+                       margin-top: 14px;
+                       color: #0056b3;
+                       font-weight: 600;
+                       text-decoration: none;">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="m15 18-6-6 6-6" />
+                </svg>
+
+                Volver a casas certificadoras
+            </a>
+
         </main>
+
+
     </div>
 </body>
 
