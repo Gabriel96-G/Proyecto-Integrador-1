@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de casas certificadoras - CENFOTEC</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/casas-certificadoras-listado.js" defer></script>
+</head>
+
+<body>
+    <div class="aplicacion">
+
+        <!-- Cabecera institucional -->
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img class="cabecera__logo"
+                     src="../assets/img/logo-cenfotec.png"
+                     alt="Universidad CENFOTEC">
+            </a>
+
+            <span class="cabecera__nombre">
+                Gestión curricular
+            </span>
+
+            <span class="cabecera__usuario">
+                <img class="icono-usuario"
+                     src="../assets/icons/usuario.svg" alt="">
+                Administrador
+            </span>
+        </header>
+
+        <!-- Menú lateral -->
+        <nav class="navegacion" aria-label="Menú principal">
+            <ul class="navegacion__lista">
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="inicio.html">
+                        <img class="icono-menu"
+                             src="../assets/icons/inicio.svg" alt="">
+                        Inicio
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="usuarios.html">
+                        <img class="icono-menu"
+                             src="../assets/icons/usuarios.svg" alt="">
+                        Usuarios
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace"
+                       href="catalogos.html" aria-current="page">
+                        <img class="icono-menu"
+                             src="../assets/icons/catalogos.svg" alt="">
+                        Catálogos
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="cursos.html">
+                        <img class="icono-menu"
+                             src="../assets/icons/cursos.svg" alt="">
+                        Cursos
+                    </a>
+                </li>
+
+            </ul>
+
+            <a class="navegacion__salir" href="../index.html">
+                <img class="icono-menu"
+                     src="../assets/icons/cerrar.svg" alt="">
+                Cerrar sesión
+            </a>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="contenido">
+
+            <p class="ruta">
+                Catálogos / Casas certificadoras / Listado
+            </p>
+
+            <h1>Listado de casas certificadoras</h1>
+
+            <p>
+                Consulte las casas certificadoras registradas
+                en el Sistema de Gestión Curricular.
+            </p>
+
+            <!-- Listado HU-49 -->
+            <section class="formulario__seccion">
+
+                <h2 class="formulario__titulo">
+                    Casas certificadoras registradas
+                </h2>
+
+                <!-- Mensaje informativo -->
+                <p id="mensaje-listado"
+                   role="status"
+                   aria-live="polite"></p>
+
+                <!-- Tabla de casas certificadoras -->
+                <table id="tabla-casas-certificadoras"
+                       class="tabla"
+                       hidden>
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nombre</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="cuerpo-tabla-casas">
+                        <!-- Registros cargados con JavaScript -->
+                    </tbody>
+
+                </table>
+
+                <!-- Botón de registro -->
+                <div class="formulario__acciones">
+                    <a href="casas-certificadoras-formulario.html"
+                       class="boton boton--principal">
+                        Registrar nueva casa certificadora
+                    </a>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>

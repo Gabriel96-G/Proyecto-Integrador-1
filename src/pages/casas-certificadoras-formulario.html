@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar casa certificadora - CENFOTEC</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/casas-certificadoras.js" defer></script>
+</head>
+
+<body>
+    <div class="aplicacion">
+
+        <!-- Cabecera institucional -->
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img
+                    class="cabecera__logo"
+                    src="../assets/img/logo-cenfotec.png"
+                    alt="Universidad CENFOTEC">
+            </a>
+
+            <span class="cabecera__nombre">
+                Gestión curricular
+            </span>
+
+            <span class="cabecera__usuario">
+                <img
+                    class="icono-usuario"
+                    src="../assets/icons/usuario.svg"
+                    alt="">
+                Administrador
+            </span>
+        </header>
+
+        <!-- Menú lateral izquierdo -->
+        <nav class="navegacion" aria-label="Menú principal">
+            <ul class="navegacion__lista">
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="inicio.html">
+                        <img class="icono-menu"
+                             src="../assets/icons/inicio.svg" alt="">
+                        Inicio
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="usuarios.html">
+                        <img class="icono-menu"
+                             src="../assets/icons/usuarios.svg" alt="">
+                        Usuarios
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace"
+                       href="catalogos.html"
+                       aria-current="page">
+                        <img class="icono-menu"
+                             src="../assets/icons/catalogos.svg" alt="">
+                        Catálogos
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="cursos.html">
+                        <img class="icono-menu"
+                             src="../assets/icons/cursos.svg" alt="">
+                        Cursos
+                    </a>
+                </li>
+
+            </ul>
+
+            <a class="navegacion__salir" href="../index.html">
+                <img class="icono-menu"
+                     src="../assets/icons/cerrar.svg" alt="">
+                Cerrar sesión
+            </a>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="contenido">
+
+            <p class="ruta">
+                Catálogos / Casas certificadoras / Nuevo registro
+            </p>
+
+            <h1>Registrar casa certificadora</h1>
+
+            <section class="catalogo-formulario">
+
+                <!-- Tarjeta informativa -->
+                <div class="catalogo-formulario__ficha">
+                    <img
+                        class="catalogo-resumen__icono"
+                        src="../assets/icons/catalogos.svg"
+                        alt="">
+
+                    <h2>Casa certificadora</h2>
+
+                    <p>
+                        Código y nombre de la casa certificadora.
+                    </p>
+                </div>
+
+                <!-- Formulario HU-48 -->
+                <form
+                    id="formulario-casa-certificadora"
+                    class="formulario formulario__seccion">
+
+                    <div class="formulario__rejilla formulario__rejilla--codigo">
+
+                        <!-- Código -->
+                        <div class="formulario__campo">
+                            <label for="codigo" class="formulario__etiqueta">
+                                Código
+                                <span class="formulario__obligatorio">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="codigo"
+                                name="codigo"
+                                class="formulario__control"
+                                inputmode="numeric"
+                                pattern="[0-9]+"
+                                required
+                                aria-describedby="error-codigo">
+
+                            <p
+                                id="error-codigo"
+                                class="formulario__mensaje"
+                                aria-live="polite"></p>
+                        </div>
+
+                        <!-- Nombre -->
+                        <div class="formulario__campo">
+                            <label for="nombre" class="formulario__etiqueta">
+                                Nombre
+                                <span class="formulario__obligatorio">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                class="formulario__control"
+                                required
+                                aria-describedby="error-nombre">
+
+                            <p
+                                id="error-nombre"
+                                class="formulario__mensaje"
+                                aria-live="polite"></p>
+                        </div>
+
+                    </div>
+
+                    <p class="formulario__nota">
+                        * Campo obligatorio
+                    </p>
+
+                    <!-- Mensaje del registro -->
+                    <p
+                        id="mensaje-registro"
+                        class="formulario__mensaje"
+                        role="status"
+                        aria-live="polite"></p>
+
+                    <!-- Botones del formulario -->
+                    <div class="formulario__acciones">
+
+                        <button
+                            type="submit"
+                            class="boton boton--principal">
+                            Registrar
+                        </button>
+
+                        <button
+                            type="reset"
+                            class="boton boton--secundario">
+                            Limpiar
+                        </button>
+
+                        <a
+                            href="casas-certificadoras-listado.html"
+                            class="boton boton--secundario">
+                            Cancelar
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
