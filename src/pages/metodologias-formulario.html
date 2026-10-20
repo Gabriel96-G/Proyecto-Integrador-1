@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar metodología de aprendizaje</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/metodologias.js" defer></script>
+</head>
+
+<body>
+    <div class="aplicacion">
+
+        <!-- Cabecera institucional -->
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img class="cabecera__logo" src="../assets/img/logo-cenfotec.png" alt="Universidad CENFOTEC">
+            </a>
+
+            <span class="cabecera__nombre">
+                Gestión curricular
+            </span>
+
+            <span class="cabecera__usuario">
+                <img class="icono-usuario" src="../assets/icons/usuario.svg" alt="">
+                Administrador
+            </span>
+        </header>
+
+        <!-- Menú lateral -->
+        <nav class="navegacion" aria-label="Menú principal">
+            <ul class="navegacion__lista">
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="inicio.html">
+                        <img class="icono-menu" src="../assets/icons/inicio.svg" alt="">
+                        Inicio
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="usuarios.html">
+                        <img class="icono-menu" src="../assets/icons/usuarios.svg" alt="">
+                        Usuarios
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
+                        <img class="icono-menu" src="../assets/icons/catalogos.svg" alt="">
+                        Catálogos
+                    </a>
+                </li>
+
+                <li class="navegacion__item">
+                    <a class="navegacion__enlace" href="cursos.html">
+                        <img class="icono-menu" src="../assets/icons/cursos.svg" alt="">
+                        Cursos
+                    </a>
+                </li>
+
+            </ul>
+
+            <a class="navegacion__salir" href="../index.html">
+                <img class="icono-menu" src="../assets/icons/cerrar.svg" alt="">
+                Cerrar sesión
+            </a>
+        </nav>
+
+        <!-- Contenido del formulario -->
+        <main class="contenido">
+
+            <p class="ruta">
+                Catálogos / Metodologías de aprendizaje / Nuevo registro
+            </p>
+
+            <h1>Registrar metodología de aprendizaje</h1>
+
+            <section class="catalogo-formulario">
+
+                <!-- Tarjeta informativa -->
+                <div class="catalogo-formulario__ficha">
+                    <img class="catalogo-resumen__icono" src="../assets/icons/catalogos.svg" alt="">
+
+                    <h2>Metodología de aprendizaje</h2>
+
+                    <p>
+                        Código, nombre y descripción
+                        de la metodología.
+                    </p>
+                </div>
+
+                <!-- Formulario HU-38 -->
+                <form id="formulario-metodologia" class="formulario formulario__seccion">
+
+                    <div class="formulario__rejilla formulario__rejilla--codigo">
+
+                        <!-- Código -->
+                        <div class="formulario__campo">
+                            <label for="codigo" class="formulario__etiqueta">
+                                Código
+                                <span class="formulario__obligatorio">*</span>
+                            </label>
+
+                            <input type="number" id="codigo" name="codigo" class="formulario__control" step="1" required
+                                aria-describedby="error-codigo">
+
+                            <p id="error-codigo" class="formulario__mensaje" aria-live="polite"></p>
+                        </div>
+
+                        <!-- Nombre -->
+                        <div class="formulario__campo">
+                            <label for="nombre" class="formulario__etiqueta">
+                                Nombre
+                                <span class="formulario__obligatorio">*</span>
+                            </label>
+
+                            <input type="text" id="nombre" name="nombre" class="formulario__control" required
+                                aria-describedby="error-nombre">
+
+                            <p id="error-nombre" class="formulario__mensaje" aria-live="polite"></p>
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="formulario__campo formulario__campo--completo">
+                            <label for="descripcion" class="formulario__etiqueta">
+                                Descripción
+                                <span class="formulario__obligatorio">*</span>
+                            </label>
+
+                            <textarea id="descripcion" name="descripcion" class="formulario__control" rows="5" required
+                                aria-describedby="error-descripcion"></textarea>
+
+                            <p id="error-descripcion" class="formulario__mensaje" aria-live="polite"></p>
+                        </div>
+
+                    </div>
+
+                    <p class="formulario__nota">
+                        * Campo obligatorio
+                    </p>
+
+                    <p id="mensaje-resultado" class="formulario__mensaje" role="status" aria-live="polite"></p>
+
+                    <div class="formulario__acciones">
+                        <button type="submit" class="boton boton--principal">
+                            Guardar metodología
+                        </button>
+
+                        <button type="reset" class="boton boton--secundario">
+                            Limpiar formulario
+                        </button>
+                        <a href="metodologias-listado.html" class="boton boton--secundario">
+                            Cancelar
+                        </a>
+                    </div>
+
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
