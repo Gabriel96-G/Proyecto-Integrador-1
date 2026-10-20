@@ -5,201 +5,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Listado de metodologías - CENFOTEC</title>
+
     <link rel="stylesheet" href="../css/estilos.css">
     <script src="../js/metodologias-listado.js" defer></script>
+
+    <style>
+        /* Estilos exclusivos del listado de metodologías */
+        .metodologias-filtros {
+            padding: 12px 16px;
+            border: 1px solid var(--color-separador);
+            border-radius: var(--radio-control);
+            background: white;
+        }
+
+        .metodologias-filtros summary {
+            color: var(--color-principal);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .metodologias-filtros .formulario__rejilla {
+            margin-top: 16px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="aplicacion">
 
-        <!-- Cabecera institucional -->
+        <!-- Cabecera institucional: logo original -->
         <header class="cabecera">
+
             <a class="cabecera__marca" href="inicio.html">
-                <img class="cabecera__logo"
+                <img
+                    class="cabecera__logo"
                     src="../assets/img/logo-cenfotec.png"
                     alt="Universidad CENFOTEC">
             </a>
 
-            <span class="cabecera__nombre">Gestión curricular</span>
+            <span class="cabecera__nombre">
+                Gestión curricular
+            </span>
 
             <span class="cabecera__usuario">
-                <img class="icono-usuario"
-                    src="../assets/icons/usuario.svg" alt="">
+                <img
+                    class="icono-usuario"
+                    src="../assets/icons/usuario.svg"
+                    alt="">
                 Administrador
             </span>
+
         </header>
 
         <!-- Menú lateral -->
         <nav class="navegacion" aria-label="Menú principal">
+
             <ul class="navegacion__lista">
+
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu"
-                            src="../assets/icons/inicio.svg" alt="">
+                        <img
+                            class="icono-menu"
+                            src="../assets/icons/inicio.svg"
+                            alt="">
                         Inicio
                     </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu"
-                            src="../assets/icons/usuarios.svg" alt="">
+                        <img
+                            class="icono-menu"
+                            src="../assets/icons/usuarios.svg"
+                            alt="">
                         Usuarios
                     </a>
                 </li>
 
                 <li class="navegacion__item">
-                    <a class="navegacion__enlace"
-                        href="catalogos.html" aria-current="page">
-                        <img class="icono-menu"
-                            src="../assets/icons/catalogos.svg" alt="">
+                    <a
+                        class="navegacion__enlace"
+                        href="catalogos.html"
+                        aria-current="page">
+                        <img
+                            class="icono-menu"
+                            src="../assets/icons/catalogos.svg"
+                            alt="">
                         Catálogos
                     </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="cursos.html">
-                        <img class="icono-menu"
-                            src="../assets/icons/cursos.svg" alt="">
+                        <img
+                            class="icono-menu"
+                            src="../assets/icons/cursos.svg"
+                            alt="">
                         Cursos
                     </a>
                 </li>
+
             </ul>
 
             <a class="navegacion__salir" href="../index.html">
-                <img class="icono-menu"
-                    src="../assets/icons/cerrar.svg" alt="">
+                <img
+                    class="icono-menu"
+                    src="../assets/icons/cerrar.svg"
+                    alt="">
                 Cerrar sesión
             </a>
+
         </nav>
 
-        <!-- Contenido principal -->
+        <!-- Contenido: HU-39 -->
         <main class="contenido">
-
-            <p class="ruta">
-                Catálogos / Metodologías de aprendizaje / Listado
-            </p>
 
             <h1>Listado de metodologías de aprendizaje</h1>
 
-            <p>
-                Consulte las metodologías de aprendizaje
-                registradas en el sistema.
-            </p>
+            <section class="listado" aria-label="Listado de metodologías">
 
-            <section class="formulario__seccion">
+                <!-- Buscador y botón de registro -->
+                <form
+                    id="formulario-filtros-metodologias"
+                    class="formulario"
+                    role="search">
 
-                <h2 class="formulario__titulo">
-                    Metodologías registradas
-                </h2>
+                    <div class="listado__herramientas">
 
-                <!-- HU-40: Búsqueda y filtrado -->
-                <form id="formulario-filtros-metodologias"
-                    class="formulario" role="search">
+                        <div class="busqueda">
 
-                    <div class="formulario__rejilla">
-
-                        <!-- Búsqueda general -->
-                        <div class="formulario__campo formulario__campo--completo">
-                            <label for="buscar-metodologias"
-                                class="formulario__etiqueta">
+                            <label
+                                for="buscar-metodologias"
+                                class="busqueda__etiqueta">
                                 Buscar por código o nombre
                             </label>
 
-                            <input type="search"
+                            <input
+                                type="search"
                                 id="buscar-metodologias"
                                 name="busqueda"
-                                class="formulario__control"
-                                placeholder="Ingrese un código o nombre">
+                                class="busqueda__control"
+                                placeholder="Buscar metodología...">
+
                         </div>
 
-                        <!-- Filtro por código -->
-                        <div class="formulario__campo">
-                            <label for="filtro-codigo"
-                                class="formulario__etiqueta">
-                                Filtrar por código
-                            </label>
-
-                            <input type="text"
-                                id="filtro-codigo"
-                                name="filtroCodigo"
-                                class="formulario__control"
-                                placeholder="Código">
-                        </div>
-
-                        <!-- Filtro por nombre -->
-                        <div class="formulario__campo">
-                            <label for="filtro-nombre"
-                                class="formulario__etiqueta">
-                                Filtrar por nombre
-                            </label>
-
-                            <input type="text"
-                                id="filtro-nombre"
-                                name="filtroNombre"
-                                class="formulario__control"
-                                placeholder="Nombre">
-                        </div>
-
-                        <!-- Filtro por descripción -->
-                        <div class="formulario__campo formulario__campo--completo">
-                            <label for="filtro-descripcion"
-                                class="formulario__etiqueta">
-                                Filtrar por descripción
-                            </label>
-
-                            <input type="text"
-                                id="filtro-descripcion"
-                                name="filtroDescripcion"
-                                class="formulario__control"
-                                placeholder="Descripción">
-                        </div>
+                        <a
+                            href="metodologias-formulario.html"
+                            class="boton boton--principal">
+                            Registrar nueva metodología
+                        </a>
 
                     </div>
 
+                    <!-- Filtros existentes de HU-40 -->
+                    <details class="metodologias-filtros">
+
+                        <summary>
+                            Filtros avanzados
+                        </summary>
+
+                        <div class="formulario__rejilla">
+
+                            <div class="formulario__campo">
+
+                                <label
+                                    for="filtro-codigo"
+                                    class="formulario__etiqueta">
+                                    Filtrar por código
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="filtro-codigo"
+                                    name="filtroCodigo"
+                                    class="formulario__control"
+                                    placeholder="Código">
+
+                            </div>
+
+                            <div class="formulario__campo">
+
+                                <label
+                                    for="filtro-nombre"
+                                    class="formulario__etiqueta">
+                                    Filtrar por nombre
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="filtro-nombre"
+                                    name="filtroNombre"
+                                    class="formulario__control"
+                                    placeholder="Nombre">
+
+                            </div>
+
+                            <div class="formulario__campo formulario__campo--completo">
+
+                                <label
+                                    for="filtro-descripcion"
+                                    class="formulario__etiqueta">
+                                    Filtrar por descripción
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="filtro-descripcion"
+                                    name="filtroDescripcion"
+                                    class="formulario__control"
+                                    placeholder="Descripción">
+
+                            </div>
+
+                        </div>
+
+                    </details>
+
                     <div class="formulario__acciones">
-                        <button type="submit" class="boton boton--principal">
+
+                        <button
+                            type="submit"
+                            class="boton boton--principal">
                             Buscar y filtrar
                         </button>
 
-                        <button type="reset" class="boton boton--secundario">
+                        <button
+                            type="reset"
+                            class="boton boton--secundario">
                             Limpiar filtros
                         </button>
+
                     </div>
+
                 </form>
 
-                <!-- HU-39: Tabla de metodologías -->
-                <table id="tabla-metodologias" class="tabla">
-                    <thead>
-                        <tr>
-                            <th scope="col">Código</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Descripción</th>
-                        </tr>
-                    </thead>
+                <!-- Tabla HU-39 -->
+                <div class="tabla-contenedor">
 
-                    <tbody id="cuerpo-tabla-metodologias">
-                        <!-- Registros cargados con JavaScript -->
-                    </tbody>
-                </table>
+                    <table
+                        id="tabla-metodologias"
+                        class="tabla tabla--catalogo">
 
-                <p id="mensaje-listado"
-                    class="formulario__mensaje"
-                    role="status"
-                    aria-live="polite">
-                    El listado se cargará al conectar JavaScript.
-                </p>
+                        <thead>
+                            <tr>
+                                <th scope="col">Código</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripción</th>
+                            </tr>
+                        </thead>
 
-                <div class="formulario__acciones">
-                    <a href="metodologias-formulario.html"
-                        class="boton boton--principal">
-                        Registrar nueva metodología
-                    </a>
+                        <tbody id="cuerpo-tabla-metodologias">
+                            <!-- Registros cargados desde JavaScript -->
+                        </tbody>
+
+                    </table>
+
+                    <p
+                        id="mensaje-listado"
+                        class="formulario__mensaje"
+                        role="status"
+                        aria-live="polite">
+                    </p>
+
                 </div>
 
             </section>
+
         </main>
+
     </div>
 </body>
 
