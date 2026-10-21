@@ -1,26 +1,63 @@
 
+// HU-48: Registro de casas certificadoras
+// Validaciones y mensajes basados en niveles-complejidad.js
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const formulario = document.getElementById("formulario-casa-certificadora");
+
     const campoCodigo = document.getElementById("codigo");
     const campoNombre = document.getElementById("nombre");
 
-    const errorCodigo = document.getElementById("error-codigo");
-    const errorNombre = document.getElementById("error-nombre");
-    const mensajeRegistro = document.getElementById("mensaje-registro");
+    const mensajeCodigo = document.getElementById("error-codigo");
+    const mensajeNombre = document.getElementById("error-nombre");
+    const mensajeResultado = document.getElementById("mensaje-registro");
 
-    const claveAlmacenamiento = "casasCertificadoras";
+    const CLAVE_ALMACENAMIENTO = "casasCertificadoras";
 
-    function limpiarMensajes() {
-        errorCodigo.textContent = "";
-        errorNombre.textContent = "";
-        mensajeRegistro.textContent = "";
-    }
-
+    // Normaliza los códigos para evitar duplicados como 01 y 1.
     function normalizarCodigo(codigo) {
-        return codigo.replace(/^0+(?=\d)/, "");
+        return String(codigo).replace(/^0+(?=\d)/, "");
     }
 
+    // Normaliza los nombres antes de compararlos.
+    function normalizarNombre(nombre) {
+        return String(nombre).trim()
+            .replace(/\s+/g, " ")
+            .toLocaleLowerCase("es");
+    }
+
+    // Muestra un error debajo del campo correspondiente.
+    function mostrarError(campo, lugarMensaje, texto) {
+        campo.classList.add("error");
+        campo.setAttribute("aria-invalid", "true");
+        lugarMensaje.textContent = texto;
+    }
+
+    // Muestra un aviso general de error o confirmación.
+    function mostrarAviso(texto, tipo) {
+        mensajeResultado.textContent = texto;
+        mensajeResultado.className = "aviso aviso--" + tipo;
+        mensajeResultado.hidden = false;
+    }
+
+    // Elimina los mensajes y los estilos de error anteriores.
+    function limpiarMensajes() {
+        campoCodigo.classList.remove("error");
+        campoNombre.classList.remove("error");
+
+        campoCodigo.removeAttribute("aria-invalid");
+        campoNombre.removeAttribute("aria-invalid");
+
+        mensajeCodigo.textContent = "";
+        mensajeNombre.textContent = "";
+
+        mensajeResultado.textContent = "";
+        mensajeResultado.className = "aviso";
+        mensajeResultado.hidden = true;
+    }
+
+    // Procesa el registro cuando el usuario guarda.
     formulario.addEventListener("submit", function (evento) {
 
         evento.preventDefault();
@@ -29,70 +66,93 @@ document.addEventListener("DOMContentLoaded", function () {
         const codigo = campoCodigo.value.trim();
         const nombre = campoNombre.value.trim();
 
-        let datosValidos = true;
+        let hayErrores = false;
 
-        // Validar que el código sea obligatorio y numérico
-        if (codigo === "") {
-            errorCodigo.textContent = "El código es obligatorio.";
-            datosValidos = false;
-        } else if (!/^\d+$/.test(codigo)) {
-            errorCodigo.textContent = "El código debe contener únicamente números.";
-            datosValidos = false;
+        // Validar el código obligatorio y numérico.
+        if (codigo === "" || !/^\d+$/.test(codigo)) {
+            mostrarError(
+                campoCodigo,
+                mensajeCodigo,
+                "Ingrese un código numérico válido."
+            );
+            hayErrores = true;
         }
 
-        // Validar que el nombre sea obligatorio
+        // Validar el nombre obligatorio.
         if (nombre === "") {
-            errorNombre.textContent = "El nombre es obligatorio.";
-            datosValidos = false;
+            mostrarError(
+                campoNombre,
+                mensajeNombre,
+                "Ingrese el nombre."
+            );
+            hayErrores = true;
         }
 
-        if (!datosValidos) {
+        // Detener el registro si existen errores iniciales.
+        if (hayErrores) {
+            mostrarAviso("Revise los campos señalados.", "error");
             return;
         }
 
-        // Obtener las casas certificadoras registradas
+        // Recuperar las casas certificadoras almacenadas.
         let casasCertificadoras;
 
         try {
-            const datosGuardados = localStorage.getItem(claveAlmacenamiento);
+            const datosGuardados = localStorage.getItem(CLAVE_ALMACENAMIENTO);
 
             casasCertificadoras = datosGuardados
                 ? JSON.parse(datosGuardados)
                 : [];
 
             if (!Array.isArray(casasCertificadoras)) {
-                throw new Error("Formato de datos inválido");
+                throw new Error("Formato de datos inválido.");
             }
+
         } catch (error) {
-            mensajeRegistro.textContent = "No fue posible leer los registros guardados.";
+            console.error("Error al leer casas certificadoras:", error);
+
+            mostrarAviso(
+                "No fue posible leer las casas certificadoras registradas.",
+                "error"
+            );
             return;
         }
 
-        // Verificar códigos duplicados
+        // Comprobar que el código no esté duplicado.
         const codigoDuplicado = casasCertificadoras.some(function (casa) {
-            return normalizarCodigo(String(casa.codigo)) === normalizarCodigo(codigo);
+            return normalizarCodigo(casa.codigo) === normalizarCodigo(codigo);
         });
 
-        // Verificar nombres duplicados
+        // Comprobar que el nombre no esté duplicado.
         const nombreDuplicado = casasCertificadoras.some(function (casa) {
-            return String(casa.nombre).trim().toLowerCase() === nombre.toLowerCase();
+            return normalizarNombre(casa.nombre) === normalizarNombre(nombre);
         });
 
         if (codigoDuplicado) {
-            errorCodigo.textContent = "Ya existe una casa certificadora con este código.";
-            datosValidos = false;
+            mostrarError(
+                campoCodigo,
+                mensajeCodigo,
+                "Ya existe una casa certificadora con este código."
+            );
+            hayErrores = true;
         }
 
         if (nombreDuplicado) {
-            errorNombre.textContent = "Ya existe una casa certificadora con este nombre.";
-            datosValidos = false;
+            mostrarError(
+                campoNombre,
+                mensajeNombre,
+                "Ya existe una casa certificadora con este nombre."
+            );
+            hayErrores = true;
         }
 
-        if (!datosValidos) {
+        // Mostrar el mensaje general cuando existen duplicados.
+        if (hayErrores) {
+            mostrarAviso("Revise los campos señalados.", "error");
             return;
         }
 
-        // Crear el registro
+        // Crear la nueva casa certificadora.
         const nuevaCasa = {
             codigo: codigo,
             nombre: nombre
@@ -100,26 +160,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
         casasCertificadoras.push(nuevaCasa);
 
-        // Guardar los datos en el navegador
+        // Guardar los datos en localStorage.
         try {
             localStorage.setItem(
-                claveAlmacenamiento,
+                CLAVE_ALMACENAMIENTO,
                 JSON.stringify(casasCertificadoras)
             );
 
             formulario.reset();
+            limpiarMensajes();
 
-            mensajeRegistro.textContent = "Casa certificadora registrada correctamente.";
-            mensajeRegistro.style.color = "var(--color-confirmacion)";
+            mostrarAviso(
+                "La casa certificadora se registró correctamente.",
+                "confirmacion"
+            );
 
         } catch (error) {
-            mensajeRegistro.textContent = "No fue posible guardar la casa certificadora.";
-            mensajeRegistro.style.color = "var(--color-error)";
+            console.error("Error al guardar casa certificadora:", error);
+
+            mostrarAviso(
+                "No fue posible guardar la casa certificadora.",
+                "error"
+            );
         }
     });
 
-    formulario.addEventListener("reset", function () {
-        limpiarMensajes();
-    });
+    // Limpiar mensajes cuando el usuario modifica los campos.
+    formulario.addEventListener("input", limpiarMensajes);
 
 });
