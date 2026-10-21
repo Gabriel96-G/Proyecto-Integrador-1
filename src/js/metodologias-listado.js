@@ -1,6 +1,7 @@
 
 /*
  * HU-39 - Listado de metodologías de aprendizaje
+ * HU-40 - Búsqueda de metodologías
  * Proyecto Integrador 1 - Universidad CENFOTEC
  */
 
@@ -9,56 +10,34 @@ document.addEventListener("DOMContentLoaded", function () {
     const tabla = document.getElementById("tabla-metodologias");
     const cuerpoTabla = document.getElementById("cuerpo-tabla-metodologias");
     const mensajeListado = document.getElementById("mensaje-listado");
-
-    
-    // HU-40: Campos de búsqueda y filtrado.
-    const formularioFiltros = document.getElementById("formulario-filtros-metodologias");
-
     const campoBusqueda = document.getElementById("buscar-metodologias");
-    const filtroCodigo = document.getElementById("filtro-codigo");
-    const filtroNombre = document.getElementById("filtro-nombre");
-    const filtroDescripcion = document.getElementById("filtro-descripcion");
-
 
     // Misma clave utilizada en HU-38.
     const CLAVE_ALMACENAMIENTO = "metodologiasAprendizaje";
-    
-    // HU-40: Filtrar metodologías según los criterios ingresados.
+
+    // HU-40: Buscar metodologías por código o nombre.
     function filtrarMetodologias(metodologias) {
 
         const busqueda = campoBusqueda.value.trim().toLowerCase();
-        const codigoBuscado = filtroCodigo.value.trim().toLowerCase();
-        const nombreBuscado = filtroNombre.value.trim().toLowerCase();
-        const descripcionBuscada = filtroDescripcion.value.trim().toLowerCase();
 
         return metodologias.filter(function (metodologia) {
 
-            const codigo = String(metodologia.codigo).toLowerCase();
-            const nombre = metodologia.nombre.toLowerCase();
-            const descripcion = metodologia.descripcion.toLowerCase();
+            const codigo = String(metodologia.codigo ?? "").toLowerCase();
+            const nombre = String(metodologia.nombre ?? "").toLowerCase();
 
             // CP-093: Buscar por código o nombre.
-            const coincideBusqueda =
-                codigo.includes(busqueda) || nombre.includes(busqueda);
-
-            // CP-094: Combinar los filtros.
-            const coincideCodigo = codigo.includes(codigoBuscado);
-            const coincideNombre = nombre.includes(nombreBuscado);
-            const coincideDescripcion = descripcion.includes(descripcionBuscada);
-
-            return coincideBusqueda &&
-                   coincideCodigo &&
-                   coincideNombre &&
-                   coincideDescripcion;
+            return codigo.includes(busqueda) ||
+                   nombre.includes(busqueda);
         });
     }
 
-    // Recupera y muestra las metodologías registradas.
+    // HU-39: Recuperar y mostrar las metodologías registradas.
     function cargarMetodologias() {
 
         cuerpoTabla.innerHTML = "";
 
         try {
+
             const metodologias = JSON.parse(
                 localStorage.getItem(CLAVE_ALMACENAMIENTO) || "[]"
             );
@@ -69,35 +48,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // CP-092: Mostrar mensaje cuando no existen registros.
             if (metodologias.length === 0) {
+
                 tabla.hidden = true;
 
                 mensajeListado.textContent =
                     "No existen metodologías de aprendizaje registradas.";
 
-                mensajeListado.style.color =
-                    "var(--color-texto-secundario)";
-
                 return;
             }
 
-            
-            // HU-40: Aplicar los criterios de búsqueda y filtrado.
-            const metodologiasFiltradas = filtrarMetodologias(metodologias);
+            // HU-40: Aplicar la búsqueda por código o nombre.
+            const metodologiasFiltradas =
+                filtrarMetodologias(metodologias);
 
-            // CP-095: Informar cuando no existen coincidencias.
+            // CP-095: Mostrar mensaje cuando no hay coincidencias.
             if (metodologiasFiltradas.length === 0) {
+
                 tabla.hidden = true;
 
                 mensajeListado.textContent =
-                    "No se encontraron metodologías que coincidan con los criterios de búsqueda.";
-
-                mensajeListado.style.color =
-                    "var(--color-texto-secundario)";
+                    "No se encontraron metodologías que coincidan con la búsqueda.";
 
                 return;
             }
-
-            
 
             // CP-091: Mostrar las metodologías registradas.
             tabla.hidden = false;
@@ -108,13 +81,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 const fila = document.createElement("tr");
 
                 const celdaCodigo = document.createElement("td");
-                celdaCodigo.textContent = metodologia.codigo;
+                celdaCodigo.textContent = metodologia.codigo ?? "";
 
                 const celdaNombre = document.createElement("td");
-                celdaNombre.textContent = metodologia.nombre;
+                celdaNombre.textContent = metodologia.nombre ?? "";
 
                 const celdaDescripcion = document.createElement("td");
-                celdaDescripcion.textContent = metodologia.descripcion;
+                celdaDescripcion.textContent = metodologia.descripcion ?? "";
 
                 fila.appendChild(celdaCodigo);
                 fila.appendChild(celdaNombre);
@@ -124,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
         } catch (error) {
+
             console.error("Error al cargar metodologías:", error);
 
             tabla.hidden = true;
@@ -132,29 +106,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 "No fue posible cargar el listado de metodologías.";
         }
     }
-    // HU-40: Ejecutar búsqueda al presionar el botón.
-    formularioFiltros.addEventListener("submit", function (evento) {
 
-        evento.preventDefault();
+    // HU-40: Actualizar el listado mientras el usuario escribe.
+    campoBusqueda.addEventListener("input", cargarMetodologias);
 
-        cargarMetodologias();
-
-    });
-
-        // HU-40: Limpiar los filtros y mostrar todos los registros.
-    formularioFiltros.addEventListener("reset", function (evento) {
-
-        evento.preventDefault();
-
-        campoBusqueda.value = "";
-        filtroCodigo.value = "";
-        filtroNombre.value = "";
-        filtroDescripcion.value = "";
-
-        cargarMetodologias();
-
-    });
-
+    // HU-39: Mostrar los registros al cargar la página.
     cargarMetodologias();
 
 });
