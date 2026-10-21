@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/almacenamiento-aylin.js" defer></script>
+    <script src="../js/inicio.js" defer></script>
+</head>
+<body>
+    <div id="panel-inicio" class="aplicacion" hidden>
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img class="cabecera__logo" src="../assets/img/logo-cenfotec.png" alt="Universidad CENFOTEC">
+            </a>
+            <span class="cabecera__nombre">Gestión curricular</span>
+            <span class="cabecera__usuario">
+                <img class="icono-usuario" src="../assets/icons/usuario.svg" alt="">
+                Administrador
+            </span>
+        </header>
+
+        <nav class="navegacion" aria-label="Menú principal">
+            <details class="navegacion__desplegable" open>
+                <summary class="navegacion__alternar">Menú</summary>
+                <ul class="navegacion__lista">
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="inicio.html" aria-current="page">
+                            <img class="icono-menu" src="../assets/icons/inicio.svg" alt=""> Inicio
+                        </a>
+                    </li>
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="usuarios.html">
+                            <img class="icono-menu" src="../assets/icons/usuarios.svg" alt=""> Usuarios
+                        </a>
+                    </li>
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="catalogos.html">
+                            <img class="icono-menu" src="../assets/icons/catalogos.svg" alt=""> Catálogos
+                        </a>
+                    </li>
+                    <li class="navegacion__item">
+                        <span class="navegacion__enlace" aria-disabled="true" title="Próximamente">
+                            <img class="icono-menu" src="../assets/icons/cursos.svg" alt=""> Cursos
+                        </span>
+                    </li>
+                </ul>
+            </details>
+            <span class="navegacion__salir" aria-disabled="true" title="Función aún no disponible">
+                <img class="icono-menu" src="../assets/icons/cerrar.svg" alt=""> Cerrar sesión
+            </span>
+        </nav>
+
+        <main class="contenido">
+            <header class="pagina__encabezado">
+                <h1>Su espacio de trabajo</h1>
+                <p class="ruta">Inicio / Panel principal</p>
+            </header>
+
+            <section class="bienvenida">
+                <div>
+                    <h2>Gestione la información curricular</h2>
+                    <p>Bienvenido, <span id="nombre-usuario"></span>. Elija un módulo para comenzar.</p>
+                </div>
+            </section>
+
+            <div class="modulos">
+                <section class="modulo modulo--destacado">
+                    <div class="modulo__encabezado">
+                        <img class="icono" src="../assets/icons/cursos.svg" alt="">
+                        <h2>Cursos</h2>
+                    </div>
+                    <p class="modulo__descripcion">Registrar, consultar y completar cursos.</p>
+                    <button class="boton boton--principal" type="button" disabled>Próximamente</button>
+                </section>
+
+                <a class="modulo modulo--compacto" href="usuarios.html">
+                    <img class="icono" src="../assets/icons/usuarios.svg" alt="">
+                    <div><h2>Usuarios</h2><p class="modulo__descripcion">Datos y roles predefinidos</p></div>
+                    <span class="modulo__flecha" aria-hidden="true">›</span>
+                </a>
+
+                <a class="modulo modulo--compacto" href="catalogos.html">
+                    <img class="icono" src="../assets/icons/catalogos.svg" alt="">
+                    <div><h2>Catálogos</h2><p class="modulo__descripcion">Clasificación institucional</p></div>
+                    <span class="modulo__flecha" aria-hidden="true">›</span>
+                </a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
