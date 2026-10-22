@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestión de cursos | SGC</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/cursos.css">
+
+    <script src="../js/almacenamiento.js" defer></script>
+    <script src="../js/cursos-validacion.js" defer></script>
+    <script src="../js/cursos-datos.js" defer></script>
+    <script src="../js/cursos-listado.js" defer></script>
+</head>
+
+<body>
+    <a class="salto-contenido" href="#contenido">
+        Saltar al contenido
+    </a>
+
+    <div id="panel-cursos" class="aplicacion" hidden>
+
+        <!-- Encabezado institucional -->
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
+            </a>
+
+            <span class="cabecera__nombre">
+                Gestión curricular
+            </span>
+
+            <span class="cabecera__usuario">
+                <img class="icono-usuario" src="../assets/icons/usuario.svg" alt="">
+                <span id="rol-usuario">Usuario</span>
+            </span>
+        </header>
+
+        <!-- Menú principal -->
+        <nav class="navegacion" aria-label="Menú principal">
+            <details class="navegacion__desplegable" open>
+                <summary class="navegacion__alternar">
+                    Menú
+                </summary>
+
+                <ul class="navegacion__lista">
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="inicio.html">
+                            <img class="icono-menu" src="../assets/icons/inicio.svg" alt="">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="usuarios.html">
+                            <img class="icono-menu" src="../assets/icons/usuarios.svg" alt="">
+                            Usuarios
+                        </a>
+                    </li>
+
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="catalogos.html">
+                            <img class="icono-menu" src="../assets/icons/catalogos.svg" alt="">
+                            Catálogos
+                        </a>
+                    </li>
+
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="cursos.html" aria-current="page">
+                            <img class="icono-menu" src="../assets/icons/cursos.svg" alt="">
+                            Cursos
+                        </a>
+                    </li>
+                </ul>
+            </details>
+
+            <span class="navegacion__salir" aria-disabled="true" title="Función aún no disponible">
+                <img class="icono-menu" src="../assets/icons/cerrar.svg" alt="">
+                Cerrar sesión
+            </span>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="contenido" id="contenido">
+
+            <header class="pagina__encabezado">
+                <h1>Gestión de cursos</h1>
+
+                <p class="ruta">
+                    Inicio / Cursos
+                </p>
+            </header>
+
+            <!-- Acciones del módulo -->
+            <section aria-labelledby="titulo-listado">
+
+                <div class="catalogo__cabecera">
+                    <div>
+                        <h2 id="titulo-listado">
+                            Listado de cursos
+                        </h2>
+
+                        <p>
+                            Consulte y administre los cursos registrados
+                            en el sistema.
+                        </p>
+                    </div>
+
+                    <a class="boton boton--principal" href="curso-formulario.html" id="nuevo-curso">
+                        Registrar curso
+                    </a>
+                </div>
+
+                <!-- Mensajes informativos -->
+                <p class="aviso" id="aviso-cursos" role="status" aria-live="polite" hidden></p>
+
+                <p id="contador-cursos" aria-live="polite">
+                    0 registros
+                </p>
+                <!-- Tabla de cursos -->
+                <div class="catalogo__tabla-contenedor">
+                    <table class="catalogo__tabla">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Código</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Escuela</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Última modificación</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabla-cursos">
+                            <tr>
+                                <td colspan="6">
+                                    Cargando cursos...
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </section>
+
+            <a class="enlace-accion" href="inicio.html">
+                ‹ Volver al inicio
+            </a>
+
+        </main>
+    </div>
+</body>
+
+</html>
