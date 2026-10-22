@@ -71,11 +71,11 @@
         <!-- Contenido del formulario -->
         <main class="contenido">
 
-            <p class="ruta">
+            <p class="ruta" id="ruta-metodologia">
                 Catálogos / Metodologías de aprendizaje / Nuevo registro
             </p>
 
-            <h1>Registrar metodología de aprendizaje</h1>
+            <h1 id="titulo-metodologia">Registrar metodología de aprendizaje</h1>
 
             <section class="catalogo-formulario">
 
@@ -92,7 +92,7 @@
                 </div>
 
                 <!-- Formulario HU-38 -->
-                <form id="formulario-metodologia" class="formulario formulario__seccion">
+                <form id="formulario-metodologia" class="formulario formulario__seccion" novalidate>
 
                     <div class="formulario__rejilla formulario__rejilla--codigo">
 
@@ -144,7 +144,7 @@
                     <p id="mensaje-resultado" class="formulario__mensaje" role="status" aria-live="polite"></p>
 
                     <div class="formulario__acciones">
-                        <button type="submit" class="boton boton--principal">
+                        <button type="submit" id="boton-guardar-metodologia" class="boton boton--principal">
                             Guardar metodología
                         </button>
 
