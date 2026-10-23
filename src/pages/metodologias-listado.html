@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,10 +22,10 @@
         <!-- Cabecera institucional -->
         <header class="cabecera">
             <a class="cabecera__marca" href="inicio.html">
-                <img
-                    class="cabecera__logo"
-                    src="../img/logo-cenfotec.png"
-                    alt="Universidad CENFOTEC">
+              
+<img class="cabecera__logo"
+     src="../img/logo-cenfotec.png"
+     alt="Universidad CENFOTEC">
             </a>
 
             <span class="cabecera__nombre">
@@ -33,10 +33,7 @@
             </span>
 
             <span class="cabecera__usuario">
-                <img
-                    class="icono-usuario"
-                    src="../assets/icons/usuario.svg"
-                    alt="">
+                <img class="icono-usuario" src="../assets/icons/usuario.svg" alt="">
                 Administrador
             </span>
         </header>
@@ -53,43 +50,28 @@
 
                     <li class="navegacion__item">
                         <a class="navegacion__enlace" href="inicio.html">
-                            <img
-                                class="icono-menu"
-                                src="../assets/icons/inicio.svg"
-                                alt="">
+                            <img class="icono-menu" src="../assets/icons/inicio.svg" alt="">
                             Inicio
                         </a>
                     </li>
 
                     <li class="navegacion__item">
                         <a class="navegacion__enlace" href="usuarios.html">
-                            <img
-                                class="icono-menu"
-                                src="../assets/icons/usuarios.svg"
-                                alt="">
+                            <img class="icono-menu" src="../assets/icons/usuarios.svg" alt="">
                             Usuarios
                         </a>
                     </li>
 
                     <li class="navegacion__item">
-                        <a
-                            class="navegacion__enlace"
-                            href="catalogos.html"
-                            aria-current="page">
-                            <img
-                                class="icono-menu"
-                                src="../assets/icons/catalogos.svg"
-                                alt="">
+                        <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
+                            <img class="icono-menu" src="../assets/icons/catalogos.svg" alt="">
                             Catálogos
                         </a>
                     </li>
 
                     <li class="navegacion__item">
                         <a class="navegacion__enlace" href="cursos.html">
-                            <img
-                                class="icono-menu"
-                                src="../assets/icons/cursos.svg"
-                                alt="">
+                            <img class="icono-menu" src="../assets/icons/cursos.svg" alt="">
                             Cursos
                         </a>
                     </li>
@@ -98,10 +80,7 @@
             </details>
 
             <a class="navegacion__salir" href="../index.html">
-                <img
-                    class="icono-menu"
-                    src="../assets/icons/cerrar.svg"
-                    alt="">
+                <img class="icono-menu" src="../assets/icons/cerrar.svg" alt="">
                 Cerrar sesión
             </a>
         </nav>
@@ -116,68 +95,50 @@
             <!-- Encabezado según wireframe -->
             <section class="catalogo__cabecera">
 
-                <img
-                    class="icono"
-                    src="../assets/icons/catalogos.svg"
-                    alt="">
+                <img class="icono" src="../assets/icons/catalogos.svg" alt="">
 
                 <div>
                     <h1>Metodologías de aprendizaje</h1>
                     <p>Catálogo institucional</p>
                 </div>
 
-                <a
-                    class="boton boton--principal"
-                    href="metodologias-formulario.html">
+                <a class="boton boton--principal" href="metodologias-formulario.html">
                     Registrar nueva metodología
                 </a>
 
             </section>
 
             <!-- HU-39: Listado de metodologías -->
-            <section
-                class="listado"
-                aria-label="Metodologías de aprendizaje registradas">
+            <section class="listado" aria-label="Metodologías de aprendizaje registradas">
 
                 <!-- HU-40: Búsqueda sencilla -->
                 <div class="listado__herramientas">
 
                     <div class="busqueda">
 
-                        <label
-                            class="busqueda__etiqueta"
-                            for="buscar-metodologias">
+                        <label class="busqueda__etiqueta" for="buscar-metodologias">
                             Buscar por código o nombre
                         </label>
 
-                        <input
-                            class="busqueda__control"
-                            id="buscar-metodologias"
-                            name="busqueda"
-                            type="search"
-                            placeholder="Buscar metodología..."
-                            autocomplete="off">
+                        <input class="busqueda__control" id="buscar-metodologias" name="busqueda" type="search"
+                            placeholder="Buscar metodología..." autocomplete="off">
 
                     </div>
 
                 </div>
 
                 <!-- Tabla de registros -->
-                <div
-                    class="tabla-contenedor"
-                    role="region"
-                    aria-label="Listado con desplazamiento horizontal"
+                <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal"
                     tabindex="0">
 
-                    <table
-                        id="tabla-metodologias"
-                        class="tabla tabla--catalogo">
+                    <table id="tabla-metodologias" class="tabla tabla--catalogo">
 
                         <thead>
                             <tr>
                                 <th scope="col">Código</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Descripción</th>
+                                <th scope="col">Acción</th>
                             </tr>
                         </thead>
 
@@ -187,11 +148,7 @@
 
                     </table>
 
-                    <p
-                        id="mensaje-listado"
-                        class="estado-vacio"
-                        role="status"
-                        aria-live="polite">
+                    <p id="mensaje-listado" class="estado-vacio" role="status" aria-live="polite">
                     </p>
 
                 </div>
@@ -208,4 +165,5 @@
     </div>
 
 </body>
+
 </html>
