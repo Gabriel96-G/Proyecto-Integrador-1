@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -91,6 +90,14 @@
             display: none !important;
         }
 
+        /* Mensaje informativo cuando no existen registros */
+        .casas-listado__tabla-contenedor #mensaje-listado.formulario__mensaje {
+            color: #2c3e50;
+            text-align: center;
+            font-weight: 400;
+            margin: 12px 0;
+        }
+
         .casas-listado__volver {
             display: inline-flex;
             align-items: center;
@@ -126,10 +133,7 @@
         <header class="cabecera">
 
             <a class="cabecera__marca" href="inicio.html">
-                <img
-                    class="cabecera__logo"
-                    src="../img/logo-cenfotec.png"
-                    alt="Universidad CENFOTEC">
+                <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
             </a>
 
             <span class="cabecera__nombre">
@@ -137,10 +141,7 @@
             </span>
 
             <span class="cabecera__usuario">
-                <img
-                    class="icono-usuario"
-                    src="../assets/icons/usuario.svg"
-                    alt="">
+                <img class="icono-usuario" src="../assets/icons/usuario.svg" alt="">
                 Administrador
             </span>
 
@@ -153,43 +154,28 @@
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="inicio.html">
-                        <img
-                            class="icono-menu"
-                            src="../assets/icons/inicio.svg"
-                            alt="">
+                        <img class="icono-menu" src="../assets/icons/inicio.svg" alt="">
                         Inicio
                     </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="usuarios.html">
-                        <img
-                            class="icono-menu"
-                            src="../assets/icons/usuarios.svg"
-                            alt="">
+                        <img class="icono-menu" src="../assets/icons/usuarios.svg" alt="">
                         Usuarios
                     </a>
                 </li>
 
                 <li class="navegacion__item">
-                    <a
-                        class="navegacion__enlace"
-                        href="catalogos.html"
-                        aria-current="page">
-                        <img
-                            class="icono-menu"
-                            src="../assets/icons/catalogos.svg"
-                            alt="">
+                    <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
+                        <img class="icono-menu" src="../assets/icons/catalogos.svg" alt="">
                         Catálogos
                     </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="cursos.html">
-                        <img
-                            class="icono-menu"
-                            src="../assets/icons/cursos.svg"
-                            alt="">
+                        <img class="icono-menu" src="../assets/icons/cursos.svg" alt="">
                         Cursos
                     </a>
                 </li>
@@ -197,10 +183,7 @@
             </ul>
 
             <a class="navegacion__salir" href="../index.html">
-                <img
-                    class="icono-menu"
-                    src="../assets/icons/cerrar.svg"
-                    alt="">
+                <img class="icono-menu" src="../assets/icons/cerrar.svg" alt="">
                 Cerrar sesión
             </a>
 
@@ -213,30 +196,17 @@
                 Catálogos / Casas certificadoras
             </p>
 
-            <!-- Encabezado azul claro -->
-            <section class="casas-listado__encabezado">
+            <!-- Encabezado institucional igual al de Áreas SEFIA -->
+            <section class="catalogo__cabecera">
 
-                <div class="casas-listado__identidad">
+                <img class="icono" src="../assets/icons/catalogos.svg" alt="">
 
-                    <img
-                        class="casas-listado__icono"
-                        src="../assets/icons/catalogos.svg"
-                        alt="">
-
-                    <div>
-                        <h1>Casas certificadoras</h1>
-
-                        <p class="casas-listado__subtitulo">
-                            Organizaciones certificadoras
-                        </p>
-                    </div>
-
+                <div>
+                    <h1>Casas certificadoras</h1>
+                    <p>Organizaciones certificadoras</p>
                 </div>
 
-                <!-- Botón ubicado a la derecha -->
-                <a
-                    href="casas-certificadoras-formulario.html"
-                    class="boton boton--principal">
+                <a class="boton boton--principal" href="casas-certificadoras-formulario.html">
                     Registrar casa certificadora
                 </a>
 
@@ -249,34 +219,20 @@
                     Buscar por nombre
                 </label>
 
-                <input
-                    type="search"
-                    id="buscar-casas-certificadoras"
-                    name="buscar-casas-certificadoras"
-                    placeholder="Buscar casa certificadora..."
-                    aria-controls="tabla-casas-certificadoras"
+                <input type="search" id="buscar-casas-certificadoras" name="buscar-casas-certificadoras"
+                    placeholder="Buscar casa certificadora..." aria-controls="tabla-casas-certificadoras"
                     autocomplete="off">
 
             </section>
 
             <!-- Listado -->
-            <section
-                class="casas-listado__tabla-contenedor"
-                aria-label="Casas certificadoras registradas">
+            <section class="casas-listado__tabla-contenedor" aria-label="Casas certificadoras registradas">
 
                 <!-- Mensajes informativos -->
-                <p
-                    id="mensaje-listado"
-                    class="formulario__mensaje"
-                    role="status"
-                    aria-live="polite"
-                    hidden></p>
+                <p id="mensaje-listado" class="formulario__mensaje" role="status" aria-live="polite" hidden></p>
 
                 <!-- Tabla -->
-                <table
-                    id="tabla-casas-certificadoras"
-                    class="tabla"
-                    hidden>
+                <table id="tabla-casas-certificadoras" class="tabla" hidden>
 
                     <thead>
                         <tr>
@@ -294,22 +250,12 @@
             </section>
 
             <!-- Regresar al catálogo principal -->
-            <a
-                href="catalogos.html"
-                class="casas-listado__volver">
+            <a href="catalogos.html" class="casas-listado__volver">
 
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     aria-hidden="true">
-                    <path d="m15 18-6-6 6-6"/>
+                    <path d="m15 18-6-6 6-6" />
                 </svg>
 
                 Volver a catálogos
