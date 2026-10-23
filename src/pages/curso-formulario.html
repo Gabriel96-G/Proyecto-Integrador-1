@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registrar curso | SGC</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <script src="../js/almacenamiento.js" defer></script>
+    <script src="../js/cursos-validacion.js" defer></script>
+    <script src="../js/cursos-datos.js" defer></script>
+    <script src="../js/curso-formulario.js" defer></script>
+</head>
+
+<body class="pagina-aylin">
+    <a class="salto-contenido" href="#contenido">
+        Saltar al contenido
+    </a>
+
+    <div class="aplicacion" id="panel-formulario" hidden>
+
+        <!-- Encabezado institucional -->
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
+            </a>
+
+            <span class="cabecera__nombre">
+                Gestión curricular
+            </span>
+
+            <span class="cabecera__usuario">
+                <img class="icono-usuario" src="../assets/icons/usuario.svg" alt="">
+                <span id="rol-usuario">Usuario</span>
+            </span>
+        </header>
+
+        <!-- Navegación principal -->
+        <nav class="navegacion" aria-label="Menú principal">
+            <details class="navegacion__desplegable" open>
+                <summary class="navegacion__alternar">Menú</summary>
+
+                <ul class="navegacion__lista">
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="inicio.html">
+                            <img class="icono-menu" src="../assets/icons/inicio.svg" alt="">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="usuarios.html">
+                            <img class="icono-menu" src="../assets/icons/usuarios.svg" alt="">
+                            Usuarios
+                        </a>
+                    </li>
+
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="catalogos.html">
+                            <img class="icono-menu" src="../assets/icons/catalogos.svg" alt="">
+                            Catálogos
+                        </a>
+                    </li>
+
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="cursos.html" aria-current="page">
+                            <img class="icono-menu" src="../assets/icons/cursos.svg" alt="">
+                            Cursos
+                        </a>
+                    </li>
+                </ul>
+            </details>
+
+            <span class="navegacion__salir" aria-disabled="true" title="Función aún no disponible">
+                <img class="icono-menu" src="../assets/icons/cerrar.svg" alt="">
+                Cerrar sesión
+            </span>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="contenido" id="contenido">
+
+            <header class="pagina__encabezado">
+                <h1 id="titulo">Registrar curso</h1>
+                <p class="ruta" id="ruta">
+                    Cursos / Nuevo registro
+                </p>
+            </header>
+
+            <div class="catalogo-formulario">
+
+                <!-- Información lateral -->
+                <aside class="catalogo-formulario__ficha">
+                    <img class="catalogo-resumen__icono" src="../assets/icons/cursos.svg" alt="">
+
+                    <h2>Gestión de cursos</h2>
+
+                    <p>
+                        Registre o actualice la información académica,
+                        descriptiva, administrativa y de certificación.
+                    </p>
+                </aside>
+
+                <!-- Formulario -->
+                <form class="formulario" id="curso-form" novalidate>
+
+                    <!-- 1. Identificación -->
+                    <section aria-labelledby="seccion-identificacion">
+                        <h2 id="seccion-identificacion">
+                            1. Identificación del curso
+                        </h2>
+
+                        <div class="formulario__rejilla">
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="escuela">
+                                    Escuela *
+                                </label>
+
+                                <select class="formulario__control" id="escuela" name="escuela"
+                                    aria-describedby="escuela-mensaje" required>
+                                    <option value="">
+                                        Seleccione una escuela
+                                    </option>
+                                </select>
+
+                                <p class="formulario__mensaje" id="escuela-mensaje" data-error-for="escuela"
+                                    aria-live="polite"></p>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="codigo">
+                                    Código del curso *
+                                </label>
+
+                                <input class="formulario__control" type="text" id="codigo" name="codigo"
+                                    aria-describedby="codigo-mensaje" required>
+
+                                <p class="formulario__mensaje" id="codigo-mensaje" data-error-for="codigo"
+                                    aria-live="polite"></p>
+                            </div>
+
+                            <div class="formulario__campo formulario__campo--completo">
+                                <label class="formulario__etiqueta" for="nombre">
+                                    Nombre del curso *
+                                </label>
+
+                                <input class="formulario__control" type="text" id="nombre" name="nombre"
+                                    aria-describedby="nombre-mensaje" required>
+
+                                <p class="formulario__mensaje" id="nombre-mensaje" data-error-for="nombre"
+                                    aria-live="polite"></p>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- 2. Clasificación -->
+                    <section aria-labelledby="seccion-clasificacion">
+                        <h2 id="seccion-clasificacion">
+                            2. Clasificación del curso
+                        </h2>
+
+                        <div class="formulario__rejilla">
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="estado">
+                                    Estado del curso
+                                </label>
+
+                                <select class="formulario__control" id="estado" name="estado">
+                                    <option value="">Seleccione un estado</option>
+                                </select>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="areaSefia">
+                                    Área SEFIA
+                                </label>
+
+                                <select class="formulario__control" id="areaSefia" name="areaSefia">
+                                    <option value="">Seleccione un área</option>
+                                </select>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="tematica">
+                                    Temática
+                                </label>
+
+                                <select class="formulario__control" id="tematica" name="tematica">
+                                    <option value="">Seleccione una temática</option>
+                                </select>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="metodologia">
+                                    Metodología de aprendizaje
+                                </label>
+
+                                <select class="formulario__control" id="metodologia" name="metodologia">
+                                    <option value="">
+                                        Seleccione una metodología
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="nivelComplejidad">
+                                    Nivel de complejidad
+                                </label>
+
+                                <select class="formulario__control" id="nivelComplejidad" name="nivelComplejidad">
+                                    <option value="">Seleccione un nivel</option>
+                                </select>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="modalidad">
+                                    Modalidad
+                                </label>
+
+                                <select class="formulario__control" id="modalidad" name="modalidad">
+                                    <option value="">
+                                        Seleccione una modalidad
+                                    </option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- 3. Carga académica -->
+                    <section aria-labelledby="seccion-carga">
+                        <h2 id="seccion-carga">
+                            3. Carga académica
+                        </h2>
+
+                        <div class="formulario__rejilla">
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="creditos">
+                                    Créditos
+                                </label>
+
+                                <input class="formulario__control" type="number" id="creditos" name="creditos" min="0"
+                                    step="any">
+
+                                <p class="formulario__mensaje" id="creditos-mensaje" data-error-for="creditos"
+                                    aria-live="polite"></p>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="horasClase">
+                                    Horas de clase
+                                </label>
+
+                                <input class="formulario__control" type="number" id="horasClase" name="horasClase"
+                                    min="0" step="any">
+
+                                <p class="formulario__mensaje" id="horasClase-mensaje" data-error-for="horasClase"
+                                    aria-live="polite"></p>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="horasExtraclase">
+                                    Horas extraclase
+                                </label>
+
+                                <input class="formulario__control" type="number" id="horasExtraclase"
+                                    name="horasExtraclase" min="0" step="any">
+
+                                <p class="formulario__mensaje" id="horasExtraclase-mensaje"
+                                    data-error-for="horasExtraclase" aria-live="polite"></p>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="totalHoras">
+                                    Total de horas
+                                </label>
+
+                                <output id="totalHoras" name="totalHoras" for="horasClase horasExtraclase">
+                                    0
+                                </output>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- 4. Power Campus -->
+                    <section aria-labelledby="seccion-power-campus">
+                        <h2 id="seccion-power-campus">
+                            4. Información de Power Campus
+                        </h2>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="nombrePowerCampus">
+                                Nombre en Power Campus
+                            </label>
+
+                            <input class="formulario__control" type="text" id="nombrePowerCampus"
+                                name="nombrePowerCampus" maxlength="40" aria-describedby="nombrePowerCampus-mensaje">
+
+                            <p class="formulario__mensaje" id="nombrePowerCampus-mensaje"
+                                data-error-for="nombrePowerCampus" aria-live="polite"></p>
+
+                            <p>
+                                Caracteres:
+                                <output id="cantidadCaracteres" for="nombrePowerCampus">0</output>
+                                / 40
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- 5. Información descriptiva -->
+                    <section aria-labelledby="seccion-descriptiva">
+                        <h2 id="seccion-descriptiva">
+                            5. Información descriptiva
+                        </h2>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="descripcionCorta">
+                                Descripción corta
+                            </label>
+
+                            <textarea class="formulario__control" id="descripcionCorta" name="descripcionCorta" rows="3"
+                                maxlength="250" aria-describedby="descripcionCorta-mensaje"></textarea>
+
+                            <p class="formulario__mensaje" id="descripcionCorta-mensaje"
+                                data-error-for="descripcionCorta" aria-live="polite"></p>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="metadescripcion">
+                                Metadescripción
+                            </label>
+
+                            <textarea class="formulario__control" id="metadescripcion" name="metadescripcion" rows="3"
+                                maxlength="155" aria-describedby="metadescripcion-mensaje"></textarea>
+
+                            <p class="formulario__mensaje" id="metadescripcion-mensaje" data-error-for="metadescripcion"
+                                aria-live="polite"></p>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="descripcionLarga">
+                                Descripción larga
+                            </label>
+
+                            <textarea class="formulario__control" id="descripcionLarga" name="descripcionLarga"
+                                rows="5"></textarea>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="competencia">
+                                Competencia
+                            </label>
+
+                            <textarea class="formulario__control" id="competencia" name="competencia"
+                                rows="4"></textarea>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="capacidadesEspecificas">
+                                Capacidades específicas
+                            </label>
+
+                            <textarea class="formulario__control" id="capacidadesEspecificas"
+                                name="capacidadesEspecificas" rows="4"></textarea>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="requisitosIndispensables">
+                                Requisitos indispensables
+                            </label>
+
+                            <textarea class="formulario__control" id="requisitosIndispensables"
+                                name="requisitosIndispensables" rows="3"></textarea>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="requisitosDeseables">
+                                Requisitos deseables
+                            </label>
+
+                            <textarea class="formulario__control" id="requisitosDeseables" name="requisitosDeseables"
+                                rows="3"></textarea>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="perfilIngreso">
+                                Perfil de ingreso
+                            </label>
+
+                            <textarea class="formulario__control" id="perfilIngreso" name="perfilIngreso"
+                                rows="3"></textarea>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="perfilSalida">
+                                Perfil de salida
+                            </label>
+
+                            <textarea class="formulario__control" id="perfilSalida" name="perfilSalida"
+                                rows="3"></textarea>
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="palabrasClave">
+                                Palabras clave
+                            </label>
+
+                            <input class="formulario__control" type="text" id="palabrasClave" name="palabrasClave">
+                        </div>
+                    </section>
+
+                    <!-- 6. Información administrativa -->
+                    <section aria-labelledby="seccion-administrativa">
+                        <h2 id="seccion-administrativa">
+                            6. Información administrativa
+                        </h2>
+
+                        <div class="formulario__rejilla">
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="ecommerce">
+                                    Disponible en e-commerce
+                                </label>
+
+                                <select class="formulario__control" id="ecommerce" name="ecommerce">
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="si">Sí</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="periodoEcommerce">
+                                    Período de e-commerce
+                                </label>
+
+                                <input class="formulario__control" type="text" id="periodoEcommerce"
+                                    name="periodoEcommerce">
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="pertenecePrograma">
+                                    Pertenece a un programa
+                                </label>
+
+                                <select class="formulario__control" id="pertenecePrograma" name="pertenecePrograma">
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="si">Sí</option>
+                                    <option value="no">No</option>
+                                </select>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="nombrePrograma">
+                                    Nombre del programa
+                                </label>
+
+                                <input class="formulario__control" type="text" id="nombrePrograma"
+                                    name="nombrePrograma">
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="moneda">
+                                    Moneda
+                                </label>
+
+                                <select class="formulario__control" id="moneda" name="moneda">
+                                    <option value="">
+                                        Seleccione una moneda
+                                    </option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- 7. Certificación -->
+                    <section aria-labelledby="seccion-certificacion">
+                        <h2 id="seccion-certificacion">
+                            7. Información de certificación
+                        </h2>
+
+                        <div class="formulario__rejilla">
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="casaCertificadora">
+                                    Casa certificadora
+                                </label>
+
+                                <select class="formulario__control" id="casaCertificadora" name="casaCertificadora">
+                                    <option value="">
+                                        Seleccione una casa certificadora
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="formulario__campo">
+                                <label class="formulario__etiqueta" for="nombreCertificacion">
+                                    Nombre de la certificación
+                                </label>
+
+                                <input class="formulario__control" type="text" id="nombreCertificacion"
+                                    name="nombreCertificacion">
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- 8. Información complementaria -->
+                    <section aria-labelledby="seccion-complementaria">
+                        <h2 id="seccion-complementaria">
+                            8. Información complementaria
+                        </h2>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="metadata">
+                                Metadata
+                            </label>
+
+                            <textarea class="formulario__control" id="metadata" name="metadata" rows="4"></textarea>
+                        </div>
+
+                        <p>
+                            Última modificación del curso:
+                            <time id="fechaModificacion">
+                                Aún sin registrar
+                            </time>
+                        </p>
+
+                        <p>
+                            Última modificación de metadata:
+                            <time id="fechaModificacionMetadata">
+                                Aún sin registrar
+                            </time>
+                        </p>
+                    </section>
+
+                    <!-- Acciones -->
+                    <p class="formulario__nota">
+                        * Campo obligatorio
+                    </p>
+
+
+                    <div class="formulario__acciones">
+                        <button class="boton boton--principal" type="submit" id="guardar">
+                            Guardar curso
+                        </button>
+
+                        <button class="boton boton--secundario" type="button" id="guardar-borrador">
+                            Guardar como borrador
+                        </button>
+
+                        <a class="boton boton--secundario" href="cursos.html">
+                            Cancelar
+                        </a>
+                    </div>
+
+
+                    <p class="aviso" id="aviso" role="status" aria-live="polite" hidden></p>
+
+                </form>
+            </div>
+
+            <a class="enlace-accion" href="cursos.html">
+                ‹ Volver a cursos
+            </a>
+
+        </main>
+    </div>
+</body>
+
+</html>

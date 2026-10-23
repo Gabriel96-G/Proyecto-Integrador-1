@@ -1,0 +1,81 @@
+/* HU-54: Gestión de cursos */
+/* Estilos exclusivos del listado de cursos */
+
+#panel-cursos .catalogo__tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 16px;
+  border: 1px solid #d9dfe8;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+#panel-cursos .catalogo__tabla {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+#panel-cursos .catalogo__tabla th,
+#panel-cursos .catalogo__tabla td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+#panel-cursos .catalogo__tabla th {
+  background-color: #f1f5fb;
+  color: #173f80;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+#panel-cursos .catalogo__tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#panel-cursos .catalogo__tabla tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+#panel-cursos .catalogo__tabla td:nth-child(1),
+#panel-cursos .catalogo__tabla td:nth-child(4),
+#panel-cursos .catalogo__tabla td:nth-child(5),
+#panel-cursos .catalogo__tabla td:nth-child(6) {
+  white-space: nowrap;
+}
+
+#panel-cursos .catalogo__tabla td:nth-child(2) {
+  min-width: 200px;
+}
+
+#panel-cursos .catalogo__tabla td:nth-child(3) {
+  min-width: 140px;
+}
+
+#panel-cursos .catalogo__tabla td a {
+  color: #0759b8;
+  text-decoration: underline;
+}
+
+#panel-cursos .catalogo__tabla td a:focus-visible {
+  outline: 2px solid #0759b8;
+  outline-offset: 3px;
+}
+
+#panel-cursos #contador-cursos {
+  margin: 16px 0 8px;
+  color: #374151;
+  font-weight: 500;
+}
+
+/* HU-54: Mantener el mismo logotipo que en Registrar curso */
+
+@media (min-width: 768px) {
+  #panel-cursos .cabecera__logo {
+    width: 142px;
+    height: 64px;
+    object-fit: cover;
+  }
+}

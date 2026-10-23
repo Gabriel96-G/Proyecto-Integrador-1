@@ -100,7 +100,7 @@ img { display: block; height: auto; }
 .cabecera__marca .icono { width: 28px; height: 28px; }
 .cabecera__logo {
   width: 142px;
-  height: 46px;
+  height: 64px;
   flex-shrink: 0;
   object-fit: cover;
   object-position: center;
