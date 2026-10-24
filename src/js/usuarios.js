@@ -49,7 +49,9 @@
 
     const control = nombre => formulario.elements.namedItem(nombre);
     const guardar = document.getElementById('guardar');
-    const id = new URLSearchParams(location.search).get('id');
+    const parametros = new URLSearchParams(location.search);
+    const modificando = parametros.has('id');
+    const id = parametros.get('id');
     const nombres = ['nombre', 'primerApellido', 'segundoApellido', 'identificacion', 'nacimiento',
         'sexo', 'correo', 'correoPersonal', 'telefono', 'rol'];
     let actual = null;
@@ -89,7 +91,7 @@
 
     try {
         const registros = SGC.Datos.leer('usuarios');
-        if (id) {
+        if (modificando) {
             actual = registros.find(u => u.id === id);
             if (!actual) throw new Error('No se encontró el usuario solicitado. Vuelva al listado.');
             nombres.forEach(nombre => { control(nombre).value = actual[nombre] || ''; });
@@ -160,7 +162,8 @@
         if (guardar.disabled) return;
         const textoBoton = actual ? 'Guardar cambios' : 'Guardar usuario';
         try {
-            const entrada = Object.fromEntries(nombres.map(nombre => [nombre, control(nombre).value.trim()]));
+            // Conserva los datos del usuario que no aparecen en el formulario.
+            const entrada = { ...actual, ...Object.fromEntries(nombres.map(nombre => [nombre, control(nombre).value.trim()])) };
             if (actual) entrada.id = actual.id;
             const clave = control('clave').value;
             const campos = SGC.Validacion.usuario(entrada, SGC.Datos.leer('usuarios'), clave);
