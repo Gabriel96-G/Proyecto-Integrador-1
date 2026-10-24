@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar contraseña</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/sesion.js" defer></script>
+    <script src="../js/interfaz.js" defer></script>
+</head>
+<body>
+    <div class="aplicacion">
+
+        <!-- Encabezado -->
+        <header class="cabecera">
+            <a class="cabecera__marca" href="inicio.html">
+                <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
+            </a>
+            <span class="cabecera__nombre">Gestión curricular</span>
+            <span class="cabecera__usuario">
+                <img class="icono-usuario" src="../img/usuario.svg" alt="">
+                Administrador
+            </span>
+        </header>
+
+        <!-- Menú principal -->
+        <nav class="navegacion" aria-label="Menú principal">
+            <details class="navegacion__desplegable" open>
+                <summary class="navegacion__alternar">Menú</summary>
+                <ul class="navegacion__lista">
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="inicio.html" aria-current="page">
+                            <img class="icono-menu" src="../img/inicio.svg" alt=""> Inicio
+                        </a>
+                    </li>
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="usuarios.html">
+                            <img class="icono-menu" src="../img/usuarios.svg" alt=""> Usuarios
+                        </a>
+                    </li>
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="catalogos.html">
+                            <img class="icono-menu" src="../img/catalogos.svg" alt=""> Catálogos
+                        </a>
+                    </li>
+                    <li class="navegacion__item">
+                        <a class="navegacion__enlace" href="cursos.html">
+                            <img class="icono-menu" src="../img/cursos.svg" alt=""> Cursos
+                        </a>
+                    </li>
+                </ul>
+            </details>
+            <a class="navegacion__salir" href="login.html">
+                <img class="icono-menu" src="../img/cerrar.svg" alt=""> Cerrar sesión
+            </a>
+        </nav>
+
+        <!-- Cambio de contraseña: vista demostrativa -->
+        <main class="contenido">
+            <header class="pagina__encabezado">
+                <h1>Cambiar contraseña</h1>
+                <p class="ruta">Inicio / Seguridad</p>
+            </header>
+
+            <p class="aviso aviso--advertencia" id="aviso-demostracion">
+                Vista demostrativa. Operación no disponible en esta iteración.
+            </p>
+
+            <div class="seguridad">
+                <form class="formulario formulario__seccion" aria-describedby="aviso-demostracion">
+                    <div class="formulario__rejilla">
+                        <div class="formulario__campo formulario__campo--completo">
+                            <label class="formulario__etiqueta" for="contrasena-actual">Contraseña actual</label>
+                            <input class="formulario__control" id="contrasena-actual" name="contrasenaActual"
+                                   type="password" autocomplete="current-password">
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="nueva-contrasena">Nueva contraseña</label>
+                            <input class="formulario__control" id="nueva-contrasena" name="nuevaContrasena"
+                                   type="password" autocomplete="new-password" minlength="8" maxlength="15">
+                        </div>
+
+                        <div class="formulario__campo">
+                            <label class="formulario__etiqueta" for="confirmar-contrasena">Confirmar contraseña</label>
+                            <input class="formulario__control" id="confirmar-contrasena" name="confirmarContrasena"
+                                   type="password" autocomplete="new-password" minlength="8" maxlength="15">
+                        </div>
+                    </div>
+
+                    <div class="formulario__acciones">
+                        <button class="boton boton--principal" type="submit" disabled>Guardar cambios</button>
+                        <a class="boton boton--secundario" href="inicio.html">Volver al panel</a>
+                    </div>
+                </form>
+
+                <aside class="seguridad__ilustracion">
+                    <div class="seguridad__circulo">
+                        <img class="icono" src="../img/candado.svg" alt="">
+                    </div>
+                    <h2>Gestión de acceso</h2>
+                </aside>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
