@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar acceso</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+    <!-- Encabezado institucional -->
+    <header class="cabecera">
+        <a class="cabecera__marca" href="../index.html">
+            <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
+        </a>
+        <span class="cabecera__nombre">Gestión curricular</span>
+        <span class="cabecera__institucion">Universidad CENFOTEC</span>
+    </header>
+
+    <main class="contenedor">
+        <div class="recuperacion">
+            <!-- Formulario demostrativo -->
+            <section class="recuperacion__contenido" aria-labelledby="titulo-recuperacion">
+                <h1 id="titulo-recuperacion">Recuperar acceso</h1>
+                <p>Ingrese su correo institucional.</p>
+
+                <form class="formulario" aria-describedby="aviso-demostracion">
+                    <div class="formulario__campo">
+                        <label class="formulario__etiqueta" for="correo">Correo institucional</label>
+                        <input class="formulario__control"
+                               id="correo"
+                               name="correo"
+                               type="email"
+                               autocomplete="email"
+                               placeholder="usuario@ucenfotec.ac.cr">
+                    </div>
+
+                    <button class="boton boton--principal boton--completo" type="submit" disabled>
+                        Solicitar recuperación
+                    </button>
+
+                    <p id="aviso-demostracion" class="formulario__ayuda">
+                        Vista demostrativa: no se enviarán correos.
+                    </p>
+                </form>
+
+                <a class="enlace-accion" href="login.html">‹ Volver al inicio de sesión</a>
+            </section>
+
+            <!-- Panel informativo -->
+            <aside class="recuperacion__lateral">
+                <div class="recuperacion__llave">
+                    <img class="icono" src="../img/llave.svg" alt="">
+                </div>
+                <h2>Su acceso al sistema</h2>
+                <p>Una función prevista para una próxima iteración.</p>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>
