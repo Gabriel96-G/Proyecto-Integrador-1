@@ -7,17 +7,15 @@
    Directorio de usuarios | SGC
   </title>
   <link href="../css/estilos.css" rel="stylesheet"/>
-  <script defer="" src="../js/almacenamiento-aylin.js">
+  <script defer="" src="../js/almacenamiento.js">
   </script>
-  <script defer="" src="../js/validacion-aylin.js">
-  </script>
-  <script defer="" src="../js/interfaz-aylin.js">
+  <script defer="" src="../js/interfaz.js">
   </script>
   <script defer="" src="../js/usuarios.js">
   </script>
   <script src="../js/sesion.js" defer></script>
  </head>
- <body class="pagina-aylin">
+ <body class="pagina-sgc">
   <a class="salto-contenido" href="#contenido">
    Saltar al contenido
   </a>
@@ -84,10 +82,36 @@
      <div class="listado__herramientas">
       <div class="busqueda">
        <label class="busqueda__etiqueta" for="buscar">
-        Buscar por nombre
+        Buscar por nombre, identificación o correo
        </label>
        <input class="busqueda__control" id="buscar" placeholder="Buscar usuario…" type="search"/>
       </div>
+      <div class="busqueda">
+       <label class="busqueda__etiqueta" for="filtro-rol">
+        Rol
+       </label>
+       <select class="busqueda__control" id="filtro-rol">
+        <option value="">Todos los roles</option>
+        <option value="administrador">Administrador</option>
+        <option value="desarrollo">Desarrollo Curricular</option>
+        <option value="director">Director de escuela</option>
+        <option value="rectoria">Rectoría</option>
+        <option value="vicerrectoria">Vicerrectoría</option>
+       </select>
+      </div>
+      <div class="busqueda">
+       <label class="busqueda__etiqueta" for="filtro-estado">
+        Estado
+       </label>
+       <select class="busqueda__control" id="filtro-estado">
+        <option value="">Todos los estados</option>
+        <option value="activo">Activo</option>
+        <option value="inactivo">Inactivo</option>
+       </select>
+      </div>
+      <button class="boton boton--secundario" id="limpiar-filtros" type="button">
+       Limpiar filtros
+      </button>
       <a class="boton boton--principal" href="usuario-formulario.html">
        Registrar usuario
       </a>
@@ -103,6 +127,9 @@
          </th>
          <th scope="col">
           Rol
+         </th>
+         <th scope="col">
+          Estado
          </th>
          <th scope="col">
           Acción
