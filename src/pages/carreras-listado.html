@@ -19,7 +19,7 @@
   </script>
   <script src="../js/sesion.js" defer></script>
  </head>
- <body class="pagina-aylin">
+ <body class="pagina-sgc">
   <a class="salto-contenido" href="#contenido">
    Saltar al contenido
   </a>
@@ -91,14 +91,25 @@
       Registrar carrera
      </a>
     </section>
-    <section aria-label="Carreras registrados" class="listado">
+    <section aria-label="Carreras registradas" class="listado">
      <div class="listado__herramientas">
       <div class="busqueda">
        <label class="busqueda__etiqueta" for="buscar">
-        Buscar por nombre
+        Buscar por código o nombre
        </label>
        <input class="busqueda__control" id="buscar" placeholder="Buscar carrera…" type="search"/>
       </div>
+      <div class="busqueda">
+       <label class="busqueda__etiqueta" for="filtro-escuela">
+        Escuela asociada
+       </label>
+       <select class="busqueda__control" id="filtro-escuela">
+        <option value="">Todas las escuelas</option>
+       </select>
+      </div>
+      <button class="boton boton--secundario" id="limpiar-filtros" type="button">
+       Limpiar filtros
+      </button>
      </div>
      <p class="formulario__ayuda" id="cantidad" role="status">
      </p>
