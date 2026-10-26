@@ -60,9 +60,21 @@
     let imagenPendiente = false;
     let seleccion = 0;
     let guardado = false;
+    let permitido = false;
     const hoy = new Date();
     control('nacimiento').max = [hoy.getFullYear(), String(hoy.getMonth() + 1).padStart(2, '0'),
         String(hoy.getDate()).padStart(2, '0')].join('-');
+
+    function comprobarAdministrador() {
+        const sesion = JSON.parse(sessionStorage.getItem('usuarioActual') || 'null');
+        const administrador = sesion && SGC.Datos.leer('usuarios')
+            .find(usuario => String(usuario.id) === String(sesion.id));
+        if (!administrador || administrador.rol !== 'administrador' ||
+            (administrador.estado && administrador.estado !== 'activo')) {
+            throw new Error('Solo un administrador activo puede registrar o modificar usuarios.');
+        }
+        return sesion;
+    }
 
     function mostrarEdad() {
         const edad = SGC.Validacion.edad(control('nacimiento').value);
@@ -90,17 +102,13 @@
     }
 
     try {
+        comprobarAdministrador();
+        permitido = true;
         const registros = SGC.Datos.leer('usuarios');
         if (modificando) {
             actual = registros.find(u => u.id === id);
             if (!actual) throw new Error('No se encontró el usuario solicitado. Vuelva al listado.');
             nombres.forEach(nombre => { control(nombre).value = actual[nombre] || ''; });
-            if (actual.rol !== 'administrador') {
-                const opcion = elemento('option', '', actual.rol + ' (registro anterior)');
-                opcion.value = actual.rol;
-                control('rol').append(opcion);
-                control('rol').value = actual.rol;
-            }
             imagen = /^data:image\/(png|jpeg|webp);base64,/.test(actual.imagen || '') ? actual.imagen : '';
             document.title = 'Modificar usuario | SGC';
             document.getElementById('titulo').textContent = 'Modificar usuario';
@@ -162,6 +170,9 @@
         if (guardar.disabled) return;
         const textoBoton = actual ? 'Guardar cambios' : 'Guardar usuario';
         try {
+            permitido = false;
+            const sesion = comprobarAdministrador();
+            permitido = true;
             // Conserva los datos del usuario que no aparecen en el formulario.
             const entrada = { ...actual, ...Object.fromEntries(nombres.map(nombre => [nombre, control(nombre).value.trim()])) };
             if (actual) entrada.id = actual.id;
@@ -178,6 +189,13 @@
             // Conserva el estado de las cuentas creadas con la versión anterior.
             entrada.estado = actual?.estado || 'activo';
             const registro = await SGC.Datos.guardar('usuarios', entrada);
+            // Si cambia su propio rol, la sesión también debe reflejarlo.
+            if (String(sesion.id) === String(registro.id)) {
+                sessionStorage.setItem('usuarioActual', JSON.stringify({
+                    id: registro.id, nombre: registro.nombre, correo: registro.correo, rol: registro.rol
+                }));
+                permitido = registro.rol === 'administrador';
+            }
             if (actual) {
                 actual = registro;
                 ajustarContrasena();
@@ -192,9 +210,10 @@
             }
             control('clave').value = '';
             limpiar(formulario);
-            aviso('El usuario se guardó correctamente. Puede consultarlo en el listado.', 'confirmacion');
+            aviso(permitido ? 'El usuario se guardó correctamente. Puede consultarlo en el listado.'
+                : 'El rol se actualizó. Esta cuenta ya no tiene permiso para administrar usuarios.', 'confirmacion');
             guardado = true;
         } catch (error) { fallo(error); }
-        finally { guardar.disabled = false; guardar.textContent = textoBoton; }
+        finally { guardar.disabled = !permitido; guardar.textContent = textoBoton; }
     });
 })();

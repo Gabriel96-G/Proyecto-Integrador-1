@@ -43,9 +43,9 @@ SGC.Validacion = (() => {
         }
         if (!fechaValida(entrada.nacimiento)) errores.nacimiento = 'Seleccione una fecha válida que no sea futura.';
         if (!['', 'femenino', 'masculino', 'otro', 'no-indica'].includes(entrada.sexo)) errores.sexo = 'Seleccione una opción válida.';
-        const actual = entrada.id ? registros.find(registro => registro.id === entrada.id) : null;
-        // Permite conservar el rol que ya tenía el usuario.
-        if (entrada.rol !== 'administrador' && (!actual || entrada.rol !== actual.rol)) {
+        const roles = ['administrador', 'desarrollo', 'director', 'rectoria', 'vicerrectoria'];
+        if (!entrada.rol) errores.rol = 'Seleccione un rol.';
+        else if (!roles.includes(entrada.rol)) {
             errores.rol = 'Seleccione un rol válido.';
         }
         if ((!entrada.id || clave) && !claveValida(clave)) {
