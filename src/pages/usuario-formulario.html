@@ -7,11 +7,11 @@
    Registrar usuario | SGC
   </title>
   <link href="../css/estilos.css" rel="stylesheet"/>
-  <script defer="" src="../js/almacenamiento-aylin.js">
+  <script defer="" src="../js/almacenamiento.js">
   </script>
-  <script defer="" src="../js/validacion-aylin.js">
+  <script defer="" src="../js/validacion.js">
   </script>
-  <script defer="" src="../js/interfaz-aylin.js">
+  <script defer="" src="../js/interfaz.js">
   </script>
   <script defer="" src="../js/usuarios.js">
   </script>
@@ -266,9 +266,21 @@
           <option value="administrador">
            Administrador
           </option>
+          <option value="desarrollo">
+           Desarrollo Curricular
+          </option>
+          <option value="director">
+           Director de escuela
+          </option>
+          <option value="rectoria">
+           Rectoría
+          </option>
+          <option value="vicerrectoria">
+           Vicerrectoría
+          </option>
          </select>
          <p class="formulario__ayuda" id="rol-ayuda">
-          Rol disponible en esta iteración: administrador.
+          Seleccione un solo rol. Al modificarlo, el nuevo sustituye al anterior.
          </p>
          <p aria-live="polite" class="formulario__mensaje" data-error-for="rol" id="rol-mensaje">
          </p>
