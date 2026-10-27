@@ -1,16 +1,40 @@
 (() => {
     const { elemento, fallo, editar, estadoListado } = SGC.UI;
+    const buscar = document.getElementById('buscar');
+    const filtroEscuela = document.getElementById('filtro-escuela');
+
+    function cargarEscuelas(escuelas) {
+        const seleccion = filtroEscuela.value;
+        const todas = elemento('option', '', 'Todas las escuelas');
+        todas.value = '';
+        filtroEscuela.replaceChildren(todas);
+        escuelas.forEach(escuela => {
+            const opcion = elemento('option', '', escuela.nombre);
+            opcion.value = SGC.Datos.referenciaEscuela(escuela);
+            filtroEscuela.append(opcion);
+        });
+        // Mantiene la escuela elegida cuando se actualiza el catálogo.
+        filtroEscuela.value = seleccion;
+        if (filtroEscuela.selectedIndex === -1) filtroEscuela.value = '';
+    }
+
     function listar() {
         try {
             const registros = SGC.CarrerasDatos.leer();
             const escuelas = SGC.CarrerasDatos.leerEscuelas();
-            const texto = SGC.Datos.normalizar(document.getElementById('buscar').value);
-            const filtrados = registros.filter(r => SGC.Datos.normalizar(r.nombre).includes(texto));
+            cargarEscuelas(escuelas);
+            const texto = SGC.Datos.normalizar(buscar.value);
+            const filtrados = registros.filter(carrera => {
+                const coincideTexto = SGC.Datos.normalizar(carrera.codigo).includes(texto) ||
+                    SGC.Datos.normalizar(carrera.nombre).includes(texto);
+                const coincideEscuela = !filtroEscuela.value || String(carrera.escuela) === filtroEscuela.value;
+                return coincideTexto && coincideEscuela;
+            });
             const cuerpo = document.getElementById('registros');
             cuerpo.replaceChildren();
             filtrados.forEach(carrera => {
                 const fila = elemento('tr');
-                const escuela = escuelas.find(e => SGC.Datos.referenciaEscuela(e) === carrera.escuela);
+                const escuela = escuelas.find(e => SGC.Datos.referenciaEscuela(e) === String(carrera.escuela));
                 const accion = elemento('td');
                 if (carrera.id) {
                     const enlace = editar('carreras-formulario.html', carrera.id);
@@ -26,7 +50,13 @@
             document.getElementById('aviso').hidden = true;
         } catch (error) { fallo(error); }
     }
-    document.getElementById('buscar').addEventListener('input', listar);
+    buscar.addEventListener('input', listar);
+    filtroEscuela.addEventListener('change', listar);
+    document.getElementById('limpiar-filtros').addEventListener('click', () => {
+        buscar.value = '';
+        filtroEscuela.value = '';
+        listar();
+    });
     window.addEventListener('storage', listar);
     window.addEventListener('pageshow', listar);
     listar();
