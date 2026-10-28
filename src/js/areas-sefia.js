@@ -25,7 +25,7 @@
             formulario.reset();
             limpiar(formulario);
             codigo.value = SGC.Datos.siguienteCodigo();
-            aviso('El área SEFIA se guardó correctamente con el código ' + registro.codigo + '.', 'confirmacion');
+            aviso('El área S.E.F.I.A se guardó correctamente con el código ' + registro.codigo + '.', 'confirmacion');
             guardado = true;
         } catch (error) { fallo(error); }
         finally { guardar.disabled = false; }

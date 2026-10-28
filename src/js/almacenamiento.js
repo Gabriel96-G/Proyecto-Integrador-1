@@ -53,7 +53,7 @@ SGC.Datos = (() => {
                 throw new Error('Seleccione una escuela disponible en el catálogo de escuelas.');
             }
         } else if (otros.some(r => normalizar(r.nombre) === normalizar(entrada.nombre))) {
-            throw new Error('Este nombre ya está registrado en áreas SEFIA.');
+            throw new Error('Este nombre ya está registrado en áreas S.E.F.I.A.');
         }
         const registro = {
             ...entrada,
