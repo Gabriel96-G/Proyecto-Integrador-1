@@ -14,10 +14,17 @@
             );
             visibles.forEach(area => {
                 const fila = SGC.UI.elemento('tr');
+                const acciones = SGC.UI.elemento('td');
+                if (area.id) {
+                    const editar = SGC.UI.editar('areas-sefia-formulario.html', area.id);
+                    editar.setAttribute('aria-label', 'Editar área ' + area.nombre);
+                    acciones.append(editar);
+                } else acciones.textContent = 'Sin identificador';
                 fila.append(
                     SGC.UI.elemento('td', 'tabla__codigo', area.codigo),
                     SGC.UI.elemento('td', 'tabla__nombre', area.nombre),
-                    SGC.UI.elemento('td', '', area.descripcion || 'Sin descripción')
+                    SGC.UI.elemento('td', '', area.descripcion || 'Sin descripción'),
+                    acciones
                 );
                 cuerpo.append(fila);
             });

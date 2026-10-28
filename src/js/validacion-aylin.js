@@ -67,7 +67,9 @@ SGC.Validacion = (() => {
     function sefia(entrada, registros) {
         const errores = {};
         if (!entrada.nombre) errores.nombre = 'Ingrese el nombre del área S.E.F.I.A.';
-        else if (registros.some(r => SGC.Datos.normalizar(r.nombre) === SGC.Datos.normalizar(entrada.nombre))) {
+        else if (entrada.nombre.length > 150) errores.nombre = 'Use como máximo 150 caracteres.';
+        else if (registros.some(r => (!entrada.id || r.id !== entrada.id) &&
+            SGC.Datos.normalizar(r.nombre) === SGC.Datos.normalizar(entrada.nombre))) {
             errores.nombre = 'Este nombre ya está registrado.';
         }
         if (entrada.descripcion.length > 2000) errores.descripcion = 'Use como máximo 2000 caracteres.';
