@@ -1,8 +1,15 @@
-// HU-24: Listado de estados del curso
+// HU-24 y HU-25: Listado y búsqueda de estados del curso.
 
 const tablaEstados = document.getElementById("tabla-estados");
 const cuerpoTabla = document.getElementById("cuerpo-tabla-estados");
 const mensajeListado = document.getElementById("mensaje-listado");
+const campoBusqueda = document.getElementById("buscar-estado");
+
+// Permite buscar sin distinguir mayúsculas ni tildes.
+function normalizarTexto(texto) {
+    return String(texto || "").trim().toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
 
 // Obtiene los estados guardados por la HU-23.
 function obtenerEstados() {
@@ -40,21 +47,32 @@ function agregarFila(estado) {
     cuerpoTabla.appendChild(fila);
 }
 
-// Muestra todos los estados registrados.
+// Muestra los estados cuyo nombre contiene el texto buscado.
 function mostrarEstados() {
     const estados = obtenerEstados();
+    const texto = normalizarTexto(campoBusqueda.value);
+    const filtrados = estados.filter(function (estado) {
+        return normalizarTexto(estado.nombre).includes(texto);
+    });
 
-    if (estados.length === 0) {
+    cuerpoTabla.innerHTML = "";
+
+    if (filtrados.length === 0) {
         tablaEstados.hidden = true;
+        mensajeListado.textContent = estados.length === 0
+            ? "No existen estados del curso registrados."
+            : "No se encontraron estados con ese nombre.";
         mensajeListado.hidden = false;
         return;
     }
 
-    cuerpoTabla.innerHTML = "";
     mensajeListado.hidden = true;
     tablaEstados.hidden = false;
 
-    estados.forEach(agregarFila);
+    filtrados.forEach(agregarFila);
 }
 
 mostrarEstados();
+
+// Actualiza el listado cada vez que el usuario escribe o borra la búsqueda.
+campoBusqueda.addEventListener("input", mostrarEstados);
