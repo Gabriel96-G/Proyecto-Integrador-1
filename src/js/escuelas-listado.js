@@ -1,4 +1,4 @@
-// HU-14 y HU-15: Listado y bÃºsqueda de escuelas
+// HU-14, HU-15 y HU-16: Listado, búsqueda y acceso a la edición de escuelas.
 
 const tablaEscuelas = document.getElementById("tabla-escuelas");
 const cuerpoTabla = document.getElementById("cuerpo-tabla-escuelas");
@@ -34,9 +34,18 @@ function agregarFila(escuela) {
     const director = document.createElement("td");
     director.textContent = escuela.directorAsociado;
 
+    const accion = document.createElement("td");
+    const editar = document.createElement("a");
+    editar.className = "enlace-accion";
+    editar.textContent = "Editar";
+    editar.href = "escuelas-formulario.html?codigo=" + encodeURIComponent(escuela.codigo);
+    editar.setAttribute("aria-label", "Editar escuela " + escuela.nombre);
+    accion.appendChild(editar);
+
     fila.appendChild(codigo);
     fila.appendChild(nombre);
     fila.appendChild(director);
+    fila.appendChild(accion);
     cuerpoTabla.appendChild(fila);
 }
 
