@@ -19,7 +19,7 @@
                 (visibles.length === 1 ? ' registro' : ' registros');
             const vacio = document.getElementById('vacio');
             vacio.hidden = visibles.length > 0;
-            vacio.textContent = areas.length ? 'No se encontraron coincidencias.' : 'Todavía no hay áreas SEFIA registradas.';
+            vacio.textContent = areas.length ? 'No se encontraron coincidencias.' : 'Todavía no hay áreas S.E.F.I.A registradas.';
             document.getElementById('aviso').hidden = true;
         } catch (error) {
             document.getElementById('cantidad').textContent = '';

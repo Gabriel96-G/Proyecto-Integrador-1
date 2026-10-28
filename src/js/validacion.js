@@ -70,7 +70,7 @@ SGC.Validacion = (() => {
 
     function sefia(entrada, registros) {
         const errores = {};
-        if (!entrada.nombre) errores.nombre = 'Ingrese el nombre del área SEFIA.';
+        if (!entrada.nombre) errores.nombre = 'Ingrese el nombre del área S.E.F.I.A.';
         else if (registros.some(r => SGC.Datos.normalizar(r.nombre) === SGC.Datos.normalizar(entrada.nombre))) {
             errores.nombre = 'Este nombre ya está registrado.';
         }

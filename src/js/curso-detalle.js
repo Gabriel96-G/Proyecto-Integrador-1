@@ -20,7 +20,7 @@
         ],
         clasificacion: [
             ['Estado del curso', 'estado'],
-            ['Área SEFIA', 'areaSefia'],
+            ['Área S.E.F.I.A', 'areaSefia'],
             ['Temática', 'tematica'],
             ['Metodología de aprendizaje', 'metodologia'],
             ['Nivel de complejidad', 'nivelComplejidad'],
