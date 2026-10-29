@@ -81,6 +81,14 @@
             <section class="listado" aria-labelledby="titulo-listado">
                 <h2 id="titulo-listado">Estados registrados</h2>
 
+                <div class="listado__herramientas">
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="buscar-estado">Buscar por nombre</label>
+                        <input class="busqueda__control" id="buscar-estado" name="busqueda"
+                               type="search" placeholder="Buscar estado..." autocomplete="off">
+                    </div>
+                </div>
+
                 <div class="tabla-contenedor">
                     <table id="tabla-estados" class="tabla tabla--catalogo" hidden>
                         <thead>
@@ -98,9 +106,6 @@
                     </p>
                 </div>
 
-                <a class="enlace-accion" href="catalogos.html">
-                    ‹ Volver a catálogos
-                </a>
             </section>
         </main>
     </div>

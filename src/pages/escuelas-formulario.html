@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar escuela</title>
     <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/almacenamiento-aylin.js" defer></script>
     <script src="../js/escuelas.js" defer></script>
     <script src="../js/sesion.js" defer></script>
 </head>
@@ -63,8 +64,8 @@
         </nav>
 
         <main class="contenido">
-            <p class="ruta">Catálogos / Escuelas / Nuevo registro</p>
-            <h1>Registrar escuela</h1>
+            <p id="ruta-escuela" class="ruta">Catálogos / Escuelas / Nuevo registro</p>
+            <h1 id="titulo-escuela">Registrar escuela</h1>
 
             <section class="catalogo-formulario">
 
@@ -114,7 +115,7 @@
                     <div id="mensaje-resultado" class="aviso" role="status" hidden></div>
 
                     <div class="formulario__acciones">
-                        <button class="boton boton--principal" type="submit">Guardar registro</button>
+                        <button id="guardar-escuela" class="boton boton--principal" type="submit">Guardar registro</button>
                         <a class="boton boton--secundario" href="escuelas-listado.html">Cancelar</a>
                     </div>
                 </form>
