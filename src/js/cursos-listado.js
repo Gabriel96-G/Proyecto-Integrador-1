@@ -27,6 +27,15 @@
     return escuela ? escuela.nombre : "Escuela no disponible";
   }
 
+  // Muestra el nombre del estado aunque cambie su código en el catálogo.
+  function nombreEstado(referencia, estados) {
+    const estado = estados.find(
+      (registro) => String(registro.id || registro.codigo) === String(referencia),
+    );
+
+    return estado ? estado.nombre : referencia || "Sin definir";
+  }
+
   function mostrarFecha(valor) {
     if (!valor) return "Sin registrar";
 
@@ -49,7 +58,7 @@
     return enlace;
   }
 
-  function mostrarCursos(cursos, escuelas) {
+  function mostrarCursos(cursos, escuelas, estados) {
     tabla.replaceChildren();
     document.getElementById("contador-cursos").textContent =
       `${cursos.length} ${cursos.length === 1 ? "registro" : "registros"}`;
@@ -77,7 +86,7 @@
 
       crearCelda(fila, nombreEscuela(curso.escuela, escuelas));
 
-      crearCelda(fila, curso.estado || "Sin definir");
+      crearCelda(fila, nombreEstado(curso.estado, estados));
 
       crearCelda(fila, mostrarFecha(curso.actualizado));
 
@@ -113,6 +122,7 @@
 
       const cursos = SGC.CursosDatos.leer();
       const escuelas = SGC.CursosDatos.leerEscuelas();
+      const estados = SGC.Datos.leer("estadosCurso");
 
       const nombresRoles = {
         administrador: "Administrador",
@@ -124,7 +134,7 @@
       rolUsuario.textContent =
         nombresRoles[SGC.Datos.normalizar(sesion.rol)] || sesion.rol;
 
-      mostrarCursos(cursos, escuelas);
+      mostrarCursos(cursos, escuelas, estados);
 
       panel.hidden = false;
     } catch (error) {
