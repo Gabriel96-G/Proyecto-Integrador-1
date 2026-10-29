@@ -1,5 +1,7 @@
 (() => {
     const buscar = document.getElementById('buscar');
+    const filtroCodigo = document.getElementById('filtro-codigo');
+    const filtroDescripcion = document.getElementById('filtro-descripcion');
     const cuerpo = document.getElementById('registros');
     const cantidad = document.getElementById('cantidad');
     const vacio = document.getElementById('vacio');
@@ -19,7 +21,13 @@
                 throw new Error('No se pudieron leer las temáticas. Los datos guardados se conservaron sin cambios.');
             }
             const criterio = normalizar(buscar.value);
-            const visibles = registros.filter(r => normalizar(r.nombre).includes(criterio));
+            const codigo = normalizar(filtroCodigo.value);
+            const descripcion = normalizar(filtroDescripcion.value);
+            const visibles = registros.filter(r =>
+                String(r.codigo).includes(codigo) &&
+                normalizar(r.nombre).includes(criterio) &&
+                normalizar(r.descripcion || '').includes(descripcion)
+            );
             visibles.forEach(tematica => {
                 const fila = SGC.UI.elemento('tr');
                 fila.append(
@@ -40,6 +48,14 @@
     }
 
     buscar.addEventListener('input', listar);
+    filtroCodigo.addEventListener('input', listar);
+    filtroDescripcion.addEventListener('input', listar);
+    document.getElementById('limpiar-filtros').addEventListener('click', () => {
+        buscar.value = '';
+        filtroCodigo.value = '';
+        filtroDescripcion.value = '';
+        listar();
+    });
     window.addEventListener('pageshow', listar);
     window.addEventListener('storage', evento => {
         if (evento.key === 'tematicas' || evento.key === null) listar();
