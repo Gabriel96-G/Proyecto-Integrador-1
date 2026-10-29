@@ -137,6 +137,7 @@ formulario.addEventListener("submit", function (evento) {
         "El nivel de complejidad se registró correctamente.",
         "confirmacion"
     );
+    mostrarMensajeExito("El nivel de complejidad se guardó con éxito.", "niveles-complejidad-listado.html");
 });
 
 // Limpia los mensajes cuando se modifica un campo.
