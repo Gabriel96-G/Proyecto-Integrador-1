@@ -57,6 +57,9 @@
             aviso(modificando ? 'Los cambios del área S.E.F.I.A se guardaron correctamente.' :
                 'El área S.E.F.I.A se guardó correctamente con el código ' + registro.codigo + '.', 'confirmacion');
             guardado = true;
+            if (!modificando) {
+                mostrarMensajeExito('El área S.E.F.I.A se guardó con éxito.', 'areas-sefia-listado.html');
+            }
         } catch (error) { fallo(error); }
         finally { guardar.disabled = false; }
     });

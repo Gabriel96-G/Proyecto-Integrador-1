@@ -174,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "La casa certificadora se registró correctamente.",
                 "confirmacion"
             );
+            mostrarMensajeExito("La casa certificadora se guardó con éxito.", "casas-certificadoras-listado.html");
 
         } catch (error) {
             console.error("Error al guardar casa certificadora:", error);
