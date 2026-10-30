@@ -30,10 +30,17 @@
             );
             visibles.forEach(tematica => {
                 const fila = SGC.UI.elemento('tr');
+                const acciones = SGC.UI.elemento('td');
+                if (tematica.id) {
+                    const editar = SGC.UI.editar('tematicas-formulario.html', tematica.id);
+                    editar.setAttribute('aria-label', 'Editar temática ' + tematica.nombre);
+                    acciones.append(editar);
+                } else acciones.textContent = 'Sin identificador';
                 fila.append(
                     SGC.UI.elemento('td', 'tabla__codigo', tematica.codigo),
                     SGC.UI.elemento('td', 'tabla__nombre', tematica.nombre),
-                    SGC.UI.elemento('td', '', tematica.descripcion || 'Sin descripción')
+                    SGC.UI.elemento('td', '', tematica.descripcion || 'Sin descripción'),
+                    acciones
                 );
                 cuerpo.append(fila);
             });
