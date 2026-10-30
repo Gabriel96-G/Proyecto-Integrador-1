@@ -5,13 +5,26 @@
         try {
             const areas = SGC.Datos.leer('sefia');
             const texto = SGC.Datos.normalizar(document.getElementById('buscar').value);
-            const visibles = areas.filter(area => SGC.Datos.normalizar(area.nombre).includes(texto));
+            const codigo = SGC.Datos.normalizar(document.getElementById('filtro-codigo').value);
+            const descripcion = SGC.Datos.normalizar(document.getElementById('filtro-descripcion').value);
+            const visibles = areas.filter(area =>
+                SGC.Datos.normalizar(area.codigo).includes(codigo) &&
+                SGC.Datos.normalizar(area.nombre).includes(texto) &&
+                SGC.Datos.normalizar(area.descripcion).includes(descripcion)
+            );
             visibles.forEach(area => {
                 const fila = SGC.UI.elemento('tr');
+                const acciones = SGC.UI.elemento('td');
+                if (area.id) {
+                    const editar = SGC.UI.editar('areas-sefia-formulario.html', area.id);
+                    editar.setAttribute('aria-label', 'Editar área ' + area.nombre);
+                    acciones.append(editar);
+                } else acciones.textContent = 'Sin identificador';
                 fila.append(
                     SGC.UI.elemento('td', 'tabla__codigo', area.codigo),
                     SGC.UI.elemento('td', 'tabla__nombre', area.nombre),
-                    SGC.UI.elemento('td', '', area.descripcion || 'Sin descripción')
+                    SGC.UI.elemento('td', '', area.descripcion || 'Sin descripción'),
+                    acciones
                 );
                 cuerpo.append(fila);
             });
@@ -28,6 +41,14 @@
         }
     }
     document.getElementById('buscar').addEventListener('input', listar);
+    document.getElementById('filtro-codigo').addEventListener('input', listar);
+    document.getElementById('filtro-descripcion').addEventListener('input', listar);
+    document.getElementById('limpiar-filtros').addEventListener('click', () => {
+        document.getElementById('buscar').value = '';
+        document.getElementById('filtro-codigo').value = '';
+        document.getElementById('filtro-descripcion').value = '';
+        listar();
+    });
     window.addEventListener('storage', listar);
     window.addEventListener('pageshow', listar);
     listar();

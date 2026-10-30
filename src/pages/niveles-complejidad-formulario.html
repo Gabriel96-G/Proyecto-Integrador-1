@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar nivel de complejidad</title>
     <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/almacenamiento.js" defer></script>
+    <script src="../js/mensaje-exito.js" defer></script>
     <script src="../js/niveles-complejidad.js" defer></script>
     <script src="../js/sesion.js" defer></script>
 </head>
@@ -63,8 +65,8 @@
         </nav>
 
         <main class="contenido">
-            <p class="ruta">Catálogos / Niveles de complejidad / Nuevo registro</p>
-            <h1>Registrar nivel de complejidad</h1>
+            <p id="ruta-nivel" class="ruta">Catálogos / Niveles de complejidad / Nuevo registro</p>
+            <h1 id="titulo-nivel">Registrar nivel de complejidad</h1>
 
             <section class="catalogo-formulario">
 
@@ -115,7 +117,7 @@
                     <div id="mensaje-resultado" class="aviso" role="status" hidden></div>
 
                     <div class="formulario__acciones">
-                        <button class="boton boton--principal" type="submit">Guardar registro</button>
+                        <button id="guardar-nivel" class="boton boton--principal" type="submit">Guardar registro</button>
                         <a class="boton boton--secundario"  href="niveles-complejidad-listado.html">Cancelar</a>
                     </div>
                 </form>

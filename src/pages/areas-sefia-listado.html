@@ -15,7 +15,7 @@
   </script>
   <script src="../js/sesion.js" defer></script>
  </head>
- <body class="pagina-aylin">
+ <body class="pagina-sgc">
   <a class="salto-contenido" href="#contenido">
    Saltar al contenido
   </a>
@@ -91,9 +91,18 @@
 
      <div class="listado__herramientas">
       <div class="busqueda">
+       <label class="busqueda__etiqueta" for="filtro-codigo">Filtrar por código</label>
+       <input class="busqueda__control" id="filtro-codigo" placeholder="Código del área" type="search"/>
+      </div>
+      <div class="busqueda">
        <label class="busqueda__etiqueta" for="buscar">Buscar por nombre</label>
        <input class="busqueda__control" id="buscar" placeholder="Buscar área S.E.F.I.A…" type="search"/>
       </div>
+      <div class="busqueda">
+       <label class="busqueda__etiqueta" for="filtro-descripcion">Filtrar por descripción</label>
+       <input class="busqueda__control" id="filtro-descripcion" placeholder="Descripción del área" type="search"/>
+      </div>
+      <button class="boton boton--secundario" id="limpiar-filtros" type="button">Limpiar filtros</button>
      </div>
      <p class="formulario__ayuda" id="cantidad" role="status">
      </p>
@@ -109,6 +118,9 @@
          </th>
          <th scope="col">
           Descripción
+         </th>
+         <th scope="col">
+          Acciones
          </th>
         </tr>
        </thead>

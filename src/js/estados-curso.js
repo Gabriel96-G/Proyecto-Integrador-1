@@ -115,6 +115,7 @@ formulario.addEventListener("submit", function (evento) {
         "El estado del curso se registró correctamente.",
         "confirmacion"
     );
+    mostrarMensajeExito("El estado del curso se guardó con éxito.", "estados-curso-listado.html");
 });
 
 // Limpia los mensajes cuando se modifica un campo.

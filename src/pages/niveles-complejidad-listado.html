@@ -100,6 +100,20 @@
             <section class="listado" aria-labelledby="titulo-listado">
                 <h2 id="titulo-listado">Niveles registrados</h2>
 
+                <div class="listado__herramientas">
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="buscar-nivel">
+                            Buscar por nombre
+                        </label>
+                        <input class="busqueda__control"
+                               id="buscar-nivel"
+                               name="busqueda"
+                               type="search"
+                               placeholder="Buscar nivel de complejidad..."
+                               autocomplete="off">
+                    </div>
+                </div>
+
                 <div class="tabla-contenedor">
                     <table id="tabla-niveles"
                            class="tabla tabla--catalogo"
@@ -109,6 +123,7 @@
                                 <th scope="col">Código</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Descripción</th>
+                                <th scope="col">Acción</th>
                             </tr>
                         </thead>
 

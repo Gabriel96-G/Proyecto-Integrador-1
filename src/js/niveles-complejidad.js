@@ -1,14 +1,19 @@
-// HU-43: Registro de niveles de complejidad
+// HU-43 y HU-46: Registro y modificación de niveles de complejidad.
 
 const formulario = document.getElementById("formulario-nivel");
 const campoCodigo = document.getElementById("codigo");
 const campoNombre = document.getElementById("nombre");
 const campoDescripcion = document.getElementById("descripcion");
+const botonGuardar = document.getElementById("guardar-nivel");
 
 const mensajeCodigo = document.getElementById("codigo-mensaje");
 const mensajeNombre = document.getElementById("nombre-mensaje");
 const mensajeDescripcion = document.getElementById("descripcion-mensaje");
 const mensajeResultado = document.getElementById("mensaje-resultado");
+
+// El enlace Editar envía el código del nivel en la dirección de la página.
+let codigoOriginal = new URLSearchParams(window.location.search).get("codigo");
+const modificando = codigoOriginal !== null;
 
 // Agrega los valores iniciales solicitados si el catálogo todavía no existe.
 function crearNivelesIniciales() {
@@ -43,6 +48,7 @@ function mostrarAviso(texto, tipo) {
 
 // Borra los errores anteriores.
 function limpiarMensajes() {
+    if (botonGuardar.disabled) return;
     campoCodigo.classList.remove("error");
     campoNombre.classList.remove("error");
     campoDescripcion.classList.remove("error");
@@ -53,8 +59,37 @@ function limpiarMensajes() {
     mensajeResultado.hidden = true;
 }
 
+// Reutiliza el formulario de registro para cargar el nivel seleccionado.
+try {
+    crearNivelesIniciales();
+
+    if (modificando) {
+        document.title = "Modificar nivel de complejidad";
+        document.getElementById("titulo-nivel").textContent = "Modificar nivel de complejidad";
+        document.getElementById("ruta-nivel").textContent = "Catálogos / Niveles de complejidad / Modificar registro";
+        botonGuardar.textContent = "Guardar cambios";
+
+        const nivel = SGC.Datos.leer("nivelesComplejidad").find(function (registro) {
+            return String(registro.codigo).trim() === codigoOriginal.trim();
+        });
+
+        if (nivel) {
+            campoCodigo.value = nivel.codigo;
+            campoNombre.value = nivel.nombre;
+            campoDescripcion.value = nivel.descripcion || "";
+        } else {
+            mostrarAviso("No se encontró el nivel. Vuelva al listado.", "error");
+            botonGuardar.disabled = true;
+        }
+    }
+} catch (error) {
+    mostrarAviso("No se pudieron cargar los datos. Vuelva al listado y revise los registros.", "error");
+    botonGuardar.disabled = true;
+}
+
 formulario.addEventListener("submit", function (evento) {
     evento.preventDefault();
+    if (botonGuardar.disabled) return;
     limpiarMensajes();
 
     const codigo = campoCodigo.value.trim();
@@ -86,60 +121,71 @@ formulario.addEventListener("submit", function (evento) {
         hayErrores = true;
     }
 
-    // Obtiene los niveles guardados.
-    const niveles =
-        JSON.parse(localStorage.getItem("nivelesComplejidad")) || [];
+    try {
+        // Vuelve a leer los datos para conservar los demás niveles.
+        const niveles = SGC.Datos.leer("nivelesComplejidad");
+        const indice = modificando ? niveles.findIndex(function (nivel) {
+            return String(nivel.codigo).trim() === codigoOriginal.trim();
+        }) : -1;
 
-    // Comprueba que el código y el nombre no estén repetidos.
-    const codigoRepetido = niveles.some(function (nivel) {
-        return nivel.codigo === codigo;
-    });
+        if (modificando && indice === -1) {
+            mostrarAviso("El nivel ya no está disponible. Vuelva al listado.", "error");
+            botonGuardar.disabled = true;
+            return;
+        }
 
-    const nombreRepetido = niveles.some(function (nivel) {
-        return nivel.nombre.toLowerCase() === nombre.toLowerCase();
-    });
+        // Al editar, no compara el nivel consigo mismo.
+        const codigoRepetido = niveles.some(function (nivel, posicion) {
+            return posicion !== indice && String(nivel.codigo).trim() === codigo;
+        });
 
-    if (codigo !== "" && codigoRepetido) {
-        mostrarError(
-            campoCodigo,
-            mensajeCodigo,
-            "Ya existe un nivel con este código."
+        const nombreRepetido = niveles.some(function (nivel, posicion) {
+            return posicion !== indice && nivel.nombre.trim().toLowerCase() === nombre.toLowerCase();
+        });
+
+        if (codigo !== "" && codigoRepetido) {
+            mostrarError(campoCodigo, mensajeCodigo, "Ya existe un nivel con este código.");
+            hayErrores = true;
+        }
+
+        if (nombre !== "" && nombreRepetido) {
+            mostrarError(campoNombre, mensajeNombre, "Ya existe un nivel con este nombre.");
+            hayErrores = true;
+        }
+
+        if (hayErrores) {
+            mostrarAviso("Revise los campos señalados.", "error");
+            return;
+        }
+
+        const datos = { codigo: codigo, nombre: nombre, descripcion: descripcion };
+
+        if (modificando) {
+            const anterior = niveles[indice];
+            // Conserva la referencia que ya utilizan los cursos.
+            niveles[indice] = { ...anterior, ...datos, id: anterior.id || anterior.codigo };
+        } else {
+            niveles.push({ ...datos, id: crypto.randomUUID() });
+        }
+
+        localStorage.setItem("nivelesComplejidad", JSON.stringify(niveles));
+
+        if (modificando) {
+            codigoOriginal = codigo;
+            window.history.replaceState(null, "", "?codigo=" + encodeURIComponent(codigo));
+        } else {
+            formulario.reset();
+        }
+
+        mostrarMensajeExito(
+            modificando ? "Los cambios del nivel se guardaron correctamente." :
+                "El nivel de complejidad se registró correctamente.",
+            "niveles-complejidad-listado.html"
         );
-        hayErrores = true;
+    } catch (error) {
+        mostrarAviso("No se pudo guardar el nivel. Revise los datos guardados o el espacio disponible.", "error");
     }
-
-    if (nombre !== "" && nombreRepetido) {
-        mostrarError(
-            campoNombre,
-            mensajeNombre,
-            "Ya existe un nivel con este nombre."
-        );
-        hayErrores = true;
-    }
-
-    if (hayErrores) {
-        mostrarAviso("Revise los campos señalados.", "error");
-        return;
-    }
-
-    // Guarda el nuevo nivel de complejidad.
-    niveles.push({
-        codigo: codigo,
-        nombre: nombre,
-        descripcion: descripcion
-    });
-
-    localStorage.setItem("nivelesComplejidad", JSON.stringify(niveles));
-
-    formulario.reset();
-
-    mostrarAviso(
-        "El nivel de complejidad se registró correctamente.",
-        "confirmacion"
-    );
 });
 
 // Limpia los mensajes cuando se modifica un campo.
 formulario.addEventListener("input", limpiarMensajes);
-
-crearNivelesIniciales();
