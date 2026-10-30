@@ -213,9 +213,20 @@
 
             </section>
 
-            <!-- Búsqueda por nombre -->
+
+            <!-- HU-50: Búsqueda y filtrado de casas certificadoras -->
             <section class="casas-listado__busqueda">
 
+                <!-- Buscar por código -->
+                <label for="filtrar-casas-codigo">
+                    Buscar por código
+                </label>
+
+                <input type="search" id="filtrar-casas-codigo" name="filtrar-casas-codigo"
+                    placeholder="Ingrese el código de la casa certificadora..."
+                    aria-controls="tabla-casas-certificadoras" inputmode="numeric" autocomplete="off">
+
+                <!-- Buscar por nombre -->
                 <label for="buscar-casas-certificadoras">
                     Buscar por nombre
                 </label>
@@ -225,6 +236,7 @@
                     autocomplete="off">
 
             </section>
+
 
             <!-- Listado -->
             <section class="casas-listado__tabla-contenedor" aria-label="Casas certificadoras registradas">

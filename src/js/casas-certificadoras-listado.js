@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const cuerpoTabla = document.getElementById("cuerpo-tabla-casas");
   const mensajeListado = document.getElementById("mensaje-listado");
 
-  // Buscador que agregaremos al HTML del listado.
+  // HU-50: Campos de búsqueda por código y nombre.
+  const campoCodigo = document.getElementById("filtrar-casas-codigo");
   const campoBusqueda = document.getElementById("buscar-casas-certificadoras");
 
   const CLAVE_ALMACENAMIENTO = "casasCertificadoras";
@@ -87,17 +88,32 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Obtener el texto del buscador.
-    const busqueda = campoBusqueda ? normalizarTexto(campoBusqueda.value) : "";
+    // HU-50: Obtener los criterios de búsqueda.
+    const busquedaCodigo = campoCodigo
+      ? normalizarTexto(campoCodigo.value)
+      : "";
 
-    // Filtrar por nombre.
+    const busquedaNombre = campoBusqueda
+      ? normalizarTexto(campoBusqueda.value)
+      : "";
+
+    // HU-50: Filtrar por código y nombre simultáneamente.
     const casasFiltradas = casasCertificadoras.filter(function (casa) {
-      return normalizarTexto(casa.nombre).includes(busqueda);
+      const coincideCodigo = normalizarTexto(casa.codigo).includes(
+        busquedaCodigo,
+      );
+      const coincideNombre = normalizarTexto(casa.nombre).includes(
+        busquedaNombre,
+      );
+
+      return coincideCodigo && coincideNombre;
     });
 
-    // Mostrar aviso cuando no hay coincidencias.
+    // HU-50: Mostrar aviso cuando no hay coincidencias.
     if (casasFiltradas.length === 0) {
-      mostrarMensaje("No se encontraron casas certificadoras con ese nombre.");
+      mostrarMensaje(
+        "No se encontraron casas certificadoras con los criterios de búsqueda.",
+      );
       return;
     }
 
@@ -122,7 +138,12 @@ document.addEventListener("DOMContentLoaded", function () {
     tabla.style.display = "table";
   }
 
-  // Actualizar resultados mientras se escribe.
+    // HU-50: Actualizar resultados al escribir el código.
+  if (campoCodigo) {
+    campoCodigo.addEventListener("input", cargarCasasCertificadoras);
+  }
+
+  // Actualizar resultados al escribir el nombre.
   if (campoBusqueda) {
     campoBusqueda.addEventListener("input", cargarCasasCertificadoras);
   }
