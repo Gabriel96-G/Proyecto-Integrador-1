@@ -1,4 +1,4 @@
-// HU-44 y HU-45: Listado y búsqueda de niveles de complejidad.
+// HU-44, HU-45 y HU-46: Listado, búsqueda y acceso a la edición de niveles.
 
 const tablaNiveles = document.getElementById("tabla-niveles");
 const cuerpoTabla = document.getElementById("cuerpo-tabla-niveles");
@@ -82,9 +82,18 @@ function agregarFila(nivel) {
     const descripcion = document.createElement("td");
     descripcion.textContent = nivel.descripcion;
 
+    const accion = document.createElement("td");
+    const editar = document.createElement("a");
+    editar.className = "enlace-accion";
+    editar.textContent = "Editar";
+    editar.href = "niveles-complejidad-formulario.html?codigo=" + encodeURIComponent(nivel.codigo);
+    editar.setAttribute("aria-label", "Editar nivel " + nivel.nombre);
+    accion.appendChild(editar);
+
     fila.appendChild(codigo);
     fila.appendChild(nombre);
     fila.appendChild(descripcion);
+    fila.appendChild(accion);
 
     cuerpoTabla.appendChild(fila);
 }
