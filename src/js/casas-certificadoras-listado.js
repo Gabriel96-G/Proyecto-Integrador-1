@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const fila = document.createElement("tr");
     const celda = document.createElement("td");
 
-    celda.colSpan = 2;
+    celda.colSpan = 3;
     SGC.Idioma.texto(celda, texto);
     celda.style.textAlign = "center";
     celda.style.color = "#2c3e50";
@@ -127,8 +127,21 @@ document.addEventListener("DOMContentLoaded", function () {
       const celdaNombre = document.createElement("td");
       celdaNombre.textContent = casa.nombre;
 
+      // HU-51: Opción para modificar una casa certificadora.
+      const celdaAcciones = document.createElement("td");
+
+      const enlaceEditar = document.createElement("a");
+      enlaceEditar.textContent = "Editar";
+      enlaceEditar.className = "boton boton--secundario";
+      enlaceEditar.href =
+        "casas-certificadoras-formulario.html?codigo=" +
+        encodeURIComponent(casa.codigo);
+
+      celdaAcciones.appendChild(enlaceEditar);
+
       fila.appendChild(celdaCodigo);
       fila.appendChild(celdaNombre);
+      fila.appendChild(celdaAcciones);
 
       cuerpoTabla.appendChild(fila);
     });
@@ -138,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
     tabla.style.display = "table";
   }
 
-    // HU-50: Actualizar resultados al escribir el código.
+  // HU-50: Actualizar resultados al escribir el código.
   if (campoCodigo) {
     campoCodigo.addEventListener("input", cargarCasasCertificadoras);
   }
