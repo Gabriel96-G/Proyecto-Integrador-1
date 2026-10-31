@@ -232,6 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         mensajeResultado.textContent =
           "La metodología de aprendizaje se registró correctamente.";
+        mostrarMensajeExito("La metodología de aprendizaje se guardó con éxito.", "metodologias-listado.html");
       }
     } catch (error) {
       console.error("Error al registrar la metodología:", error);

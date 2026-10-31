@@ -1,4 +1,4 @@
-// HU-24 y HU-25: Listado y búsqueda de estados del curso.
+// HU-24, HU-25 y HU-26: Listado, búsqueda y acceso a la edición de estados.
 
 const tablaEstados = document.getElementById("tabla-estados");
 const cuerpoTabla = document.getElementById("cuerpo-tabla-estados");
@@ -41,9 +41,18 @@ function agregarFila(estado) {
     const descripcion = document.createElement("td");
     descripcion.textContent = estado.descripcion;
 
+    const accion = document.createElement("td");
+    const editar = document.createElement("a");
+    editar.className = "enlace-accion";
+    editar.textContent = "Editar";
+    editar.href = "estados-curso-formulario.html?codigo=" + encodeURIComponent(estado.codigo);
+    editar.setAttribute("aria-label", "Editar estado " + estado.nombre);
+    accion.appendChild(editar);
+
     fila.appendChild(codigo);
     fila.appendChild(nombre);
     fila.appendChild(descripcion);
+    fila.appendChild(accion);
     cuerpoTabla.appendChild(fila);
 }
 
