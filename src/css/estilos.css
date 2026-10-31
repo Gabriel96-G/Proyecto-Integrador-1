@@ -331,6 +331,8 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
 .tabla tbody tr:hover { background: var(--color-fondo); }
 .tabla__identidad { display: flex; align-items: center; gap: 16px; }
 .tabla__nombre { font-weight: 400; }
+.tabla--catalogo .tabla__nombre { overflow-wrap: normal; }
+.tabla--amplia { min-width: 960px; }
 .tabla__secundario { margin-top: 2px; color: var(--color-texto-secundario); font-size: 14px; }
 .tabla__avatar { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; color: var(--color-principal); background: var(--color-seleccion); font-weight: 700; }
 .tabla__codigo { color: var(--color-principal); font-weight: 700; }

@@ -314,6 +314,7 @@ SGC.Traducciones = {
     gestionDeCursosSgc: ["Gestión de cursos | SGC","Course management | SGC"],
     inicioCursos: ["Inicio / Cursos","Home / Courses"],
     listadoDeCursos: ["Listado de cursos","Course list"],
+    buscarCurso: ["Buscar curso...","Search course..."],
     consulteYAdministreLosCursosRegistradosEnElSistema: ["Consulte y administre los cursos registrados en el sistema.","View and manage the courses registered in the system."],
     contadorVacio: ["0 registros","0 records"],
     cargandoCursos: ["Cargando cursos...","Loading courses..."],

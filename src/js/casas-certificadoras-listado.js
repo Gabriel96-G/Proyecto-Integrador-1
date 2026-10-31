@@ -6,21 +6,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const cuerpoTabla = document.getElementById("cuerpo-tabla-casas");
   const mensajeListado = document.getElementById("mensaje-listado");
 
-  // HU-50: Campos de búsqueda por código y nombre.
-  const campoCodigo = document.getElementById("filtrar-casas-codigo");
   const campoBusqueda = document.getElementById("buscar-casas-certificadoras");
 
   const CLAVE_ALMACENAMIENTO = "casasCertificadoras";
 
   // Normalizar texto para realizar búsquedas.
   function normalizarTexto(texto) {
-    return String(texto).trim().toLocaleLowerCase("es");
+    return String(texto).trim().normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
   }
 
   // Ocultar la tabla y limpiar los resultados anteriores.
   function limpiarListado() {
-    tabla.hidden = false;
-    tabla.style.display = "table";
+    tabla.hidden = true;
 
     cuerpoTabla.innerHTML = "";
 
@@ -30,31 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Mostrar un mensaje informativo o de error.
   function mostrarMensaje(texto, tipo) {
-    // Los errores reales se muestran en rojo.
-    if (tipo === "error") {
-      SGC.Idioma.texto(mensajeListado, texto);
-      mensajeListado.className = "aviso aviso--error";
-      mensajeListado.hidden = false;
-
-      tabla.hidden = true;
-      tabla.style.display = "none";
-      return;
-    }
-
-    // Los mensajes informativos se muestran dentro de la tabla.
-    mensajeListado.hidden = true;
-
-    const fila = document.createElement("tr");
-    const celda = document.createElement("td");
-
-    celda.colSpan = 3;
-    SGC.Idioma.texto(celda, texto);
-    celda.style.textAlign = "center";
-    celda.style.color = "#2c3e50";
-    celda.style.padding = "24px 16px";
-
-    fila.appendChild(celda);
-    cuerpoTabla.appendChild(fila);
+    SGC.Idioma.texto(mensajeListado, texto);
+    mensajeListado.className = tipo === "error" ? "aviso aviso--error" : "estado-vacio";
+    mensajeListado.setAttribute("role", tipo === "error" ? "alert" : "status");
+    mensajeListado.hidden = false;
+    tabla.hidden = true;
   }
 
   // Cargar los registros almacenados.
@@ -88,31 +66,18 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // HU-50: Obtener los criterios de búsqueda.
-    const busquedaCodigo = campoCodigo
-      ? normalizarTexto(campoCodigo.value)
-      : "";
-
     const busquedaNombre = campoBusqueda
       ? normalizarTexto(campoBusqueda.value)
       : "";
 
-    // HU-50: Filtrar por código y nombre simultáneamente.
     const casasFiltradas = casasCertificadoras.filter(function (casa) {
-      const coincideCodigo = normalizarTexto(casa.codigo).includes(
-        busquedaCodigo,
-      );
-      const coincideNombre = normalizarTexto(casa.nombre).includes(
-        busquedaNombre,
-      );
-
-      return coincideCodigo && coincideNombre;
+      return normalizarTexto(casa.nombre).includes(busquedaNombre);
     });
 
     // HU-50: Mostrar aviso cuando no hay coincidencias.
     if (casasFiltradas.length === 0) {
       mostrarMensaje(
-        "No se encontraron casas certificadoras con los criterios de búsqueda.",
+        "No se encontraron coincidencias.",
       );
       return;
     }
@@ -125,14 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
       celdaCodigo.textContent = casa.codigo;
 
       const celdaNombre = document.createElement("td");
+      celdaNombre.className = "tabla__nombre";
       celdaNombre.textContent = casa.nombre;
 
       // HU-51: Opción para modificar una casa certificadora.
       const celdaAcciones = document.createElement("td");
 
       const enlaceEditar = document.createElement("a");
-      enlaceEditar.textContent = "Editar";
-      enlaceEditar.className = "boton boton--secundario";
+      SGC.Idioma.texto(enlaceEditar, "Editar");
+      enlaceEditar.className = "enlace-accion";
       enlaceEditar.href =
         "casas-certificadoras-formulario.html?codigo=" +
         encodeURIComponent(casa.codigo);
@@ -148,12 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Mostrar la tabla con los resultados.
     tabla.hidden = false;
-    tabla.style.display = "table";
-  }
-
-  // HU-50: Actualizar resultados al escribir el código.
-  if (campoCodigo) {
-    campoCodigo.addEventListener("input", cargarCasasCertificadoras);
   }
 
   // Actualizar resultados al escribir el nombre.
@@ -161,6 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
     campoBusqueda.addEventListener("input", cargarCasasCertificadoras);
   }
 
-  // Cargar las casas al abrir la página.
+  window.addEventListener("pageshow", cargarCasasCertificadoras);
+  window.addEventListener("storage", evento => {
+    if (evento.key === CLAVE_ALMACENAMIENTO || evento.key === null) cargarCasasCertificadoras();
+  });
+
   cargarCasasCertificadoras();
 });
