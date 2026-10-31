@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title data-i18n="registrarCarreraSgc">
    Registrar carrera | SGC
   </title>
-  <link href="../css/estilos.css" rel="stylesheet"/>
-  <script defer="" src="../js/almacenamiento.js">
+  <link href="../css/estilos.css" rel="stylesheet">
+  <script src="../js/traducciones.js" defer=""></script>
+    <script src="../js/idioma.js" defer=""></script>
+    <script defer="" src="../js/almacenamiento.js">
   </script>
   <script defer="" src="../js/carreras-validacion.js">
   </script>
@@ -15,108 +17,104 @@
   </script>
   <script defer="" src="../js/interfaz.js">
   </script>
-  <script src="../js/mensaje-exito.js" defer></script>
+  <script src="../js/mensaje-exito.js" defer=""></script>
   <script defer="" src="../js/carreras-formulario.js">
   </script>
-  <script src="../js/sesion.js" defer></script>
- </head>
+  <script src="../js/sesion.js" defer=""></script>
+ <link rel="stylesheet" href="../css/idioma.css"></head>
  <body class="pagina-sgc">
-  <a class="salto-contenido" href="#contenido">
+  <a class="salto-contenido" href="#contenido" data-i18n="saltarAlContenido">
    Saltar al contenido
   </a>
   <div class="aplicacion">
    <header class="cabecera">
     <a class="cabecera__marca" href="inicio.html">
-     <img alt="Universidad CENFOTEC" class="cabecera__logo" src="../img/logo-cenfotec.png"/>
+     <img alt="Universidad CENFOTEC" class="cabecera__logo" src="../img/logo-cenfotec.png">
     </a>
-    <span class="cabecera__nombre">
+    <span class="cabecera__nombre" data-i18n="gestionCurricular">
      Gestión curricular
     </span>
     <span class="cabecera__usuario">
-     <img alt="" class="icono-usuario" src="../img/usuario.svg"/>
-     Administrador
-    </span>
-   </header>
-   <nav aria-label="Menú principal" class="navegacion">
+     <img alt="" class="icono-usuario" src="../img/usuario.svg"> <span data-i18n="administrador">Administrador</span> </span>
+   <form id="formulario-idioma" class="selector-idioma">
+    <label for="idioma" data-i18n="idioma">Idioma</label>
+    <select id="idioma" name="idioma">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+    </select>
+    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+</form></header>
+   <nav aria-label="Menú principal" class="navegacion" data-i18n-aria-label="menuPrincipal">
     <details class="navegacion__desplegable" open="">
-     <summary class="navegacion__alternar">
+     <summary class="navegacion__alternar" data-i18n="menu">
       Menú
      </summary>
      <ul class="navegacion__lista">
       <li class="navegacion__item">
        <a class="navegacion__enlace" href="inicio.html">
-        <img alt="" class="icono-menu" src="../img/inicio.svg"/>
-        Inicio
-       </a>
+        <img alt="" class="icono-menu" src="../img/inicio.svg"> <span data-i18n="inicio">Inicio</span> </a>
       </li>
       <li class="navegacion__item">
        <a class="navegacion__enlace" href="usuarios.html">
-        <img alt="" class="icono-menu" src="../img/usuarios.svg"/>
-        Usuarios
-       </a>
+        <img alt="" class="icono-menu" src="../img/usuarios.svg"> <span data-i18n="usuarios">Usuarios</span> </a>
       </li>
       <li class="navegacion__item">
        <a aria-current="page" class="navegacion__enlace" href="catalogos.html">
-        <img alt="" class="icono-menu" src="../img/catalogos.svg"/>
-        Catálogos
-       </a>
+        <img alt="" class="icono-menu" src="../img/catalogos.svg"> <span data-i18n="catalogos">Catálogos</span> </a>
       </li>
       <li class="navegacion__item">
        <a class="navegacion__enlace" href="cursos.html">
-        <img alt="" class="icono-menu" src="../img/cursos.svg"/>
-        Cursos
-       </a>
+        <img alt="" class="icono-menu" src="../img/cursos.svg"> <span data-i18n="cursos">Cursos</span> </a>
       </li>
      </ul>
     </details>
     <a class="navegacion__salir" href="login.html">
-     <img alt="" class="icono-menu" src="../img/cerrar.svg"/>
-     Cerrar sesión
-    </a>
+     <img alt="" class="icono-menu" src="../img/cerrar.svg"> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
    </nav>
    <main class="contenido" id="contenido">
     <header class="pagina__encabezado">
-     <h1 id="titulo">
+     <h1 id="titulo" data-i18n="registrarCarrera">
       Registrar carrera
      </h1>
-     <p class="ruta" id="ruta">
+     <p class="ruta" id="ruta" data-i18n="catalogosCarrerasNuevoRegistro">
       Catálogos / Carreras / Nuevo registro
      </p>
     </header>
     <div class="catalogo-formulario">
      <aside class="catalogo-formulario__ficha">
-      <img alt="" class="catalogo-resumen__icono" src="../img/cursos.svg"/>
-      <h2>
+      <img alt="" class="catalogo-resumen__icono" src="../img/cursos.svg">
+      <h2 data-i18n="carreras">
        Carreras
       </h2>
-      <p>
+      <p data-i18n="codigoNombreYEscuelaAsociada">
        Código, nombre y escuela asociada.
       </p>
      </aside>
      <form class="formulario" id="catalogo-form" novalidate="">
       <div class="formulario__rejilla formulario__rejilla--codigo">
        <div class="formulario__campo">
-        <label class="formulario__etiqueta" for="codigo">
+        <label class="formulario__etiqueta" for="codigo" data-i18n="codigoObligatorio">
          Código *
         </label>
-        <input aria-describedby="codigo-mensaje" class="formulario__control" id="codigo" maxlength="40" name="codigo" required="" type="text"/>
+        <input aria-describedby="codigo-mensaje" class="formulario__control" id="codigo" maxlength="40" name="codigo" required="" type="text">
         <p aria-live="polite" class="formulario__mensaje" data-error-for="codigo" id="codigo-mensaje">
         </p>
        </div>
        <div class="formulario__campo">
-        <label class="formulario__etiqueta" for="nombre">
+        <label class="formulario__etiqueta" for="nombre" data-i18n="nombre">
          Nombre *
         </label>
-        <input aria-describedby="nombre-mensaje" class="formulario__control" id="nombre" maxlength="150" name="nombre" required="" type="text"/>
+        <input aria-describedby="nombre-mensaje" class="formulario__control" id="nombre" maxlength="150" name="nombre" required="" type="text">
         <p aria-live="polite" class="formulario__mensaje" data-error-for="nombre" id="nombre-mensaje">
         </p>
        </div>
        <div class="formulario__campo formulario__campo--completo">
-        <label class="formulario__etiqueta" for="escuela">
+        <label class="formulario__etiqueta" for="escuela" data-i18n="escuelaAsociada">
          Escuela asociada *
         </label>
         <select aria-describedby="escuela-mensaje" class="formulario__control" id="escuela" name="escuela" required="">
-         <option value="">
+         <option value="" data-i18n="seleccioneUnaEscuela">
           Seleccione una escuela
          </option>
         </select>
@@ -124,25 +122,26 @@
         </p>
        </div>
       </div>
-      <p class="formulario__nota">
+      <p class="formulario__nota" data-i18n="campoObligatorio">
        * Campo obligatorio
       </p>
       <div class="formulario__acciones">
-       <button class="boton boton--principal" id="guardar" type="submit">
+       <button class="boton boton--principal" id="guardar" type="submit" data-i18n="guardarRegistro">
         Guardar registro
        </button>
-       <a class="boton boton--secundario" href="carreras-listado.html">
+       <a class="boton boton--secundario" href="carreras-listado.html" data-i18n="cancelar">
         Cancelar
        </a>
       </div>
      </form>
     </div>
-    <a class="enlace-accion" href="carreras-listado.html">
+    <a class="enlace-accion" href="carreras-listado.html" data-i18n="volverACarreras">
      ‹ Volver a carreras
     </a>
     <p class="aviso" hidden="" id="aviso">
     </p>
    </main>
   </div>
- </body>
-</html>
+
+
+</body></html>

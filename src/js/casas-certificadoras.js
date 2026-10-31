@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function mostrarError(campo, lugarMensaje, texto) {
         campo.classList.add("error");
         campo.setAttribute("aria-invalid", "true");
-        lugarMensaje.textContent = texto;
+        SGC.Idioma.texto(lugarMensaje, texto);
     }
 
     // Muestra un aviso general de error o confirmación.
     function mostrarAviso(texto, tipo) {
-        mensajeResultado.textContent = texto;
+        SGC.Idioma.texto(mensajeResultado, texto);
         mensajeResultado.className = "aviso aviso--" + tipo;
         mensajeResultado.hidden = false;
     }
@@ -49,10 +49,10 @@ document.addEventListener("DOMContentLoaded", function () {
         campoCodigo.removeAttribute("aria-invalid");
         campoNombre.removeAttribute("aria-invalid");
 
-        mensajeCodigo.textContent = "";
-        mensajeNombre.textContent = "";
+        SGC.Idioma.texto(mensajeCodigo, "");
+        SGC.Idioma.texto(mensajeNombre, "");
 
-        mensajeResultado.textContent = "";
+        SGC.Idioma.texto(mensajeResultado, "");
         mensajeResultado.className = "aviso";
         mensajeResultado.hidden = true;
     }

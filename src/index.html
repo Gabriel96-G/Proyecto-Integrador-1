@@ -3,50 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión curricular</title>
+    <title data-i18n="gestionCurricular">Gestión curricular</title>
     <link rel="stylesheet" href="css/estilos.css">
-</head>
+<script src="js/traducciones.js" defer=""></script>
+    <script src="js/idioma.js" defer=""></script><link rel="stylesheet" href="css/idioma.css"></head>
 <body>
     <header class="cabecera">
         <a class="cabecera__marca" href="index.html">
             <img class="cabecera__logo" src="img/logo-cenfotec.png" alt="Universidad CENFOTEC">
         </a>
-        <span class="cabecera__nombre">Gestión curricular</span>
+        <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
         <span class="cabecera__institucion">Universidad CENFOTEC</span>
-    </header>
+    <form id="formulario-idioma" class="selector-idioma">
+    <label for="idioma" data-i18n="idioma">Idioma</label>
+    <select id="idioma" name="idioma">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+    </select>
+    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+</form></header>
 
     <main class="contenedor presentacion">
         <section class="presentacion__contenido">
-            <p class="presentacion__etiqueta">Sistema de Gestión Curricular</p>
-            <h1 class="presentacion__titulo">
-                Cada curso, <span class="presentacion__acento">una ruta clara.</span>
+            <p class="presentacion__etiqueta" data-i18n="sistemaDeGestionCurricular">Sistema de Gestión Curricular</p>
+            <h1 class="presentacion__titulo"> <span data-i18n="cadaCurso">Cada curso,</span> <span class="presentacion__acento" data-i18n="unaRutaClara">una ruta clara.</span>
             </h1>
-            <p class="presentacion__descripcion">
+            <p class="presentacion__descripcion" data-i18n="organiceLaInformacionAcademicaYCompleteCadaRegistroA">
                 Organice la información académica y complete cada registro a su ritmo.
             </p>
-            <a class="boton boton--principal" href="pages/login.html">Ingresar al sistema</a>
+            <a class="boton boton--principal" href="pages/login.html" data-i18n="ingresarAlSistema">Ingresar al sistema</a>
         </section>
 
-        <section class="presentacion__esquema" aria-label="Funciones del sistema">
+        <section class="presentacion__esquema" aria-label="Funciones del sistema" data-i18n-aria-label="funcionesDelSistema">
             <div class="presentacion__ficha">
                 <img class="icono" src="img/cursos.svg" alt="">
                 <div>
-                    <h2>Cursos</h2>
-                    <p>Registro progresivo</p>
+                    <h2 data-i18n="cursos">Cursos</h2>
+                    <p data-i18n="registroProgresivo">Registro progresivo</p>
                 </div>
             </div>
             <div class="presentacion__ficha presentacion__ficha--catalogos">
                 <img class="icono" src="img/catalogos.svg" alt="">
-                <h2>Catálogos conectados</h2>
+                <h2 data-i18n="catalogosConectados">Catálogos conectados</h2>
             </div>
             <div class="presentacion__ficha">
                 <img class="icono" src="img/escuela.svg" alt="">
                 <div>
-                    <h2>Información organizada</h2>
-                    <p>Consultar · Editar · Completar</p>
+                    <h2 data-i18n="informacionOrganizada">Información organizada</h2>
+                    <p data-i18n="consultarEditarCompletar">Consultar · Editar · Completar</p>
                 </div>
             </div>
         </section>
     </main>
-</body>
-</html>
+
+
+</body></html>

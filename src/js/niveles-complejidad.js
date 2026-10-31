@@ -36,12 +36,12 @@ function crearNivelesIniciales() {
 // Muestra un error debajo de un campo.
 function mostrarError(campo, lugarMensaje, texto) {
     campo.classList.add("error");
-    lugarMensaje.textContent = texto;
+    SGC.Idioma.texto(lugarMensaje, texto);
 }
 
 // Muestra el mensaje general del formulario.
 function mostrarAviso(texto, tipo) {
-    mensajeResultado.textContent = texto;
+    SGC.Idioma.texto(mensajeResultado, texto);
     mensajeResultado.className = "aviso aviso--" + tipo;
     mensajeResultado.hidden = false;
 }
@@ -53,9 +53,9 @@ function limpiarMensajes() {
     campoNombre.classList.remove("error");
     campoDescripcion.classList.remove("error");
 
-    mensajeCodigo.textContent = "";
-    mensajeNombre.textContent = "";
-    mensajeDescripcion.textContent = "";
+    SGC.Idioma.texto(mensajeCodigo, "");
+    SGC.Idioma.texto(mensajeNombre, "");
+    SGC.Idioma.texto(mensajeDescripcion, "");
     mensajeResultado.hidden = true;
 }
 
@@ -64,10 +64,10 @@ try {
     crearNivelesIniciales();
 
     if (modificando) {
-        document.title = "Modificar nivel de complejidad";
-        document.getElementById("titulo-nivel").textContent = "Modificar nivel de complejidad";
-        document.getElementById("ruta-nivel").textContent = "Catálogos / Niveles de complejidad / Modificar registro";
-        botonGuardar.textContent = "Guardar cambios";
+        SGC.Idioma.texto(document.querySelector('title'), "Modificar nivel de complejidad");
+        SGC.Idioma.texto(document.getElementById("titulo-nivel"), "Modificar nivel de complejidad");
+        SGC.Idioma.texto(document.getElementById("ruta-nivel"), "Catálogos / Niveles de complejidad / Modificar registro");
+        SGC.Idioma.texto(botonGuardar, "Guardar cambios");
 
         const nivel = SGC.Datos.leer("nivelesComplejidad").find(function (registro) {
             return String(registro.codigo).trim() === codigoOriginal.trim();

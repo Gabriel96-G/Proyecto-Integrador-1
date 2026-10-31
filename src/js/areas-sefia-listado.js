@@ -17,25 +17,25 @@
                 const acciones = SGC.UI.elemento('td');
                 if (area.id) {
                     const editar = SGC.UI.editar('areas-sefia-formulario.html', area.id);
-                    editar.setAttribute('aria-label', 'Editar área ' + area.nombre);
+                    SGC.Idioma.atributo(editar, 'aria-label', 'Editar área ' + area.nombre);
                     acciones.append(editar);
-                } else acciones.textContent = 'Sin identificador';
+                } else SGC.Idioma.texto(acciones, 'Sin identificador');
                 fila.append(
                     SGC.UI.elemento('td', 'tabla__codigo', area.codigo),
                     SGC.UI.elemento('td', 'tabla__nombre', area.nombre),
-                    SGC.UI.elemento('td', '', area.descripcion || 'Sin descripción'),
+                    SGC.UI.elemento('td', '', area.descripcion || 'Sin descripción', !area.descripcion),
                     acciones
                 );
                 cuerpo.append(fila);
             });
-            document.getElementById('cantidad').textContent = visibles.length +
-                (visibles.length === 1 ? ' registro' : ' registros');
+            SGC.Idioma.texto(document.getElementById('cantidad'), visibles.length +
+                (visibles.length === 1 ? ' registro' : ' registros'));
             const vacio = document.getElementById('vacio');
             vacio.hidden = visibles.length > 0;
-            vacio.textContent = areas.length ? 'No se encontraron coincidencias.' : 'Todavía no hay áreas S.E.F.I.A registradas.';
+            SGC.Idioma.texto(vacio, areas.length ? 'No se encontraron coincidencias.' : 'Todavía no hay áreas S.E.F.I.A registradas.');
             document.getElementById('aviso').hidden = true;
         } catch (error) {
-            document.getElementById('cantidad').textContent = '';
+            SGC.Idioma.texto(document.getElementById('cantidad'), '');
             document.getElementById('vacio').hidden = true;
             SGC.UI.fallo(error);
         }

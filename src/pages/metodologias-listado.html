@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metodologías de aprendizaje | SGC</title>
+    <title data-i18n="metodologiasDeAprendizajeSgc">Metodologías de aprendizaje | SGC</title>
 
     <link rel="stylesheet" href="../css/estilos.css">
-    <script src="../js/interfaz.js" defer></script>
-    <script src="../js/metodologias-listado.js" defer></script>
-    <script src="../js/sesion.js" defer></script>
-</head>
+    <script src="../js/traducciones.js" defer=""></script>
+    <script src="../js/idioma.js" defer=""></script>
+    <script src="../js/interfaz.js" defer=""></script>
+    <script src="../js/metodologias-listado.js" defer=""></script>
+    <script src="../js/sesion.js" defer=""></script>
+<link rel="stylesheet" href="../css/idioma.css"></head>
 
 <body class="pagina-sgc">
 
-    <a class="salto-contenido" href="#contenido">
+    <a class="salto-contenido" href="#contenido" data-i18n="saltarAlContenido">
         Saltar al contenido
     </a>
 
@@ -23,27 +24,31 @@
         <!-- Cabecera institucional -->
         <header class="cabecera">
             <a class="cabecera__marca" href="inicio.html">
-              
-<img class="cabecera__logo"
-     src="../img/logo-cenfotec.png"
-     alt="Universidad CENFOTEC">
+
+<img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
             </a>
 
-            <span class="cabecera__nombre">
+            <span class="cabecera__nombre" data-i18n="gestionCurricular">
                 Gestión curricular
             </span>
 
             <span class="cabecera__usuario">
-                <img class="icono-usuario" src="../img/usuario.svg" alt="">
-                Administrador
-            </span>
-        </header>
+                <img class="icono-usuario" src="../img/usuario.svg" alt=""> <span data-i18n="administrador">Administrador</span> </span>
+        <form id="formulario-idioma" class="selector-idioma">
+    <label for="idioma" data-i18n="idioma">Idioma</label>
+    <select id="idioma" name="idioma">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+    </select>
+    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+</form></header>
 
         <!-- Menú lateral -->
-        <nav class="navegacion" aria-label="Menú principal">
+        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
 
-            <details class="navegacion__desplegable" open>
-                <summary class="navegacion__alternar">
+            <details class="navegacion__desplegable" open="">
+                <summary class="navegacion__alternar" data-i18n="menu">
                     Menú
                 </summary>
 
@@ -51,45 +56,35 @@
 
                     <li class="navegacion__item">
                         <a class="navegacion__enlace" href="inicio.html">
-                            <img class="icono-menu" src="../img/inicio.svg" alt="">
-                            Inicio
-                        </a>
+                            <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
                     </li>
 
                     <li class="navegacion__item">
                         <a class="navegacion__enlace" href="usuarios.html">
-                            <img class="icono-menu" src="../img/usuarios.svg" alt="">
-                            Usuarios
-                        </a>
+                            <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
                     </li>
 
                     <li class="navegacion__item">
                         <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
-                            <img class="icono-menu" src="../img/catalogos.svg" alt="">
-                            Catálogos
-                        </a>
+                            <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
                     </li>
 
                     <li class="navegacion__item">
                         <a class="navegacion__enlace" href="cursos.html">
-                            <img class="icono-menu" src="../img/cursos.svg" alt="">
-                            Cursos
-                        </a>
+                            <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
                     </li>
 
                 </ul>
             </details>
 
             <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt="">
-                Cerrar sesión
-            </a>
+                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
         </nav>
 
         <!-- Contenido principal -->
         <main class="contenido" id="contenido">
 
-            <p class="ruta">
+            <p class="ruta" data-i18n="catalogosMetodologiasDeAprendizaje">
                 Catálogos / Metodologías de aprendizaje
             </p>
 
@@ -99,47 +94,45 @@
                 <img class="icono" src="../img/catalogos.svg" alt="">
 
                 <div>
-                    <h1>Metodologías de aprendizaje</h1>
-                    <p>Catálogo institucional</p>
+                    <h1 data-i18n="metodologiasDeAprendizaje">Metodologías de aprendizaje</h1>
+                    <p data-i18n="catalogoInstitucional">Catálogo institucional</p>
                 </div>
 
-                <a class="boton boton--principal" href="metodologias-formulario.html">
+                <a class="boton boton--principal" href="metodologias-formulario.html" data-i18n="registrarNuevaMetodologia">
                     Registrar nueva metodología
                 </a>
 
             </section>
 
             <!-- HU-39: Listado de metodologías -->
-            <section class="listado" aria-label="Metodologías de aprendizaje registradas">
+            <section class="listado" aria-label="Metodologías de aprendizaje registradas" data-i18n-aria-label="metodologiasDeAprendizajeRegistradas">
 
                 <!-- HU-40: Búsqueda sencilla -->
                 <div class="listado__herramientas">
 
                     <div class="busqueda">
 
-                        <label class="busqueda__etiqueta" for="buscar-metodologias">
+                        <label class="busqueda__etiqueta" for="buscar-metodologias" data-i18n="buscarPorCodigoONombre">
                             Buscar por código o nombre
                         </label>
 
-                        <input class="busqueda__control" id="buscar-metodologias" name="busqueda" type="search"
-                            placeholder="Buscar metodología..." autocomplete="off">
+                        <input class="busqueda__control" id="buscar-metodologias" name="busqueda" type="search" placeholder="Buscar metodología..." autocomplete="off" data-i18n-placeholder="buscarMetodologia">
 
                     </div>
 
                 </div>
 
                 <!-- Tabla de registros -->
-                <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal"
-                    tabindex="0">
+                <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
 
                     <table id="tabla-metodologias" class="tabla tabla--catalogo">
 
                         <thead>
                             <tr>
-                                <th scope="col">Código</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Acción</th>
+                                <th scope="col" data-i18n="codigo">Código</th>
+                                <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
+                                <th scope="col" data-i18n="descripcion">Descripción</th>
+                                <th scope="col" data-i18n="accion">Acción</th>
                             </tr>
                         </thead>
 
@@ -160,6 +153,7 @@
 
     </div>
 
-</body>
 
-</html>
+
+
+</body></html>

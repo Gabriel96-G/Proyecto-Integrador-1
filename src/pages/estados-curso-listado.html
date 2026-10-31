@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de estados del curso</title>
+    <title data-i18n="listadoDeEstadosDelCurso">Listado de estados del curso</title>
     <link rel="stylesheet" href="../css/estilos.css">
-    <script src="../js/estados-curso-listado.js" defer></script>
-    <script src="../js/sesion.js" defer></script>
-</head>
+    <script src="../js/traducciones.js" defer=""></script>
+    <script src="../js/idioma.js" defer=""></script>
+    <script src="../js/estados-curso-listado.js" defer=""></script>
+    <script src="../js/sesion.js" defer=""></script>
+<link rel="stylesheet" href="../css/idioma.css"></head>
 
 <body>
     <div class="aplicacion">
@@ -17,92 +19,87 @@
                 <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
             </a>
 
-            <span class="cabecera__nombre">Gestión curricular</span>
+            <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
 
             <span class="cabecera__usuario">
-                <img class="icono-usuario" src="../img/usuario.svg" alt="">
-                Administrador
-            </span>
-        </header>
+                <img class="icono-usuario" src="../img/usuario.svg" alt=""> <span data-i18n="administrador">Administrador</span> </span>
+        <form id="formulario-idioma" class="selector-idioma">
+    <label for="idioma" data-i18n="idioma">Idioma</label>
+    <select id="idioma" name="idioma">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+    </select>
+    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+</form></header>
 
-        <nav class="navegacion" aria-label="Menú principal">
+        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
             <ul class="navegacion__lista">
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu" src="../img/inicio.svg" alt="">
-                        Inicio
-                    </a>
+                        <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu" src="../img/usuarios.svg" alt="">
-                        Usuarios
-                    </a>
+                        <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
-                        <img class="icono-menu" src="../img/catalogos.svg" alt="">
-                        Catálogos
-                    </a>
+                        <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="cursos.html">
-                        <img class="icono-menu" src="../img/cursos.svg" alt="">
-                        Cursos
-                    </a>
+                        <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
                 </li>
             </ul>
 
             <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt="">
-                Cerrar sesión
-            </a>
+                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
         </nav>
 
         <main class="contenido">
-            <p class="ruta">Catálogos / Estados del curso</p>
+            <p class="ruta" data-i18n="catalogosEstadosDelCurso">Catálogos / Estados del curso</p>
 
             <section class="catalogo__cabecera">
                 <img class="icono" src="../img/catalogos.svg" alt="">
 
                 <div>
-                    <h1>Estados del curso</h1>
-                    <p>Valores disponibles para los cursos</p>
+                    <h1 data-i18n="estadosDelCurso">Estados del curso</h1>
+                    <p data-i18n="valoresDisponiblesParaLosCursos">Valores disponibles para los cursos</p>
                 </div>
 
-                <a class="boton boton--principal" href="estados-curso-formulario.html">
+                <a class="boton boton--principal" href="estados-curso-formulario.html" data-i18n="registrarEstado">
                     Registrar estado
                 </a>
             </section>
 
             <section class="listado" aria-labelledby="titulo-listado">
-                <h2 id="titulo-listado">Estados registrados</h2>
+                <h2 id="titulo-listado" data-i18n="estadosRegistrados">Estados registrados</h2>
 
                 <div class="listado__herramientas">
                     <div class="busqueda">
-                        <label class="busqueda__etiqueta" for="buscar-estado">Buscar por nombre</label>
-                        <input class="busqueda__control" id="buscar-estado" name="busqueda"
-                               type="search" placeholder="Buscar estado..." autocomplete="off">
+                        <label class="busqueda__etiqueta" for="buscar-estado" data-i18n="buscarPorNombre">Buscar por nombre</label>
+                        <input class="busqueda__control" id="buscar-estado" name="busqueda" type="search" placeholder="Buscar estado..." autocomplete="off" data-i18n-placeholder="buscarEstado">
                     </div>
                 </div>
 
                 <div class="tabla-contenedor">
-                    <table id="tabla-estados" class="tabla tabla--catalogo" hidden>
+                    <table id="tabla-estados" class="tabla tabla--catalogo" hidden="">
                         <thead>
                             <tr>
-                                <th scope="col">Código</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Acción</th>
+                                <th scope="col" data-i18n="codigo">Código</th>
+                                <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
+                                <th scope="col" data-i18n="descripcion">Descripción</th>
+                                <th scope="col" data-i18n="accion">Acción</th>
                             </tr>
                         </thead>
                         <tbody id="cuerpo-tabla-estados"></tbody>
                     </table>
 
-                    <p id="mensaje-listado" class="estado-vacio" role="status" hidden>
+                    <p id="mensaje-listado" class="estado-vacio" role="status" hidden="" data-i18n="noExistenEstadosDelCursoRegistrados">
                         No existen estados del curso registrados.
                     </p>
                 </div>
@@ -110,5 +107,6 @@
             </section>
         </main>
     </div>
-</body>
-</html>
+
+
+</body></html>

@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar escuela</title>
+    <title data-i18n="registrarEscuela">Registrar escuela</title>
     <link rel="stylesheet" href="../css/estilos.css">
-    <script src="../js/almacenamiento.js" defer></script>
-    <script src="../js/mensaje-exito.js" defer></script>
-    <script src="../js/escuelas.js" defer></script>
-    <script src="../js/sesion.js" defer></script>
-</head>
+    <script src="../js/traducciones.js" defer=""></script>
+    <script src="../js/idioma.js" defer=""></script>
+    <script src="../js/almacenamiento.js" defer=""></script>
+    <script src="../js/mensaje-exito.js" defer=""></script>
+    <script src="../js/escuelas.js" defer=""></script>
+    <script src="../js/sesion.js" defer=""></script>
+<link rel="stylesheet" href="../css/idioma.css"></head>
 
 <body>
     <div class="aplicacion">
@@ -19,110 +21,101 @@
                 <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
             </a>
 
-            <span class="cabecera__nombre">Gestión curricular</span>
+            <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
 
             <span class="cabecera__usuario">
-                <img class="icono-usuario" src="../img/usuario.svg" alt="">
-                Administrador
-            </span>
-        </header>
+                <img class="icono-usuario" src="../img/usuario.svg" alt=""> <span data-i18n="administrador">Administrador</span> </span>
+        <form id="formulario-idioma" class="selector-idioma">
+    <label for="idioma" data-i18n="idioma">Idioma</label>
+    <select id="idioma" name="idioma">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+    </select>
+    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+</form></header>
 
-        <nav class="navegacion" aria-label="Menú principal">
+        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
             <ul class="navegacion__lista">
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu" src="../img/inicio.svg" alt="">
-                        Inicio
-                    </a>
+                        <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu" src="../img/usuarios.svg" alt="">
-                        Usuarios
-                    </a>
+                        <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
-                        <img class="icono-menu" src="../img/catalogos.svg" alt="">
-                        Catálogos
-                    </a>
+                        <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="cursos.html">
-                        <img class="icono-menu" src="../img/cursos.svg" alt="">
-                        Cursos
-                    </a>
+                        <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
                 </li>
             </ul>
 
             <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt="">
-                Cerrar sesión
-            </a>
+                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
         </nav>
 
         <main class="contenido">
-            <p id="ruta-escuela" class="ruta">Catálogos / Escuelas / Nuevo registro</p>
-            <h1 id="titulo-escuela">Registrar escuela</h1>
+            <p id="ruta-escuela" class="ruta" data-i18n="catalogosEscuelasNuevoRegistro">Catálogos / Escuelas / Nuevo registro</p>
+            <h1 id="titulo-escuela" data-i18n="registrarEscuela">Registrar escuela</h1>
 
             <section class="catalogo-formulario">
 
                 <div class="catalogo-formulario__ficha">
                     <img class="catalogo-resumen__icono" src="../img/escuela.svg" alt="">
-                    <h2>Escuela</h2>
-                    <p>Código, nombre y director asociado.</p>
+                    <h2 data-i18n="escuelaEtiqueta">Escuela</h2>
+                    <p data-i18n="codigoNombreYDirectorAsociado">Código, nombre y director asociado.</p>
                 </div>
 
-                <form id="formulario-escuela" class="formulario formulario__seccion" novalidate>
+                <form id="formulario-escuela" class="formulario formulario__seccion" novalidate="">
                     <div class="formulario__rejilla formulario__rejilla--codigo">
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="codigo">
-                                Código <span class="formulario__obligatorio">*</span>
+                            <label class="formulario__etiqueta" for="codigo"> <span data-i18n="codigo">Código</span> <span class="formulario__obligatorio">*</span>
                             </label>
-                            <input class="formulario__control" id="codigo" name="codigo" type="text"
-                                   aria-describedby="codigo-ayuda codigo-mensaje" required>
-                            <p id="codigo-ayuda" class="formulario__ayuda">El código debe ser único.</p>
+                            <input class="formulario__control" id="codigo" name="codigo" type="text" aria-describedby="codigo-ayuda codigo-mensaje" required="">
+                            <p id="codigo-ayuda" class="formulario__ayuda" data-i18n="elCodigoDebeSerUnico">El código debe ser único.</p>
                             <p id="codigo-mensaje" class="formulario__mensaje"></p>
                         </div>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="nombre">
-                                Nombre <span class="formulario__obligatorio">*</span>
+                            <label class="formulario__etiqueta" for="nombre"> <span data-i18n="nombreEtiqueta">Nombre</span> <span class="formulario__obligatorio">*</span>
                             </label>
-                            <input class="formulario__control" id="nombre" name="nombre" type="text"
-                                   aria-describedby="nombre-mensaje" required>
+                            <input class="formulario__control" id="nombre" name="nombre" type="text" aria-describedby="nombre-mensaje" required="">
                             <p id="nombre-mensaje" class="formulario__mensaje"></p>
                         </div>
 
                         <div class="formulario__campo formulario__campo--completo">
-                            <label class="formulario__etiqueta" for="director-asociado">
-                                Director asociado <span class="formulario__obligatorio">*</span>
+                            <label class="formulario__etiqueta" for="director-asociado"> <span data-i18n="directorAsociado">Director asociado</span> <span class="formulario__obligatorio">*</span>
                             </label>
-                            <select class="formulario__control" id="director-asociado"
-                                    name="directorAsociado" aria-describedby="director-mensaje" required>
-                                <option value="">Seleccionar director</option>
-                                <option value="Director de prueba">Director de prueba</option>
+                            <select class="formulario__control" id="director-asociado" name="directorAsociado" aria-describedby="director-mensaje" required="">
+                                <option value="" data-i18n="seleccionarDirector">Seleccionar director</option>
+                                <option value="Director de prueba" data-i18n="directorDePrueba">Director de prueba</option>
                             </select>
                             <p id="director-mensaje" class="formulario__mensaje"></p>
                         </div>
 
                     </div>
 
-                    <p class="formulario__nota">* Campo obligatorio</p>
-                    <div id="mensaje-resultado" class="aviso" role="status" hidden></div>
+                    <p class="formulario__nota" data-i18n="campoObligatorio">* Campo obligatorio</p>
+                    <div id="mensaje-resultado" class="aviso" role="status" hidden=""></div>
 
                     <div class="formulario__acciones">
-                        <button id="guardar-escuela" class="boton boton--principal" type="submit">Guardar registro</button>
-                        <a class="boton boton--secundario" href="escuelas-listado.html">Cancelar</a>
+                        <button id="guardar-escuela" class="boton boton--principal" type="submit" data-i18n="guardarRegistro">Guardar registro</button>
+                        <a class="boton boton--secundario" href="escuelas-listado.html" data-i18n="cancelar">Cancelar</a>
                     </div>
                 </form>
 
             </section>
         </main>
     </div>
-</body>
-</html>
+
+
+</body></html>

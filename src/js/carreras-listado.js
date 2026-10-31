@@ -5,7 +5,7 @@
 
     function cargarEscuelas(escuelas) {
         const seleccion = filtroEscuela.value;
-        const todas = elemento('option', '', 'Todas las escuelas');
+        const todas = elemento('option', '', 'Todas las escuelas', true);
         todas.value = '';
         filtroEscuela.replaceChildren(todas);
         escuelas.forEach(escuela => {
@@ -38,12 +38,12 @@
                 const accion = elemento('td');
                 if (carrera.id) {
                     const enlace = editar('carreras-formulario.html', carrera.id);
-                    enlace.setAttribute('aria-label', 'Editar carrera ' + carrera.nombre);
+                    SGC.Idioma.atributo(enlace, 'aria-label', 'Editar carrera ' + carrera.nombre);
                     accion.append(enlace);
                 }
-                else accion.textContent = 'Sin identificador';
+                else SGC.Idioma.texto(accion, 'Sin identificador');
                 fila.append(elemento('td', 'tabla__codigo', carrera.codigo), elemento('td', '', carrera.nombre),
-                    elemento('td', '', escuela?.nombre || 'Escuela no disponible'), accion);
+                    elemento('td', '', escuela?.nombre || 'Escuela no disponible', !escuela), accion);
                 cuerpo.append(fila);
             });
             estadoListado(registros.length, filtrados.length, 'carreras');

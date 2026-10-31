@@ -6,7 +6,7 @@ const errorContrasena = document.getElementById("contrasena-mensaje");
 const mensajeLogin = document.getElementById("mensaje-login");
 
 function mostrarMensajeLogin(texto) {
-    mensajeLogin.textContent = texto;
+    SGC.Idioma.texto(mensajeLogin, texto);
     mensajeLogin.hidden = false;
 }
 
@@ -17,20 +17,20 @@ formularioLogin.addEventListener("submit", function (evento) {
     const contrasena = campoContrasena.value;
 
     // Limpia los errores del intento anterior.
-    errorCorreo.textContent = "";
-    errorContrasena.textContent = "";
+    SGC.Idioma.texto(errorCorreo, "");
+    SGC.Idioma.texto(errorContrasena, "");
     campoCorreo.removeAttribute("aria-invalid");
     campoContrasena.removeAttribute("aria-invalid");
     mensajeLogin.hidden = true;
 
     if (correo === "") {
-        errorCorreo.textContent = "Ingrese el correo institucional.";
+        SGC.Idioma.texto(errorCorreo, "Ingrese el correo institucional.");
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
-        errorCorreo.textContent = "Ingrese un correo electrónico válido.";
+        SGC.Idioma.texto(errorCorreo, "Ingrese un correo electrónico válido.");
     }
 
     if (contrasena === "") {
-        errorContrasena.textContent = "Ingrese la contraseña.";
+        SGC.Idioma.texto(errorContrasena, "Ingrese la contraseña.");
     }
 
     if (errorCorreo.textContent !== "") {

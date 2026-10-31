@@ -37,9 +37,9 @@ function agregarFila(escuela) {
     const accion = document.createElement("td");
     const editar = document.createElement("a");
     editar.className = "enlace-accion";
-    editar.textContent = "Editar";
+    SGC.Idioma.texto(editar, "Editar");
     editar.href = "escuelas-formulario.html?codigo=" + encodeURIComponent(escuela.codigo);
-    editar.setAttribute("aria-label", "Editar escuela " + escuela.nombre);
+    SGC.Idioma.atributo(editar, 'aria-label', "Editar escuela " + escuela.nombre);
     accion.appendChild(editar);
 
     fila.appendChild(codigo);
@@ -55,7 +55,7 @@ function mostrarEscuelas(escuelas, mensajeVacio) {
 
     if (escuelas.length === 0) {
         tablaEscuelas.hidden = true;
-        mensajeListado.textContent = mensajeVacio;
+        SGC.Idioma.texto(mensajeListado, mensajeVacio);
         mensajeListado.hidden = false;
         return;
     }

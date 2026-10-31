@@ -18,12 +18,12 @@ const modificando = codigoOriginal !== null;
 // Muestra un error debajo de un campo.
 function mostrarError(campo, lugarMensaje, texto) {
     campo.classList.add("error");
-    lugarMensaje.textContent = texto;
+    SGC.Idioma.texto(lugarMensaje, texto);
 }
 
 // Muestra el mensaje general del formulario.
 function mostrarAviso(texto, tipo) {
-    mensajeResultado.textContent = texto;
+    SGC.Idioma.texto(mensajeResultado, texto);
     mensajeResultado.className = "aviso aviso--" + tipo;
     mensajeResultado.hidden = false;
 }
@@ -35,9 +35,9 @@ function limpiarMensajes() {
     campoNombre.classList.remove("error");
     campoDirector.classList.remove("error");
 
-    mensajeCodigo.textContent = "";
-    mensajeNombre.textContent = "";
-    mensajeDirector.textContent = "";
+    SGC.Idioma.texto(mensajeCodigo, "");
+    SGC.Idioma.texto(mensajeNombre, "");
+    SGC.Idioma.texto(mensajeDirector, "");
     mensajeResultado.hidden = true;
 }
 
@@ -66,10 +66,10 @@ try {
     });
 
     if (modificando) {
-        document.title = "Modificar escuela";
-        document.getElementById("titulo-escuela").textContent = "Modificar escuela";
-        document.getElementById("ruta-escuela").textContent = "Catálogos / Escuelas / Modificar registro";
-        botonGuardar.textContent = "Guardar cambios";
+        SGC.Idioma.texto(document.querySelector('title'), "Modificar escuela");
+        SGC.Idioma.texto(document.getElementById("titulo-escuela"), "Modificar escuela");
+        SGC.Idioma.texto(document.getElementById("ruta-escuela"), "Catálogos / Escuelas / Modificar registro");
+        SGC.Idioma.texto(botonGuardar, "Guardar cambios");
 
         const escuela = SGC.Datos.leer("escuelas").find(function (registro) {
             return String(registro.codigo).trim().toUpperCase() === codigoOriginal.trim().toUpperCase();

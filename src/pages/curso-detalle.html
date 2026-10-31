@@ -1,59 +1,60 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Consultar curso | SGC</title>
+    <title data-i18n="consultarCursoSgc">Consultar curso | SGC</title>
 
     <link rel="stylesheet" href="../css/estilos.css">
 
-    <script src="../js/almacenamiento.js" defer></script>
-    <script src="../js/cursos-validacion.js" defer></script>
-    <script src="../js/cursos-datos.js" defer></script>
-    <script src="../js/curso-detalle.js" defer></script>
-</head>
+    <script src="../js/traducciones.js" defer=""></script>
+    <script src="../js/idioma.js" defer=""></script>
+    <script src="../js/almacenamiento.js" defer=""></script>
+    <script src="../js/cursos-validacion.js" defer=""></script>
+    <script src="../js/cursos-datos.js" defer=""></script>
+    <script src="../js/curso-detalle.js" defer=""></script>
+<link rel="stylesheet" href="../css/idioma.css"></head>
 
 <body class="pagina-sgc">
 
-    <a class="salto-contenido" href="#contenido">
+    <a class="salto-contenido" href="#contenido" data-i18n="saltarAlContenido">
         Saltar al contenido
     </a>
 
-    <div class="aplicacion" id="panel-detalle" hidden>
+    <div class="aplicacion" id="panel-detalle" hidden="">
 
         <!-- Encabezado institucional -->
         <header class="cabecera">
 
             <a class="cabecera__marca" href="inicio.html">
-                <img
-                    class="cabecera__logo"
-                    src="../img/logo-cenfotec.png"
-                    alt="Universidad CENFOTEC"
-                >
+                <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
             </a>
 
-            <span class="cabecera__nombre">
+            <span class="cabecera__nombre" data-i18n="gestionCurricular">
                 Gestión curricular
             </span>
 
             <span class="cabecera__usuario">
-                <img
-                    class="icono-usuario"
-                    src="../img/usuario.svg"
-                    alt=""
-                >
-                <span id="rol-usuario">Usuario</span>
+                <img class="icono-usuario" src="../img/usuario.svg" alt="">
+                <span id="rol-usuario" data-i18n="usuario">Usuario</span>
             </span>
 
-        </header>
+        <form id="formulario-idioma" class="selector-idioma">
+    <label for="idioma" data-i18n="idioma">Idioma</label>
+    <select id="idioma" name="idioma">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+    </select>
+    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+</form></header>
 
         <!-- Menú principal -->
-        <nav class="navegacion" aria-label="Menú principal">
+        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
 
-            <details class="navegacion__desplegable" open>
-                <summary class="navegacion__alternar">
+            <details class="navegacion__desplegable" open="">
+                <summary class="navegacion__alternar" data-i18n="menu">
                     Menú
                 </summary>
 
@@ -61,64 +62,30 @@
 
                     <li class="navegacion__item">
                         <a class="navegacion__enlace" href="inicio.html">
-                            <img
-                                class="icono-menu"
-                                src="../img/inicio.svg"
-                                alt=""
-                            >
-                            Inicio
-                        </a>
+                            <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
                     </li>
 
                     <li class="navegacion__item">
                         <a class="navegacion__enlace" href="usuarios.html">
-                            <img
-                                class="icono-menu"
-                                src="../img/usuarios.svg"
-                                alt=""
-                            >
-                            Usuarios
-                        </a>
+                            <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
                     </li>
 
                     <li class="navegacion__item">
                         <a class="navegacion__enlace" href="catalogos.html">
-                            <img
-                                class="icono-menu"
-                                src="../img/catalogos.svg"
-                                alt=""
-                            >
-                            Catálogos
-                        </a>
+                            <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
                     </li>
 
                     <li class="navegacion__item">
-                        <a
-                            class="navegacion__enlace"
-                            href="cursos.html"
-                            aria-current="page"
-                        >
-                            <img
-                                class="icono-menu"
-                                src="../img/cursos.svg"
-                                alt=""
-                            >
-                            Cursos
-                        </a>
+                        <a class="navegacion__enlace" href="cursos.html" aria-current="page">
+                            <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
                     </li>
 
                 </ul>
             </details>
 
-            <span
-                class="navegacion__salir"
-                aria-disabled="true"
-                title="Función aún no disponible"
-            >
+            <span class="navegacion__salir" aria-disabled="true" title="Función aún no disponible" data-i18n-title="funcionAunNoDisponible">
                 <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt="">
-                Cerrar sesión
-            </a>
+                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
             </span>
 
         </nav>
@@ -127,38 +94,28 @@
         <main class="contenido" id="contenido">
 
             <header class="pagina__encabezado">
-                <h1>Consultar curso</h1>
+                <h1 data-i18n="consultarCurso">Consultar curso</h1>
 
-                <p class="ruta">
+                <p class="ruta" data-i18n="inicioCursosDetalleDelCurso">
                     Inicio / Cursos / Detalle del curso
                 </p>
             </header>
 
             <!-- Mensajes del sistema -->
-            <p
-                class="aviso"
-                id="aviso-detalle"
-                role="status"
-                aria-live="polite"
-                hidden
-            ></p>
+            <p class="aviso" id="aviso-detalle" role="status" aria-live="polite" hidden=""></p>
 
             <!-- Información completa del curso -->
-            <div class="catalogo-formulario" id="contenido-detalle" hidden>
+            <div class="catalogo-formulario" id="contenido-detalle" hidden="">
 
                 <aside class="catalogo-formulario__ficha">
 
-                    <img
-                        class="catalogo-resumen__icono"
-                        src="../img/cursos.svg"
-                        alt=""
-                    >
+                    <img class="catalogo-resumen__icono" src="../img/cursos.svg" alt="">
 
-                    <h2 id="nombre-curso">
+                    <h2 id="nombre-curso" data-i18n="informacionDelCurso">
                         Información del curso
                     </h2>
 
-                    <p>
+                    <p data-i18n="consulteLosDatosAcademicosDescriptivosAdministrativosYDeCertificacion">
                         Consulte los datos académicos,
                         descriptivos, administrativos
                         y de certificación.
@@ -171,130 +128,99 @@
                     <!-- 1. Identificación -->
                     <section aria-labelledby="titulo-identificacion">
 
-                        <h2 id="titulo-identificacion">
+                        <h2 id="titulo-identificacion" data-i18n="seccionIdentificacionCurso">
                             1. Identificación del curso
                         </h2>
 
-                        <dl
-                            class="formulario__rejilla"
-                            id="detalle-identificacion"
-                        ></dl>
+                        <dl class="formulario__rejilla" id="detalle-identificacion"></dl>
 
                     </section>
 
                     <!-- 2. Clasificación -->
                     <section aria-labelledby="titulo-clasificacion">
 
-                        <h2 id="titulo-clasificacion">
+                        <h2 id="titulo-clasificacion" data-i18n="seccionClasificacionCurso">
                             2. Clasificación del curso
                         </h2>
 
-                        <dl
-                            class="formulario__rejilla"
-                            id="detalle-clasificacion"
-                        ></dl>
+                        <dl class="formulario__rejilla" id="detalle-clasificacion"></dl>
 
                     </section>
 
                     <!-- 3. Carga académica -->
                     <section aria-labelledby="titulo-carga">
 
-                        <h2 id="titulo-carga">
+                        <h2 id="titulo-carga" data-i18n="seccionCargaAcademica">
                             3. Carga académica
                         </h2>
 
-                        <dl
-                            class="formulario__rejilla"
-                            id="detalle-carga"
-                        ></dl>
+                        <dl class="formulario__rejilla" id="detalle-carga"></dl>
 
                     </section>
 
                     <!-- 4. Power Campus -->
                     <section aria-labelledby="titulo-power-campus">
 
-                        <h2 id="titulo-power-campus">
+                        <h2 id="titulo-power-campus" data-i18n="seccionPowerCampus">
                             4. Información de Power Campus
                         </h2>
 
-                        <dl
-                            class="formulario__rejilla"
-                            id="detalle-power-campus"
-                        ></dl>
+                        <dl class="formulario__rejilla" id="detalle-power-campus"></dl>
 
                     </section>
 
                     <!-- 5. Información descriptiva -->
                     <section aria-labelledby="titulo-descriptiva">
 
-                        <h2 id="titulo-descriptiva">
+                        <h2 id="titulo-descriptiva" data-i18n="seccionDescriptiva">
                             5. Información descriptiva
                         </h2>
 
-                        <dl
-                            class="formulario__rejilla"
-                            id="detalle-descriptiva"
-                        ></dl>
+                        <dl class="formulario__rejilla" id="detalle-descriptiva"></dl>
 
                     </section>
 
                     <!-- 6. Información administrativa -->
                     <section aria-labelledby="titulo-administrativa">
 
-                        <h2 id="titulo-administrativa">
+                        <h2 id="titulo-administrativa" data-i18n="seccionAdministrativa">
                             6. Información administrativa
                         </h2>
 
-                        <dl
-                            class="formulario__rejilla"
-                            id="detalle-administrativa"
-                        ></dl>
+                        <dl class="formulario__rejilla" id="detalle-administrativa"></dl>
 
                     </section>
 
                     <!-- 7. Certificación -->
                     <section aria-labelledby="titulo-certificacion">
 
-                        <h2 id="titulo-certificacion">
+                        <h2 id="titulo-certificacion" data-i18n="seccionCertificacion">
                             7. Información de certificación
                         </h2>
 
-                        <dl
-                            class="formulario__rejilla"
-                            id="detalle-certificacion"
-                        ></dl>
+                        <dl class="formulario__rejilla" id="detalle-certificacion"></dl>
 
                     </section>
 
                     <!-- 8. Información complementaria -->
                     <section aria-labelledby="titulo-complementaria">
 
-                        <h2 id="titulo-complementaria">
+                        <h2 id="titulo-complementaria" data-i18n="seccionComplementaria">
                             8. Información complementaria
                         </h2>
 
-                        <dl
-                            class="formulario__rejilla"
-                            id="detalle-complementaria"
-                        ></dl>
+                        <dl class="formulario__rejilla" id="detalle-complementaria"></dl>
 
                     </section>
 
                     <!-- Acciones -->
                     <div class="formulario__acciones">
 
-                        <a
-                            class="boton boton--principal"
-                            id="editar-curso"
-                            href="cursos.html"
-                        >
+                        <a class="boton boton--principal" id="editar-curso" href="cursos.html" data-i18n="modificarCurso">
                             Modificar curso
                         </a>
 
-                        <a
-                            class="boton boton--secundario"
-                            href="cursos.html"
-                        >
+                        <a class="boton boton--secundario" href="cursos.html" data-i18n="volverAlListado">
                             Volver al listado
                         </a>
 
@@ -303,12 +229,13 @@
                 </div>
             </div>
 
-            <a class="enlace-accion" href="cursos.html">
+            <a class="enlace-accion" href="cursos.html" data-i18n="volverACursos">
                 ‹ Volver a cursos
             </a>
 
         </main>
     </div>
 
-</body>
-</html>
+
+
+</body></html>

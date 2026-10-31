@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Listado de casas certificadoras - CENFOTEC</title>
+    <title data-i18n="listadoDeCasasCertificadorasCenfotec">Listado de casas certificadoras - CENFOTEC</title>
 
     <link rel="stylesheet" href="../css/estilos.css">
-    <script src="../js/casas-certificadoras-listado.js" defer></script>
+    <script src="../js/traducciones.js" defer=""></script>
+    <script src="../js/idioma.js" defer=""></script>
+    <script src="../js/casas-certificadoras-listado.js" defer=""></script>
 
     <style>
         /* Estilos exclusivos del listado HU-49 */
@@ -124,8 +125,8 @@
         }
     </style>
 
-    <script src="../js/sesion.js" defer></script>
-</head>
+    <script src="../js/sesion.js" defer=""></script>
+<link rel="stylesheet" href="../css/idioma.css"></head>
 
 <body>
     <div class="aplicacion">
@@ -137,63 +138,59 @@
                 <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
             </a>
 
-            <span class="cabecera__nombre">
+            <span class="cabecera__nombre" data-i18n="gestionCurricular">
                 Gestión curricular
             </span>
 
             <span class="cabecera__usuario">
-                <img class="icono-usuario" src="../img/usuario.svg" alt="">
-                Administrador
-            </span>
+                <img class="icono-usuario" src="../img/usuario.svg" alt=""> <span data-i18n="administrador">Administrador</span> </span>
 
-        </header>
+        <form id="formulario-idioma" class="selector-idioma">
+    <label for="idioma" data-i18n="idioma">Idioma</label>
+    <select id="idioma" name="idioma">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+    </select>
+    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+</form></header>
 
         <!-- Menú lateral institucional -->
-        <nav class="navegacion" aria-label="Menú principal">
+        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
 
             <ul class="navegacion__lista">
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu" src="../img/inicio.svg" alt="">
-                        Inicio
-                    </a>
+                        <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu" src="../img/usuarios.svg" alt="">
-                        Usuarios
-                    </a>
+                        <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
-                        <img class="icono-menu" src="../img/catalogos.svg" alt="">
-                        Catálogos
-                    </a>
+                        <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="cursos.html">
-                        <img class="icono-menu" src="../img/cursos.svg" alt="">
-                        Cursos
-                    </a>
+                        <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
                 </li>
 
             </ul>
 
             <a class="navegacion__salir" href="../index.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt="">
-                Cerrar sesión
-            </a>
+                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
 
         </nav>
 
         <!-- HU-49: Listado de casas certificadoras -->
         <main class="contenido casas-listado">
 
-            <p class="ruta">
+            <p class="ruta" data-i18n="catalogosCasasCertificadoras">
                 Catálogos / Casas certificadoras
             </p>
 
@@ -203,11 +200,11 @@
                 <img class="icono" src="../img/catalogos.svg" alt="">
 
                 <div>
-                    <h1>Casas certificadoras</h1>
-                    <p>Organizaciones certificadoras</p>
+                    <h1 data-i18n="casasCertificadoras">Casas certificadoras</h1>
+                    <p data-i18n="organizacionesCertificadoras">Organizaciones certificadoras</p>
                 </div>
 
-                <a class="boton boton--principal" href="casas-certificadoras-formulario.html">
+                <a class="boton boton--principal" href="casas-certificadoras-formulario.html" data-i18n="registrarCasaCertificadora">
                     Registrar casa certificadora
                 </a>
 
@@ -218,39 +215,35 @@
             <section class="casas-listado__busqueda">
 
                 <!-- Buscar por código -->
-                <label for="filtrar-casas-codigo">
+                <label for="filtrar-casas-codigo" data-i18n="buscarPorCodigo">
                     Buscar por código
                 </label>
 
-                <input type="search" id="filtrar-casas-codigo" name="filtrar-casas-codigo"
-                    placeholder="Ingrese el código de la casa certificadora..."
-                    aria-controls="tabla-casas-certificadoras" inputmode="numeric" autocomplete="off">
+                <input type="search" id="filtrar-casas-codigo" name="filtrar-casas-codigo" placeholder="Ingrese el código de la casa certificadora..." aria-controls="tabla-casas-certificadoras" inputmode="numeric" autocomplete="off" data-i18n-placeholder="buscarCodigoCasa">
 
                 <!-- Buscar por nombre -->
-                <label for="buscar-casas-certificadoras">
+                <label for="buscar-casas-certificadoras" data-i18n="buscarPorNombre">
                     Buscar por nombre
                 </label>
 
-                <input type="search" id="buscar-casas-certificadoras" name="buscar-casas-certificadoras"
-                    placeholder="Buscar casa certificadora..." aria-controls="tabla-casas-certificadoras"
-                    autocomplete="off">
+                <input type="search" id="buscar-casas-certificadoras" name="buscar-casas-certificadoras" placeholder="Buscar casa certificadora..." aria-controls="tabla-casas-certificadoras" autocomplete="off" data-i18n-placeholder="buscarCasaCertificadora">
 
             </section>
 
 
             <!-- Listado -->
-            <section class="casas-listado__tabla-contenedor" aria-label="Casas certificadoras registradas">
+            <section class="casas-listado__tabla-contenedor" aria-label="Casas certificadoras registradas" data-i18n-aria-label="casasCertificadorasRegistradas">
 
                 <!-- Mensajes informativos -->
-                <p id="mensaje-listado" class="formulario__mensaje" role="status" aria-live="polite" hidden></p>
+                <p id="mensaje-listado" class="formulario__mensaje" role="status" aria-live="polite" hidden=""></p>
 
                 <!-- Tabla -->
-                <table id="tabla-casas-certificadoras" class="tabla" hidden>
+                <table id="tabla-casas-certificadoras" class="tabla" hidden="">
 
                     <thead>
                         <tr>
-                            <th scope="col">Código</th>
-                            <th scope="col">Nombre</th>
+                            <th scope="col" data-i18n="codigo">Código</th>
+                            <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
                         </tr>
                     </thead>
 
@@ -266,6 +259,6 @@
         </main>
 
     </div>
-</body>
 
-</html>
+
+</body></html>

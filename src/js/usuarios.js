@@ -38,18 +38,18 @@
                     detalle.append(elemento('p', 'tabla__nombre',
                         [usuario.nombre, usuario.primerApellido, usuario.segundoApellido].filter(Boolean).join(' ')),
                     elemento('p', 'tabla__secundario', usuario.correo),
-                    elemento('p', 'tabla__secundario', 'Identificación: ' + (usuario.identificacion || 'Sin registrar')));
+                    elemento('p', 'tabla__secundario', 'Identificación: ' + (usuario.identificacion || '—'), true));
                     identidad.append(detalle);
                     celda.append(identidad);
                     const rol = elemento('td');
                     const roles = { administrador: 'Administrador', desarrollo: 'Desarrollo Curricular',
                         director: 'Director de escuela', rectoria: 'Rectoría', vicerrectoria: 'Vicerrectoría' };
-                    rol.append(elemento('span', 'insignia', roles[usuario.rol] || usuario.rol));
+                    rol.append(elemento('span', 'insignia', roles[usuario.rol] || usuario.rol, Boolean(roles[usuario.rol])));
                     const estado = (usuario.estado || 'activo') === 'activo' ? 'Activo' : 'Inactivo';
                     const accion = elemento('td');
                     if (usuario.id) accion.append(editar('usuario-formulario.html', usuario.id));
-                    else accion.textContent = 'Sin identificador';
-                    fila.append(celda, rol, elemento('td', '', estado), accion);
+                    else SGC.Idioma.texto(accion, 'Sin identificador');
+                    fila.append(celda, rol, elemento('td', '', estado, true), accion);
                     cuerpo.append(fila);
                 });
                 estadoListado(registros.length, filtrados.length, 'usuarios');
@@ -102,7 +102,7 @@
 
     function mostrarEdad() {
         const edad = SGC.Validacion.edad(control('nacimiento').value);
-        document.getElementById('edad').value = edad === '' ? 'Desde el nacimiento' : edad + ' años';
+        SGC.Idioma.texto(document.getElementById('edad'), edad === '' ? 'Desde el nacimiento' : edad + ' años');
     }
     function mostrarImagen() {
         const foto = document.getElementById('perfil-imagen');
@@ -119,10 +119,10 @@
     function ajustarContrasena() {
         const tieneContrasena = typeof actual.contrasena === 'string' && actual.contrasena.length > 0;
         control('clave').required = !tieneContrasena;
-        document.querySelector('label[for="clave"]').textContent = tieneContrasena ? 'Contraseña' : 'Contraseña *';
-        document.getElementById('clave-ayuda').textContent = tieneContrasena
+        SGC.Idioma.texto(document.querySelector('label[for="clave"]'), tieneContrasena ? 'Contraseña' : 'Contraseña *');
+        SGC.Idioma.texto(document.getElementById('clave-ayuda'), tieneContrasena
             ? 'Deje este campo vacío para conservar la contraseña actual. Si la cambia, use de 8 a 15 caracteres con mayúscula, minúscula y número.'
-            : 'Ingrese una contraseña para guardar los cambios: de 8 a 15 caracteres con mayúscula, minúscula y número.';
+            : 'Ingrese una contraseña para guardar los cambios: de 8 a 15 caracteres con mayúscula, minúscula y número.');
     }
 
     try {
@@ -134,10 +134,10 @@
             if (!actual) throw new Error('No se encontró el usuario solicitado. Vuelva al listado.');
             nombres.forEach(nombre => { control(nombre).value = actual[nombre] || ''; });
             imagen = /^data:image\/(png|jpeg|webp);base64,/.test(actual.imagen || '') ? actual.imagen : '';
-            document.title = 'Modificar usuario | SGC';
-            document.getElementById('titulo').textContent = 'Modificar usuario';
-            document.getElementById('ruta').textContent = 'Usuarios / Modificación';
-            guardar.textContent = 'Guardar cambios';
+            SGC.Idioma.texto(document.querySelector('title'), 'Modificar usuario | SGC');
+            SGC.Idioma.texto(document.getElementById('titulo'), 'Modificar usuario');
+            SGC.Idioma.texto(document.getElementById('ruta'), 'Usuarios / Modificación');
+            SGC.Idioma.texto(guardar, 'Guardar cambios');
             ajustarContrasena();
         }
         mostrarEdad();
@@ -181,7 +181,7 @@
             if (turno !== seleccion) return;
             imagen = resultado;
             mostrarImagen();
-            document.getElementById('imagen-mensaje').textContent = '';
+            SGC.Idioma.texto(document.getElementById('imagen-mensaje'), '');
             control('imagen').classList.remove('error');
             control('imagen').removeAttribute('aria-invalid');
         } catch (error) {
@@ -207,7 +207,7 @@
             if (imagenPendiente) campos.imagen = 'Espere a que termine de cargar la imagen.';
             if (!errores(formulario, campos)) return;
             guardar.disabled = true;
-            guardar.textContent = 'Guardando…';
+            SGC.Idioma.texto(guardar, 'Guardando…');
             entrada.contrasena = clave || actual.contrasena;
             entrada.imagen = imagen;
             // Conserva el estado de las cuentas creadas con la versión anterior.
@@ -238,6 +238,6 @@
                 : 'El rol se actualizó. Esta cuenta ya no tiene permiso para administrar usuarios.', 'confirmacion');
             guardado = true;
         } catch (error) { fallo(error); }
-        finally { guardar.disabled = !permitido; guardar.textContent = textoBoton; }
+        finally { guardar.disabled = !permitido; SGC.Idioma.texto(guardar, textoBoton); }
     });
 })();

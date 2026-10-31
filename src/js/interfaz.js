@@ -1,15 +1,18 @@
 window.SGC = window.SGC || {};
 SGC.UI = (() => {
-    function elemento(etiqueta, clase, texto) {
+    function elemento(etiqueta, clase, texto, traducible = false) {
         const nodo = document.createElement(etiqueta);
         if (clase) nodo.className = clase;
-        if (texto !== undefined) nodo.textContent = texto;
+        if (texto !== undefined) {
+            if (traducible) SGC.Idioma.texto(nodo, texto);
+            else nodo.textContent = texto;
+        }
         return nodo;
     }
 
     function aviso(texto, tipo = 'error') {
         const nodo = document.getElementById('aviso');
-        nodo.textContent = texto;
+        SGC.Idioma.texto(nodo, texto);
         nodo.className = 'aviso aviso--' + tipo;
         nodo.setAttribute('role', tipo === 'error' ? 'alert' : 'status');
         nodo.hidden = false;
@@ -40,7 +43,7 @@ SGC.UI = (() => {
             const control = formulario.elements.namedItem(mensaje.dataset.errorFor);
             if (!control) return;
             const texto = campos[mensaje.dataset.errorFor];
-            mensaje.textContent = texto || '';
+            SGC.Idioma.texto(mensaje, texto || '');
             control.classList.toggle('error', Boolean(texto));
             control.classList.toggle('valido', !texto && Boolean(control.value));
             if (texto) control.setAttribute('aria-invalid', 'true');
@@ -62,11 +65,11 @@ SGC.UI = (() => {
     function limpiar(formulario) {
         formulario.querySelectorAll('.error, .valido').forEach(c => c.classList.remove('error', 'valido'));
         formulario.querySelectorAll('[aria-invalid]').forEach(c => c.removeAttribute('aria-invalid'));
-        formulario.querySelectorAll('[data-error-for]').forEach(m => { m.textContent = ''; });
+        formulario.querySelectorAll('[data-error-for]').forEach(m => { SGC.Idioma.texto(m, ''); });
     }
 
     function editar(ruta, id) {
-        const enlace = elemento('a', 'enlace-accion', 'Editar');
+        const enlace = elemento('a', 'enlace-accion', 'Editar', true);
         enlace.href = ruta + '?id=' + encodeURIComponent(id);
         return enlace;
     }
@@ -74,8 +77,8 @@ SGC.UI = (() => {
     function estadoListado(total, cantidad, nombre) {
         const vacio = document.getElementById('vacio');
         vacio.hidden = cantidad > 0;
-        vacio.textContent = total ? 'No se encontraron coincidencias.' : 'Todavía no hay ' + nombre + (nombre === 'carreras' ? ' registradas.' : ' registrados.');
-        document.getElementById('cantidad').textContent = cantidad + (cantidad === 1 ? ' registro' : ' registros');
+        SGC.Idioma.texto(vacio, total ? 'No se encontraron coincidencias.' : 'Todavía no hay ' + nombre + (nombre === 'carreras' ? ' registradas.' : ' registrados.'));
+        SGC.Idioma.texto(document.getElementById('cantidad'), cantidad + (cantidad === 1 ? ' registro' : ' registros'));
     }
 
     const pestanas = [...document.querySelectorAll('[role="tab"]')];
