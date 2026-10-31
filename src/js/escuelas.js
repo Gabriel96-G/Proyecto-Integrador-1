@@ -168,6 +168,7 @@ formulario.addEventListener("submit", function (evento) {
         } else {
             formulario.reset();
             mostrarAviso("La escuela se registró correctamente.", "confirmacion");
+            mostrarMensajeExito("La escuela se guardó con éxito.", "escuelas-listado.html");
         }
     } catch (error) {
         mostrarAviso("No se pudo guardar la escuela. Revise los datos guardados o el espacio disponible.", "error");

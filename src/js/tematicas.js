@@ -56,6 +56,7 @@
             SGC.UI.limpiar(formulario);
             actualizarCodigo();
             SGC.UI.aviso('La temática se guardó correctamente con el código ' + registro.codigo + '.', 'confirmacion');
+            mostrarMensajeExito('La temática se guardó con éxito.', 'tematicas-listado.html');
         } catch (error) { SGC.UI.fallo(error); }
     });
     window.addEventListener('storage', evento => {

@@ -1,8 +1,15 @@
-// HU-44: Listado de niveles de complejidad
+// HU-44, HU-45 y HU-46: Listado, búsqueda y acceso a la edición de niveles.
 
 const tablaNiveles = document.getElementById("tabla-niveles");
 const cuerpoTabla = document.getElementById("cuerpo-tabla-niveles");
 const mensajeListado = document.getElementById("mensaje-listado");
+const campoBusqueda = document.getElementById("buscar-nivel");
+
+// Permite buscar sin distinguir mayúsculas ni tildes.
+function normalizarTexto(texto) {
+    return String(texto || "").trim().toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
 
 // Agrega los valores iniciales si el catálogo todavía no existe.
 function crearNivelesIniciales() {
@@ -75,29 +82,49 @@ function agregarFila(nivel) {
     const descripcion = document.createElement("td");
     descripcion.textContent = nivel.descripcion;
 
+    const accion = document.createElement("td");
+    const editar = document.createElement("a");
+    editar.className = "enlace-accion";
+    editar.textContent = "Editar";
+    editar.href = "niveles-complejidad-formulario.html?codigo=" + encodeURIComponent(nivel.codigo);
+    editar.setAttribute("aria-label", "Editar nivel " + nivel.nombre);
+    accion.appendChild(editar);
+
     fila.appendChild(codigo);
     fila.appendChild(nombre);
     fila.appendChild(descripcion);
+    fila.appendChild(accion);
 
     cuerpoTabla.appendChild(fila);
 }
 
-// Muestra todos los niveles registrados.
+// Muestra los niveles cuyo nombre contiene el texto buscado.
 function mostrarNiveles() {
     const niveles = obtenerNiveles();
+    const texto = normalizarTexto(campoBusqueda.value);
+    const filtrados = niveles.filter(function (nivel) {
+        return normalizarTexto(nivel.nombre).includes(texto);
+    });
 
-    if (niveles.length === 0) {
+    cuerpoTabla.innerHTML = "";
+
+    if (filtrados.length === 0) {
         tablaNiveles.hidden = true;
+        mensajeListado.textContent = niveles.length === 0
+            ? "No existen niveles de complejidad registrados."
+            : "No se encontraron niveles con ese nombre.";
         mensajeListado.hidden = false;
         return;
     }
 
-    cuerpoTabla.innerHTML = "";
     mensajeListado.hidden = true;
     tablaNiveles.hidden = false;
 
-    niveles.forEach(agregarFila);
+    filtrados.forEach(agregarFila);
 }
 
 crearNivelesIniciales();
 mostrarNiveles();
+
+// Actualiza el listado al escribir o borrar la búsqueda.
+campoBusqueda.addEventListener("input", mostrarNiveles);

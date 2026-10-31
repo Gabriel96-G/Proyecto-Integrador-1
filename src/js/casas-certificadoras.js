@@ -312,10 +312,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // HU-51: Conservar los campos cuando se modifica un registro.
-      if (!modoEdicion) {
-        formulario.reset();
-      }
+      SGC.UI.aviso(
+          modificando
+              ? 'Los cambios de la temática se guardaron correctamente.'
+              : 'La temática se guardó correctamente con el código ' + registro.codigo + '.',
+          'confirmacion'
+      );
+      mostrarMensajeExito('La temática se guardó con éxito.', 'tematicas-listado.html');
 
       limpiarMensajes();
 
