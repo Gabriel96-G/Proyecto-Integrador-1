@@ -80,9 +80,18 @@
     <section class="listado" aria-label="Temáticas registradas">
      <div class="listado__herramientas">
       <div class="busqueda">
+       <label class="busqueda__etiqueta" for="filtro-codigo">Filtrar por código</label>
+       <input class="busqueda__control" id="filtro-codigo" type="search" placeholder="Código de la temática"/>
+      </div>
+      <div class="busqueda">
        <label class="busqueda__etiqueta" for="buscar">Buscar por nombre</label>
        <input class="busqueda__control" id="buscar" type="search" placeholder="Buscar temática…"/>
       </div>
+      <div class="busqueda">
+       <label class="busqueda__etiqueta" for="filtro-descripcion">Filtrar por descripción</label>
+       <input class="busqueda__control" id="filtro-descripcion" type="search" placeholder="Descripción de la temática"/>
+      </div>
+      <button class="boton boton--secundario" id="limpiar-filtros" type="button">Limpiar filtros</button>
      </div>
      <p class="formulario__ayuda" id="cantidad" role="status"></p>
      <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0">
@@ -92,6 +101,7 @@
          <th scope="col">Código</th>
          <th scope="col">Nombre</th>
          <th scope="col">Descripción</th>
+         <th scope="col">Acciones</th>
         </tr>
        </thead>
        <tbody id="registros"></tbody>
