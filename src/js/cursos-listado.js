@@ -4,6 +4,9 @@
   const panel = document.getElementById("panel-cursos");
   const tabla = document.getElementById("tabla-cursos");
   const aviso = document.getElementById("aviso-cursos");
+  const buscar = document.getElementById("buscar-curso");
+  const listado = document.getElementById("listado-cursos");
+  const vacio = document.getElementById("vacio-cursos");
 
   function mostrarAviso(mensaje) {
     SGC.Idioma.texto(aviso, mensaje);
@@ -54,22 +57,17 @@
     const enlace = document.createElement("a");
     SGC.Idioma.texto(enlace, texto);
     enlace.href = destino;
+    enlace.className = "enlace-accion";
     return enlace;
   }
 
-  function mostrarCursos(cursos, escuelas, estados) {
+  function mostrarCursos(cursos, escuelas, estados, total) {
     tabla.replaceChildren();
     SGC.Idioma.texto(document.getElementById("contador-cursos"), `${cursos.length} ${cursos.length === 1 ? "registro" : "registros"}`);
 
-    if (cursos.length === 0) {
-      const fila = document.createElement("tr");
-
-      const celda = crearCelda(fila, "No hay cursos registrados todavía.");
-
-      celda.colSpan = 6;
-      tabla.appendChild(fila);
-      return;
-    }
+    listado.hidden = cursos.length === 0;
+    vacio.hidden = cursos.length > 0;
+    SGC.Idioma.texto(vacio, total ? "No se encontraron coincidencias." : "No hay cursos registrados todavía.");
 
     cursos.forEach((curso) => {
       const fila = document.createElement("tr");
@@ -77,6 +75,7 @@
       crearCelda(fila, curso.codigo);
 
       const nombre = crearCelda(fila, curso.nombre);
+      nombre.className = "tabla__nombre";
       if (curso.estadoElaboracion === 'borrador') {
         nombre.append(document.createTextNode(' ('));
         const borrador = document.createElement('span');
@@ -102,14 +101,15 @@
 
       const consultar = crearEnlace("Consultar", `curso-detalle.html?id=${id}`);
 
-      const modificar = crearEnlace(
-        "Modificar",
+      const editar = crearEnlace(
+        "Editar",
         `curso-formulario.html?id=${id}`,
       );
 
-      acciones.appendChild(consultar);
-      acciones.appendChild(document.createTextNode(" | "));
-      acciones.appendChild(modificar);
+      const enlaces = document.createElement("div");
+      enlaces.className = "tabla__acciones";
+      enlaces.append(consultar, editar);
+      acciones.append(enlaces);
 
       fila.appendChild(acciones);
       tabla.appendChild(fila);
@@ -117,6 +117,10 @@
   }
 
   function iniciar() {
+    tabla.replaceChildren();
+    listado.hidden = true;
+    vacio.hidden = true;
+    aviso.hidden = true;
     try {
       const sesion = JSON.parse(
         sessionStorage.getItem("usuarioActual") || "null",
@@ -131,7 +135,10 @@
       const escuelas = SGC.CursosDatos.leerEscuelas();
       const estados = SGC.Datos.leer("estadosCurso");
 
-      mostrarCursos(cursos, escuelas, estados);
+      const criterio = SGC.Datos.normalizar(buscar.value);
+      const visibles = cursos.filter(curso => SGC.Datos.normalizar(curso.nombre).includes(criterio));
+      mostrarCursos(visibles, escuelas, estados, cursos.length);
+      document.getElementById("nuevo-curso").hidden = false;
 
       panel.hidden = false;
     } catch (error) {
@@ -149,5 +156,8 @@
     }
   }
 
+  buscar.addEventListener("input", iniciar);
+  window.addEventListener("pageshow", iniciar);
+  window.addEventListener("storage", iniciar);
   iniciar();
 })();

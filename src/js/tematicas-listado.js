@@ -1,7 +1,6 @@
 (() => {
     const buscar = document.getElementById('buscar');
-    const filtroCodigo = document.getElementById('filtro-codigo');
-    const filtroDescripcion = document.getElementById('filtro-descripcion');
+    const tabla = document.getElementById('tabla-tematicas');
     const cuerpo = document.getElementById('registros');
     const cantidad = document.getElementById('cantidad');
     const vacio = document.getElementById('vacio');
@@ -12,6 +11,7 @@
         cuerpo.replaceChildren();
         SGC.Idioma.texto(cantidad, '');
         vacio.hidden = true;
+        tabla.hidden = true;
         try {
             const texto = localStorage.getItem('tematicas');
             const registros = texto === null ? [] : JSON.parse(texto);
@@ -21,13 +21,7 @@
                 throw new Error('No se pudieron leer las temáticas. Los datos guardados se conservaron sin cambios.');
             }
             const criterio = normalizar(buscar.value);
-            const codigo = normalizar(filtroCodigo.value);
-            const descripcion = normalizar(filtroDescripcion.value);
-            const visibles = registros.filter(r =>
-                String(r.codigo).includes(codigo) &&
-                normalizar(r.nombre).includes(criterio) &&
-                normalizar(r.descripcion || '').includes(descripcion)
-            );
+            const visibles = registros.filter(r => normalizar(r.nombre).includes(criterio));
             visibles.forEach(tematica => {
                 const fila = SGC.UI.elemento('tr');
                 const acciones = SGC.UI.elemento('td');
@@ -37,7 +31,7 @@
                     acciones.append(editar);
                 } else acciones.textContent = 'Sin identificador';
                 fila.append(
-                    SGC.UI.elemento('td', 'tabla__codigo', tematica.codigo),
+                    SGC.UI.elemento('td', '', tematica.codigo),
                     SGC.UI.elemento('td', 'tabla__nombre', tematica.nombre),
                     SGC.UI.elemento('td', '', tematica.descripcion || 'Sin descripción', !tematica.descripcion),
                     acciones
@@ -46,6 +40,7 @@
             });
             SGC.Idioma.texto(cantidad, visibles.length + (visibles.length === 1 ? ' registro' : ' registros'));
             vacio.hidden = visibles.length > 0;
+            tabla.hidden = visibles.length === 0;
             SGC.Idioma.texto(vacio, registros.length ? 'No se encontraron coincidencias.' :
                 'Todavía no hay temáticas registradas.');
             document.getElementById('aviso').hidden = true;
@@ -55,14 +50,6 @@
     }
 
     buscar.addEventListener('input', listar);
-    filtroCodigo.addEventListener('input', listar);
-    filtroDescripcion.addEventListener('input', listar);
-    document.getElementById('limpiar-filtros').addEventListener('click', () => {
-        buscar.value = '';
-        filtroCodigo.value = '';
-        filtroDescripcion.value = '';
-        listar();
-    });
     window.addEventListener('pageshow', listar);
     window.addEventListener('storage', evento => {
         if (evento.key === 'tematicas' || evento.key === null) listar();
