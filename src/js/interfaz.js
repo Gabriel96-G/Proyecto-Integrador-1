@@ -99,7 +99,7 @@ SGC.UI = (() => {
 
     const menu = document.querySelector('.navegacion__desplegable');
     const movil = matchMedia('(max-width: 767px)');
-    function ajustarMenu() { menu.open = !movil.matches; }
+    function ajustarMenu() { if (menu) menu.open = !movil.matches; }
     ajustarMenu();
     movil.addEventListener('change', ajustarMenu);
     return { elemento, aviso, fallo, abrirPestana, errores, limpiar, editar, estadoListado };

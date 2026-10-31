@@ -11,137 +11,18 @@
     <script src="../js/idioma.js" defer=""></script>
     <script src="../js/casas-certificadoras-listado.js" defer=""></script>
 
-    <style>
-        /* Estilos exclusivos del listado HU-49 */
-
-        .casas-listado__encabezado {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            padding: 18px 20px;
-            background-color: #e8f0fd;
-            border-radius: 12px;
-        }
-
-        .casas-listado__identidad {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .casas-listado__icono {
-            width: 34px;
-            height: 34px;
-            object-fit: contain;
-        }
-
-        .casas-listado__encabezado h1 {
-            margin: 0;
-            color: #123c79;
-            font-size: 1.65rem;
-        }
-
-        .casas-listado__subtitulo {
-            margin: 4px 0 0;
-            color: #526279;
-            font-size: 0.9rem;
-        }
-
-        .casas-listado__busqueda {
-            margin-top: 20px;
-        }
-
-        .casas-listado__busqueda label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .casas-listado__busqueda input {
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-            padding: 12px;
-            border: 1px solid #9baac0;
-            border-radius: 6px;
-            font: inherit;
-            background-color: #fff;
-        }
-
-        .casas-listado__busqueda input:focus {
-            outline: 2px solid #0056b3;
-            outline-offset: 2px;
-        }
-
-        .casas-listado__tabla-contenedor {
-            margin-top: 18px;
-            padding: 16px;
-            background-color: white;
-            border-radius: 12px;
-            overflow-x: auto;
-        }
-
-        .casas-listado__tabla-contenedor .tabla {
-            width: 100%;
-        }
-
-        .casas-listado__tabla-contenedor .tabla[hidden] {
-            display: none !important;
-        }
-
-        /* Mensaje informativo cuando no existen registros */
-        .casas-listado__tabla-contenedor #mensaje-listado.formulario__mensaje {
-            color: #2c3e50;
-            text-align: center;
-            font-weight: 400;
-            margin: 12px 0;
-        }
-
-        .casas-listado__volver {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 16px;
-            color: #0056b3;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .casas-listado__volver:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 700px) {
-            .casas-listado__encabezado {
-                align-items: stretch;
-                flex-direction: column;
-            }
-
-            .casas-listado__encabezado .boton {
-                text-align: center;
-            }
-        }
-    </style>
-
     <script src="../js/sesion.js" defer=""></script>
 <link rel="stylesheet" href="../css/idioma.css"></head>
 
 <body>
+    <a class="salto-contenido" href="#contenido" data-i18n="saltarAlContenido">Saltar al contenido</a>
     <div class="aplicacion">
-
-        <!-- Cabecera: conservar logo original de CENFOTEC -->
         <header class="cabecera">
-
             <a class="cabecera__marca" href="inicio.html">
                 <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
             </a>
 
-            <span class="cabecera__nombre" data-i18n="gestionCurricular">
-                Gestión curricular
-            </span>
-
+            <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
 
         <form id="formulario-idioma" class="selector-idioma">
     <label for="idioma" data-i18n="idioma">Idioma</label>
@@ -153,11 +34,8 @@
     <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
 </form></header>
 
-        <!-- Menú lateral institucional -->
         <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
-
             <ul class="navegacion__lista">
-
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="inicio.html">
                         <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
@@ -177,88 +55,45 @@
                     <a class="navegacion__enlace" href="cursos.html">
                         <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
                 </li>
-
             </ul>
 
-            <a class="navegacion__salir" href="../index.html">
+            <a class="navegacion__salir" href="login.html">
                 <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
-
         </nav>
 
-        <!-- HU-49: Listado de casas certificadoras -->
-        <main class="contenido casas-listado">
-
-            <p class="ruta" data-i18n="catalogosCasasCertificadoras">
-                Catálogos / Casas certificadoras
-            </p>
-
-            <!-- Encabezado institucional igual al de Áreas SEFIA -->
+        <main class="contenido" id="contenido">
+            <p class="ruta" data-i18n="catalogosCasasCertificadoras">Catálogos / Casas certificadoras</p>
             <section class="catalogo__cabecera">
-
                 <img class="icono" src="../img/catalogos.svg" alt="">
-
                 <div>
                     <h1 data-i18n="casasCertificadoras">Casas certificadoras</h1>
                     <p data-i18n="organizacionesCertificadoras">Organizaciones certificadoras</p>
                 </div>
-
-                <a class="boton boton--principal" href="casas-certificadoras-formulario.html" data-i18n="registrarCasaCertificadora">
-                    Registrar casa certificadora
-                </a>
-
+                <a class="boton boton--principal" href="casas-certificadoras-formulario.html" data-i18n="registrarCasaCertificadora">Registrar casa certificadora</a>
             </section>
+            <section class="listado" aria-labelledby="titulo-listado">
+                <h2 id="titulo-listado" data-i18n="casasCertificadorasRegistradas">Casas certificadoras registradas</h2>
+                <div class="listado__herramientas">
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="buscar-casas-certificadoras" data-i18n="buscarPorNombre">Buscar por nombre</label>
+                        <input class="busqueda__control" id="buscar-casas-certificadoras" name="busqueda" type="search" placeholder="Buscar casa certificadora..." autocomplete="off" aria-controls="tabla-casas-certificadoras" data-i18n-placeholder="buscarCasaCertificadora">
+                    </div>
+                </div>
 
-
-            <!-- HU-50: Búsqueda y filtrado de casas certificadoras -->
-            <section class="casas-listado__busqueda">
-
-                <!-- Buscar por código -->
-                <label for="filtrar-casas-codigo" data-i18n="buscarPorCodigo">
-                    Buscar por código
-                </label>
-
-                <input type="search" id="filtrar-casas-codigo" name="filtrar-casas-codigo" placeholder="Ingrese el código de la casa certificadora..." aria-controls="tabla-casas-certificadoras" inputmode="numeric" autocomplete="off" data-i18n-placeholder="buscarCodigoCasa">
-
-                <!-- Buscar por nombre -->
-                <label for="buscar-casas-certificadoras" data-i18n="buscarPorNombre">
-                    Buscar por nombre
-                </label>
-
-                <input type="search" id="buscar-casas-certificadoras" name="buscar-casas-certificadoras" placeholder="Buscar casa certificadora..." aria-controls="tabla-casas-certificadoras" autocomplete="off" data-i18n-placeholder="buscarCasaCertificadora">
-
-            </section>
-
-
-            <!-- Listado -->
-            <section class="casas-listado__tabla-contenedor" aria-label="Casas certificadoras registradas" data-i18n-aria-label="casasCertificadorasRegistradas">
-
-                <!-- Mensajes informativos -->
-                <p id="mensaje-listado" class="formulario__mensaje" role="status" aria-live="polite" hidden=""></p>
-
-                <!-- Tabla -->
-                <table id="tabla-casas-certificadoras" class="tabla" hidden="">
-
-                    <thead>
-                        <tr>
+                <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
+                    <table id="tabla-casas-certificadoras" class="tabla tabla--catalogo" hidden>
+                        <thead><tr>
                             <th scope="col" data-i18n="codigo">Código</th>
                             <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
-                            <th scope="col" data-i18n="acciones">Acciones</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="cuerpo-tabla-casas">
-                        <!-- Registros generados desde JavaScript -->
-                    </tbody>
-
-                </table>
-
+                            <th scope="col" data-i18n="accion">Acción</th>
+                        </tr></thead>
+                        <tbody id="cuerpo-tabla-casas"></tbody>
+                    </table>
+                    <p class="estado-vacio" id="mensaje-listado" role="status" hidden></p>
+                </div>
             </section>
 
-
         </main>
-
     </div>
-
-
-</body></html>
-
+</body>
+</html>
