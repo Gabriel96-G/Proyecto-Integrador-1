@@ -1,35 +1,14 @@
 (() => {
     const { elemento, fallo, editar, estadoListado } = SGC.UI;
     const buscar = document.getElementById('buscar');
-    const filtroEscuela = document.getElementById('filtro-escuela');
-
-    function cargarEscuelas(escuelas) {
-        const seleccion = filtroEscuela.value;
-        const todas = elemento('option', '', 'Todas las escuelas', true);
-        todas.value = '';
-        filtroEscuela.replaceChildren(todas);
-        escuelas.forEach(escuela => {
-            const opcion = elemento('option', '', escuela.nombre);
-            opcion.value = SGC.Datos.referenciaEscuela(escuela);
-            filtroEscuela.append(opcion);
-        });
-        // Mantiene la escuela elegida cuando se actualiza el catálogo.
-        filtroEscuela.value = seleccion;
-        if (filtroEscuela.selectedIndex === -1) filtroEscuela.value = '';
-    }
 
     function listar() {
         try {
             const registros = SGC.CarrerasDatos.leer();
             const escuelas = SGC.CarrerasDatos.leerEscuelas();
-            cargarEscuelas(escuelas);
             const texto = SGC.Datos.normalizar(buscar.value);
-            const filtrados = registros.filter(carrera => {
-                const coincideTexto = SGC.Datos.normalizar(carrera.codigo).includes(texto) ||
-                    SGC.Datos.normalizar(carrera.nombre).includes(texto);
-                const coincideEscuela = !filtroEscuela.value || String(carrera.escuela) === filtroEscuela.value;
-                return coincideTexto && coincideEscuela;
-            });
+            const filtrados = registros.filter(carrera =>
+                SGC.Datos.normalizar(carrera.nombre).includes(texto));
             const cuerpo = document.getElementById('registros');
             cuerpo.replaceChildren();
             filtrados.forEach(carrera => {
@@ -51,12 +30,6 @@
         } catch (error) { fallo(error); }
     }
     buscar.addEventListener('input', listar);
-    filtroEscuela.addEventListener('change', listar);
-    document.getElementById('limpiar-filtros').addEventListener('click', () => {
-        buscar.value = '';
-        filtroEscuela.value = '';
-        listar();
-    });
     window.addEventListener('storage', listar);
     window.addEventListener('pageshow', listar);
     listar();

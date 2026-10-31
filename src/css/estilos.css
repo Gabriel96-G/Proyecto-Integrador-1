@@ -123,6 +123,7 @@ img { display: block; height: auto; }
 .contenido { min-width: 0; width: 100%; max-width: var(--ancho-contenido); padding: 24px 16px; }
 .contenido > * + * { margin-top: 20px; }
 .pagina__encabezado { display: grid; gap: 8px; }
+.pagina__encabezado > .boton { justify-self: start; }
 .pagina__descripcion, .ruta { color: var(--color-texto-secundario); }
 .ruta a { color: inherit; text-decoration: none; }
 .pie { padding: 20px 16px; color: var(--color-texto-secundario); font-size: 14px; }
@@ -340,7 +341,7 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
 .tabla tbody tr:last-child td { border-bottom: 0; }
 .tabla tbody tr:hover { background: var(--color-fondo); }
 .tabla__identidad { display: flex; align-items: center; gap: 16px; }
-.tabla__nombre { font-size: 19px; font-weight: 700; }
+.tabla__nombre { font-weight: 400; }
 .tabla__secundario { margin-top: 2px; color: var(--color-texto-secundario); font-size: 14px; }
 .tabla__avatar { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; color: var(--color-principal); background: var(--color-seleccion); font-weight: 700; }
 .tabla__codigo { color: var(--color-principal); font-weight: 700; }
@@ -462,7 +463,6 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
   .navegacion__enlace { font-size: 18px; }
   .bienvenida h2 { font-size: 30px; }
   .modulo__encabezado h2 { font-size: 26px; }
-  .tabla__nombre { font-size: 22px; }
   .presentacion { padding-inline: 20px; }
   .presentacion__descripcion { font-size: 24px; }
   .presentacion__esquema { padding: 40px; }

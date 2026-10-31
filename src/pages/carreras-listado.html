@@ -92,22 +92,9 @@
     <section aria-label="Carreras registradas" class="listado" data-i18n-aria-label="carrerasRegistradas">
      <div class="listado__herramientas">
       <div class="busqueda">
-       <label class="busqueda__etiqueta" for="buscar" data-i18n="buscarPorCodigoONombre">
-        Buscar por código o nombre
-       </label>
-       <input class="busqueda__control" id="buscar" placeholder="Buscar carrera…" type="search" data-i18n-placeholder="buscarCarrera">
+       <label class="busqueda__etiqueta" for="buscar" data-i18n="buscarPorNombre">Buscar por nombre</label>
+       <input class="busqueda__control" id="buscar" name="busqueda" type="search" placeholder="Buscar carrera..." autocomplete="off" data-i18n-placeholder="buscarCarrera">
       </div>
-      <div class="busqueda">
-       <label class="busqueda__etiqueta" for="filtro-escuela" data-i18n="escuelaAsociadaEtiqueta">
-        Escuela asociada
-       </label>
-       <select class="busqueda__control" id="filtro-escuela">
-        <option value="" data-i18n="todasLasEscuelas">Todas las escuelas</option>
-       </select>
-      </div>
-      <button class="boton boton--secundario" id="limpiar-filtros" type="button" data-i18n="limpiarFiltros">
-       Limpiar filtros
-      </button>
      </div>
      <p class="formulario__ayuda" id="cantidad" role="status">
      </p>

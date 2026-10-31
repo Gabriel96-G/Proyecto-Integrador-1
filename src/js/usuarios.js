@@ -3,8 +3,6 @@
     const formulario = document.getElementById('usuario-form');
     if (!formulario) {
         const buscar = document.getElementById('buscar');
-        const filtroRol = document.getElementById('filtro-rol');
-        const filtroEstado = document.getElementById('filtro-estado');
 
         function listar() {
             try {
@@ -13,13 +11,7 @@
                 const filtrados = registros.filter(usuario => {
                     const nombre = [usuario.nombre, usuario.primerApellido, usuario.segundoApellido]
                         .filter(Boolean).join(' ');
-                    const coincideTexto = [nombre, usuario.identificacion, usuario.correo]
-                        .some(valor => SGC.Datos.normalizar(valor).includes(texto));
-                    const coincideRol = !filtroRol.value || usuario.rol === filtroRol.value;
-                    // Las cuentas anteriores no guardaban estado; se muestran como activas.
-                    const estado = usuario.estado || 'activo';
-                    const coincideEstado = !filtroEstado.value || estado === filtroEstado.value;
-                    return coincideTexto && coincideRol && coincideEstado;
+                    return SGC.Datos.normalizar(nombre).includes(texto);
                 });
                 const cuerpo = document.getElementById('registros');
                 cuerpo.replaceChildren();
@@ -57,14 +49,6 @@
             } catch (error) { fallo(error); }
         }
         buscar.addEventListener('input', listar);
-        filtroRol.addEventListener('change', listar);
-        filtroEstado.addEventListener('change', listar);
-        document.getElementById('limpiar-filtros').addEventListener('click', () => {
-            buscar.value = '';
-            filtroRol.value = '';
-            filtroEstado.value = '';
-            listar();
-        });
         window.addEventListener('storage', listar);
         window.addEventListener('pageshow', listar);
         listar();

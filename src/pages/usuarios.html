@@ -75,44 +75,16 @@
      <p class="ruta" data-i18n="usuariosConsultaYEdicion">
       Usuarios / Consulta y edición
      </p>
+     <a class="boton boton--principal" href="usuario-formulario.html" data-i18n="registrarUsuario">
+       Registrar usuario
+      </a>
     </header>
     <section aria-label="Usuarios registrados" class="listado" data-i18n-aria-label="usuariosRegistrados">
      <div class="listado__herramientas">
       <div class="busqueda">
-       <label class="busqueda__etiqueta" for="buscar" data-i18n="buscarPorNombreIdentificacionOCorreo">
-        Buscar por nombre, identificación o correo
-       </label>
-       <input class="busqueda__control" id="buscar" placeholder="Buscar usuario…" type="search" data-i18n-placeholder="buscarUsuario">
+       <label class="busqueda__etiqueta" for="buscar" data-i18n="buscarPorNombre">Buscar por nombre</label>
+       <input class="busqueda__control" id="buscar" name="busqueda" type="search" placeholder="Buscar usuario..." autocomplete="off" data-i18n-placeholder="buscarUsuario">
       </div>
-      <div class="busqueda">
-       <label class="busqueda__etiqueta" for="filtro-rol" data-i18n="rol">
-        Rol
-       </label>
-       <select class="busqueda__control" id="filtro-rol">
-        <option value="" data-i18n="todosLosRoles">Todos los roles</option>
-        <option value="administrador" data-i18n="administrador">Administrador</option>
-        <option value="desarrollo" data-i18n="desarrolloCurricular">Desarrollo Curricular</option>
-        <option value="director" data-i18n="directorDeEscuela">Director de escuela</option>
-        <option value="rectoria" data-i18n="rectoria">Rectoría</option>
-        <option value="vicerrectoria" data-i18n="vicerrectoria">Vicerrectoría</option>
-       </select>
-      </div>
-      <div class="busqueda">
-       <label class="busqueda__etiqueta" for="filtro-estado" data-i18n="estado">
-        Estado
-       </label>
-       <select class="busqueda__control" id="filtro-estado">
-        <option value="" data-i18n="todosLosEstados">Todos los estados</option>
-        <option value="activo" data-i18n="activo">Activo</option>
-        <option value="inactivo" data-i18n="inactivo">Inactivo</option>
-       </select>
-      </div>
-      <button class="boton boton--secundario" id="limpiar-filtros" type="button" data-i18n="limpiarFiltros">
-       Limpiar filtros
-      </button>
-      <a class="boton boton--principal" href="usuario-formulario.html" data-i18n="registrarUsuario">
-       Registrar usuario
-      </a>
      </div>
      <p class="formulario__ayuda" id="cantidad" role="status">
      </p>
