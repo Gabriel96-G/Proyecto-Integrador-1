@@ -4,7 +4,6 @@
   const panel = document.getElementById("panel-cursos");
   const tabla = document.getElementById("tabla-cursos");
   const aviso = document.getElementById("aviso-cursos");
-  const rolUsuario = document.getElementById("rol-usuario");
 
   function mostrarAviso(mensaje) {
     SGC.Idioma.texto(aviso, mensaje);
@@ -131,15 +130,6 @@
       const cursos = SGC.CursosDatos.leer();
       const escuelas = SGC.CursosDatos.leerEscuelas();
       const estados = SGC.Datos.leer("estadosCurso");
-
-      const nombresRoles = {
-        administrador: "Administrador",
-        "encargado de desarrollo curricular":
-          "Encargado de Desarrollo Curricular",
-        "director de escuela": "Director de escuela",
-      };
-
-      SGC.Idioma.texto(rolUsuario, nombresRoles[SGC.Datos.normalizar(sesion.rol)] || sesion.rol);
 
       mostrarCursos(cursos, escuelas, estados);
 

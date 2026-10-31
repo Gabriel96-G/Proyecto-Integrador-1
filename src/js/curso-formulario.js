@@ -217,10 +217,6 @@
       // Comprueba que existe una sesión autorizada.
       SGC.CursosDatos.leer();
 
-      const sesion = JSON.parse(sessionStorage.getItem("usuarioActual"));
-
-      SGC.Idioma.rol(campo("rol-usuario"), sesion.rol);
-
       cargarCatalogos();
 
       if (idCurso !== null) {
