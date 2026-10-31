@@ -19,10 +19,10 @@
     try {
         comprobarAdministrador();
         if (modificando) {
-            document.title = 'Modificar área S.E.F.I.A | SGC';
-            document.getElementById('titulo').textContent = 'Modificar área S.E.F.I.A';
-            document.getElementById('ruta').textContent = 'Catálogos / Áreas S.E.F.I.A / Modificación';
-            guardar.textContent = 'Guardar cambios';
+            SGC.Idioma.texto(document.querySelector('title'), 'Modificar área S.E.F.I.A | SGC');
+            SGC.Idioma.texto(document.getElementById('titulo'), 'Modificar área S.E.F.I.A');
+            SGC.Idioma.texto(document.getElementById('ruta'), 'Catálogos / Áreas S.E.F.I.A / Modificación');
+            SGC.Idioma.texto(guardar, 'Guardar cambios');
             actual = SGC.Datos.leer('sefia').find(area => area.id === parametros.get('id'));
             if (!actual) throw new Error('No se encontró el área solicitada. Vuelva al listado.');
             codigo.value = actual.codigo;

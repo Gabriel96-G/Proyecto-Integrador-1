@@ -86,7 +86,7 @@
     };
 
     function mostrarAviso(mensaje) {
-        aviso.textContent = mensaje;
+        SGC.Idioma.texto(aviso, mensaje);
         aviso.hidden = false;
     }
 
@@ -167,16 +167,23 @@
         return String(valor);
     }
 
-    function agregarDato(contenedor, etiqueta, valor) {
+    function agregarDato(contenedor, etiqueta, valor, curso, propiedad) {
         const grupo = document.createElement('div');
         grupo.className = 'formulario__campo';
 
         const termino = document.createElement('dt');
         termino.className = 'formulario__etiqueta';
-        termino.textContent = etiqueta;
+        SGC.Idioma.texto(termino, etiqueta);
 
         const descripcion = document.createElement('dd');
-        descripcion.textContent = valor;
+        const original = curso[propiedad];
+        if (original === undefined || original === null || original === '' ||
+            (['ecommerce', 'pertenecePrograma'].includes(propiedad) && ['si', 'no'].includes(original))) {
+            SGC.Idioma.texto(descripcion, valor);
+        } else if (['creado', 'actualizado', 'fechaModificacionMetadata'].includes(propiedad)) {
+            if (Number.isNaN(new Date(original).getTime())) SGC.Idioma.texto(descripcion, 'Fecha no disponible');
+            else SGC.Idioma.fecha(descripcion, original, { dateStyle: 'long', timeStyle: 'short' });
+        } else descripcion.textContent = valor;
         descripcion.style.margin = '0';
         descripcion.style.whiteSpace = 'pre-wrap';
 
@@ -197,7 +204,9 @@
             agregarDato(
                 contenedor,
                 etiqueta,
-                obtenerValor(curso, propiedad, escuelas)
+                obtenerValor(curso, propiedad, escuelas),
+                curso,
+                propiedad
             );
         });
     }
@@ -234,7 +243,7 @@
             // Comprueba los permisos mediante el módulo de datos.
             SGC.CursosDatos.leer();
 
-            rolUsuario.textContent = sesion.rol;
+            SGC.Idioma.rol(rolUsuario, sesion.rol);
 
             if (!idCurso) {
                 throw new Error(

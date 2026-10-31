@@ -3,73 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión</title>
+    <title data-i18n="iniciarSesion">Iniciar sesión</title>
     <link rel="stylesheet" href="../css/estilos.css">
-    <script src="../js/almacenamiento.js" defer></script>
-    <script src="../js/login.js" defer></script>
-</head>
+    <script src="../js/traducciones.js" defer=""></script>
+    <script src="../js/idioma.js" defer=""></script>
+    <script src="../js/almacenamiento.js" defer=""></script>
+    <script src="../js/login.js" defer=""></script>
+<link rel="stylesheet" href="../css/idioma.css"></head>
 <body>
     <header class="cabecera">
         <a class="cabecera__marca" href="../index.html">
             <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
         </a>
-        <span class="cabecera__nombre">Gestión curricular</span>
+        <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
         <span class="cabecera__institucion">Universidad CENFOTEC</span>
-    </header>
+    <form id="formulario-idioma" class="selector-idioma">
+    <label for="idioma" data-i18n="idioma">Idioma</label>
+    <select id="idioma" name="idioma">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+    </select>
+    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+</form></header>
 
     <main class="contenedor">
         <div class="acceso">
             <section class="acceso__identidad">
                 <div>
-                    <h1>Bienvenido de nuevo</h1>
-                    <p>Un mismo espacio para la gestión de usuarios, catálogos y cursos.</p>
+                    <h1 data-i18n="bienvenidoDeNuevo">Bienvenido de nuevo</h1>
+                    <p data-i18n="unMismoEspacioParaLaGestionDeUsuariosCatalogos">Un mismo espacio para la gestión de usuarios, catálogos y cursos.</p>
                 </div>
                 <div class="acceso__beneficios">
                     <div class="acceso__beneficio">
                         <img class="icono" src="../img/catalogos.svg" alt="">
-                        <span>Organizar</span>
+                        <span data-i18n="organizar">Organizar</span>
                     </div>
                     <div class="acceso__beneficio">
                         <img class="icono" src="../img/cursos.svg" alt="">
-                        <span>Consultar</span>
+                        <span data-i18n="consultar">Consultar</span>
                     </div>
                     <div class="acceso__beneficio">
                         <img class="icono" src="../img/escuela.svg" alt="">
-                        <span>Completar</span>
+                        <span data-i18n="completar">Completar</span>
                     </div>
                 </div>
             </section>
 
             <section class="acceso__contenido" aria-labelledby="titulo-login">
                 <div>
-                    <h2 id="titulo-login">Iniciar sesión</h2>
-                    <p class="acceso__subtitulo">Acceso de administrador</p>
+                    <h2 id="titulo-login" data-i18n="iniciarSesion">Iniciar sesión</h2>
+                    <p class="acceso__subtitulo" data-i18n="accesoDeAdministrador">Acceso de administrador</p>
                 </div>
 
-                <form id="formulario-login" class="formulario" novalidate>
+                <form id="formulario-login" class="formulario" novalidate="">
                     <div class="formulario__campo">
-                        <label class="formulario__etiqueta" for="correo">Correo institucional *</label>
-                        <input class="formulario__control" id="correo" name="correo" type="email"
-                               autocomplete="username" aria-describedby="correo-mensaje" required>
+                        <label class="formulario__etiqueta" for="correo" data-i18n="correoInstitucional">Correo institucional *</label>
+                        <input class="formulario__control" id="correo" name="correo" type="email" autocomplete="username" aria-describedby="correo-mensaje" required="">
                         <p id="correo-mensaje" class="formulario__mensaje" aria-live="polite"></p>
                     </div>
 
                     <div class="formulario__campo">
-                        <label class="formulario__etiqueta" for="contrasena">Contraseña *</label>
-                        <input class="formulario__control" id="contrasena" name="contrasena" type="password"
-                               autocomplete="current-password" aria-describedby="contrasena-mensaje" required>
+                        <label class="formulario__etiqueta" for="contrasena" data-i18n="contrasena">Contraseña *</label>
+                        <input class="formulario__control" id="contrasena" name="contrasena" type="password" autocomplete="current-password" aria-describedby="contrasena-mensaje" required="">
                         <p id="contrasena-mensaje" class="formulario__mensaje" aria-live="polite"></p>
                     </div>
 
-                    <p id="mensaje-login" class="aviso aviso--error" role="alert" hidden></p>
-                    <button class="boton boton--principal boton--completo" type="submit">Ingresar</button>
+                    <p id="mensaje-login" class="aviso aviso--error" role="alert" hidden=""></p>
+                    <button class="boton boton--principal boton--completo" type="submit" data-i18n="ingresar">Ingresar</button>
                 </form>
 
-                <a class="acceso__enlaces" href="recuperar-contrasena.html">
+                <a class="acceso__enlaces" href="recuperar-contrasena.html" data-i18n="olvidoSuContrasena">
                 ¿Olvidó su contraseña?
             </a>
             </section>
         </div>
     </main>
-</body>
-</html>
+
+
+</body></html>

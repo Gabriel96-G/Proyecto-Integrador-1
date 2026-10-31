@@ -36,12 +36,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function mostrarError(campo, lugarMensaje, texto) {
     campo.classList.add("error");
     campo.setAttribute("aria-invalid", "true");
-    lugarMensaje.textContent = texto;
+    SGC.Idioma.texto(lugarMensaje, texto);
   }
 
   // Muestra un aviso general de error o confirmación.
   function mostrarAviso(texto, tipo) {
-    mensajeResultado.textContent = texto;
+    SGC.Idioma.texto(mensajeResultado, texto);
     mensajeResultado.className = "aviso aviso--" + tipo;
     mensajeResultado.hidden = false;
   }
@@ -54,10 +54,10 @@ document.addEventListener("DOMContentLoaded", function () {
     campoCodigo.removeAttribute("aria-invalid");
     campoNombre.removeAttribute("aria-invalid");
 
-    mensajeCodigo.textContent = "";
-    mensajeNombre.textContent = "";
+    SGC.Idioma.texto(mensajeCodigo, "");
+    SGC.Idioma.texto(mensajeNombre, "");
 
-    mensajeResultado.textContent = "";
+    SGC.Idioma.texto(mensajeResultado, "");
     mensajeResultado.className = "aviso";
     mensajeResultado.hidden = true;
   }
@@ -87,10 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
       campoCodigo.value = casaSeleccionada.codigo;
       campoNombre.value = casaSeleccionada.nombre;
 
-      tituloFormulario.textContent = "Modificar casa certificadora";
-      rutaFormulario.textContent =
-        "Catálogos / Casas certificadoras / Modificar registro";
-      botonGuardar.textContent = "Guardar cambios";
+      SGC.Idioma.texto(tituloFormulario, "Modificar casa certificadora");
+      SGC.Idioma.texto(rutaFormulario, "Catálogos / Casas certificadoras / Modificar registro");
+      SGC.Idioma.texto(botonGuardar, "Guardar cambios");
     } catch (error) {
       console.error("Error al cargar casa certificadora:", error);
 
@@ -312,14 +311,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      SGC.UI.aviso(
-          modificando
-              ? 'Los cambios de la temática se guardaron correctamente.'
-              : 'La temática se guardó correctamente con el código ' + registro.codigo + '.',
-          'confirmacion'
-      );
-      mostrarMensajeExito('La temática se guardó con éxito.', 'tematicas-listado.html');
-
       limpiarMensajes();
 
       mostrarAviso(
@@ -328,6 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
           : "La casa certificadora se registró correctamente.",
         "confirmacion",
       );
+      mostrarMensajeExito("La casa certificadora se guardó con éxito.", "casas-certificadoras-listado.html");
     } catch (error) {
       console.error("Error al guardar casa certificadora:", error);
 

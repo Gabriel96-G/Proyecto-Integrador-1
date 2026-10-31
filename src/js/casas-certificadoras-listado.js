@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cuerpoTabla.innerHTML = "";
 
-    mensajeListado.textContent = "";
+    SGC.Idioma.texto(mensajeListado, "");
     mensajeListado.hidden = true;
   }
 
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function mostrarMensaje(texto, tipo) {
     // Los errores reales se muestran en rojo.
     if (tipo === "error") {
-      mensajeListado.textContent = texto;
+      SGC.Idioma.texto(mensajeListado, texto);
       mensajeListado.className = "aviso aviso--error";
       mensajeListado.hidden = false;
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const celda = document.createElement("td");
 
     celda.colSpan = 3;
-    celda.textContent = texto;
+    SGC.Idioma.texto(celda, texto);
     celda.style.textAlign = "center";
     celda.style.color = "#2c3e50";
     celda.style.padding = "24px 16px";

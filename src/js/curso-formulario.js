@@ -26,7 +26,7 @@
   };
 
   function mostrarAviso(mensaje, tipo = "confirmacion") {
-    aviso.textContent = mensaje;
+    SGC.Idioma.texto(aviso, mensaje);
     aviso.className = `aviso aviso--${tipo}`;
     aviso.hidden = false;
   }
@@ -35,7 +35,7 @@
     const elemento = campo(id);
 
     if (!valor) {
-      elemento.textContent = "Aún sin registrar";
+      SGC.Idioma.texto(elemento, "Aún sin registrar");
       elemento.removeAttribute("datetime");
       return;
     }
@@ -43,11 +43,11 @@
     const fecha = new Date(valor);
 
     if (Number.isNaN(fecha.getTime())) {
-      elemento.textContent = "Fecha no disponible";
+      SGC.Idioma.texto(elemento, "Fecha no disponible");
       return;
     }
 
-    elemento.textContent = fecha.toLocaleString("es-CR");
+    SGC.Idioma.fecha(elemento, fecha, { dateStyle: 'short', timeStyle: 'short' });
     elemento.dateTime = fecha.toISOString();
   }
 
@@ -73,9 +73,10 @@
 
   function cargarOpciones(id, registros) {
     const select = campo(id);
-    const textoInicial = select.options[0].textContent;
+    const textoInicial = SGC.Idioma.original(select.options[0]);
 
     select.replaceChildren(new Option(textoInicial, ""));
+    SGC.Idioma.texto(select.options[0], textoInicial);
 
     registros.forEach((registro) => {
       const referencia = registro.id ?? registro.codigo;
@@ -120,7 +121,7 @@
 
   function limpiarErrores() {
     formulario.querySelectorAll("[data-error-for]").forEach((elemento) => {
-      elemento.textContent = "";
+      SGC.Idioma.texto(elemento, "");
     });
 
     formulario.querySelectorAll("[aria-invalid]").forEach((elemento) => {
@@ -138,7 +139,7 @@
       const mensajeError = campo(`${nombre}-mensaje`);
 
       if (mensajeError) {
-        mensajeError.textContent = mensaje;
+        SGC.Idioma.texto(mensajeError, mensaje);
       }
 
       if (control) {
@@ -155,19 +156,19 @@
   function actualizarTitulo() {
     const modificando = Boolean(cursoActual);
 
-    document.title = modificando
+    SGC.Idioma.texto(document.querySelector('title'), modificando
       ? "Modificar curso | SGC"
-      : "Registrar curso | SGC";
+      : "Registrar curso | SGC");
 
-    campo("titulo").textContent = modificando
+    SGC.Idioma.texto(campo("titulo"), modificando
       ? "Modificar curso"
-      : "Registrar curso";
+      : "Registrar curso");
 
-    campo("ruta").textContent = modificando
+    SGC.Idioma.texto(campo("ruta"), modificando
       ? "Cursos / Modificación"
-      : "Cursos / Nuevo registro";
+      : "Cursos / Nuevo registro");
 
-    guardar.textContent = modificando ? "Guardar cambios" : "Guardar curso";
+    SGC.Idioma.texto(guardar, modificando ? "Guardar cambios" : "Guardar curso");
   }
 
   function cargarCurso(curso) {
@@ -218,7 +219,7 @@
 
       const sesion = JSON.parse(sessionStorage.getItem("usuarioActual"));
 
-      campo("rol-usuario").textContent = sesion.rol;
+      SGC.Idioma.rol(campo("rol-usuario"), sesion.rol);
 
       cargarCatalogos();
 

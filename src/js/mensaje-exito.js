@@ -11,7 +11,9 @@ function mostrarMensajeExito(texto, listado) {
         <p id="mensaje-exito-texto"></p>
         <button class="boton boton--principal" type="button" autofocus>Aceptar</button>
     `;
-    ventana.querySelector("p").textContent = texto;
+    SGC.Idioma.texto(ventana.querySelector("h2"), "¡Guardado con éxito!");
+    SGC.Idioma.texto(ventana.querySelector("button"), "Aceptar");
+    SGC.Idioma.texto(ventana.querySelector("p"), texto);
 
     ventana.querySelector("button").addEventListener("click", function () {
         ventana.close();

@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Registrar casa certificadora - CENFOTEC</title>
+    <title data-i18n="registrarCasaCertificadoraCenfotec">Registrar casa certificadora - CENFOTEC</title>
 
     <link rel="stylesheet" href="../css/estilos.css">
-    <script src="../js/mensaje-exito.js" defer></script>
-    <script src="../js/casas-certificadoras.js" defer></script>
+    <script src="../js/traducciones.js" defer=""></script>
+    <script src="../js/idioma.js" defer=""></script>
+    <script src="../js/mensaje-exito.js" defer=""></script>
+    <script src="../js/casas-certificadoras.js" defer=""></script>
 
     <style>
         /* Ajustes exclusivos del formulario HU-48 */
@@ -28,8 +29,8 @@
             filter: brightness(0) saturate(100%) invert(24%) sepia(77%) saturate(1575%) hue-rotate(190deg);
         }
     </style>
-    <script src="../js/sesion.js" defer></script>
-</head>
+    <script src="../js/sesion.js" defer=""></script>
+<link rel="stylesheet" href="../css/idioma.css"></head>
 
 <body>
     <div class="aplicacion">
@@ -41,67 +42,63 @@
                 <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
             </a>
 
-            <span class="cabecera__nombre">
+            <span class="cabecera__nombre" data-i18n="gestionCurricular">
                 Gestión curricular
             </span>
 
             <span class="cabecera__usuario">
-                <img class="icono-usuario" src="../img/usuario.svg" alt="">
-                Administrador
-            </span>
+                <img class="icono-usuario" src="../img/usuario.svg" alt=""> <span data-i18n="administrador">Administrador</span> </span>
 
-        </header>
+        <form id="formulario-idioma" class="selector-idioma">
+    <label for="idioma" data-i18n="idioma">Idioma</label>
+    <select id="idioma" name="idioma">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+    </select>
+    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+</form></header>
 
         <!-- Menú lateral institucional -->
-        <nav class="navegacion" aria-label="Menú principal">
+        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
 
             <ul class="navegacion__lista">
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu" src="../img/inicio.svg" alt="">
-                        Inicio
-                    </a>
+                        <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu" src="../img/usuarios.svg" alt="">
-                        Usuarios
-                    </a>
+                        <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
-                        <img class="icono-menu" src="../img/catalogos.svg" alt="">
-                        Catálogos
-                    </a>
+                        <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="cursos.html">
-                        <img class="icono-menu" src="../img/cursos.svg" alt="">
-                        Cursos
-                    </a>
+                        <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
                 </li>
 
             </ul>
 
             <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt="">
-                Cerrar sesión
-            </a>
+                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
 
         </nav>
 
         <!-- HU-48: Registro de casas certificadoras -->
         <main class="contenido contenido--casas">
 
-            <p class="ruta" id="ruta-casa-certificadora">
+            <p class="ruta" id="ruta-casa-certificadora" data-i18n="catalogosCasasCertificadorasNuevoRegistro">
                 Catálogos / Casas certificadoras / Nuevo registro
             </p>
 
-            <h1 id="titulo-casa-certificadora">Registrar casa certificadora</h1>
+            <h1 id="titulo-casa-certificadora" data-i18n="registrarCasaCertificadora">Registrar casa certificadora</h1>
 
             <section class="catalogo-formulario">
 
@@ -110,28 +107,27 @@
 
                     <img class="catalogo-resumen__icono" src="../img/catalogos.svg" alt="">
 
-                    <h2>Casa certificadora</h2>
+                    <h2 data-i18n="casaCertificadora">Casa certificadora</h2>
 
-                    <p>
+                    <p data-i18n="codigoYNombreDeLaCasaCertificadora">
                         Código y nombre de la casa certificadora.
                     </p>
 
                 </div>
 
                 <!-- Formulario de registro -->
-                <form id="formulario-casa-certificadora" class="formulario formulario__seccion" novalidate>
+                <form id="formulario-casa-certificadora" class="formulario formulario__seccion" novalidate="">
 
                     <div class="formulario__rejilla formulario__rejilla--codigo">
 
                         <!-- Código -->
                         <div class="formulario__campo">
 
-                            <label for="codigo" class="formulario__etiqueta">
+                            <label for="codigo" class="formulario__etiqueta" data-i18n="codigoObligatorio">
                                 Código *
                             </label>
 
-                            <input type="text" id="codigo" name="codigo" class="formulario__control" inputmode="numeric"
-                                pattern="[0-9]+" required aria-describedby="error-codigo">
+                            <input type="text" id="codigo" name="codigo" class="formulario__control" inputmode="numeric" pattern="[0-9]+" required="" aria-describedby="error-codigo">
 
                             <p id="error-codigo" class="formulario__mensaje" aria-live="polite"></p>
 
@@ -140,12 +136,11 @@
                         <!-- Nombre -->
                         <div class="formulario__campo">
 
-                            <label for="nombre" class="formulario__etiqueta">
+                            <label for="nombre" class="formulario__etiqueta" data-i18n="nombre">
                                 Nombre *
                             </label>
 
-                            <input type="text" id="nombre" name="nombre" class="formulario__control" required
-                                aria-describedby="error-nombre">
+                            <input type="text" id="nombre" name="nombre" class="formulario__control" required="" aria-describedby="error-nombre">
 
                             <p id="error-nombre" class="formulario__mensaje" aria-live="polite"></p>
 
@@ -153,21 +148,21 @@
 
                     </div>
 
-                    <p class="formulario__nota">
+                    <p class="formulario__nota" data-i18n="campoObligatorio">
                         * Campo obligatorio
                     </p>
 
                     <!-- Retroalimentación del registro -->
-                    <p id="mensaje-registro" class="aviso" role="status" aria-live="polite" hidden></p>
+                    <p id="mensaje-registro" class="aviso" role="status" aria-live="polite" hidden=""></p>
 
                     <!-- Acciones -->
                     <div class="formulario__acciones">
 
-                        <button type="submit" id="boton-guardar-casa" class="boton boton--principal">
+                        <button type="submit" id="boton-guardar-casa" class="boton boton--principal" data-i18n="guardarRegistro">
                             Guardar registro
                         </button>
 
-                        <a href="casas-certificadoras-listado.html" class="boton boton--secundario">
+                        <a href="casas-certificadoras-listado.html" class="boton boton--secundario" data-i18n="cancelar">
                             Cancelar
                         </a>
 
@@ -186,19 +181,16 @@
                        font-weight: 600;
                        text-decoration: none;">
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="m15 18-6-6 6-6" />
-                </svg>
-
-                Volver a casas certificadoras
-            </a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m15 18-6-6 6-6"></path>
+                </svg> <span data-i18n="volverACasasCertificadoras">Volver a casas certificadoras</span> </a>
 
         </main>
 
 
     </div>
-</body>
 
-</html>
+
+
+</body></html>
+

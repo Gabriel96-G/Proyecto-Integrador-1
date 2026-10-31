@@ -39,10 +39,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Limpia los mensajes anteriores.
   function limpiarMensajes() {
-    errorCodigo.textContent = "";
-    errorNombre.textContent = "";
-    errorDescripcion.textContent = "";
-    mensajeResultado.textContent = "";
+    SGC.Idioma.texto(errorCodigo, "");
+    SGC.Idioma.texto(errorNombre, "");
+    SGC.Idioma.texto(errorDescripcion, "");
+    SGC.Idioma.texto(mensajeResultado, "");
     mensajeResultado.style.color = "";
   }
 
@@ -50,12 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let codigoOriginal = null;
 
   if (codigoEdicion !== null) {
-    tituloMetodologia.textContent = "Modificar metodología de aprendizaje";
-    document.title = "Modificar metodología de aprendizaje";
-    botonGuardar.textContent = "Guardar cambios";
+    SGC.Idioma.texto(tituloMetodologia, "Modificar metodología de aprendizaje");
+    SGC.Idioma.texto(document.querySelector('title'), "Modificar metodología de aprendizaje");
+    SGC.Idioma.texto(botonGuardar, "Guardar cambios");
 
-    rutaMetodologia.textContent =
-      "Catálogos / Metodologías de aprendizaje / Modificar registro";
+    SGC.Idioma.texto(rutaMetodologia, "Catálogos / Metodologías de aprendizaje / Modificar registro");
 
     try {
       const metodologias = JSON.parse(
@@ -85,8 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       console.error("Error al cargar la metodología:", error);
 
-      mensajeResultado.textContent =
-        "No fue posible cargar la metodología seleccionada.";
+      SGC.Idioma.texto(mensajeResultado, "No fue posible cargar la metodología seleccionada.");
 
       mensajeResultado.style.color = "var(--color-error)";
       botonGuardar.disabled = true;
@@ -106,19 +104,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Validación del código numérico.
     if (!/^\d+$/.test(codigo)) {
-      errorCodigo.textContent = "Ingrese un código numérico válido.";
+      SGC.Idioma.texto(errorCodigo, "Ingrese un código numérico válido.");
       formularioValido = false;
     }
 
     // Validación del nombre.
     if (nombre === "") {
-      errorNombre.textContent = "El nombre es obligatorio.";
+      SGC.Idioma.texto(errorNombre, "El nombre es obligatorio.");
       formularioValido = false;
     }
 
     // Validación de la descripción.
     if (descripcion === "") {
-      errorDescripcion.textContent = "La descripción es obligatoria.";
+      SGC.Idioma.texto(errorDescripcion, "La descripción es obligatoria.");
       formularioValido = false;
     }
 
@@ -165,12 +163,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       if (codigoDuplicado) {
-        errorCodigo.textContent = "Ya existe una metodología con este código.";
+        SGC.Idioma.texto(errorCodigo, "Ya existe una metodología con este código.");
         formularioValido = false;
       }
 
       if (nombreDuplicado) {
-        errorNombre.textContent = "Ya existe una metodología con este nombre.";
+        SGC.Idioma.texto(errorNombre, "Ya existe una metodología con este nombre.");
         formularioValido = false;
       }
 
@@ -189,8 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (indiceOriginal === -1) {
           mensajeResultado.style.color = "var(--color-error)";
-          mensajeResultado.textContent =
-            "La metodología seleccionada ya no existe.";
+          SGC.Idioma.texto(mensajeResultado, "La metodología seleccionada ya no existe.");
           return;
         }
 
@@ -225,20 +222,17 @@ document.addEventListener("DOMContentLoaded", function () {
         urlActualizada.searchParams.set("codigo", codigo);
         window.history.replaceState(null, "", urlActualizada.href);
 
-        mensajeResultado.textContent =
-          "La metodología de aprendizaje se actualizó correctamente.";
+        SGC.Idioma.texto(mensajeResultado, "La metodología de aprendizaje se actualizó correctamente.");
       } else {
         formulario.reset();
 
-        mensajeResultado.textContent =
-          "La metodología de aprendizaje se registró correctamente.";
+        SGC.Idioma.texto(mensajeResultado, "La metodología de aprendizaje se registró correctamente.");
         mostrarMensajeExito("La metodología de aprendizaje se guardó con éxito.", "metodologias-listado.html");
       }
     } catch (error) {
       console.error("Error al registrar la metodología:", error);
 
-      mensajeResultado.textContent =
-        "No fue posible guardar la metodología. Intente nuevamente.";
+      SGC.Idioma.texto(mensajeResultado, "No fue posible guardar la metodología. Intente nuevamente.");
     }
   });
 

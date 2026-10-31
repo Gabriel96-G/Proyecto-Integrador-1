@@ -3,47 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar acceso</title>
+    <title data-i18n="recuperarAcceso">Recuperar acceso</title>
     <link rel="stylesheet" href="../css/estilos.css">
-</head>
+<script src="../js/traducciones.js" defer=""></script>
+    <script src="../js/idioma.js" defer=""></script><link rel="stylesheet" href="../css/idioma.css"></head>
 <body>
     <!-- Encabezado institucional -->
     <header class="cabecera">
         <a class="cabecera__marca" href="../index.html">
             <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
         </a>
-        <span class="cabecera__nombre">Gestión curricular</span>
+        <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
         <span class="cabecera__institucion">Universidad CENFOTEC</span>
-    </header>
+    <form id="formulario-idioma" class="selector-idioma">
+    <label for="idioma" data-i18n="idioma">Idioma</label>
+    <select id="idioma" name="idioma">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+    </select>
+    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+</form></header>
 
     <main class="contenedor">
         <div class="recuperacion">
             <!-- Formulario demostrativo -->
             <section class="recuperacion__contenido" aria-labelledby="titulo-recuperacion">
-                <h1 id="titulo-recuperacion">Recuperar acceso</h1>
-                <p>Ingrese su correo institucional.</p>
+                <h1 id="titulo-recuperacion" data-i18n="recuperarAcceso">Recuperar acceso</h1>
+                <p data-i18n="ingreseSuCorreoInstitucional">Ingrese su correo institucional.</p>
 
                 <form class="formulario" aria-describedby="aviso-demostracion">
                     <div class="formulario__campo">
-                        <label class="formulario__etiqueta" for="correo">Correo institucional</label>
-                        <input class="formulario__control"
-                               id="correo"
-                               name="correo"
-                               type="email"
-                               autocomplete="email"
-                               placeholder="usuario@ucenfotec.ac.cr">
+                        <label class="formulario__etiqueta" for="correo" data-i18n="correoInstitucionalEtiqueta">Correo institucional</label>
+                        <input class="formulario__control" id="correo" name="correo" type="email" autocomplete="email" placeholder="usuario@ucenfotec.ac.cr" data-i18n-placeholder="usuarioUcenfotecAcCr">
                     </div>
 
-                    <button class="boton boton--principal boton--completo" type="submit" disabled>
+                    <button class="boton boton--principal boton--completo" type="submit" disabled="" data-i18n="solicitarRecuperacion">
                         Solicitar recuperación
                     </button>
 
-                    <p id="aviso-demostracion" class="formulario__ayuda">
+                    <p id="aviso-demostracion" class="formulario__ayuda" data-i18n="vistaDemostrativaNoSeEnviaranCorreos">
                         Vista demostrativa: no se enviarán correos.
                     </p>
                 </form>
 
-                <a class="enlace-accion" href="login.html">‹ Volver al inicio de sesión</a>
+                <a class="enlace-accion" href="login.html" data-i18n="volverAlInicioDeSesion">‹ Volver al inicio de sesión</a>
             </section>
 
             <!-- Panel informativo -->
@@ -51,10 +55,11 @@
                 <div class="recuperacion__llave">
                     <img class="icono" src="../img/llave.svg" alt="">
                 </div>
-                <h2>Su acceso al sistema</h2>
-                <p>Una función prevista para una próxima iteración.</p>
+                <h2 data-i18n="suAccesoAlSistema">Su acceso al sistema</h2>
+                <p data-i18n="unaFuncionPrevistaParaUnaProximaIteracion">Una función prevista para una próxima iteración.</p>
             </aside>
         </div>
     </main>
-</body>
-</html>
+
+
+</body></html>

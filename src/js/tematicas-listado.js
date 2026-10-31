@@ -10,7 +10,7 @@
 
     function listar() {
         cuerpo.replaceChildren();
-        cantidad.textContent = '';
+        SGC.Idioma.texto(cantidad, '');
         vacio.hidden = true;
         try {
             const texto = localStorage.getItem('tematicas');
@@ -39,15 +39,15 @@
                 fila.append(
                     SGC.UI.elemento('td', 'tabla__codigo', tematica.codigo),
                     SGC.UI.elemento('td', 'tabla__nombre', tematica.nombre),
-                    SGC.UI.elemento('td', '', tematica.descripcion || 'Sin descripción'),
+                    SGC.UI.elemento('td', '', tematica.descripcion || 'Sin descripción', !tematica.descripcion),
                     acciones
                 );
                 cuerpo.append(fila);
             });
-            cantidad.textContent = visibles.length + (visibles.length === 1 ? ' registro' : ' registros');
+            SGC.Idioma.texto(cantidad, visibles.length + (visibles.length === 1 ? ' registro' : ' registros'));
             vacio.hidden = visibles.length > 0;
-            vacio.textContent = registros.length ? 'No se encontraron coincidencias.' :
-                'Todavía no hay temáticas registradas.';
+            SGC.Idioma.texto(vacio, registros.length ? 'No se encontraron coincidencias.' :
+                'Todavía no hay temáticas registradas.');
             document.getElementById('aviso').hidden = true;
         } catch (error) {
             SGC.UI.fallo(error);
@@ -69,3 +69,4 @@
     });
     listar();
 })();
+

@@ -43,8 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (metodologias.length === 0) {
         tabla.hidden = true;
 
-        mensajeListado.textContent =
-          "No existen metodologías de aprendizaje registradas.";
+        SGC.Idioma.texto(mensajeListado, "No existen metodologías de aprendizaje registradas.");
 
         return;
       }
@@ -56,15 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
       if (metodologiasFiltradas.length === 0) {
         tabla.hidden = true;
 
-        mensajeListado.textContent =
-          "No se encontraron metodologías que coincidan con la búsqueda.";
+        SGC.Idioma.texto(mensajeListado, "No se encontraron metodologías que coincidan con la búsqueda.");
 
         return;
       }
 
       // CP-091: Mostrar las metodologías registradas.
       tabla.hidden = false;
-      mensajeListado.textContent = "";
+      SGC.Idioma.texto(mensajeListado, "");
 
       metodologiasFiltradas.forEach(function (metodologia) {
         const fila = document.createElement("tr");
@@ -82,17 +80,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const celdaAccion = document.createElement("td");
         const enlaceEditar = document.createElement("a");
 
-        enlaceEditar.textContent = "Editar";
+        SGC.Idioma.texto(enlaceEditar, "Editar");
         enlaceEditar.className = "enlace-accion";
 
         enlaceEditar.href =
           "metodologias-formulario.html?codigo=" +
           encodeURIComponent(String(metodologia.codigo));
 
-        enlaceEditar.setAttribute(
-          "aria-label",
-          "Editar metodología " + metodologia.nombre,
-        );
+        SGC.Idioma.atributo(enlaceEditar, 'aria-label', "Editar metodología " + metodologia.nombre);
 
         celdaAccion.appendChild(enlaceEditar);
 
@@ -108,8 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       tabla.hidden = true;
 
-      mensajeListado.textContent =
-        "No fue posible cargar el listado de metodologías.";
+      SGC.Idioma.texto(mensajeListado, "No fue posible cargar el listado de metodologías.");
     }
   }
 

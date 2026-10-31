@@ -44,9 +44,9 @@ function agregarFila(estado) {
     const accion = document.createElement("td");
     const editar = document.createElement("a");
     editar.className = "enlace-accion";
-    editar.textContent = "Editar";
+    SGC.Idioma.texto(editar, "Editar");
     editar.href = "estados-curso-formulario.html?codigo=" + encodeURIComponent(estado.codigo);
-    editar.setAttribute("aria-label", "Editar estado " + estado.nombre);
+    SGC.Idioma.atributo(editar, 'aria-label', "Editar estado " + estado.nombre);
     accion.appendChild(editar);
 
     fila.appendChild(codigo);
@@ -68,9 +68,9 @@ function mostrarEstados() {
 
     if (filtrados.length === 0) {
         tablaEstados.hidden = true;
-        mensajeListado.textContent = estados.length === 0
+        SGC.Idioma.texto(mensajeListado, estados.length === 0
             ? "No existen estados del curso registrados."
-            : "No se encontraron estados con ese nombre.";
+            : "No se encontraron estados con ese nombre.");
         mensajeListado.hidden = false;
         return;
     }

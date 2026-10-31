@@ -18,7 +18,7 @@
         const valor = escuela.value;
         const escuelas = SGC.CarrerasDatos.leerEscuelas();
         escuela.replaceChildren();
-        const primera = elemento('option', '', 'Seleccione una escuela');
+        const primera = elemento('option', '', 'Seleccione una escuela', true);
         primera.value = '';
         escuela.append(primera);
         escuelas.forEach(e => {
@@ -34,10 +34,10 @@
     }
     try {
         if (modificando) {
-            document.title = 'Modificar carrera | SGC';
-            document.getElementById('titulo').textContent = 'Modificar carrera';
-            document.getElementById('ruta').textContent = 'Catálogos / Carreras / Modificación';
-            guardar.textContent = 'Guardar cambios';
+            SGC.Idioma.texto(document.querySelector('title'), 'Modificar carrera | SGC');
+            SGC.Idioma.texto(document.getElementById('titulo'), 'Modificar carrera');
+            SGC.Idioma.texto(document.getElementById('ruta'), 'Catálogos / Carreras / Modificación');
+            SGC.Idioma.texto(guardar, 'Guardar cambios');
             actual = SGC.CarrerasDatos.leer().find(r => r.id === id);
             if (!actual) throw new Error('No se encontró la carrera solicitada. Vuelva al listado.');
             ['codigo', 'nombre'].forEach(campo => { document.getElementById(campo).value = actual[campo] ?? ''; });

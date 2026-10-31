@@ -85,9 +85,9 @@ function agregarFila(nivel) {
     const accion = document.createElement("td");
     const editar = document.createElement("a");
     editar.className = "enlace-accion";
-    editar.textContent = "Editar";
+    SGC.Idioma.texto(editar, "Editar");
     editar.href = "niveles-complejidad-formulario.html?codigo=" + encodeURIComponent(nivel.codigo);
-    editar.setAttribute("aria-label", "Editar nivel " + nivel.nombre);
+    SGC.Idioma.atributo(editar, 'aria-label', "Editar nivel " + nivel.nombre);
     accion.appendChild(editar);
 
     fila.appendChild(codigo);
@@ -110,9 +110,9 @@ function mostrarNiveles() {
 
     if (filtrados.length === 0) {
         tablaNiveles.hidden = true;
-        mensajeListado.textContent = niveles.length === 0
+        SGC.Idioma.texto(mensajeListado, niveles.length === 0
             ? "No existen niveles de complejidad registrados."
-            : "No se encontraron niveles con ese nombre.";
+            : "No se encontraron niveles con ese nombre.");
         mensajeListado.hidden = false;
         return;
     }

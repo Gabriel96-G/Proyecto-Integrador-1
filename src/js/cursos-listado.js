@@ -7,7 +7,7 @@
   const rolUsuario = document.getElementById("rol-usuario");
 
   function mostrarAviso(mensaje) {
-    aviso.textContent = mensaje;
+    SGC.Idioma.texto(aviso, mensaje);
     aviso.hidden = false;
   }
 
@@ -53,15 +53,14 @@
 
   function crearEnlace(texto, destino) {
     const enlace = document.createElement("a");
-    enlace.textContent = texto;
+    SGC.Idioma.texto(enlace, texto);
     enlace.href = destino;
     return enlace;
   }
 
   function mostrarCursos(cursos, escuelas, estados) {
     tabla.replaceChildren();
-    document.getElementById("contador-cursos").textContent =
-      `${cursos.length} ${cursos.length === 1 ? "registro" : "registros"}`;
+    SGC.Idioma.texto(document.getElementById("contador-cursos"), `${cursos.length} ${cursos.length === 1 ? "registro" : "registros"}`);
 
     if (cursos.length === 0) {
       const fila = document.createElement("tr");
@@ -78,17 +77,26 @@
 
       crearCelda(fila, curso.codigo);
 
-      crearCelda(
-        fila,
-        curso.nombre +
-          (curso.estadoElaboracion === "borrador" ? " (Borrador)" : ""),
-      );
+      const nombre = crearCelda(fila, curso.nombre);
+      if (curso.estadoElaboracion === 'borrador') {
+        nombre.append(document.createTextNode(' ('));
+        const borrador = document.createElement('span');
+        SGC.Idioma.texto(borrador, 'Borrador');
+        nombre.append(borrador, document.createTextNode(')'));
+      }
 
-      crearCelda(fila, nombreEscuela(curso.escuela, escuelas));
+      const escuela = crearCelda(fila, nombreEscuela(curso.escuela, escuelas));
+      if (!escuelas.some(e => String(e.id || e.codigo) === String(curso.escuela))) {
+        SGC.Idioma.texto(escuela, 'Escuela no disponible');
+      }
 
-      crearCelda(fila, nombreEstado(curso.estado, estados));
+      const estado = crearCelda(fila, nombreEstado(curso.estado, estados));
+      if (!curso.estado) SGC.Idioma.texto(estado, 'Sin definir');
 
-      crearCelda(fila, mostrarFecha(curso.actualizado));
+      const fecha = crearCelda(fila, '');
+      if (!curso.actualizado || Number.isNaN(new Date(curso.actualizado).getTime())) {
+        SGC.Idioma.texto(fecha, mostrarFecha(curso.actualizado));
+      } else SGC.Idioma.fecha(fecha, curso.actualizado, { dateStyle: 'short', timeStyle: 'short' });
 
       const acciones = document.createElement("td");
       const id = encodeURIComponent(curso.id);
@@ -131,8 +139,7 @@
         "director de escuela": "Director de escuela",
       };
 
-      rolUsuario.textContent =
-        nombresRoles[SGC.Datos.normalizar(sesion.rol)] || sesion.rol;
+      SGC.Idioma.texto(rolUsuario, nombresRoles[SGC.Datos.normalizar(sesion.rol)] || sesion.rol);
 
       mostrarCursos(cursos, escuelas, estados);
 

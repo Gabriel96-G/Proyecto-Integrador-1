@@ -61,3 +61,7 @@ No se incluye una cuenta predeterminada en el código.
 Las páginas comparten colores, tipografía, navegación y estilos generales.
 La distribución de la información se adapta a cada módulo y a los datos
 que se necesitan consultar o registrar.
+
+El selector de la cabecera permite cambiar entre español e inglés.
+La selección se mantiene al navegar en la misma pestaña.
+Los textos se organizan en `src/js/traducciones.js`.
