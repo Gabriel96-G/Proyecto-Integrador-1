@@ -6,7 +6,6 @@
     const contenido = document.getElementById('contenido-detalle');
     const aviso = document.getElementById('aviso-detalle');
     const nombreCurso = document.getElementById('nombre-curso');
-    const rolUsuario = document.getElementById('rol-usuario');
     const editarCurso = document.getElementById('editar-curso');
 
     const parametros = new URLSearchParams(window.location.search);
@@ -242,8 +241,6 @@
 
             // Comprueba los permisos mediante el módulo de datos.
             SGC.CursosDatos.leer();
-
-            SGC.Idioma.rol(rolUsuario, sesion.rol);
 
             if (!idCurso) {
                 throw new Error(
