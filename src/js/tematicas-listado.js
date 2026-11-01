@@ -4,7 +4,7 @@
     const cuerpo = document.getElementById('registros');
     const cantidad = document.getElementById('cantidad');
     const vacio = document.getElementById('vacio');
-    const normalizar = texto => texto.trim().normalize('NFD')
+    const normalizar = texto => String(texto ?? '').trim().normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
     function listar() {
@@ -21,7 +21,8 @@
                 throw new Error('No se pudieron leer las temáticas. Los datos guardados se conservaron sin cambios.');
             }
             const criterio = normalizar(buscar.value);
-            const visibles = registros.filter(r => normalizar(r.nombre).includes(criterio));
+            const visibles = registros.filter(r =>
+                normalizar(r.codigo).includes(criterio) || normalizar(r.nombre).includes(criterio));
             visibles.forEach(tematica => {
                 const fila = SGC.UI.elemento('tr');
                 const acciones = SGC.UI.elemento('td');

@@ -75,11 +75,12 @@ campoBusqueda.addEventListener("input", function () {
     const texto = campoBusqueda.value.trim().toLowerCase();
 
     const escuelasFiltradas = escuelas.filter(function (escuela) {
-        return escuela.nombre.toLowerCase().includes(texto);
+        return String(escuela.codigo ?? "").toLowerCase().includes(texto) ||
+            escuela.nombre.toLowerCase().includes(texto);
     });
 
     mostrarEscuelas(
         escuelasFiltradas,
-        "No se encontraron escuelas con ese nombre."
+        "No se encontraron escuelas con ese código o nombre."
     );
 });

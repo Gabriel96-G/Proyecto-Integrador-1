@@ -7,7 +7,7 @@ const campoBusqueda = document.getElementById("buscar-estado");
 
 // Permite buscar sin distinguir mayúsculas ni tildes.
 function normalizarTexto(texto) {
-    return String(texto || "").trim().toLowerCase()
+    return String(texto ?? "").trim().toLowerCase()
         .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
@@ -56,12 +56,13 @@ function agregarFila(estado) {
     cuerpoTabla.appendChild(fila);
 }
 
-// Muestra los estados cuyo nombre contiene el texto buscado.
+// Muestra los estados cuyo código o nombre contiene el texto buscado.
 function mostrarEstados() {
     const estados = obtenerEstados();
     const texto = normalizarTexto(campoBusqueda.value);
     const filtrados = estados.filter(function (estado) {
-        return normalizarTexto(estado.nombre).includes(texto);
+        return normalizarTexto(estado.codigo).includes(texto) ||
+            normalizarTexto(estado.nombre).includes(texto);
     });
 
     cuerpoTabla.innerHTML = "";
@@ -70,7 +71,7 @@ function mostrarEstados() {
         tablaEstados.hidden = true;
         SGC.Idioma.texto(mensajeListado, estados.length === 0
             ? "No existen estados del curso registrados."
-            : "No se encontraron estados con ese nombre.");
+            : "No se encontraron estados con ese código o nombre.");
         mensajeListado.hidden = false;
         return;
     }

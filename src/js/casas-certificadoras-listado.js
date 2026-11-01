@@ -1,5 +1,5 @@
 // HU-49: Listado de casas certificadoras
-// Incluye búsqueda por nombre.
+// Incluye búsqueda por código o nombre.
 
 document.addEventListener("DOMContentLoaded", function () {
   const tabla = document.getElementById("tabla-casas-certificadoras");
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Normalizar texto para realizar búsquedas.
   function normalizarTexto(texto) {
-    return String(texto).trim().normalize("NFD")
+    return String(texto ?? "").trim().normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
   }
 
@@ -66,12 +66,13 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const busquedaNombre = campoBusqueda
+    const busqueda = campoBusqueda
       ? normalizarTexto(campoBusqueda.value)
       : "";
 
     const casasFiltradas = casasCertificadoras.filter(function (casa) {
-      return normalizarTexto(casa.nombre).includes(busquedaNombre);
+      return normalizarTexto(casa.codigo).includes(busqueda) ||
+        normalizarTexto(casa.nombre).includes(busqueda);
     });
 
     // HU-50: Mostrar aviso cuando no hay coincidencias.
@@ -116,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
     tabla.hidden = false;
   }
 
-  // Actualizar resultados al escribir el nombre.
+  // Actualizar resultados al escribir el código o el nombre.
   if (campoBusqueda) {
     campoBusqueda.addEventListener("input", cargarCasasCertificadoras);
   }
