@@ -6,6 +6,7 @@
             const areas = SGC.Datos.leer('sefia');
             const texto = SGC.Datos.normalizar(document.getElementById('buscar').value);
             const visibles = areas.filter(area =>
+                SGC.Datos.normalizar(area.codigo).includes(texto) ||
                 SGC.Datos.normalizar(area.nombre).includes(texto));
             visibles.forEach(area => {
                 const fila = SGC.UI.elemento('tr');

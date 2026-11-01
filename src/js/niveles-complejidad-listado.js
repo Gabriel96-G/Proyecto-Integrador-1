@@ -7,7 +7,7 @@ const campoBusqueda = document.getElementById("buscar-nivel");
 
 // Permite buscar sin distinguir mayúsculas ni tildes.
 function normalizarTexto(texto) {
-    return String(texto || "").trim().toLowerCase()
+    return String(texto ?? "").trim().toLowerCase()
         .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
@@ -98,12 +98,13 @@ function agregarFila(nivel) {
     cuerpoTabla.appendChild(fila);
 }
 
-// Muestra los niveles cuyo nombre contiene el texto buscado.
+// Muestra los niveles cuyo código o nombre contiene el texto buscado.
 function mostrarNiveles() {
     const niveles = obtenerNiveles();
     const texto = normalizarTexto(campoBusqueda.value);
     const filtrados = niveles.filter(function (nivel) {
-        return normalizarTexto(nivel.nombre).includes(texto);
+        return normalizarTexto(nivel.codigo).includes(texto) ||
+            normalizarTexto(nivel.nombre).includes(texto);
     });
 
     cuerpoTabla.innerHTML = "";
@@ -112,7 +113,7 @@ function mostrarNiveles() {
         tablaNiveles.hidden = true;
         SGC.Idioma.texto(mensajeListado, niveles.length === 0
             ? "No existen niveles de complejidad registrados."
-            : "No se encontraron niveles con ese nombre.");
+            : "No se encontraron niveles con ese código o nombre.");
         mensajeListado.hidden = false;
         return;
     }

@@ -136,7 +136,9 @@
       const estados = SGC.Datos.leer("estadosCurso");
 
       const criterio = SGC.Datos.normalizar(buscar.value);
-      const visibles = cursos.filter(curso => SGC.Datos.normalizar(curso.nombre).includes(criterio));
+      const visibles = cursos.filter(curso =>
+        SGC.Datos.normalizar(curso.codigo).includes(criterio) ||
+        SGC.Datos.normalizar(curso.nombre).includes(criterio));
       mostrarCursos(visibles, escuelas, estados, cursos.length);
       document.getElementById("nuevo-curso").hidden = false;
 

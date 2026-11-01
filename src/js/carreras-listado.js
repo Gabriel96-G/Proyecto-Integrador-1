@@ -8,6 +8,7 @@
             const escuelas = SGC.CarrerasDatos.leerEscuelas();
             const texto = SGC.Datos.normalizar(buscar.value);
             const filtrados = registros.filter(carrera =>
+                SGC.Datos.normalizar(carrera.codigo).includes(texto) ||
                 SGC.Datos.normalizar(carrera.nombre).includes(texto));
             const cuerpo = document.getElementById('registros');
             cuerpo.replaceChildren();

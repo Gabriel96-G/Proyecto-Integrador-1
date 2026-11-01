@@ -377,7 +377,7 @@ SGC.Traducciones = {
     buscarEscuela: ["Buscar escuela...","Search school..."],
     noFuePosibleCargarLasEscuelas: ["No fue posible cargar las escuelas.","The schools could not be loaded."],
     editarEscuela: ["Editar escuela","Edit school"],
-    noSeEncontraronEscuelasConEseNombre: ["No se encontraron escuelas con ese nombre.","No schools with that name were found."],
+    noSeEncontraronEscuelasConEseCodigoONombre: ["No se encontraron escuelas con ese código o nombre.","No schools with that code or name were found."],
 
     // Estados del curso
     editarEstado: ["Editar estado", "Edit status"],
@@ -404,7 +404,7 @@ SGC.Traducciones = {
     noExistenEstadosDelCursoRegistrados: ["No existen estados del curso registrados.","There are no registered course statuses."],
     buscarEstado: ["Buscar estado...","Search status..."],
     noFuePosibleCargarLosEstadosDelCurso: ["No fue posible cargar los estados del curso.","The course statuses could not be loaded."],
-    noSeEncontraronEstadosConEseNombre: ["No se encontraron estados con ese nombre.","No statuses with that name were found."],
+    noSeEncontraronEstadosConEseCodigoONombre: ["No se encontraron estados con ese código o nombre.","No statuses with that code or name were found."],
 
     // Presentación
     sistemaDeGestionCurricular: ["Sistema de Gestión Curricular","Curriculum Management System"],
@@ -494,7 +494,7 @@ SGC.Traducciones = {
     buscarNivel: ["Buscar nivel de complejidad...", "Search complexity level..."],
     editarNivel: ["Editar nivel", "Edit level"],
     editarNivelNombre: ["Editar nivel {nombre}", "Edit level {nombre}"],
-    nivelSinCoincidencias: ["No se encontraron niveles con ese nombre.", "No levels with that name were found."],
+    nivelSinCoincidencias: ["No se encontraron niveles con ese código o nombre.", "No levels with that code or name were found."],
     modificarNivel: ["Modificar nivel de complejidad", "Edit complexity level"],
     rutaModificarNivel: ["Catálogos / Niveles de complejidad / Modificar registro", "Catalogs / Complexity levels / Edit record"],
     nivelNoEncontrado: ["No se encontró el nivel. Vuelva al listado.", "The level was not found. Return to the list."],
