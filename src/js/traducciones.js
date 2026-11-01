@@ -234,6 +234,8 @@ SGC.Traducciones = {
     buscarCodigoCasa: ["Ingrese el código de la casa certificadora...", "Enter the certification body code..."],
     casaSinCoincidencias: ["No se encontraron casas certificadoras con los criterios de búsqueda.", "No certification bodies match the search criteria."],
     casaGuardada: ["La casa certificadora se guardó con éxito.", "The certification body was saved successfully."],
+    casaModificada: ["La casa certificadora se modificó con éxito.", "The certification body was updated successfully."],
+    laCasaCertificadoraSeModificoCorrectamente: ["La casa certificadora se modificó correctamente.", "The certification body was updated successfully."],
     errorAlLeerCasasCertificadoras: ["Error al leer casas certificadoras:","Error reading certification bodies:"],
     noFuePosibleLeerLasCasasCertificadorasRegistradas: ["No fue posible leer las casas certificadoras registradas.","The registered certification bodies could not be read."],
     yaExisteUnaCasaCertificadoraConEsteCodigo: ["Ya existe una casa certificadora con este código.","A certification body with this code already exists."],
