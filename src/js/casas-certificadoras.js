@@ -88,7 +88,10 @@ document.addEventListener("DOMContentLoaded", function () {
       campoNombre.value = casaSeleccionada.nombre;
 
       SGC.Idioma.texto(tituloFormulario, "Modificar casa certificadora");
-      SGC.Idioma.texto(rutaFormulario, "Catálogos / Casas certificadoras / Modificar registro");
+      SGC.Idioma.texto(
+        rutaFormulario,
+        "Catálogos / Casas certificadoras / Modificar registro",
+      );
       SGC.Idioma.texto(botonGuardar, "Guardar cambios");
     } catch (error) {
       console.error("Error al cargar casa certificadora:", error);
@@ -319,7 +322,12 @@ document.addEventListener("DOMContentLoaded", function () {
           : "La casa certificadora se registró correctamente.",
         "confirmacion",
       );
-      mostrarMensajeExito("La casa certificadora se guardó con éxito.", "casas-certificadoras-listado.html");
+      mostrarMensajeExito(
+        modoEdicion
+          ? "La casa certificadora se modificó con éxito."
+          : "La casa certificadora se guardó con éxito.",
+        "casas-certificadoras-listado.html",
+      );
     } catch (error) {
       console.error("Error al guardar casa certificadora:", error);
 
