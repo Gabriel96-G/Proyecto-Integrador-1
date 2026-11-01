@@ -10,6 +10,39 @@ function mostrarMensajeLogin(texto) {
     mensajeLogin.hidden = false;
 }
 
+// Crea el usuario de prueba si todavía no existe.
+function prepararUsuarioPrueba() {
+    const usuarios = SGC.Datos.leer("usuarios");
+    const correoPrueba = "prueba@ucenfotec.ac.cr";
+
+    const existe = usuarios.some(function (usuario) {
+        return String(usuario.correo || "").trim().toLowerCase() === correoPrueba;
+    });
+
+    if (existe) return;
+
+    usuarios.push({
+        id: crypto.randomUUID(),
+        identificacion: "PRUEBA-2026",
+        nombre: "Usuario",
+        primerApellido: "Prueba",
+        correo: correoPrueba,
+        contrasena: "Prueba2026",
+        rol: "administrador",
+        estado: "activo"
+    });
+
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+}
+
+try {
+    prepararUsuarioPrueba();
+} catch (error) {
+    mostrarMensajeLogin(
+        "No se pudo preparar la cuenta de prueba. Revise los datos guardados en el navegador."
+    );
+}
+
 formularioLogin.addEventListener("submit", function (evento) {
     evento.preventDefault();
 

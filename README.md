@@ -54,7 +54,17 @@ No utiliza una base de datos ni un servidor de autenticación.
 
 Los datos se guardan en el navegador utilizado. Al cambiar de navegador,
 dirección o puerto, pueden no estar disponibles los mismos registros.
-No se incluye una cuenta predeterminada en el código.
+
+## Cuenta de prueba
+
+Al abrir el inicio de sesión, el sistema crea esta cuenta si todavía no existe:
+
+- Correo: prueba@ucenfotec.ac.cr
+- Contraseña: Prueba2026
+- Rol: administrador
+- Estado: activo
+
+Esta cuenta se utiliza únicamente para las pruebas del prototipo.
 
 ## Interfaz
 
