@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,8 @@
     <script src="../js/cursos-datos.js" defer=""></script>
     <script src="../js/cursos-listado.js" defer=""></script>
     <script src="../js/sesion.js" defer=""></script>
-<link rel="stylesheet" href="../css/idioma.css"></head>
+    <link rel="stylesheet" href="../css/idioma.css">
+</head>
 
 <body>
     <a class="salto-contenido" href="#contenido" data-i18n="saltarAlContenido">Saltar al contenido</a>
@@ -27,41 +29,47 @@
 
             <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
 
-        <form id="formulario-idioma" class="selector-idioma">
-    <label for="idioma" data-i18n="idioma">Idioma</label>
-    <select id="idioma" name="idioma">
-        <option value="es" lang="es">Español</option>
-        <option value="en" lang="en">English</option>
-    </select>
-    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
-    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
-</form></header>
+            <form id="formulario-idioma" class="selector-idioma">
+                <label for="idioma" data-i18n="idioma">Idioma</label>
+                <select id="idioma" name="idioma">
+                    <option value="es" lang="es">Español</option>
+                    <option value="en" lang="en">English</option>
+                </select>
+                <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
+                <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
+            </form>
+        </header>
 
         <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
             <ul class="navegacion__lista">
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
+                        <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span>
+                    </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
+                        <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span
+                            data-i18n="usuarios">Usuarios</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="catalogos.html">
-                        <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
+                        <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span
+                            data-i18n="catalogos">Catálogos</span> </a>
                 </li>
 
                 <li class="navegacion__item">
                     <a class="navegacion__enlace" href="cursos.html" aria-current="page">
-                        <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
+                        <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span>
+                    </a>
                 </li>
             </ul>
 
             <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
+                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar
+                    sesión</span> </a>
         </nav>
 
         <main class="contenido" id="contenido">
@@ -70,29 +78,65 @@
                 <img class="icono" src="../img/cursos.svg" alt="">
                 <div>
                     <h1 data-i18n="cursos">Cursos</h1>
-                    <p data-i18n="consulteYAdministreLosCursosRegistradosEnElSistema">Consulte y administre los cursos registrados en el sistema.</p>
+                    <p data-i18n="consulteYAdministreLosCursosRegistradosEnElSistema">Consulte y administre los cursos
+                        registrados en el sistema.</p>
                 </div>
-                <a class="boton boton--principal" href="curso-formulario.html" id="nuevo-curso" data-i18n="registrarCurso">Registrar curso</a>
+                <a class="boton boton--principal" href="curso-formulario.html" id="nuevo-curso"
+                    data-i18n="registrarCurso">Registrar curso</a>
             </section>
             <section class="listado" aria-labelledby="titulo-listado">
                 <h2 id="titulo-listado" data-i18n="listadoDeCursos">Listado de cursos</h2>
+
                 <div class="listado__herramientas">
+
+                    <!-- Búsqueda por nombre -->
                     <div class="busqueda">
-                        <label class="busqueda__etiqueta" for="buscar-curso" data-i18n="buscarPorNombre">Buscar por nombre</label>
-                        <input class="busqueda__control" id="buscar-curso" name="busqueda" type="search" placeholder="Buscar curso..." autocomplete="off" aria-controls="listado-cursos" data-i18n-placeholder="buscarCurso">
+                        <label class="busqueda__etiqueta" for="buscar-curso" data-i18n="buscarPorNombre">Buscar por
+                            nombre</label>
+                        <input class="busqueda__control" id="buscar-curso" name="busqueda" type="search"
+                            placeholder="Buscar curso..." autocomplete="off" aria-controls="listado-cursos"
+                            data-i18n-placeholder="buscarCurso">
                     </div>
+
+                    <!-- HU-62 / CP-152: Filtro por escuela -->
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="filtro-escuela"
+                            data-i18n="escuelaEtiqueta">Escuela</label>
+
+                        <select class="busqueda__control" id="filtro-escuela" name="filtro-escuela"
+                            aria-controls="listado-cursos">
+                            <option value="">Todas las escuelas</option>
+                        </select>
+                    </div>
+
+                    <!-- HU-62 / CP-152: Filtro por estado -->
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="filtro-estado" data-i18n="estado">
+                            Estado
+                        </label>
+
+                        <select class="busqueda__control" id="filtro-estado" name="filtro-estado"
+                            aria-controls="listado-cursos">
+                            <option value="">Todos los estados</option>
+                        </select>
+                    </div>
+
                 </div>
+
                 <p class="solo-lectores" id="contador-cursos" role="status"></p>
-                <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
+                <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal"
+                    tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
                     <table id="listado-cursos" class="tabla tabla--catalogo tabla--amplia" hidden>
-                        <thead><tr>
-                            <th scope="col" data-i18n="codigo">Código</th>
-                            <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
-                            <th scope="col" data-i18n="escuelaEtiqueta">Escuela</th>
-                            <th scope="col" data-i18n="estado">Estado</th>
-                            <th scope="col" data-i18n="ultimaModificacion">Última modificación</th>
-                            <th scope="col" data-i18n="acciones">Acciones</th>
-                        </tr></thead>
+                        <thead>
+                            <tr>
+                                <th scope="col" data-i18n="codigo">Código</th>
+                                <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
+                                <th scope="col" data-i18n="escuelaEtiqueta">Escuela</th>
+                                <th scope="col" data-i18n="estado">Estado</th>
+                                <th scope="col" data-i18n="ultimaModificacion">Última modificación</th>
+                                <th scope="col" data-i18n="acciones">Acciones</th>
+                            </tr>
+                        </thead>
                         <tbody id="tabla-cursos"></tbody>
                     </table>
                     <p class="estado-vacio" id="vacio-cursos" role="status" hidden></p>
@@ -102,4 +146,5 @@
         </main>
     </div>
 </body>
+
 </html>
