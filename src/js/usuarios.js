@@ -5,6 +5,10 @@
         const buscar = document.getElementById('buscar');
 
         function listar() {
+            const tabla = document.getElementById('tabla-usuarios');
+            tabla.hidden = true;
+            document.getElementById('registros').replaceChildren();
+            document.getElementById('vacio').hidden = true;
             try {
                 const registros = SGC.Datos.leer('usuarios');
                 const texto = SGC.Datos.normalizar(buscar.value);
@@ -18,33 +22,24 @@
                 filtrados.forEach(usuario => {
                     const fila = elemento('tr');
                     const celda = elemento('td');
-                    const identidad = elemento('div', 'tabla__identidad');
-                    const iniciales = (usuario.nombre[0] || '') + (usuario.primerApellido?.[0] || '');
-                    if (/^data:image\/(png|jpeg|webp);base64,/.test(usuario.imagen || '')) {
-                        const foto = elemento('img', 'tabla__avatar');
-                        foto.src = usuario.imagen;
-                        foto.alt = '';
-                        identidad.append(foto);
-                    } else identidad.append(elemento('span', 'tabla__avatar', iniciales.toUpperCase()));
-                    const detalle = elemento('div');
-                    detalle.append(elemento('p', 'tabla__nombre',
-                        [usuario.nombre, usuario.primerApellido, usuario.segundoApellido].filter(Boolean).join(' ')),
-                    elemento('p', 'tabla__secundario', usuario.correo),
-                    elemento('p', 'tabla__secundario', 'Identificación: ' + (usuario.identificacion || '—'), true));
-                    identidad.append(detalle);
-                    celda.append(identidad);
+                    celda.className = 'tabla__nombre';
+                    celda.textContent = [usuario.nombre, usuario.primerApellido, usuario.segundoApellido]
+                        .filter(Boolean).join(' ');
                     const rol = elemento('td');
                     const roles = { administrador: 'Administrador', desarrollo: 'Desarrollo Curricular',
                         director: 'Director de escuela', rectoria: 'Rectoría', vicerrectoria: 'Vicerrectoría' };
-                    rol.append(elemento('span', 'insignia', roles[usuario.rol] || usuario.rol, Boolean(roles[usuario.rol])));
+                    if (roles[usuario.rol]) SGC.Idioma.texto(rol, roles[usuario.rol]);
+                    else rol.textContent = usuario.rol;
                     const estado = (usuario.estado || 'activo') === 'activo' ? 'Activo' : 'Inactivo';
                     const accion = elemento('td');
                     if (usuario.id) accion.append(editar('usuario-formulario.html', usuario.id));
                     else SGC.Idioma.texto(accion, 'Sin identificador');
-                    fila.append(celda, rol, elemento('td', '', estado, true), accion);
+                    fila.append(elemento('td', '', usuario.identificacion || '—'), celda,
+                        elemento('td', '', usuario.correo), rol, elemento('td', '', estado, true), accion);
                     cuerpo.append(fila);
                 });
                 estadoListado(registros.length, filtrados.length, 'usuarios');
+                tabla.hidden = filtrados.length === 0;
                 document.getElementById('aviso').hidden = true;
             } catch (error) { fallo(error); }
         }
