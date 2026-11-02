@@ -12,6 +12,10 @@
   // HU-62 / CP-152: Filtro por estado
   const filtroEstado = document.getElementById("filtro-estado");
 
+  // HU-62 / CP-152: Rango de fechas del registro del curso.
+  const filtroDesde = document.getElementById("filtro-desde");
+  const filtroHasta = document.getElementById("filtro-hasta");
+
   const listado = document.getElementById("listado-cursos");
   const vacio = document.getElementById("vacio-cursos");
 
@@ -94,6 +98,29 @@
     if (filtroEstado.selectedIndex === -1) {
       filtroEstado.value = "";
     }
+  }
+
+  // Convierte la fecha de creación en el día del calendario local del usuario.
+  // Comparar YYYY-MM-DD permite incluir completamente Desde y Hasta.
+  function diaRegistro(valor) {
+    if (!valor) return null;
+
+    const fecha = new Date(valor);
+    if (Number.isNaN(fecha.getTime())) return null;
+
+    const anio = fecha.getFullYear();
+    const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+    const dia = String(fecha.getDate()).padStart(2, "0");
+    return `${anio}-${mes}-${dia}`;
+  }
+
+  function coincideFechaRegistro(curso, desde, hasta) {
+    if (!desde && !hasta) return true;
+
+    const dia = diaRegistro(curso.creado);
+    if (!dia) return false;
+
+    return (!desde || dia >= desde) && (!hasta || dia <= hasta);
   }
 
   function mostrarFecha(valor) {
@@ -219,6 +246,8 @@
       const criterio = SGC.Datos.normalizar(buscar.value);
       const escuelaSeleccionada = filtroEscuela.value;
       const estadoSeleccionado = filtroEstado.value;
+      const desde = filtroDesde.value;
+      const hasta = filtroHasta.value;
 
       const visibles = cursos.filter((curso) => {
         const coincideNombre = SGC.Datos.normalizar(curso.nombre).includes(
@@ -231,7 +260,9 @@
         const coincideEstado =
           !estadoSeleccionado || String(curso.estado) === estadoSeleccionado;
 
-        return coincideNombre && coincideEscuela && coincideEstado;
+        const coincidePeriodo = coincideFechaRegistro(curso, desde, hasta);
+
+        return coincideNombre && coincideEscuela && coincideEstado && coincidePeriodo;
       });
 
       mostrarCursos(visibles, escuelas, estados, cursos.length);
@@ -260,6 +291,9 @@
 
   // HU-62 / CP-152: Actualizar los cursos al seleccionar un estado.
   filtroEstado.addEventListener("change", iniciar);
+
+  filtroDesde.addEventListener("change", iniciar);
+  filtroHasta.addEventListener("change", iniciar);
 
   window.addEventListener("pageshow", iniciar);
   window.addEventListener("storage", iniciar);
