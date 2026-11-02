@@ -21,16 +21,19 @@
                 throw new Error('No se pudieron leer las temáticas. Los datos guardados se conservaron sin cambios.');
             }
             const criterio = normalizar(buscar.value);
+            const codigo = normalizar(document.getElementById('filtro-codigo').value);
+            const descripcion = normalizar(document.getElementById('filtro-descripcion').value);
             const visibles = registros.filter(r =>
-                normalizar(r.codigo).includes(criterio) || normalizar(r.nombre).includes(criterio));
+                normalizar(r.codigo).includes(codigo) && normalizar(r.nombre).includes(criterio) &&
+                normalizar(r.descripcion).includes(descripcion));
             visibles.forEach(tematica => {
                 const fila = SGC.UI.elemento('tr');
                 const acciones = SGC.UI.elemento('td');
                 if (tematica.id) {
                     const editar = SGC.UI.editar('tematicas-formulario.html', tematica.id);
-                    editar.setAttribute('aria-label', 'Editar temática ' + tematica.nombre);
+                    SGC.Idioma.atributo(editar, 'aria-label', 'Editar temática ' + tematica.nombre);
                     acciones.append(editar);
-                } else acciones.textContent = 'Sin identificador';
+                } else SGC.Idioma.texto(acciones, 'Sin identificador');
                 fila.append(
                     SGC.UI.elemento('td', '', tematica.codigo),
                     SGC.UI.elemento('td', 'tabla__nombre', tematica.nombre),
@@ -50,7 +53,8 @@
         }
     }
 
-    buscar.addEventListener('input', listar);
+    const controles = ['buscar', 'filtro-codigo', 'filtro-descripcion'].map(id => document.getElementById(id));
+    controles.forEach(control => control.addEventListener('input', listar));
     window.addEventListener('pageshow', listar);
     window.addEventListener('storage', evento => {
         if (evento.key === 'tematicas' || evento.key === null) listar();

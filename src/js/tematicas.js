@@ -80,10 +80,10 @@
         if (evento.key === 'tematicas' || evento.key === null) actualizarCodigo();
     });
     if (modificando) {
-        document.title = 'Modificar temática | SGC';
-        document.getElementById('titulo').textContent = 'Modificar temática';
-        document.getElementById('ruta').textContent = 'Catálogos / Temáticas / Modificación';
-        guardar.textContent = 'Guardar cambios';
+        SGC.Idioma.texto(document.querySelector('title'), 'Modificar temática | SGC');
+        SGC.Idioma.texto(document.getElementById('titulo'), 'Modificar temática');
+        SGC.Idioma.texto(document.getElementById('ruta'), 'Catálogos / Temáticas / Modificación');
+        SGC.Idioma.texto(guardar, 'Guardar cambios');
         try {
             const actual = leerTematicas().find(r => r.id === id);
             if (!actual) throw new Error('No se encontró la temática solicitada. Vuelva al listado.');

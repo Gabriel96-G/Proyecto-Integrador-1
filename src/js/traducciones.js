@@ -3,6 +3,20 @@ window.SGC = window.SGC || {};
 // Orden de los textos: [español, inglés].
 SGC.Traducciones = {
 
+    codigoFiltroEjemplo: ["Ej. 101", "E.g. 101"],
+    nombreFiltroEjemplo: ["Escriba un nombre", "Enter a name"],
+    identificacionFiltroEjemplo: ["Escriba una identificación", "Enter an ID"],
+    correoFiltroEjemplo: ["Ej. usuario@ucenfotec.ac.cr", "E.g. user@ucenfotec.ac.cr"],
+    descripcionFiltroEjemplo: ["Escriba una descripción", "Enter a description"],
+    todosLosRolesFiltro: ["Todos los roles", "All roles"],
+    todosLosEstadosFiltro: ["Todos los estados", "All statuses"],
+    todasLasEscuelasFiltro: ["Todas las escuelas", "All schools"],
+    todasLasAreasFiltro: ["Todas las áreas", "All areas"],
+    todasLasTematicasFiltro: ["Todas las temáticas", "All topics"],
+    areaFiltroNoDisponible: ["Área no disponible", "Area unavailable"],
+    tematicaFiltroNoDisponible: ["Temática no disponible", "Topic unavailable"],
+    ayudaFiltrosCombinados: ["Puede usar uno o varios filtros. Se mostrarán los registros que coincidan con todos los campos completados.", "Use one or more filters. Records must match every completed field."],
+
     // Textos comunes
     aceptar: ["Aceptar", "OK"],
     guardadoConExito: ["¡Guardado con éxito!", "Saved successfully!"],

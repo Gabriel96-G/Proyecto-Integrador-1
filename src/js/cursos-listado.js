@@ -7,6 +7,32 @@
   const buscar = document.getElementById("buscar-curso");
   const listado = document.getElementById("listado-cursos");
   const vacio = document.getElementById("vacio-cursos");
+  const filtroArea = document.getElementById("filtro-area-sefia");
+  const filtroTematica = document.getElementById("filtro-tematica");
+  const catalogosFiltros = new Map();
+
+  function cargarFiltro(control, registros, textoTodas, textoNoDisponible) {
+    const opciones = registros
+      .filter(registro => registro.id != null || registro.codigo != null)
+      .map(registro => [String(registro.id ?? registro.codigo), registro.nombre]);
+    const firma = JSON.stringify(opciones);
+    if (catalogosFiltros.get(control) === firma) return;
+
+    const seleccion = control.value;
+    const todas = new Option("", "");
+    SGC.Idioma.texto(todas, textoTodas);
+    control.replaceChildren(todas);
+    opciones.forEach(([referencia, nombre]) => {
+      control.add(new Option(nombre, referencia));
+    });
+    if (seleccion && !opciones.some(([referencia]) => referencia === seleccion)) {
+      const noDisponible = new Option("", seleccion);
+      SGC.Idioma.texto(noDisponible, textoNoDisponible);
+      control.add(noDisponible);
+    }
+    control.value = seleccion;
+    catalogosFiltros.set(control, firma);
+  }
 
   function mostrarAviso(mensaje) {
     SGC.Idioma.texto(aviso, mensaje);
@@ -134,11 +160,15 @@
       const cursos = SGC.CursosDatos.leer();
       const escuelas = SGC.CursosDatos.leerEscuelas();
       const estados = SGC.Datos.leer("estadosCurso");
+      cargarFiltro(filtroArea, SGC.Datos.leer("sefia"), "Todas las áreas", "Área no disponible");
+      cargarFiltro(filtroTematica, SGC.Datos.leer("tematicas"), "Todas las temáticas", "Temática no disponible");
 
       const criterio = SGC.Datos.normalizar(buscar.value);
       const visibles = cursos.filter(curso =>
-        SGC.Datos.normalizar(curso.codigo).includes(criterio) ||
-        SGC.Datos.normalizar(curso.nombre).includes(criterio));
+        (SGC.Datos.normalizar(curso.codigo).includes(criterio) ||
+          SGC.Datos.normalizar(curso.nombre).includes(criterio)) &&
+        (!filtroArea.value || String(curso.areaSefia ?? "") === filtroArea.value) &&
+        (!filtroTematica.value || String(curso.tematica ?? "") === filtroTematica.value));
       mostrarCursos(visibles, escuelas, estados, cursos.length);
       document.getElementById("nuevo-curso").hidden = false;
 
@@ -159,6 +189,8 @@
   }
 
   buscar.addEventListener("input", iniciar);
+  filtroArea.addEventListener("change", iniciar);
+  filtroTematica.addEventListener("change", iniciar);
   window.addEventListener("pageshow", iniciar);
   window.addEventListener("storage", iniciar);
   iniciar();

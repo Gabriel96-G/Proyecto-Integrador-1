@@ -12,10 +12,18 @@
             try {
                 const registros = SGC.Datos.leer('usuarios');
                 const texto = SGC.Datos.normalizar(buscar.value);
+                const identificacion = SGC.Datos.normalizar(document.getElementById('filtro-identificacion').value);
+                const correo = SGC.Datos.normalizar(document.getElementById('filtro-correo').value);
+                const rol = document.getElementById('filtro-rol').value;
+                const estado = document.getElementById('filtro-estado').value;
                 const filtrados = registros.filter(usuario => {
                     const nombre = [usuario.nombre, usuario.primerApellido, usuario.segundoApellido]
                         .filter(Boolean).join(' ');
-                    return SGC.Datos.normalizar(nombre).includes(texto);
+                    return SGC.Datos.normalizar(nombre).includes(texto) &&
+                        SGC.Datos.normalizar(usuario.identificacion).includes(identificacion) &&
+                        SGC.Datos.normalizar(usuario.correo).includes(correo) &&
+                        (!rol || usuario.rol === rol) &&
+                        (!estado || (usuario.estado || 'activo') === estado);
                 });
                 const cuerpo = document.getElementById('registros');
                 cuerpo.replaceChildren();
@@ -43,7 +51,9 @@
                 document.getElementById('aviso').hidden = true;
             } catch (error) { fallo(error); }
         }
-        buscar.addEventListener('input', listar);
+        const controles = ['buscar', 'filtro-identificacion', 'filtro-correo', 'filtro-rol', 'filtro-estado']
+            .map(id => document.getElementById(id));
+        controles.forEach(control => control.addEventListener('input', listar));
         window.addEventListener('storage', listar);
         window.addEventListener('pageshow', listar);
         listar();

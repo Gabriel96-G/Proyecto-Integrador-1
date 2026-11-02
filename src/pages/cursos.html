@@ -76,13 +76,26 @@
             </section>
             <section class="listado" aria-labelledby="titulo-listado">
                 <h2 id="titulo-listado" data-i18n="listadoDeCursos">Listado de cursos</h2>
-                <div class="listado__herramientas">
+                <div class="listado__herramientas listado__herramientas--filtros" role="group" aria-labelledby="ayuda-filtros">
                     <div class="busqueda">
                         <label class="busqueda__etiqueta" for="buscar-curso" data-i18n="buscarPorCodigoONombre">Buscar por código o nombre</label>
                         <input class="busqueda__control" id="buscar-curso" name="busqueda" type="search" placeholder="Buscar curso..." autocomplete="off" aria-controls="listado-cursos" data-i18n-placeholder="buscarCurso">
                     </div>
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="filtro-area-sefia" data-i18n="areaSEFIA">Área S.E.F.I.A</label>
+                        <select class="busqueda__control" id="filtro-area-sefia" name="areaSefia" aria-controls="listado-cursos">
+                            <option value="" data-i18n="todasLasAreasFiltro">Todas las áreas</option>
+                        </select>
+                    </div>
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="filtro-tematica" data-i18n="tematica">Temática</label>
+                        <select class="busqueda__control" id="filtro-tematica" name="tematica" aria-controls="listado-cursos">
+                            <option value="" data-i18n="todasLasTematicasFiltro">Todas las temáticas</option>
+                        </select>
+                    </div>
                 </div>
-                <p class="solo-lectores" id="contador-cursos" role="status"></p>
+                <p class="formulario__ayuda" id="ayuda-filtros" data-i18n="ayudaFiltrosCombinados">Puede usar uno o varios filtros. Se mostrarán los registros que coincidan con todos los campos completados.</p>
+                <p class="formulario__ayuda" id="contador-cursos" role="status"></p>
                 <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
                     <table id="listado-cursos" class="tabla tabla--catalogo tabla--amplia" hidden>
                         <thead><tr>
