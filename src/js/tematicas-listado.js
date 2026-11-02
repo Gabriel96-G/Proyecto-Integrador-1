@@ -21,11 +21,8 @@
                 throw new Error('No se pudieron leer las temáticas. Los datos guardados se conservaron sin cambios.');
             }
             const criterio = normalizar(buscar.value);
-            const codigo = normalizar(document.getElementById('filtro-codigo').value);
-            const descripcion = normalizar(document.getElementById('filtro-descripcion').value);
             const visibles = registros.filter(r =>
-                normalizar(r.codigo).includes(codigo) && normalizar(r.nombre).includes(criterio) &&
-                normalizar(r.descripcion).includes(descripcion));
+                normalizar(r.codigo).includes(criterio) || normalizar(r.nombre).includes(criterio));
             visibles.forEach(tematica => {
                 const fila = SGC.UI.elemento('tr');
                 const acciones = SGC.UI.elemento('td');
@@ -53,8 +50,7 @@
         }
     }
 
-    const controles = ['buscar', 'filtro-codigo', 'filtro-descripcion'].map(id => document.getElementById(id));
-    controles.forEach(control => control.addEventListener('input', listar));
+    buscar.addEventListener('input', listar);
     window.addEventListener('pageshow', listar);
     window.addEventListener('storage', evento => {
         if (evento.key === 'tematicas' || evento.key === null) listar();

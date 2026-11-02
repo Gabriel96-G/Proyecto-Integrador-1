@@ -5,12 +5,9 @@
         try {
             const areas = SGC.Datos.leer('sefia');
             const texto = SGC.Datos.normalizar(document.getElementById('buscar').value);
-            const codigo = SGC.Datos.normalizar(document.getElementById('filtro-codigo').value);
-            const descripcion = SGC.Datos.normalizar(document.getElementById('filtro-descripcion').value);
             const visibles = areas.filter(area =>
-                SGC.Datos.normalizar(area.codigo).includes(codigo) &&
-                SGC.Datos.normalizar(area.nombre).includes(texto) &&
-                SGC.Datos.normalizar(area.descripcion).includes(descripcion));
+                SGC.Datos.normalizar(area.codigo).includes(texto) ||
+                SGC.Datos.normalizar(area.nombre).includes(texto));
             visibles.forEach(area => {
                 const fila = SGC.UI.elemento('tr');
                 const acciones = SGC.UI.elemento('td');
@@ -39,8 +36,7 @@
             SGC.UI.fallo(error);
         }
     }
-    const controles = ['buscar', 'filtro-codigo', 'filtro-descripcion'].map(id => document.getElementById(id));
-    controles.forEach(control => control.addEventListener('input', listar));
+    document.getElementById('buscar').addEventListener('input', listar);
     window.addEventListener('storage', listar);
     window.addEventListener('pageshow', listar);
     listar();
