@@ -76,13 +76,41 @@
             </section>
             <section class="listado" aria-labelledby="titulo-listado">
                 <h2 id="titulo-listado" data-i18n="usuariosRegistrados">Usuarios registrados</h2>
-                <div class="listado__herramientas">
+                <div class="listado__herramientas listado__herramientas--filtros listado__herramientas--usuarios" role="group" aria-labelledby="ayuda-filtros">
                     <div class="busqueda">
-                        <label class="busqueda__etiqueta" for="buscar" data-i18n="buscarPorNombre">Buscar por nombre</label>
-                        <input class="busqueda__control" id="buscar" name="busqueda" type="search" placeholder="Buscar usuario..." autocomplete="off" aria-controls="tabla-usuarios" data-i18n-placeholder="buscarUsuario">
+                        <label class="busqueda__etiqueta" for="buscar" data-i18n="nombreEtiqueta">Nombre</label>
+                        <input class="busqueda__control" id="buscar" name="buscar" type="search" autocomplete="off" aria-controls="tabla-usuarios" placeholder="Escriba un nombre" data-i18n-placeholder="nombreFiltroEjemplo">
+                    </div>
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="filtro-identificacion" data-i18n="identificacion">Identificación</label>
+                        <input class="busqueda__control" id="filtro-identificacion" name="filtro-identificacion" type="search" autocomplete="off" aria-controls="tabla-usuarios" placeholder="Escriba una identificación" data-i18n-placeholder="identificacionFiltroEjemplo">
+                    </div>
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="filtro-correo" data-i18n="correoInstitucionalEtiqueta">Correo institucional</label>
+                        <input class="busqueda__control" id="filtro-correo" name="filtro-correo" type="search" autocomplete="off" aria-controls="tabla-usuarios" placeholder="Ej. usuario@ucenfotec.ac.cr" data-i18n-placeholder="correoFiltroEjemplo">
+                    </div>
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="filtro-rol" data-i18n="rol">Rol</label>
+                        <select class="busqueda__control" id="filtro-rol" name="filtro-rol" aria-controls="tabla-usuarios">
+                            <option value="" data-i18n="todosLosRolesFiltro">Todos los roles</option>
+                            <option value="administrador" data-i18n="administrador">Administrador</option>
+                            <option value="desarrollo" data-i18n="desarrolloCurricular">Desarrollo Curricular</option>
+                            <option value="director" data-i18n="directorDeEscuela">Director de escuela</option>
+                            <option value="rectoria" data-i18n="rectoria">Rectoría</option>
+                            <option value="vicerrectoria" data-i18n="vicerrectoria">Vicerrectoría</option>
+                        </select>
+                    </div>
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="filtro-estado" data-i18n="estado">Estado</label>
+                        <select class="busqueda__control" id="filtro-estado" name="filtro-estado" aria-controls="tabla-usuarios">
+                            <option value="" data-i18n="todosLosEstadosFiltro">Todos los estados</option>
+                            <option value="activo" data-i18n="activo">Activo</option>
+                            <option value="inactivo" data-i18n="inactivo">Inactivo</option>
+                        </select>
                     </div>
                 </div>
-                <p class="solo-lectores" id="cantidad" role="status"></p>
+                <p class="formulario__ayuda" id="ayuda-filtros" data-i18n="ayudaFiltrosCombinados">Puede usar uno o varios filtros. Se mostrarán los registros que coincidan con todos los campos completados.</p>
+                <p class="formulario__ayuda" id="cantidad" role="status"></p>
                 <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
                     <table id="tabla-usuarios" class="tabla tabla--catalogo tabla--amplia" hidden>
                         <thead><tr>

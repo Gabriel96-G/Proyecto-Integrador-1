@@ -74,12 +74,21 @@
             </section>
             <section class="listado" aria-labelledby="titulo-listado">
                 <h2 id="titulo-listado" data-i18n="tematicasRegistradas">Temáticas registradas</h2>
-                <div class="listado__herramientas">
+                <div class="listado__herramientas listado__herramientas--filtros" role="group" aria-labelledby="ayuda-filtros">
                     <div class="busqueda">
-                        <label class="busqueda__etiqueta" for="buscar" data-i18n="buscarPorCodigoONombre">Buscar por código o nombre</label>
-                        <input class="busqueda__control" id="buscar" name="busqueda" type="search" placeholder="Buscar temática..." autocomplete="off" aria-controls="tabla-tematicas" data-i18n-placeholder="buscarTematica">
+                        <label class="busqueda__etiqueta" for="filtro-codigo" data-i18n="codigo">Código</label>
+                        <input class="busqueda__control" id="filtro-codigo" name="filtro-codigo" type="search" autocomplete="off" aria-controls="tabla-tematicas" placeholder="Ej. 101" data-i18n-placeholder="codigoFiltroEjemplo">
+                    </div>
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="buscar" data-i18n="nombreEtiqueta">Nombre</label>
+                        <input class="busqueda__control" id="buscar" name="buscar" type="search" autocomplete="off" aria-controls="tabla-tematicas" placeholder="Escriba un nombre" data-i18n-placeholder="nombreFiltroEjemplo">
+                    </div>
+                    <div class="busqueda">
+                        <label class="busqueda__etiqueta" for="filtro-descripcion" data-i18n="descripcion">Descripción</label>
+                        <input class="busqueda__control" id="filtro-descripcion" name="filtro-descripcion" type="search" autocomplete="off" aria-controls="tabla-tematicas" placeholder="Escriba una descripción" data-i18n-placeholder="descripcionFiltroEjemplo">
                     </div>
                 </div>
+                <p class="formulario__ayuda" id="ayuda-filtros" data-i18n="ayudaFiltrosCombinados">Puede usar uno o varios filtros. Se mostrarán los registros que coincidan con todos los campos completados.</p>
                 <p class="solo-lectores" id="cantidad" role="status"></p>
                 <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
                     <table id="tabla-tematicas" class="tabla tabla--catalogo" hidden>
