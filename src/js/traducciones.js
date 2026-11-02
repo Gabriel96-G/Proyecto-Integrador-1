@@ -4,6 +4,8 @@ window.SGC = window.SGC || {};
 SGC.Traducciones = {
 
     // Textos comunes
+    desdeRegistroCurso: ["Desde", "From"],
+    hastaRegistroCurso: ["Hasta", "To"],
     aceptar: ["Aceptar", "OK"],
     guardadoConExito: ["¡Guardado con éxito!", "Saved successfully!"],
     buscarPorCodigo: ["Buscar por código", "Search by code"],
