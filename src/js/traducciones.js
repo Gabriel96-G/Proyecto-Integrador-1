@@ -628,6 +628,8 @@ SGC.Traducciones = {
     espereAQueTermineDeCargarLaImagen: ["Espere a que termine de cargar la imagen.","Wait for the image to finish loading."],
     guardando: ["Guardando…","Saving…"],
     elUsuarioSeGuardoCorrectamentePuedeConsultarloEnEl: ["El usuario se guardó correctamente. Puede consultarlo en el listado.","The user was saved successfully. You can view it in the list."],
+    usuarioGuardado: ["El usuario se guardó con éxito.", "The user was saved successfully."],
+    usuarioModificado: ["El usuario se modificó con éxito.", "The user was updated successfully."],
     elRolSeActualizoEstaCuentaYaNoTiene: ["El rol se actualizó. Esta cuenta ya no tiene permiso para administrar usuarios.","The role was updated. This account no longer has permission to manage users."],
 
     // Validaciones
