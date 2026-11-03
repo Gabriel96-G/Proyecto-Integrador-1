@@ -226,6 +226,9 @@
             aviso(permitido ? 'El usuario se guardó correctamente. Puede consultarlo en el listado.'
                 : 'El rol se actualizó. Esta cuenta ya no tiene permiso para administrar usuarios.', 'confirmacion');
             guardado = true;
+            mostrarMensajeExito(permitido
+                ? (modificando ? 'El usuario se modificó con éxito.' : 'El usuario se guardó con éxito.')
+                : 'El rol se actualizó. Esta cuenta ya no tiene permiso para administrar usuarios.', 'usuarios.html');
         } catch (error) { fallo(error); }
         finally { guardar.disabled = !permitido; SGC.Idioma.texto(guardar, textoBoton); }
     });
