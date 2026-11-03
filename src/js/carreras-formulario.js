@@ -72,9 +72,8 @@
             aviso(modificando ? 'Los cambios de la carrera se guardaron correctamente.' :
                 'La carrera se guardó correctamente. Puede consultarla en el listado.', 'confirmacion');
             guardado = true;
-            if (!modificando) {
-                mostrarMensajeExito('La carrera se guardó con éxito.', 'carreras-listado.html');
-            }
+            mostrarMensajeExito(modificando ? 'La carrera se modificó con éxito.' :
+                'La carrera se guardó con éxito.', 'carreras-listado.html');
         } catch (error) { fallo(error); }
         finally { guardando = false; ajustarGuardar(); }
     });

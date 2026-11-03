@@ -188,6 +188,7 @@ SGC.Traducciones = {
 
     // Áreas S.E.F.I.A
     areaGuardada: ["El área S.E.F.I.A se guardó con éxito.", "The S.E.F.I.A area was saved successfully."],
+    areaModificada: ["El área S.E.F.I.A se modificó con éxito.", "The S.E.F.I.A area was updated successfully."],
     soloUnAdministradorActivoPuedeGuardarAreasSE: ["Solo un administrador activo puede guardar áreas S.E.F.I.A.","Only an active administrator can save S.E.F.I.A areas."],
     modificarAreaSEFIASgc: ["Modificar área S.E.F.I.A | SGC","Edit S.E.F.I.A area | SGC"],
     modificarAreaSEFIA: ["Modificar área S.E.F.I.A","Edit S.E.F.I.A area"],
@@ -221,6 +222,7 @@ SGC.Traducciones = {
 
     // Carreras
     carreraGuardada: ["La carrera se guardó con éxito.", "The degree program was saved successfully."],
+    carreraModificada: ["La carrera se modificó con éxito.", "The degree program was updated successfully."],
     registrarCarreraSgc: ["Registrar carrera | SGC","Register degree program | SGC"],
     catalogosCarrerasNuevoRegistro: ["Catálogos / Carreras / Nuevo registro","Catalogs / Degree programs / New record"],
     codigoNombreYEscuelaAsociada: ["Código, nombre y escuela asociada.","Code, name and associated school."],
@@ -366,6 +368,7 @@ SGC.Traducciones = {
 
     // Escuelas
     escuelaGuardada: ["La escuela se guardó con éxito.", "The school was saved successfully."],
+    escuelaModificada: ["La escuela se modificó con éxito.", "The school was updated successfully."],
     modificarEscuela: ["Modificar escuela","Edit school"],
     catalogosEscuelasModificarRegistro: ["Catálogos / Escuelas / Modificar registro","Catalogs / Schools / Edit record"],
     noSeEncontroLaEscuelaVuelvaAlListado: ["No se encontró la escuela. Vuelva al listado.","The school was not found. Return to the list."],
@@ -469,6 +472,7 @@ SGC.Traducciones = {
 
     // Metodologías
     metodologiaGuardada: ["La metodología de aprendizaje se guardó con éxito.", "The learning methodology was saved successfully."],
+    metodologiaModificada: ["La metodología de aprendizaje se modificó con éxito.", "The learning methodology was updated successfully."],
     modificarMetodologiaDeAprendizaje: ["Modificar metodología de aprendizaje","Edit learning methodology"],
     catalogosMetodologiasDeAprendizajeModificarRegistro: ["Catálogos / Metodologías de aprendizaje / Modificar registro","Catalogs / Learning methodologies / Edit record"],
     elCatalogoAlmacenadoNoEsValido: ["El catálogo almacenado no es válido.","The stored catalog is invalid."],

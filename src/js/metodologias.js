@@ -37,13 +37,21 @@ document.addEventListener("DOMContentLoaded", function () {
     return String(codigo).replace(/^0+(?=\d)/, "");
   }
 
+  // Muestra los avisos con el mismo estilo que casas certificadoras.
+  function mostrarAviso(texto, tipo) {
+    SGC.Idioma.texto(mensajeResultado, texto);
+    mensajeResultado.className = "aviso aviso--" + tipo;
+    mensajeResultado.hidden = false;
+  }
+
   // Limpia los mensajes anteriores.
   function limpiarMensajes() {
     SGC.Idioma.texto(errorCodigo, "");
     SGC.Idioma.texto(errorNombre, "");
     SGC.Idioma.texto(errorDescripcion, "");
     SGC.Idioma.texto(mensajeResultado, "");
-    mensajeResultado.style.color = "";
+    mensajeResultado.className = "aviso";
+    mensajeResultado.hidden = true;
   }
 
   // HU-41: Cargar los datos de la metodología seleccionada.
@@ -84,9 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       console.error("Error al cargar la metodología:", error);
 
-      SGC.Idioma.texto(mensajeResultado, "No fue posible cargar la metodología seleccionada.");
-
-      mensajeResultado.style.color = "var(--color-error)";
+      mostrarAviso("No fue posible cargar la metodología seleccionada.", "error");
       botonGuardar.disabled = true;
     }
   }
@@ -186,8 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         if (indiceOriginal === -1) {
-          mensajeResultado.style.color = "var(--color-error)";
-          SGC.Idioma.texto(mensajeResultado, "La metodología seleccionada ya no existe.");
+          mostrarAviso("La metodología seleccionada ya no existe.", "error");
           return;
         }
 
@@ -212,8 +217,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Guardar la información actualizada.
       localStorage.setItem(CLAVE_ALMACENAMIENTO, JSON.stringify(metodologias));
 
-      mensajeResultado.style.color = "var(--color-confirmacion)";
-
       if (codigoOriginal !== null) {
         codigoOriginal = codigo;
 
@@ -222,17 +225,19 @@ document.addEventListener("DOMContentLoaded", function () {
         urlActualizada.searchParams.set("codigo", codigo);
         window.history.replaceState(null, "", urlActualizada.href);
 
-        SGC.Idioma.texto(mensajeResultado, "La metodología de aprendizaje se actualizó correctamente.");
+        mostrarAviso("La metodología de aprendizaje se actualizó correctamente.", "confirmacion");
       } else {
         formulario.reset();
 
-        SGC.Idioma.texto(mensajeResultado, "La metodología de aprendizaje se registró correctamente.");
-        mostrarMensajeExito("La metodología de aprendizaje se guardó con éxito.", "metodologias-listado.html");
+        mostrarAviso("La metodología de aprendizaje se registró correctamente.", "confirmacion");
       }
+      mostrarMensajeExito(codigoOriginal !== null
+        ? "La metodología de aprendizaje se modificó con éxito."
+        : "La metodología de aprendizaje se guardó con éxito.", "metodologias-listado.html");
     } catch (error) {
       console.error("Error al registrar la metodología:", error);
 
-      SGC.Idioma.texto(mensajeResultado, "No fue posible guardar la metodología. Intente nuevamente.");
+      mostrarAviso("No fue posible guardar la metodología. Intente nuevamente.", "error");
     }
   });
 
