@@ -531,8 +531,8 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
   .pagina-sgc .navegacion__desplegable > .navegacion__lista { display: flex; }
 }
 @media (max-width: 767px) {
-  .pagina-sgc .cabecera__marca:has(.cabecera__logo)::after { content: none; }
-  .pagina-sgc .cabecera__logo { display: block; width: 112px; height: 52px; padding: 4px; border-radius: 4px; background: white; }
+  .aplicacion .cabecera__marca:has(.cabecera__logo)::after { content: none; }
+  .aplicacion .cabecera__logo { display: block; width: 112px; height: 52px; padding: 4px; border-radius: 4px; background: white; }
   .pagina-sgc .navegacion__alternar { color: white; cursor: pointer; }
   .pagina-sgc .pestanas__boton { flex: 1 1 100%; padding: 8px; }
 }
@@ -618,4 +618,38 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
         flex-basis: 100%;
         justify-content: flex-end;
     }
+}
+
+/* Bootstrap: compatibilidad con el diseño original de las pantallas migradas. */
+.con-bootstrap :is(h1, h2, h3) { font-weight: 700; }
+.con-bootstrap .cabecera.navbar { justify-content: flex-start; }
+.con-bootstrap .navbar-toggler { margin-left: auto; min-height: 44px; color: white; border-color: currentColor; }
+.con-bootstrap .selector-idioma .form-select { width: auto; }
+.con-bootstrap .form-select { appearance: auto; }
+.con-bootstrap :is(.btn, .form-control, .form-select) { font-size: inherit; }
+.con-bootstrap :is(.form-label, .table, .alert) { margin-bottom: 0; }
+.con-bootstrap .alert { border: 0; }
+.con-bootstrap .modulo.card { --bs-card-border-width: 0; }
+.con-bootstrap .invalid-feedback { margin-top: 0; }
+.con-bootstrap { --bs-form-invalid-color: var(--color-error); --bs-form-invalid-border-color: var(--color-error); }
+.con-bootstrap .modal-dialog { max-width: min(420px, calc(100% - 32px)); margin-inline: auto; }
+.con-bootstrap .modal-content.mensaje-exito { width: 100%; }
+.con-bootstrap .modal-backdrop { --bs-backdrop-bg: #17263c; --bs-backdrop-opacity: .55; }
+.con-bootstrap .table { --bs-table-bg: transparent; --bs-table-color: var(--color-texto); }
+.con-bootstrap .tabla td.tabla__codigo { color: var(--color-principal); }
+.con-bootstrap :is(.form-control, .form-select, .btn):focus-visible {
+  outline: 3px solid var(--color-accion);
+  outline-offset: 2px;
+}
+.con-bootstrap .navegacion a:focus-visible,
+.con-bootstrap .navbar-toggler:focus-visible { outline: 3px solid white; outline-offset: 2px; }
+
+/* En móvil se leen las cuatro columnas sin arrastrar la página ni la tabla. */
+@media (max-width: 767.98px) {
+  .con-bootstrap .tabla-contenedor { padding-inline: 8px; }
+  .con-bootstrap .tabla { min-width: 0; table-layout: fixed; }
+  .con-bootstrap .tabla :is(th, td) { overflow-wrap: anywhere; }
+  .con-bootstrap .tabla th:first-child { width: 4.35em; }
+  .con-bootstrap .tabla th:nth-child(2) { width: 24%; }
+  .con-bootstrap .tabla th:last-child { width: 4em; }
 }

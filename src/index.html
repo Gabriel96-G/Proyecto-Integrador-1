@@ -4,26 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="gestionCurricular">Gestión curricular</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css"
+          integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilos.css">
-<script src="js/traducciones.js" defer=""></script>
+    <script src="js/plantilla-bootstrap.js" defer></script>
+    <script src="js/traducciones.js" defer=""></script>
     <script src="js/idioma.js" defer=""></script>
 </head>
-<body>
-    <header class="cabecera">
-        <a class="cabecera__marca" href="index.html">
-            <img class="cabecera__logo" src="img/logo-cenfotec.png" alt="Universidad CENFOTEC">
-        </a>
-        <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
-        <span class="cabecera__institucion">Universidad CENFOTEC</span>
-    <form id="formulario-idioma" class="selector-idioma">
-    <label for="idioma" data-i18n="idioma">Idioma</label>
-    <select id="idioma" name="idioma">
-        <option value="es" lang="es">Español</option>
-        <option value="en" lang="en">English</option>
-    </select>
-    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
-    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
-</form></header>
+<body class="con-bootstrap">
+    <header class="navbar navbar-expand-md cabecera" data-raiz="./"></header>
 
     <main class="contenedor presentacion">
         <section class="presentacion__contenido">
@@ -33,7 +22,7 @@
             <p class="presentacion__descripcion" data-i18n="organiceLaInformacionAcademicaYCompleteCadaRegistroA">
                 Organice la información académica y complete cada registro a su ritmo.
             </p>
-            <a class="boton boton--principal" href="pages/login.html" data-i18n="ingresarAlSistema">Ingresar al sistema</a>
+            <a class="btn btn-primary boton boton--principal" href="pages/login.html" data-i18n="ingresarAlSistema">Ingresar al sistema</a>
         </section>
 
         <section class="presentacion__esquema" aria-label="Funciones del sistema" data-i18n-aria-label="funcionesDelSistema">

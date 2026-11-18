@@ -4,28 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="iniciarSesion">Iniciar sesión</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css"
+          integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/plantilla-bootstrap.js" defer></script>
     <script src="../js/traducciones.js" defer=""></script>
     <script src="../js/idioma.js" defer=""></script>
     <script src="../js/almacenamiento.js" defer=""></script>
     <script src="../js/login.js" defer=""></script>
 </head>
-<body>
-    <header class="cabecera">
-        <a class="cabecera__marca" href="../index.html">
-            <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
-        </a>
-        <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
-        <span class="cabecera__institucion">Universidad CENFOTEC</span>
-    <form id="formulario-idioma" class="selector-idioma">
-    <label for="idioma" data-i18n="idioma">Idioma</label>
-    <select id="idioma" name="idioma">
-        <option value="es" lang="es">Español</option>
-        <option value="en" lang="en">English</option>
-    </select>
-    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
-    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
-</form></header>
+<body class="con-bootstrap">
+    <header class="navbar navbar-expand-md cabecera" data-raiz="../"></header>
 
     <main class="contenedor">
         <div class="acceso">
@@ -58,19 +47,19 @@
 
                 <form id="formulario-login" class="formulario" novalidate="">
                     <div class="formulario__campo">
-                        <label class="formulario__etiqueta" for="correo" data-i18n="correoInstitucional">Correo institucional *</label>
-                        <input class="formulario__control" id="correo" name="correo" type="email" autocomplete="username" aria-describedby="correo-mensaje" required="">
-                        <p id="correo-mensaje" class="formulario__mensaje" aria-live="polite"></p>
+                        <label class="form-label formulario__etiqueta" for="correo" data-i18n="correoInstitucional">Correo institucional *</label>
+                        <input class="form-control formulario__control" id="correo" name="correo" type="email" autocomplete="username" aria-describedby="correo-mensaje" required="">
+                        <p id="correo-mensaje" class="invalid-feedback formulario__mensaje" aria-live="polite"></p>
                     </div>
 
                     <div class="formulario__campo">
-                        <label class="formulario__etiqueta" for="contrasena" data-i18n="contrasena">Contraseña *</label>
-                        <input class="formulario__control" id="contrasena" name="contrasena" type="password" autocomplete="current-password" aria-describedby="contrasena-mensaje" required="">
-                        <p id="contrasena-mensaje" class="formulario__mensaje" aria-live="polite"></p>
+                        <label class="form-label formulario__etiqueta" for="contrasena" data-i18n="contrasena">Contraseña *</label>
+                        <input class="form-control formulario__control" id="contrasena" name="contrasena" type="password" autocomplete="current-password" aria-describedby="contrasena-mensaje" required="">
+                        <p id="contrasena-mensaje" class="invalid-feedback formulario__mensaje" aria-live="polite"></p>
                     </div>
 
-                    <p id="mensaje-login" class="aviso aviso--error" role="alert" hidden=""></p>
-                    <button class="boton boton--principal boton--completo" type="submit" data-i18n="ingresar">Ingresar</button>
+                    <p id="mensaje-login" class="alert alert-danger aviso aviso--error" role="alert" hidden=""></p>
+                    <button class="btn btn-primary boton boton--principal boton--completo" type="submit" data-i18n="ingresar">Ingresar</button>
                 </form>
 
                 <a class="acceso__enlaces" href="recuperar-contrasena.html" data-i18n="olvidoSuContrasena">
