@@ -646,4 +646,9 @@ SGC.Traducciones = {
     useDe8A15CaracteresConMayusculaMinuscula: ["Use de 8 a 15 caracteres con mayúscula, minúscula y número.","Use 8 to 15 characters with an uppercase letter, a lowercase letter and a number."],
     ingreseElNombreDelAreaSEFI: ["Ingrese el nombre del área S.E.F.I.A.","Enter the S.E.F.I.A area name."],
     esteNombreYaEstaRegistrado: ["Este nombre ya está registrado.","This name is already registered."],
+
+    // Estado de las cuentas de usuario (HU-I2-02)
+    estadoUsuarioAyuda: ["Una cuenta inactiva no puede iniciar sesión.", "An inactive account cannot sign in."],
+    seleccioneUnEstadoValido: ["Seleccione un estado válido.", "Select a valid status."],
+    noPuedeDesactivarSuPropiaCuenta: ["No puede desactivar su propia cuenta.", "You cannot deactivate your own account."],
 };
