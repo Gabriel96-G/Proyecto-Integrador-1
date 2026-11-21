@@ -52,7 +52,9 @@ formularioLogin.addEventListener("submit", function (evento) {
     // Limpia los errores del intento anterior.
     SGC.Idioma.texto(errorCorreo, "");
     SGC.Idioma.texto(errorContrasena, "");
+    campoCorreo.classList.remove("is-invalid");
     campoCorreo.removeAttribute("aria-invalid");
+    campoContrasena.classList.remove("is-invalid");
     campoContrasena.removeAttribute("aria-invalid");
     mensajeLogin.hidden = true;
 
@@ -67,9 +69,11 @@ formularioLogin.addEventListener("submit", function (evento) {
     }
 
     if (errorCorreo.textContent !== "") {
+        campoCorreo.classList.add("is-invalid");
         campoCorreo.setAttribute("aria-invalid", "true");
     }
     if (errorContrasena.textContent !== "") {
+        campoContrasena.classList.add("is-invalid");
         campoContrasena.setAttribute("aria-invalid", "true");
     }
     if (errorCorreo.textContent !== "" || errorContrasena.textContent !== "") {

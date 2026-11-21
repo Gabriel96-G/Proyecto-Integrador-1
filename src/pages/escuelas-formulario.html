@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="registrarEscuela">Registrar escuela</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css"
+          integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/plantilla-bootstrap.js" defer></script>
     <script src="../js/traducciones.js" defer=""></script>
     <script src="../js/idioma.js" defer=""></script>
     <script src="../js/almacenamiento.js" defer=""></script>
@@ -13,52 +16,12 @@
     <script src="../js/sesion.js" defer=""></script>
 </head>
 
-<body>
+<body class="con-bootstrap">
     <div class="aplicacion">
 
-        <header class="cabecera">
-            <a class="cabecera__marca" href="inicio.html">
-                <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
-            </a>
+        <header class="navbar navbar-expand-md cabecera" data-raiz="../"></header>
 
-            <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
-
-        <form id="formulario-idioma" class="selector-idioma">
-    <label for="idioma" data-i18n="idioma">Idioma</label>
-    <select id="idioma" name="idioma">
-        <option value="es" lang="es">Español</option>
-        <option value="en" lang="en">English</option>
-    </select>
-    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
-    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
-</form></header>
-
-        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
-            <ul class="navegacion__lista">
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
-                        <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="cursos.html">
-                        <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
-                </li>
-            </ul>
-
-            <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
-        </nav>
+        <nav class="navbar-expand-md navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal" data-seccion="catalogos"></nav>
 
         <main class="contenido">
             <p id="ruta-escuela" class="ruta" data-i18n="catalogosEscuelasNuevoRegistro">Catálogos / Escuelas / Nuevo registro</p>
@@ -72,42 +35,42 @@
                     <p data-i18n="codigoNombreYDirectorAsociado">Código, nombre y director asociado.</p>
                 </div>
 
-                <form id="formulario-escuela" class="formulario formulario__seccion" novalidate="">
-                    <div class="formulario__rejilla formulario__rejilla--codigo">
+                <form id="formulario-escuela" class="container-fluid formulario formulario__seccion" novalidate="">
+                    <div class="row gx-4 gy-3">
 
-                        <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="codigo"> <span data-i18n="codigo">Código</span> <span class="formulario__obligatorio">*</span>
+                        <div class="col-12 col-md-4 formulario__campo">
+                            <label class="form-label formulario__etiqueta" for="codigo"> <span data-i18n="codigo">Código</span> <span class="formulario__obligatorio">*</span>
                             </label>
-                            <input class="formulario__control" id="codigo" name="codigo" type="text" aria-describedby="codigo-ayuda codigo-mensaje" required="">
+                            <input class="form-control formulario__control" id="codigo" name="codigo" type="text" aria-describedby="codigo-ayuda codigo-mensaje" required="">
                             <p id="codigo-ayuda" class="formulario__ayuda" data-i18n="elCodigoDebeSerUnico">El código debe ser único.</p>
-                            <p id="codigo-mensaje" class="formulario__mensaje"></p>
+                            <p id="codigo-mensaje" class="invalid-feedback formulario__mensaje"></p>
                         </div>
 
-                        <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="nombre"> <span data-i18n="nombreEtiqueta">Nombre</span> <span class="formulario__obligatorio">*</span>
+                        <div class="col-12 col-md-8 formulario__campo">
+                            <label class="form-label formulario__etiqueta" for="nombre"> <span data-i18n="nombreEtiqueta">Nombre</span> <span class="formulario__obligatorio">*</span>
                             </label>
-                            <input class="formulario__control" id="nombre" name="nombre" type="text" aria-describedby="nombre-mensaje" required="">
-                            <p id="nombre-mensaje" class="formulario__mensaje"></p>
+                            <input class="form-control formulario__control" id="nombre" name="nombre" type="text" aria-describedby="nombre-mensaje" required="">
+                            <p id="nombre-mensaje" class="invalid-feedback formulario__mensaje"></p>
                         </div>
 
-                        <div class="formulario__campo formulario__campo--completo">
-                            <label class="formulario__etiqueta" for="director-asociado"> <span data-i18n="directorAsociado">Director asociado</span> <span class="formulario__obligatorio">*</span>
+                        <div class="col-12 formulario__campo">
+                            <label class="form-label formulario__etiqueta" for="director-asociado"> <span data-i18n="directorAsociado">Director asociado</span> <span class="formulario__obligatorio">*</span>
                             </label>
-                            <select class="formulario__control" id="director-asociado" name="directorAsociado" aria-describedby="director-mensaje" required="">
+                            <select class="form-select formulario__control" id="director-asociado" name="directorAsociado" aria-describedby="director-mensaje" required="">
                                 <option value="" data-i18n="seleccionarDirector">Seleccionar director</option>
                                 <option value="Director de prueba" data-i18n="directorDePrueba">Director de prueba</option>
                             </select>
-                            <p id="director-mensaje" class="formulario__mensaje"></p>
+                            <p id="director-mensaje" class="invalid-feedback formulario__mensaje"></p>
                         </div>
 
                     </div>
 
                     <p class="formulario__nota" data-i18n="campoObligatorio">* Campo obligatorio</p>
-                    <div id="mensaje-resultado" class="aviso" role="status" hidden=""></div>
+                    <div id="mensaje-resultado" class="alert aviso" role="status" hidden=""></div>
 
                     <div class="formulario__acciones">
-                        <button id="guardar-escuela" class="boton boton--principal" type="submit" data-i18n="guardarRegistro">Guardar registro</button>
-                        <a class="boton boton--secundario" href="escuelas-listado.html" data-i18n="cancelar">Cancelar</a>
+                        <button id="guardar-escuela" class="btn btn-primary boton boton--principal" type="submit" data-i18n="guardarRegistro">Guardar registro</button>
+                        <a class="btn btn-outline-secondary boton boton--secundario" href="escuelas-listado.html" data-i18n="cancelar">Cancelar</a>
                     </div>
                 </form>
 
@@ -115,5 +78,6 @@
         </main>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous" defer></script>
 </body></html>

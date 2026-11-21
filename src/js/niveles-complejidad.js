@@ -35,23 +35,27 @@ function crearNivelesIniciales() {
 
 // Muestra un error debajo de un campo.
 function mostrarError(campo, lugarMensaje, texto) {
-    campo.classList.add("error");
+    campo.classList.add("is-invalid");
+    campo.setAttribute("aria-invalid", "true");
     SGC.Idioma.texto(lugarMensaje, texto);
 }
 
 // Muestra el mensaje general del formulario.
 function mostrarAviso(texto, tipo) {
     SGC.Idioma.texto(mensajeResultado, texto);
-    mensajeResultado.className = "aviso aviso--" + tipo;
+    mensajeResultado.className = tipo === "error"
+        ? "alert alert-danger aviso aviso--error"
+        : "alert alert-success aviso aviso--confirmacion";
     mensajeResultado.hidden = false;
 }
 
 // Borra los errores anteriores.
 function limpiarMensajes() {
     if (botonGuardar.disabled) return;
-    campoCodigo.classList.remove("error");
-    campoNombre.classList.remove("error");
-    campoDescripcion.classList.remove("error");
+    formulario.querySelectorAll(".is-invalid").forEach(campo => {
+        campo.classList.remove("is-invalid");
+        campo.removeAttribute("aria-invalid");
+    });
 
     SGC.Idioma.texto(mensajeCodigo, "");
     SGC.Idioma.texto(mensajeNombre, "");
@@ -155,6 +159,7 @@ formulario.addEventListener("submit", function (evento) {
 
         if (hayErrores) {
             mostrarAviso("Revise los campos señalados.", "error");
+            formulario.querySelector(".is-invalid").focus();
             return;
         }
 
