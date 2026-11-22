@@ -1,21 +1,11 @@
-// Muestra el panel únicamente cuando hay una sesión de administrador.
-try {
-    const sesion = JSON.parse(sessionStorage.getItem("usuarioActual"));
-    const usuarios = SGC.Datos.leer("usuarios");
-    const usuario = usuarios.find(function (registro) {
-        return sesion && sesion.rol === "administrador" &&
-            String(registro.correo).trim().toLowerCase() === sesion.correo &&
-            registro.rol === "administrador" &&
-            (!registro.estado || registro.estado === "activo");
-    });
-
-    if (!usuario) {
-        sessionStorage.removeItem("usuarioActual");
-        window.location.replace("login.html");
-    } else {
-        document.getElementById("nombre-usuario").textContent = usuario.nombre;
-        document.getElementById("panel-inicio").hidden = false;
-    }
-} catch (error) {
-    window.location.replace("login.html");
-}
+// Un solo panel: la sesión determina qué módulos aparecen.
+(() => {
+    const usuario = SGC.Sesion.comprobar();
+    if (!usuario) return;
+    document.getElementById("nombre-usuario").textContent = usuario.nombre;
+    SGC.Idioma.rol(document.getElementById("rol-usuario"), usuario.rol);
+    const soloReportes = ["rectoria", "vicerrectoria"].includes(usuario.rol);
+    document.getElementById("aviso-reportes").hidden = !soloReportes;
+    document.getElementById("elegir-modulo").hidden = soloReportes;
+    document.getElementById("panel-inicio").hidden = false;
+})();
