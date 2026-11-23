@@ -45,6 +45,7 @@ try {
 
 formularioLogin.addEventListener("submit", function (evento) {
     evento.preventDefault();
+    sessionStorage.removeItem("usuarioActual");
 
     const correo = campoCorreo.value.trim().toLowerCase();
     const contrasena = campoContrasena.value;
@@ -88,7 +89,7 @@ formularioLogin.addEventListener("submit", function (evento) {
         const usuario = usuarios.find(function (registro) {
             return String(registro.correo).trim().toLowerCase() === correo &&
                 registro.contrasena === contrasena &&
-                registro.rol === "administrador" &&
+                registro.id && SGC.Sesion.roles.includes(registro.rol) &&
                 (!registro.estado || registro.estado === "activo");
         });
 

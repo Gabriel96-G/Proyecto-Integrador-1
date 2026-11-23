@@ -3,6 +3,8 @@ window.SGC = window.SGC || {};
 // Orden de los textos: [español, inglés].
 SGC.Traducciones = {
 
+    accesoInterno: ["Acceso de usuarios internos","Internal user access"],
+    reportesPendientes: ["Los reportes de su perfil todavía no están disponibles.","Reports for your role are not available yet."],
     codigoFiltroEjemplo: ["Ej. 101", "E.g. 101"],
     nombreFiltroEjemplo: ["Escriba un nombre", "Enter a name"],
     identificacionFiltroEjemplo: ["Escriba una identificación", "Enter an ID"],
