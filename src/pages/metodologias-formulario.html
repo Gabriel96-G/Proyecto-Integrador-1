@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="registrarMetodologiaDeAprendizaje">Registrar metodología de aprendizaje</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css"
+        integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/plantilla-bootstrap.js" defer></script>
     <script src="../js/traducciones.js" defer=""></script>
     <script src="../js/idioma.js" defer=""></script>
     <script src="../js/mensaje-exito.js" defer=""></script>
@@ -12,58 +16,15 @@
     <script src="../js/sesion.js" defer=""></script>
 </head>
 
-<body>
+<body class="con-bootstrap">
     <div class="aplicacion">
 
-        <!-- Cabecera institucional -->
-        <header class="cabecera">
-            <a class="cabecera__marca" href="inicio.html">
-                <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
-            </a>
+        <!-- Cabecera institucional Bootstrap -->
+        <header class="navbar navbar-expand-md cabecera" data-raiz="../"></header>
 
-            <span class="cabecera__nombre" data-i18n="gestionCurricular">
-                Gestión curricular
-            </span>
-
-        <form id="formulario-idioma" class="selector-idioma">
-    <label for="idioma" data-i18n="idioma">Idioma</label>
-    <select id="idioma" name="idioma">
-        <option value="es" lang="es">Español</option>
-        <option value="en" lang="en">English</option>
-    </select>
-    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
-    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
-</form></header>
-
-        <!-- Menú lateral -->
-        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
-            <ul class="navegacion__lista">
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
-                        <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="cursos.html">
-                        <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
-                </li>
-
-            </ul>
-
-            <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
-        </nav>
+        <!-- Menú de navegación Bootstrap -->
+        <nav class="navbar-expand-md navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal"
+            data-seccion="catalogos"></nav>
 
         <!-- Contenido del formulario -->
         <main class="contenido">
@@ -72,7 +33,8 @@
                 Catálogos / Metodologías de aprendizaje / Nuevo registro
             </p>
 
-            <h1 id="titulo-metodologia" data-i18n="registrarMetodologiaDeAprendizaje">Registrar metodología de aprendizaje</h1>
+            <h1 id="titulo-metodologia" data-i18n="registrarMetodologiaDeAprendizaje">Registrar metodología de
+                aprendizaje</h1>
 
             <section class="catalogo-formulario">
 
@@ -89,36 +51,47 @@
                 </div>
 
                 <!-- Formulario HU-38 -->
-                <form id="formulario-metodologia" class="formulario formulario__seccion" novalidate="">
+                <form id="formulario-metodologia" class="container-fluid formulario formulario__seccion" novalidate="">
 
-                    <div class="formulario__rejilla formulario__rejilla--codigo">
+                    <div class="row gx-4 gy-3">
 
                         <!-- Código -->
-                        <div class="formulario__campo">
-                            <label for="codigo" class="formulario__etiqueta"> <span data-i18n="codigo">Código</span> <span class="formulario__obligatorio">*</span>
+                        <div class="col-12 col-md-4 formulario__campo">
+
+                            <label for="codigo" class="form-label formulario__etiqueta">
+                                <span data-i18n="codigo">Código</span>
+                                <span class="formulario__obligatorio">*</span>
                             </label>
 
-                            <input type="number" id="codigo" name="codigo" class="formulario__control" step="1" required="" aria-describedby="error-codigo">
+
+                            <input type="number" id="codigo" name="codigo" class="form-control formulario__control"
+                                step="1" required="" aria-describedby="error-codigo">
 
                             <p id="error-codigo" class="formulario__mensaje" aria-live="polite"></p>
                         </div>
 
                         <!-- Nombre -->
-                        <div class="formulario__campo">
-                            <label for="nombre" class="formulario__etiqueta"> <span data-i18n="nombreEtiqueta">Nombre</span> <span class="formulario__obligatorio">*</span>
+                        <div class="col-12 col-md-8 formulario__campo">
+                            <label for="nombre" class="form-label formulario__etiqueta"> <span
+                                    data-i18n="nombreEtiqueta">Nombre</span> <span
+                                    class="formulario__obligatorio">*</span>
                             </label>
 
-                            <input type="text" id="nombre" name="nombre" class="formulario__control" required="" aria-describedby="error-nombre">
+                            <input type="text" id="nombre" name="nombre" class="form-control formulario__control"
+                                required="" aria-describedby="error-nombre">
 
                             <p id="error-nombre" class="formulario__mensaje" aria-live="polite"></p>
                         </div>
 
                         <!-- Descripción -->
-                        <div class="formulario__campo formulario__campo--completo">
-                            <label for="descripcion" class="formulario__etiqueta"> <span data-i18n="descripcion">Descripción</span> <span class="formulario__obligatorio">*</span>
+                        <div class="col-12 formulario__campo">
+                            <label for="descripcion" class="form-label formulario__etiqueta"> <span
+                                    data-i18n="descripcion">Descripción</span> <span
+                                    class="formulario__obligatorio">*</span>
                             </label>
 
-                            <textarea id="descripcion" name="descripcion" class="formulario__control" rows="5" required="" aria-describedby="error-descripcion"></textarea>
+                            <textarea id="descripcion" name="descripcion" class="form-control formulario__control"
+                                rows="5" required="" aria-describedby="error-descripcion"></textarea>
 
                             <p id="error-descripcion" class="formulario__mensaje" aria-live="polite"></p>
                         </div>
@@ -129,14 +102,15 @@
                         * Campo obligatorio
                     </p>
 
-                    <p id="mensaje-resultado" class="aviso" role="status" aria-live="polite" hidden=""></p>
+                    <p id="mensaje-resultado" class="alert aviso" role="status" aria-live="polite" hidden=""></p>
 
                     <div class="formulario__acciones">
-                        <button type="submit" id="boton-guardar-metodologia" class="boton boton--principal" data-i18n="guardarMetodologia">
+                        <button type="submit" id="boton-guardar-metodologia" class="btn btn-primary boton boton--principal"
+                            data-i18n="guardarMetodologia">
                             Guardar metodología
                         </button>
 
-                        <a href="metodologias-listado.html" class="boton boton--secundario" data-i18n="cancelar">
+                        <a href="metodologias-listado.html" class="btn btn-outline-secondary boton boton--secundario" data-i18n="cancelar">
                             Cancelar
                         </a>
                     </div>
@@ -147,5 +121,11 @@
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"
+        defer></script>
 
-</body></html>
+
+</body>
+
+</html>

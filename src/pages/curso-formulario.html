@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title data-i18n="registrarCursoSgc">Registrar curso | SGC</title>
 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css"
+        integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../css/estilos.css">
 
+    <script src="../js/plantilla-bootstrap.js" defer></script>
     <script src="../js/traducciones.js" defer=""></script>
     <script src="../js/idioma.js" defer=""></script>
     <script src="../js/almacenamiento.js" defer=""></script>
@@ -17,64 +23,23 @@
     <script src="../js/sesion.js" defer=""></script>
 </head>
 
-<body class="pagina-sgc">
+
+<body class="pagina-sgc con-bootstrap">
+
     <a class="salto-contenido" href="#contenido" data-i18n="saltarAlContenido">
         Saltar al contenido
     </a>
 
     <div class="aplicacion" id="panel-formulario" hidden="">
 
-        <!-- Encabezado institucional -->
-        <header class="cabecera">
-            <a class="cabecera__marca" href="inicio.html">
-                <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
-            </a>
 
-            <span class="cabecera__nombre" data-i18n="gestionCurricular">
-                Gestión curricular
-            </span>
+        <!-- Cabecera institucional Bootstrap -->
+        <header class="navbar navbar-expand-md cabecera" data-raiz="../"></header>
 
-        <form id="formulario-idioma" class="selector-idioma">
-    <label for="idioma" data-i18n="idioma">Idioma</label>
-    <select id="idioma" name="idioma">
-        <option value="es" lang="es">Español</option>
-        <option value="en" lang="en">English</option>
-    </select>
-    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
-    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
-</form></header>
+        <!-- Menú institucional Bootstrap -->
+        <nav class="navbar-expand-md navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal"
+            data-seccion="cursos"></nav>
 
-        <!-- Navegación principal -->
-        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
-            <details class="navegacion__desplegable" open="">
-                <summary class="navegacion__alternar" data-i18n="menu">Menú</summary>
-
-                <ul class="navegacion__lista">
-                    <li class="navegacion__item">
-                        <a class="navegacion__enlace" href="inicio.html">
-                            <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
-                    </li>
-
-                    <li class="navegacion__item">
-                        <a class="navegacion__enlace" href="usuarios.html">
-                            <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
-                    </li>
-
-                    <li class="navegacion__item">
-                        <a class="navegacion__enlace" href="catalogos.html">
-                            <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
-                    </li>
-
-                    <li class="navegacion__item">
-                        <a class="navegacion__enlace" href="cursos.html" aria-current="page">
-                            <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
-                    </li>
-                </ul>
-            </details>
-
-            <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
-        </nav>
 
         <!-- Contenido principal -->
         <main class="contenido" id="contenido">
@@ -109,40 +74,46 @@
                             1. Identificación del curso
                         </h2>
 
-                        <div class="formulario__rejilla">
+                        <div class="row g-3">
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="escuela" data-i18n="escuela">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="escuela" data-i18n="escuela">
                                     Escuela *
                                 </label>
 
-                                <select class="formulario__control" id="escuela" name="escuela" aria-describedby="escuela-mensaje" required="">
+                                <select class="formulario__control form-select" id="escuela" name="escuela"
+                                    aria-describedby="escuela-mensaje" required="">
                                     <option value="" data-i18n="seleccioneUnaEscuela">
                                         Seleccione una escuela
                                     </option>
                                 </select>
 
-                                <p class="formulario__mensaje" id="escuela-mensaje" data-error-for="escuela" aria-live="polite"></p>
+                                <p class="formulario__mensaje" id="escuela-mensaje" data-error-for="escuela"
+                                    aria-live="polite"></p>
                             </div>
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="codigo" data-i18n="codigoDelCurso">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="codigo" data-i18n="codigoDelCurso">
                                     Código del curso *
                                 </label>
 
-                                <input class="formulario__control" type="text" id="codigo" name="codigo" aria-describedby="codigo-mensaje" required="">
+                                <input class="formulario__control form-control" type="text" id="codigo" name="codigo"
+                                    aria-describedby="codigo-mensaje" required="">
 
-                                <p class="formulario__mensaje" id="codigo-mensaje" data-error-for="codigo" aria-live="polite"></p>
+                                <p class="formulario__mensaje" id="codigo-mensaje" data-error-for="codigo"
+                                    aria-live="polite"></p>
                             </div>
 
-                            <div class="formulario__campo formulario__campo--completo">
-                                <label class="formulario__etiqueta" for="nombre" data-i18n="nombreDelCurso">
+                            <div class="formulario__campo formulario__campo--completo col-12">
+                                <label class="formulario__etiqueta form-label" for="nombre" data-i18n="nombreDelCurso">
                                     Nombre del curso *
                                 </label>
 
-                                <input class="formulario__control" type="text" id="nombre" name="nombre" aria-describedby="nombre-mensaje" required="">
+                                <input class="formulario__control form-control" type="text" id="nombre" name="nombre"
+                                    aria-describedby="nombre-mensaje" required="">
 
-                                <p class="formulario__mensaje" id="nombre-mensaje" data-error-for="nombre" aria-live="polite"></p>
+                                <p class="formulario__mensaje" id="nombre-mensaje" data-error-for="nombre"
+                                    aria-live="polite"></p>
                             </div>
 
                         </div>
@@ -154,66 +125,68 @@
                             2. Clasificación del curso
                         </h2>
 
-                        <div class="formulario__rejilla">
+                        <div class="row g-3">
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="estado" data-i18n="estadoDelCurso">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="estado" data-i18n="estadoDelCurso">
                                     Estado del curso
                                 </label>
 
-                                <select class="formulario__control" id="estado" name="estado">
+                                <select class="formulario__control form-select" id="estado" name="estado">
                                     <option value="" data-i18n="seleccioneUnEstado">Seleccione un estado</option>
                                 </select>
                             </div>
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="areaSefia" data-i18n="areaSEFIA">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="areaSefia" data-i18n="areaSEFIA">
                                     Área S.E.F.I.A
                                 </label>
 
-                                <select class="formulario__control" id="areaSefia" name="areaSefia">
+                                <select class="formulario__control form-select" id="areaSefia" name="areaSefia">
                                     <option value="" data-i18n="seleccioneUnArea">Seleccione un área</option>
                                 </select>
                             </div>
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="tematica" data-i18n="tematica">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="tematica" data-i18n="tematica">
                                     Temática
                                 </label>
 
-                                <select class="formulario__control" id="tematica" name="tematica">
+                                <select class="formulario__control form-select" id="tematica" name="tematica">
                                     <option value="" data-i18n="seleccioneUnaTematica">Seleccione una temática</option>
                                 </select>
                             </div>
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="metodologia" data-i18n="metodologiaDeAprendizaje">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="metodologia"
+                                    data-i18n="metodologiaDeAprendizaje">
                                     Metodología de aprendizaje
                                 </label>
 
-                                <select class="formulario__control" id="metodologia" name="metodologia">
+                                <select class="formulario__control form-select" id="metodologia" name="metodologia">
                                     <option value="" data-i18n="seleccioneUnaMetodologia">
                                         Seleccione una metodología
                                     </option>
                                 </select>
                             </div>
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="nivelComplejidad" data-i18n="nivelDeComplejidad">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="nivelComplejidad"
+                                    data-i18n="nivelDeComplejidad">
                                     Nivel de complejidad
                                 </label>
 
-                                <select class="formulario__control" id="nivelComplejidad" name="nivelComplejidad">
+                                <select class="formulario__control form-select" id="nivelComplejidad" name="nivelComplejidad">
                                     <option value="" data-i18n="seleccioneUnNivel">Seleccione un nivel</option>
                                 </select>
                             </div>
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="modalidad" data-i18n="modalidad">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="modalidad" data-i18n="modalidad">
                                     Modalidad
                                 </label>
 
-                                <select class="formulario__control" id="modalidad" name="modalidad">
+                                <select class="formulario__control form-select" id="modalidad" name="modalidad">
                                     <option value="" data-i18n="seleccioneUnaModalidad">
                                         Seleccione una modalidad
                                     </option>
@@ -229,40 +202,46 @@
                             3. Carga académica
                         </h2>
 
-                        <div class="formulario__rejilla">
+                        <div class="row g-3">
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="creditos" data-i18n="creditos">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="creditos" data-i18n="creditos">
                                     Créditos
                                 </label>
 
-                                <input class="formulario__control" type="number" id="creditos" name="creditos" min="0" step="any">
+                                <input class="formulario__control form-control" type="number" id="creditos" name="creditos" min="0"
+                                    step="any">
 
-                                <p class="formulario__mensaje" id="creditos-mensaje" data-error-for="creditos" aria-live="polite"></p>
+                                <p class="formulario__mensaje" id="creditos-mensaje" data-error-for="creditos"
+                                    aria-live="polite"></p>
                             </div>
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="horasClase" data-i18n="horasDeClase">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="horasClase" data-i18n="horasDeClase">
                                     Horas de clase
                                 </label>
 
-                                <input class="formulario__control" type="number" id="horasClase" name="horasClase" min="0" step="any">
+                                <input class="formulario__control form-control" type="number" id="horasClase" name="horasClase"
+                                    min="0" step="any">
 
-                                <p class="formulario__mensaje" id="horasClase-mensaje" data-error-for="horasClase" aria-live="polite"></p>
+                                <p class="formulario__mensaje" id="horasClase-mensaje" data-error-for="horasClase"
+                                    aria-live="polite"></p>
                             </div>
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="horasExtraclase" data-i18n="horasExtraclase">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="horasExtraclase" data-i18n="horasExtraclase">
                                     Horas extraclase
                                 </label>
 
-                                <input class="formulario__control" type="number" id="horasExtraclase" name="horasExtraclase" min="0" step="any">
+                                <input class="formulario__control form-control" type="number" id="horasExtraclase"
+                                    name="horasExtraclase" min="0" step="any">
 
-                                <p class="formulario__mensaje" id="horasExtraclase-mensaje" data-error-for="horasExtraclase" aria-live="polite"></p>
+                                <p class="formulario__mensaje" id="horasExtraclase-mensaje"
+                                    data-error-for="horasExtraclase" aria-live="polite"></p>
                             </div>
 
-                            <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="totalHoras" data-i18n="totalDeHoras">
+                            <div class="formulario__campo col-12 col-md-6">
+                                <label class="formulario__etiqueta form-label" for="totalHoras" data-i18n="totalDeHoras">
                                     Total de horas
                                 </label>
 
@@ -281,15 +260,18 @@
                         </h2>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="nombrePowerCampus" data-i18n="nombreEnPowerCampus">
+                            <label class="formulario__etiqueta form-label" for="nombrePowerCampus" data-i18n="nombreEnPowerCampus">
                                 Nombre en Power Campus
                             </label>
 
-                            <input class="formulario__control" type="text" id="nombrePowerCampus" name="nombrePowerCampus" maxlength="40" aria-describedby="nombrePowerCampus-mensaje">
+                            <input class="formulario__control form-control" type="text" id="nombrePowerCampus"
+                                name="nombrePowerCampus" maxlength="40" aria-describedby="nombrePowerCampus-mensaje">
 
-                            <p class="formulario__mensaje" id="nombrePowerCampus-mensaje" data-error-for="nombrePowerCampus" aria-live="polite"></p>
+                            <p class="formulario__mensaje" id="nombrePowerCampus-mensaje"
+                                data-error-for="nombrePowerCampus" aria-live="polite"></p>
 
-                            <p> <span data-i18n="caracteres">Caracteres:</span> <output id="cantidadCaracteres" for="nombrePowerCampus">0</output>
+                            <p> <span data-i18n="caracteres">Caracteres:</span> <output id="cantidadCaracteres"
+                                    for="nombrePowerCampus">0</output>
                                 / 40
                             </p>
                         </div>
@@ -302,87 +284,101 @@
                         </h2>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="descripcionCorta" data-i18n="descripcionCorta">
+                            <label class="formulario__etiqueta form-label" for="descripcionCorta" data-i18n="descripcionCorta">
                                 Descripción corta
                             </label>
 
-                            <textarea class="formulario__control" id="descripcionCorta" name="descripcionCorta" rows="3" maxlength="250" aria-describedby="descripcionCorta-mensaje"></textarea>
+                            <textarea class="formulario__control form-control" id="descripcionCorta" name="descripcionCorta" rows="3"
+                                maxlength="250" aria-describedby="descripcionCorta-mensaje"></textarea>
 
-                            <p class="formulario__mensaje" id="descripcionCorta-mensaje" data-error-for="descripcionCorta" aria-live="polite"></p>
+                            <p class="formulario__mensaje" id="descripcionCorta-mensaje"
+                                data-error-for="descripcionCorta" aria-live="polite"></p>
                         </div>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="metadescripcion" data-i18n="metadescripcion">
+                            <label class="formulario__etiqueta form-label" for="metadescripcion" data-i18n="metadescripcion">
                                 Metadescripción
                             </label>
 
-                            <textarea class="formulario__control" id="metadescripcion" name="metadescripcion" rows="3" maxlength="155" aria-describedby="metadescripcion-mensaje"></textarea>
+                            <textarea class="formulario__control form-control" id="metadescripcion" name="metadescripcion" rows="3"
+                                maxlength="155" aria-describedby="metadescripcion-mensaje"></textarea>
 
-                            <p class="formulario__mensaje" id="metadescripcion-mensaje" data-error-for="metadescripcion" aria-live="polite"></p>
+                            <p class="formulario__mensaje" id="metadescripcion-mensaje" data-error-for="metadescripcion"
+                                aria-live="polite"></p>
                         </div>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="descripcionLarga" data-i18n="descripcionLarga">
+                            <label class="formulario__etiqueta form-label" for="descripcionLarga" data-i18n="descripcionLarga">
                                 Descripción larga
                             </label>
 
-                            <textarea class="formulario__control" id="descripcionLarga" name="descripcionLarga" rows="5"></textarea>
+                            <textarea class="formulario__control form-control" id="descripcionLarga" name="descripcionLarga"
+                                rows="5"></textarea>
                         </div>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="competencia" data-i18n="competencia">
+                            <label class="formulario__etiqueta form-label" for="competencia" data-i18n="competencia">
                                 Competencia
                             </label>
 
-                            <textarea class="formulario__control" id="competencia" name="competencia" rows="4"></textarea>
+                            <textarea class="formulario__control form-control" id="competencia" name="competencia"
+                                rows="4"></textarea>
                         </div>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="capacidadesEspecificas" data-i18n="capacidadesEspecificas">
+                            <label class="formulario__etiqueta form-label" for="capacidadesEspecificas"
+                                data-i18n="capacidadesEspecificas">
                                 Capacidades específicas
                             </label>
 
-                            <textarea class="formulario__control" id="capacidadesEspecificas" name="capacidadesEspecificas" rows="4"></textarea>
+                            <textarea class="formulario__control form-control" id="capacidadesEspecificas"
+                                name="capacidadesEspecificas" rows="4"></textarea>
                         </div>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="requisitosIndispensables" data-i18n="requisitosIndispensables">
+                            <label class="formulario__etiqueta form-label" for="requisitosIndispensables"
+                                data-i18n="requisitosIndispensables">
                                 Requisitos indispensables
                             </label>
 
-                            <textarea class="formulario__control" id="requisitosIndispensables" name="requisitosIndispensables" rows="3"></textarea>
+                            <textarea class="formulario__control form-control" id="requisitosIndispensables"
+                                name="requisitosIndispensables" rows="3"></textarea>
                         </div>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="requisitosDeseables" data-i18n="requisitosDeseables">
+                            <label class="formulario__etiqueta form-label" for="requisitosDeseables"
+                                data-i18n="requisitosDeseables">
                                 Requisitos deseables
                             </label>
 
-                            <textarea class="formulario__control" id="requisitosDeseables" name="requisitosDeseables" rows="3"></textarea>
+                            <textarea class="formulario__control form-control" id="requisitosDeseables" name="requisitosDeseables"
+                                rows="3"></textarea>
                         </div>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="perfilIngreso" data-i18n="perfilDeIngreso">
+                            <label class="formulario__etiqueta form-label" for="perfilIngreso" data-i18n="perfilDeIngreso">
                                 Perfil de ingreso
                             </label>
 
-                            <textarea class="formulario__control" id="perfilIngreso" name="perfilIngreso" rows="3"></textarea>
+                            <textarea class="formulario__control form-control" id="perfilIngreso" name="perfilIngreso"
+                                rows="3"></textarea>
                         </div>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="perfilSalida" data-i18n="perfilDeSalida">
+                            <label class="formulario__etiqueta form-label" for="perfilSalida" data-i18n="perfilDeSalida">
                                 Perfil de salida
                             </label>
 
-                            <textarea class="formulario__control" id="perfilSalida" name="perfilSalida" rows="3"></textarea>
+                            <textarea class="formulario__control form-control" id="perfilSalida" name="perfilSalida"
+                                rows="3"></textarea>
                         </div>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="palabrasClave" data-i18n="palabrasClave">
+                            <label class="formulario__etiqueta form-label" for="palabrasClave" data-i18n="palabrasClave">
                                 Palabras clave
                             </label>
 
-                            <input class="formulario__control" type="text" id="palabrasClave" name="palabrasClave">
+                            <input class="formulario__control form-control" type="text" id="palabrasClave" name="palabrasClave">
                         </div>
                     </section>
 
@@ -395,11 +391,11 @@
                         <div class="formulario__rejilla">
 
                             <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="ecommerce" data-i18n="disponibleEnECommerce">
+                                <label class="formulario__etiqueta form-label" for="ecommerce" data-i18n="disponibleEnECommerce">
                                     Disponible en e-commerce
                                 </label>
 
-                                <select class="formulario__control" id="ecommerce" name="ecommerce">
+                                <select class="formulario__control form-select" id="ecommerce" name="ecommerce">
                                     <option value="" data-i18n="seleccioneUnaOpcion">Seleccione una opción</option>
                                     <option value="si" data-i18n="si">Sí</option>
                                     <option value="no" data-i18n="no">No</option>
@@ -407,19 +403,22 @@
                             </div>
 
                             <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="periodoEcommerce" data-i18n="periodoDeECommerce">
+                                <label class="formulario__etiqueta form-label" for="periodoEcommerce"
+                                    data-i18n="periodoDeECommerce">
                                     Período de e-commerce
                                 </label>
 
-                                <input class="formulario__control" type="text" id="periodoEcommerce" name="periodoEcommerce">
+                                <input class="formulario__control form-control" type="text" id="periodoEcommerce"
+                                    name="periodoEcommerce">
                             </div>
 
                             <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="pertenecePrograma" data-i18n="perteneceAUnPrograma">
+                                <label class="formulario__etiqueta form-label" for="pertenecePrograma"
+                                    data-i18n="perteneceAUnPrograma">
                                     Pertenece a un programa
                                 </label>
 
-                                <select class="formulario__control" id="pertenecePrograma" name="pertenecePrograma">
+                                <select class="formulario__control form-select" id="pertenecePrograma" name="pertenecePrograma">
                                     <option value="" data-i18n="seleccioneUnaOpcion">Seleccione una opción</option>
                                     <option value="si" data-i18n="si">Sí</option>
                                     <option value="no" data-i18n="no">No</option>
@@ -427,19 +426,20 @@
                             </div>
 
                             <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="nombrePrograma" data-i18n="nombreDelPrograma">
+                                <label class="formulario__etiqueta form-label" for="nombrePrograma" data-i18n="nombreDelPrograma">
                                     Nombre del programa
                                 </label>
 
-                                <input class="formulario__control" type="text" id="nombrePrograma" name="nombrePrograma">
+                                <input class="formulario__control form-control" type="text" id="nombrePrograma"
+                                    name="nombrePrograma">
                             </div>
 
                             <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="moneda" data-i18n="moneda">
+                                <label class="formulario__etiqueta form-label" for="moneda" data-i18n="moneda">
                                     Moneda
                                 </label>
 
-                                <select class="formulario__control" id="moneda" name="moneda">
+                                <select class="formulario__control form-select" id="moneda" name="moneda">
                                     <option value="" data-i18n="seleccioneUnaMoneda">
                                         Seleccione una moneda
                                     </option>
@@ -458,11 +458,12 @@
                         <div class="formulario__rejilla">
 
                             <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="casaCertificadora" data-i18n="casaCertificadora">
+                                <label class="formulario__etiqueta form-label" for="casaCertificadora"
+                                    data-i18n="casaCertificadora">
                                     Casa certificadora
                                 </label>
 
-                                <select class="formulario__control" id="casaCertificadora" name="casaCertificadora">
+                                <select class="formulario__control form-select" id="casaCertificadora" name="casaCertificadora">
                                     <option value="" data-i18n="seleccioneUnaCasaCertificadora">
                                         Seleccione una casa certificadora
                                     </option>
@@ -470,11 +471,13 @@
                             </div>
 
                             <div class="formulario__campo">
-                                <label class="formulario__etiqueta" for="nombreCertificacion" data-i18n="nombreDeLaCertificacion">
+                                <label class="formulario__etiqueta form-label" for="nombreCertificacion"
+                                    data-i18n="nombreDeLaCertificacion">
                                     Nombre de la certificación
                                 </label>
 
-                                <input class="formulario__control" type="text" id="nombreCertificacion" name="nombreCertificacion">
+                                <input class="formulario__control form-control" type="text" id="nombreCertificacion"
+                                    name="nombreCertificacion">
                             </div>
 
                         </div>
@@ -487,19 +490,21 @@
                         </h2>
 
                         <div class="formulario__campo">
-                            <label class="formulario__etiqueta" for="metadata">
+                            <label class="formulario__etiqueta form-label" for="metadata">
                                 Metadata
                             </label>
 
-                            <textarea class="formulario__control" id="metadata" name="metadata" rows="4"></textarea>
+                            <textarea class="formulario__control form-control" id="metadata" name="metadata" rows="4"></textarea>
                         </div>
 
-                        <p> <span data-i18n="ultimaModificacionDelCurso">Última modificación del curso:</span> <time id="fechaModificacion" data-i18n="aunSinRegistrar">
+                        <p> <span data-i18n="ultimaModificacionDelCurso">Última modificación del curso:</span> <time
+                                id="fechaModificacion" data-i18n="aunSinRegistrar">
                                 Aún sin registrar
                             </time>
                         </p>
 
-                        <p> <span data-i18n="ultimaModificacionDeMetadata">Última modificación de metadata:</span> <time id="fechaModificacionMetadata" data-i18n="aunSinRegistrar">
+                        <p> <span data-i18n="ultimaModificacionDeMetadata">Última modificación de metadata:</span> <time
+                                id="fechaModificacionMetadata" data-i18n="aunSinRegistrar">
                                 Aún sin registrar
                             </time>
                         </p>
@@ -512,15 +517,16 @@
 
 
                     <div class="formulario__acciones">
-                        <button class="boton boton--principal" type="submit" id="guardar" data-i18n="guardarCurso">
+                        <button class="btn btn-primary boton boton--principal" type="submit" id="guardar" data-i18n="guardarCurso">
                             Guardar curso
                         </button>
 
-                        <button class="boton boton--secundario" type="button" id="guardar-borrador" data-i18n="guardarComoBorrador">
+                        <button class="btn btn-outline-secondary boton boton--secundario" type="button" id="guardar-borrador"
+                            data-i18n="guardarComoBorrador">
                             Guardar como borrador
                         </button>
 
-                        <a class="boton boton--secundario" href="cursos.html" data-i18n="cancelar">
+                        <a class="btn btn-outline-secondary boton boton--secundario" href="cursos.html" data-i18n="cancelar">
                             Cancelar
                         </a>
                     </div>
@@ -538,6 +544,9 @@
         </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"
+        defer></script>
+</body>
 
-
-</body></html>
+</html>

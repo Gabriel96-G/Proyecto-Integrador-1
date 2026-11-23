@@ -653,3 +653,22 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
   .con-bootstrap .tabla th:nth-child(2) { width: 24%; }
   .con-bootstrap .tabla th:last-child { width: 4em; }
 }
+
+/* SGCS-166: tabla de metodologías adaptable a móviles */
+.con-bootstrap #tabla-metodologias {
+    min-width: 650px;
+}
+
+
+/* SGCS-166: tabla de casas certificadoras adaptable a móviles */
+@media (max-width: 767.98px) {
+    .con-bootstrap #tabla-casas-certificadoras {
+        min-width: 560px;
+        table-layout: auto;
+    }
+}
+
+/* El listado de cursos conserva sus seis columnas en el contenedor desplazable. */
+@media (max-width: 767.98px) {
+  .con-bootstrap #listado-cursos { min-width: 960px; table-layout: auto; }
+}
