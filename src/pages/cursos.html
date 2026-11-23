@@ -60,21 +60,21 @@
                 <p class="formulario__ayuda" id="ayuda-filtros" data-i18n="ayudaFiltrosCombinados">Puede usar uno o varios filtros. Se mostrarán los registros que coincidan con todos los campos completados.</p>
                 <p class="formulario__ayuda" id="contador-cursos" role="status"></p>
                 <div class="table-responsive tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
-                    <table id="listado-cursos" class="table table-striped table-hover tabla tabla--catalogo tabla--amplia" hidden>
-                        <thead><tr>
-                            <th scope="col" data-i18n="codigo">Código</th>
-                            <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
-                            <th scope="col" data-i18n="escuelaEtiqueta">Escuela</th>
-                            <th scope="col" data-i18n="estado">Estado</th>
-                            <th scope="col" data-i18n="ultimaModificacion">Última modificación</th>
-                            <th scope="col" data-i18n="acciones">Acciones</th>
+                    <table id="listado-cursos" role="table" aria-labelledby="titulo-listado" class="table table-striped table-hover tabla tabla--catalogo tabla--amplia" hidden>
+                        <thead role="rowgroup"><tr role="row">
+                            <th role="columnheader" scope="col" data-i18n="codigo">Código</th>
+                            <th role="columnheader" scope="col" data-i18n="nombreEtiqueta">Nombre</th>
+                            <th role="columnheader" scope="col" data-i18n="escuelaEtiqueta">Escuela</th>
+                            <th role="columnheader" scope="col" data-i18n="estado">Estado</th>
+                            <th role="columnheader" scope="col" data-i18n="ultimaModificacion">Última modificación</th>
+                            <th role="columnheader" scope="col" data-i18n="acciones">Acciones</th>
                         </tr></thead>
-                        <tbody id="tabla-cursos"></tbody>
+                        <tbody id="tabla-cursos" role="rowgroup"></tbody>
                     </table>
                     <p class="estado-vacio" id="vacio-cursos" role="status" hidden></p>
                 </div>
             </section>
-            <p class="aviso" id="aviso-cursos" role="alert" hidden></p>
+            <p class="alert alert-danger aviso aviso--error" id="aviso-cursos" role="alert" hidden></p>
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
