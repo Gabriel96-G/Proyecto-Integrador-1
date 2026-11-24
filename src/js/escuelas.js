@@ -59,15 +59,14 @@ function agregarDirector(nombre) {
     }
 }
 
+function nombresDirectoresActivos() {
+    return SGC.Datos.leer("usuarios")
+        .filter(u => u.rol === "director" && (!u.estado || u.estado === "activo"))
+        .map(u => [u.nombre, u.primerApellido, u.segundoApellido].filter(Boolean).join(" "));
+}
+
 try {
-    // Usa los directores activos registrados en el módulo de usuarios.
-    const usuarios = SGC.Datos.leer("usuarios");
-    usuarios.forEach(function (usuario) {
-        if (usuario.rol === "director" && (!usuario.estado || usuario.estado === "activo")) {
-            agregarDirector([usuario.nombre, usuario.primerApellido, usuario.segundoApellido]
-                .filter(Boolean).join(" "));
-        }
-    });
+    nombresDirectoresActivos().forEach(agregarDirector);
 
     if (modificando) {
         SGC.Idioma.texto(document.querySelector('title'), "Modificar escuela");
@@ -82,8 +81,6 @@ try {
         if (escuela) {
             campoCodigo.value = escuela.codigo;
             campoNombre.value = escuela.nombre;
-            // Conserva también los directores guardados por la versión anterior.
-            agregarDirector(escuela.directorAsociado);
             campoDirector.value = escuela.directorAsociado || "";
         } else {
             mostrarAviso("No se encontró la escuela. Vuelva al listado.", "error");
@@ -126,6 +123,10 @@ formulario.addEventListener("submit", function (evento) {
     }
 
     try {
+        if (director && !nombresDirectoresActivos().includes(director)) {
+            mostrarError(campoDirector, mensajeDirector, "Seleccione un director activo.");
+            hayErrores = true;
+        }
         // Vuelve a leer los datos para conservar los demás registros.
         const escuelas = SGC.Datos.leer("escuelas");
         const indice = modificando ? escuelas.findIndex(function (escuela) {

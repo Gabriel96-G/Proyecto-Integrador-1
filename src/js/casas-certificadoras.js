@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Muestra un aviso general de error o confirmación.
   function mostrarAviso(texto, tipo) {
     SGC.Idioma.texto(mensajeResultado, texto);
-    mensajeResultado.className = "aviso aviso--" + tipo;
+    mensajeResultado.className = "alert aviso aviso--" + tipo + (tipo === "error" ? " alert-danger" : " alert-success");
     mensajeResultado.hidden = false;
   }
 
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
     SGC.Idioma.texto(mensajeNombre, "");
 
     SGC.Idioma.texto(mensajeResultado, "");
-    mensajeResultado.className = "aviso";
+    mensajeResultado.className = "alert aviso";
     mensajeResultado.hidden = true;
   }
 

@@ -6,7 +6,10 @@
 
     <title data-i18n="gestionDeCursosSgc">Gestión de cursos | SGC</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css"
+        integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/plantilla-bootstrap.js" defer></script>
 
     <script src="../js/traducciones.js" defer=""></script>
     <script src="../js/idioma.js" defer=""></script>
@@ -17,52 +20,12 @@
     <script src="../js/sesion.js" defer=""></script>
 </head>
 
-<body>
+<body class="con-bootstrap">
     <a class="salto-contenido" href="#contenido" data-i18n="saltarAlContenido">Saltar al contenido</a>
     <div class="aplicacion" id="panel-cursos" hidden>
-        <header class="cabecera">
-            <a class="cabecera__marca" href="inicio.html">
-                <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
-            </a>
-
-            <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
-
-        <form id="formulario-idioma" class="selector-idioma">
-    <label for="idioma" data-i18n="idioma">Idioma</label>
-    <select id="idioma" name="idioma">
-        <option value="es" lang="es">Español</option>
-        <option value="en" lang="en">English</option>
-    </select>
-    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
-    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
-</form></header>
-
-        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
-            <ul class="navegacion__lista">
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="catalogos.html">
-                        <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="cursos.html" aria-current="page">
-                        <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
-                </li>
-            </ul>
-
-            <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
-        </nav>
+        <header class="navbar navbar-expand-md cabecera" data-raiz="../"></header>
+        <nav class="navbar-expand-md navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal"
+            data-seccion="cursos"></nav>
 
         <main class="contenido" id="contenido">
             <p class="ruta" data-i18n="inicioCursos">Inicio / Cursos</p>
@@ -72,47 +35,50 @@
                     <h1 data-i18n="cursos">Cursos</h1>
                     <p data-i18n="consulteYAdministreLosCursosRegistradosEnElSistema">Consulte y administre los cursos registrados en el sistema.</p>
                 </div>
-                <a class="boton boton--principal" href="curso-formulario.html" id="nuevo-curso" data-i18n="registrarCurso">Registrar curso</a>
+                <a class="btn btn-primary boton boton--principal" href="curso-formulario.html" id="nuevo-curso" data-i18n="registrarCurso">Registrar curso</a>
             </section>
             <section class="listado" aria-labelledby="titulo-listado">
                 <h2 id="titulo-listado" data-i18n="listadoDeCursos">Listado de cursos</h2>
                 <div class="listado__herramientas listado__herramientas--filtros" role="group" aria-labelledby="ayuda-filtros">
                     <div class="busqueda">
-                        <label class="busqueda__etiqueta" for="buscar-curso" data-i18n="buscarPorCodigoONombre">Buscar por código o nombre</label>
-                        <input class="busqueda__control" id="buscar-curso" name="busqueda" type="search" placeholder="Buscar curso..." autocomplete="off" aria-controls="listado-cursos" data-i18n-placeholder="buscarCurso">
+                        <label class="form-label busqueda__etiqueta" for="buscar-curso" data-i18n="buscarPorCodigoONombre">Buscar por código o nombre</label>
+                        <input class="form-control busqueda__control" id="buscar-curso" name="busqueda" type="search" placeholder="Buscar curso..." autocomplete="off" aria-controls="listado-cursos" data-i18n-placeholder="buscarCurso">
                     </div>
                     <div class="busqueda">
-                        <label class="busqueda__etiqueta" for="filtro-area-sefia" data-i18n="areaSEFIA">Área S.E.F.I.A</label>
-                        <select class="busqueda__control" id="filtro-area-sefia" name="areaSefia" aria-controls="listado-cursos">
+                        <label class="form-label busqueda__etiqueta" for="filtro-area-sefia" data-i18n="areaSEFIA">Área S.E.F.I.A</label>
+                        <select class="form-select busqueda__control" id="filtro-area-sefia" name="areaSefia" aria-controls="listado-cursos">
                             <option value="" data-i18n="todasLasAreasFiltro">Todas las áreas</option>
                         </select>
                     </div>
                     <div class="busqueda">
-                        <label class="busqueda__etiqueta" for="filtro-tematica" data-i18n="tematica">Temática</label>
-                        <select class="busqueda__control" id="filtro-tematica" name="tematica" aria-controls="listado-cursos">
+                        <label class="form-label busqueda__etiqueta" for="filtro-tematica" data-i18n="tematica">Temática</label>
+                        <select class="form-select busqueda__control" id="filtro-tematica" name="tematica" aria-controls="listado-cursos">
                             <option value="" data-i18n="todasLasTematicasFiltro">Todas las temáticas</option>
                         </select>
                     </div>
                 </div>
                 <p class="formulario__ayuda" id="ayuda-filtros" data-i18n="ayudaFiltrosCombinados">Puede usar uno o varios filtros. Se mostrarán los registros que coincidan con todos los campos completados.</p>
                 <p class="formulario__ayuda" id="contador-cursos" role="status"></p>
-                <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
-                    <table id="listado-cursos" class="tabla tabla--catalogo tabla--amplia" hidden>
-                        <thead><tr>
-                            <th scope="col" data-i18n="codigo">Código</th>
-                            <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
-                            <th scope="col" data-i18n="escuelaEtiqueta">Escuela</th>
-                            <th scope="col" data-i18n="estado">Estado</th>
-                            <th scope="col" data-i18n="ultimaModificacion">Última modificación</th>
-                            <th scope="col" data-i18n="acciones">Acciones</th>
+                <div class="table-responsive tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
+                    <table id="listado-cursos" role="table" aria-labelledby="titulo-listado" class="table table-striped table-hover tabla tabla--catalogo tabla--amplia" hidden>
+                        <thead role="rowgroup"><tr role="row">
+                            <th role="columnheader" scope="col" data-i18n="codigo">Código</th>
+                            <th role="columnheader" scope="col" data-i18n="nombreEtiqueta">Nombre</th>
+                            <th role="columnheader" scope="col" data-i18n="escuelaEtiqueta">Escuela</th>
+                            <th role="columnheader" scope="col" data-i18n="estado">Estado</th>
+                            <th role="columnheader" scope="col" data-i18n="ultimaModificacion">Última modificación</th>
+                            <th role="columnheader" scope="col" data-i18n="acciones">Acciones</th>
                         </tr></thead>
-                        <tbody id="tabla-cursos"></tbody>
+                        <tbody id="tabla-cursos" role="rowgroup"></tbody>
                     </table>
                     <p class="estado-vacio" id="vacio-cursos" role="status" hidden></p>
                 </div>
             </section>
-            <p class="aviso" id="aviso-cursos" role="alert" hidden></p>
+            <p class="alert alert-danger aviso aviso--error" id="aviso-cursos" role="alert" hidden></p>
         </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"
+        defer></script>
 </body>
 </html>

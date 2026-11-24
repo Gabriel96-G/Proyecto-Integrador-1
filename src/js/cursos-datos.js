@@ -5,7 +5,9 @@ SGC.CursosDatos = (() => {
 
   const ROLES_PERMITIDOS = [
     "administrador",
+    "desarrollo",
     "encargado de desarrollo curricular",
+    "director",
     "director de escuela",
   ];
 
@@ -65,16 +67,26 @@ SGC.CursosDatos = (() => {
 
     const usuario = obtenerUsuarioActual();
 
+    const escuelas = escuelasDelDirector(usuario);
     return registros.filter(
       (curso) =>
-        curso.estadoElaboracion !== "borrador" ||
-        String(curso.propietarioId) === String(usuario.id),
+        (!escuelas || escuelas.some(e => String(e.id || e.codigo) === String(curso.escuela))) &&
+        (curso.estadoElaboracion !== "borrador" || String(curso.propietarioId) === String(usuario.id)),
     );
   }
 
+  // Escuelas guarda el nombre completo del director. Si hay homónimos no se concede acceso.
+  function escuelasDelDirector(usuario) {
+    if (!["director", "director de escuela"].includes(usuario.rol)) return null;
+    const nombre = u => SGC.Datos.normalizar([u.nombre, u.primerApellido, u.segundoApellido].filter(Boolean).join(" "));
+    const completo = nombre(usuario);
+    if (!completo || SGC.Datos.leer("usuarios").filter(u =>
+        ["director", "director de escuela"].includes(u.rol) && nombre(u) === completo).length !== 1) return [];
+    return SGC.Datos.leer("escuelas").filter(e => SGC.Datos.normalizar(e.directorAsociado) === completo);
+  }
+
   function leerEscuelas() {
-    obtenerUsuarioActual();
-    return SGC.Datos.leer("escuelas");
+    return escuelasDelDirector(obtenerUsuarioActual()) || SGC.Datos.leer("escuelas");
   }
 
   function obtenerPorId(id) {
@@ -100,7 +112,10 @@ SGC.CursosDatos = (() => {
     const usuario = obtenerUsuarioActual();
 
     // Validar los datos almacenados antes de guardar.
-    leer();
+    const visibles = leer();
+    if (entrada.id && !visibles.some(c => c.id === entrada.id)) {
+      throw new Error("El curso no está disponible para esta cuenta.");
+    }
 
     // Trabajar con todos los registros para no perder borradores ajenos.
     const registros = JSON.parse(localStorage.getItem(CLAVE) || "[]");

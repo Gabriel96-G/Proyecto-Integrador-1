@@ -3,6 +3,8 @@ window.SGC = window.SGC || {};
 // Orden de los textos: [español, inglés].
 SGC.Traducciones = {
 
+    accesoInterno: ["Acceso de usuarios internos","Internal user access"],
+    reportesPendientes: ["Los reportes de su perfil todavía no están disponibles.","Reports for your role are not available yet."],
     codigoFiltroEjemplo: ["Ej. 101", "E.g. 101"],
     nombreFiltroEjemplo: ["Escriba un nombre", "Enter a name"],
     identificacionFiltroEjemplo: ["Escriba una identificación", "Enter an ID"],
@@ -170,6 +172,17 @@ SGC.Traducciones = {
     registrosCantidad: ["{cantidad} registros","{cantidad} records"],
     edadCantidad: ["{cantidad} años","{cantidad} years old"],
     sinUsuarios: ["Todavía no hay usuarios registrados.","There are no registered users yet."],
+    sinCarrerasAsociadas: ["Sin carreras asociadas","No associated degree programs"],
+    eliminarEscuelaBoton: ["Eliminar","Delete"],
+    confirmarEliminarEscuela: ["¿Eliminar esta escuela?","Delete this school?"],
+    bloqueoEscuelaCarreras: ["No se puede eliminar la escuela porque tiene carreras asociadas.","This school cannot be deleted because it has associated degree programs."],
+    bloqueoEscuelaCursos: ["No se puede eliminar la escuela porque tiene cursos asociados.","This school cannot be deleted because it has associated courses."],
+    escuelaEliminada: ["Se eliminó la escuela.","The school was deleted."],
+    escuelaNoDisponible: ["La escuela ya no está disponible.","The school is no longer available."],
+    falloDatosEscuela: ["No se pudieron verificar los registros. No se eliminó ninguna escuela.","The records could not be verified. No school was deleted."],
+    falloListadoEscuelas: ["No se pudo cargar el listado de escuelas.","The school list could not be loaded."],
+    soloAdminEliminarEscuela: ["Solo un administrador activo puede eliminar escuelas.","Only an active administrator can delete schools."],
+    seleccioneDirectorActivo: ["Seleccione un director activo.","Select an active director."],
     sinCarreras: ["Todavía no hay carreras registradas.","There are no registered degree programs yet."],
     editarAreaNombre: ["Editar área {nombre}","Edit area {nombre}"],
     editarCarreraNombre: ["Editar carrera {nombre}","Edit degree program {nombre}"],

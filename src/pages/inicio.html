@@ -11,8 +11,8 @@
     <script src="../js/traducciones.js" defer=""></script>
     <script src="../js/idioma.js" defer=""></script>
     <script src="../js/almacenamiento.js" defer=""></script>
-    <script src="../js/inicio.js" defer=""></script>
-    <script src="../js/sesion.js" defer=""></script>
+    <script src="../js/sesion.js" defer></script>
+    <script src="../js/inicio.js" defer></script>
 </head>
 <body class="con-bootstrap">
     <div id="panel-inicio" class="aplicacion" hidden="">
@@ -30,7 +30,9 @@
             <section class="bienvenida">
                 <div>
                     <h2 data-i18n="gestioneLaInformacionCurricular">Gestione la información curricular</h2>
-                    <p> <span data-i18n="bienvenido">Bienvenido,</span> <span id="nombre-usuario"></span> <span data-i18n="elijaUnModuloParaComenzar">. Elija un módulo para comenzar.</span> </p>
+                    <p> <span data-i18n="bienvenido">Bienvenido,</span> <span id="nombre-usuario"></span> <span id="elegir-modulo" data-i18n="elijaUnModuloParaComenzar">. Elija un módulo para comenzar.</span> </p>
+                    <p><span data-i18n="rol">Rol</span>: <strong id="rol-usuario"></strong></p>
+                    <p id="aviso-reportes" data-i18n="reportesPendientes" hidden>Los reportes de su perfil todavía no están disponibles.</p>
                 </div>
             </section>
 
