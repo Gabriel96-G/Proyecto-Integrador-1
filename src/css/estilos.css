@@ -653,3 +653,38 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
   .con-bootstrap .tabla th:nth-child(2) { width: 24%; }
   .con-bootstrap .tabla th:last-child { width: 4em; }
 }
+
+/* Mantiene visibles las seis columnas de cursos en fichas de dos columnas. */
+@media (max-width: 767.98px) {
+  #listado-cursos,
+  #listado-cursos tbody { display: block; }
+
+  #listado-cursos thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  #listado-cursos tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 16px;
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--color-separador);
+  }
+
+  #listado-cursos td {
+    padding: 0;
+    border: 0;
+  }
+
+  #listado-cursos .tabla__nombre { overflow-wrap: anywhere; }
+
+  #listado-cursos .tabla__etiqueta {
+    display: block;
+    color: var(--color-texto-secundario);
+    font-weight: 700;
+  }
+}

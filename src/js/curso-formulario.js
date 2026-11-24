@@ -27,7 +27,8 @@
 
   function mostrarAviso(mensaje, tipo = "confirmacion") {
     SGC.Idioma.texto(aviso, mensaje);
-    aviso.className = `aviso aviso--${tipo}`;
+    const variante = tipo === "confirmacion" ? "success" : "warning";
+    aviso.className = `alert alert-${variante} aviso aviso--${tipo}`;
     aviso.hidden = false;
   }
 

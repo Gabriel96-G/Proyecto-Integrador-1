@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Muestra los avisos con el mismo estilo que casas certificadoras.
   function mostrarAviso(texto, tipo) {
     SGC.Idioma.texto(mensajeResultado, texto);
-    mensajeResultado.className = "aviso aviso--" + tipo;
+    mensajeResultado.className = "alert aviso aviso--" + tipo + (tipo === "error" ? " alert-danger" : " alert-success");
     mensajeResultado.hidden = false;
   }
 
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     SGC.Idioma.texto(errorNombre, "");
     SGC.Idioma.texto(errorDescripcion, "");
     SGC.Idioma.texto(mensajeResultado, "");
-    mensajeResultado.className = "aviso";
+    mensajeResultado.className = "alert aviso";
     mensajeResultado.hidden = true;
   }
 

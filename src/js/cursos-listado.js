@@ -6,6 +6,7 @@
   const aviso = document.getElementById("aviso-cursos");
   const buscar = document.getElementById("buscar-curso");
   const listado = document.getElementById("listado-cursos");
+  const encabezados = Array.from(listado.tHead.rows[0].cells);
   const vacio = document.getElementById("vacio-cursos");
   const filtroArea = document.getElementById("filtro-area-sefia");
   const filtroTematica = document.getElementById("filtro-tematica");
@@ -40,10 +41,20 @@
   }
 
   function crearCelda(fila, contenido) {
-    const celda = document.createElement("td");
-    celda.textContent = String(contenido ?? "");
-    fila.appendChild(celda);
-    return celda;
+    const encabezado = encabezados[fila.cells.length];
+    const celda = fila.insertCell();
+    celda.setAttribute("role", "cell");
+
+    const etiqueta = document.createElement("span");
+    etiqueta.className = "tabla__etiqueta d-md-none";
+    etiqueta.setAttribute("aria-hidden", "true");
+    etiqueta.dataset.i18n = encabezado.dataset.i18n;
+    etiqueta.textContent = SGC.Idioma.t(encabezado.dataset.i18n);
+
+    const valor = document.createElement("div");
+    valor.textContent = String(contenido ?? "");
+    celda.append(etiqueta, valor);
+    return valor;
   }
 
   function nombreEscuela(referencia, escuelas) {
@@ -97,6 +108,7 @@
 
     cursos.forEach((curso) => {
       const fila = document.createElement("tr");
+      fila.setAttribute("role", "row");
 
       crearCelda(fila, curso.codigo);
 
@@ -122,7 +134,7 @@
         SGC.Idioma.texto(fecha, mostrarFecha(curso.actualizado));
       } else SGC.Idioma.fecha(fecha, curso.actualizado, { dateStyle: 'short', timeStyle: 'short' });
 
-      const acciones = document.createElement("td");
+      const acciones = crearCelda(fila);
       const id = encodeURIComponent(curso.id);
 
       const consultar = crearEnlace("Consultar", `curso-detalle.html?id=${id}`);
@@ -137,7 +149,6 @@
       enlaces.append(consultar, editar);
       acciones.append(enlaces);
 
-      fila.appendChild(acciones);
       tabla.appendChild(fila);
     });
   }
