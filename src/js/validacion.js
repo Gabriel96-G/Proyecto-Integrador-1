@@ -48,6 +48,7 @@ SGC.Validacion = (() => {
         else if (!roles.includes(entrada.rol)) {
             errores.rol = 'Seleccione un rol válido.';
         }
+        if (!['activo', 'inactivo'].includes(entrada.estado)) errores.estado = 'Seleccione un estado válido.';
         if ((!entrada.id || clave) && !claveValida(clave)) {
             errores.clave = 'Use de 8 a 15 caracteres con mayúscula, minúscula y número.';
         }

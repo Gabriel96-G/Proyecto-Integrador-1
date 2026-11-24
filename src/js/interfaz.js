@@ -13,7 +13,10 @@ SGC.UI = (() => {
     function aviso(texto, tipo = 'error') {
         const nodo = document.getElementById('aviso');
         SGC.Idioma.texto(nodo, texto);
-        nodo.className = 'aviso aviso--' + tipo;
+        // En las pantallas migradas el aviso usa las alertas de Bootstrap.
+        const alerta = { error: 'danger', advertencia: 'warning', confirmacion: 'success' }[tipo] || 'info';
+        nodo.className = (document.body.classList.contains('con-bootstrap') ? 'alert alert-' + alerta + ' ' : '') +
+            'aviso aviso--' + tipo;
         nodo.setAttribute('role', tipo === 'error' ? 'alert' : 'status');
         nodo.hidden = false;
     }
@@ -45,6 +48,7 @@ SGC.UI = (() => {
             const texto = campos[mensaje.dataset.errorFor];
             SGC.Idioma.texto(mensaje, texto || '');
             control.classList.toggle('error', Boolean(texto));
+            control.classList.toggle('is-invalid', Boolean(texto));
             control.classList.toggle('valido', !texto && Boolean(control.value));
             if (texto) control.setAttribute('aria-invalid', 'true');
             else control.removeAttribute('aria-invalid');
@@ -63,7 +67,8 @@ SGC.UI = (() => {
     }
 
     function limpiar(formulario) {
-        formulario.querySelectorAll('.error, .valido').forEach(c => c.classList.remove('error', 'valido'));
+        formulario.querySelectorAll('.error, .valido, .is-invalid')
+            .forEach(c => c.classList.remove('error', 'valido', 'is-invalid'));
         formulario.querySelectorAll('[aria-invalid]').forEach(c => c.removeAttribute('aria-invalid'));
         formulario.querySelectorAll('[data-error-for]').forEach(m => { SGC.Idioma.texto(m, ''); });
     }

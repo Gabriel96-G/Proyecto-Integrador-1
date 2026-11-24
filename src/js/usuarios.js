@@ -3,6 +3,7 @@
     const formulario = document.getElementById('usuario-form');
     if (!formulario) {
         const buscar = document.getElementById('buscar');
+        const etiquetas = ['Identificación', 'Nombre', 'Correo institucional', 'Rol', 'Estado', 'Acción'];
 
         function listar() {
             const tabla = document.getElementById('tabla-usuarios');
@@ -44,6 +45,9 @@
                     else SGC.Idioma.texto(accion, 'Sin identificador');
                     fila.append(elemento('td', '', usuario.identificacion || '—'), celda,
                         elemento('td', '', usuario.correo), rol, elemento('td', '', estado, true), accion);
+                    // En móvil cada fila se muestra como tarjeta con el nombre de cada dato.
+                    [...fila.children].forEach((dato, indice) =>
+                        SGC.Idioma.atributo(dato, 'data-label', etiquetas[indice]));
                     cuerpo.append(fila);
                 });
                 estadoListado(registros.length, filtrados.length, 'usuarios');
@@ -122,6 +126,8 @@
             actual = registros.find(u => u.id === id);
             if (!actual) throw new Error('No se encontró el usuario solicitado. Vuelva al listado.');
             nombres.forEach(nombre => { control(nombre).value = actual[nombre] || ''; });
+            // Las cuentas creadas antes de agregar el estado se consideran activas.
+            control('estado').value = actual.estado === 'inactivo' ? 'inactivo' : 'activo';
             imagen = /^data:image\/(png|jpeg|webp);base64,/.test(actual.imagen || '') ? actual.imagen : '';
             SGC.Idioma.texto(document.querySelector('title'), 'Modificar usuario | SGC');
             SGC.Idioma.texto(document.getElementById('titulo'), 'Modificar usuario');
@@ -171,7 +177,7 @@
             imagen = resultado;
             mostrarImagen();
             SGC.Idioma.texto(document.getElementById('imagen-mensaje'), '');
-            control('imagen').classList.remove('error');
+            control('imagen').classList.remove('error', 'is-invalid');
             control('imagen').removeAttribute('aria-invalid');
         } catch (error) {
             if (turno === seleccion) { imagenError = error.message; errores(formulario, { imagen: imagenError }); }
@@ -189,9 +195,13 @@
             // Conserva los datos del usuario que no aparecen en el formulario.
             const entrada = { ...actual, ...Object.fromEntries(nombres.map(nombre => [nombre, control(nombre).value.trim()])) };
             if (actual) entrada.id = actual.id;
+            entrada.estado = control('estado').value;
             const clave = control('clave').value;
             const campos = SGC.Validacion.usuario(entrada, SGC.Datos.leer('usuarios'), clave);
             if (actual && !actual.contrasena && !clave) campos.clave = 'Ingrese una contraseña para guardar los cambios.';
+            if (!campos.estado && actual && String(sesion.id) === String(actual.id) && entrada.estado !== 'activo') {
+                campos.estado = 'No puede desactivar su propia cuenta.';
+            }
             if (imagenError) campos.imagen = imagenError;
             if (imagenPendiente) campos.imagen = 'Espere a que termine de cargar la imagen.';
             if (!errores(formulario, campos)) return;
@@ -199,8 +209,6 @@
             SGC.Idioma.texto(guardar, 'Guardando…');
             entrada.contrasena = clave || actual.contrasena;
             entrada.imagen = imagen;
-            // Conserva el estado de las cuentas creadas con la versión anterior.
-            entrada.estado = actual?.estado || 'activo';
             const registro = await SGC.Datos.guardar('usuarios', entrada);
             // Si cambia su propio rol, la sesión también debe reflejarlo.
             if (String(sesion.id) === String(registro.id)) {

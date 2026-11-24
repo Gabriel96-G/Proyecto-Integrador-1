@@ -521,11 +521,11 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
 
 /* Ajustes de las pantallas de usuarios, carreras y áreas SEFIA. */
 .pagina-sgc .cabecera__logo { width: 142px; height: 64px; object-fit: cover; }
-.pagina-sgc .tabla__avatar { object-fit: cover; }
-.pagina-sgc .perfil__datos { display: grid; gap: 4px; }
-.pagina-sgc .perfil__silueta .icono-usuario { width: 56px; height: 56px; }
-.pagina-sgc .catalogo__cabecera > img { width: 44px; height: 44px; }
-.pagina-sgc .tabla-contenedor:focus-visible { outline: 3px solid var(--color-accion); outline-offset: 2px; }
+:is(.pagina-sgc, .con-bootstrap) .tabla__avatar { object-fit: cover; }
+:is(.pagina-sgc, .con-bootstrap) .perfil__datos { display: grid; gap: 4px; }
+:is(.pagina-sgc, .con-bootstrap) .perfil__silueta .icono-usuario { width: 56px; height: 56px; }
+:is(.pagina-sgc, .con-bootstrap) .catalogo__cabecera > img { width: 44px; height: 44px; }
+:is(.pagina-sgc, .con-bootstrap) .tabla-contenedor:focus-visible { outline: 3px solid var(--color-accion); outline-offset: 2px; }
 .pagina-sgc .navegacion__desplegable { min-width: 0; }
 @media (min-width: 768px) {
   .pagina-sgc .navegacion__desplegable > .navegacion__lista { display: flex; }
@@ -534,7 +534,7 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
   .aplicacion .cabecera__marca:has(.cabecera__logo)::after { content: none; }
   .aplicacion .cabecera__logo { display: block; width: 112px; height: 52px; padding: 4px; border-radius: 4px; background: white; }
   .pagina-sgc .navegacion__alternar { color: white; cursor: pointer; }
-  .pagina-sgc .pestanas__boton { flex: 1 1 100%; padding: 8px; }
+  :is(.pagina-sgc, .con-bootstrap) .pestanas__boton { flex: 1 1 100%; padding: 8px; }
 }
 
 /* Mensaje emergente al registrar un catálogo. */
@@ -654,10 +654,56 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
   .con-bootstrap .tabla th:last-child { width: 4em; }
 }
 
+/* HU-I2-18: usuarios, carreras, áreas S.E.F.I.A y temáticas con Bootstrap. */
+.con-bootstrap .listado__filtros { margin-bottom: 0; }
+.con-bootstrap .formulario__control--automatico { background: var(--color-seleccion); }
+.con-bootstrap .perfil__selector { min-height: 44px; }
+.con-bootstrap .estado-vacio { margin: 0; }
+
+/* La tabla de usuarios tiene seis columnas: en móvil cada fila se lee como tarjeta. */
+@media (max-width: 767.98px) {
+  .con-bootstrap .tabla--tarjetas thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .con-bootstrap .tabla--tarjetas,
+  .con-bootstrap .tabla--tarjetas tbody,
+  .con-bootstrap .tabla--tarjetas tr {
+    display: block;
+    width: 100%;
+  }
+
+  .con-bootstrap .tabla--tarjetas tr {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-separador);
+  }
+
+  .con-bootstrap .tabla--tarjetas td {
+    display: grid;
+    grid-template-columns: minmax(6.5em, 38%) minmax(0, 1fr);
+    gap: 8px;
+    padding: 4px 8px;
+    border: 0;
+  }
+
+  .con-bootstrap .tabla--tarjetas td::before {
+    content: attr(data-label);
+    color: var(--color-texto-secundario);
+    font-weight: 700;
+  }
+}
+
 /* Mantiene visibles las seis columnas de cursos en fichas de dos columnas. */
 @media (max-width: 767.98px) {
   #listado-cursos,
-  #listado-cursos tbody { display: block; }
+  #listado-cursos tbody {
+    display: block;
+  }
 
   #listado-cursos thead {
     position: absolute;
@@ -680,7 +726,9 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
     border: 0;
   }
 
-  #listado-cursos .tabla__nombre { overflow-wrap: anywhere; }
+  #listado-cursos .tabla__nombre {
+    overflow-wrap: anywhere;
+  }
 
   #listado-cursos .tabla__etiqueta {
     display: block;

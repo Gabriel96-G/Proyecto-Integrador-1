@@ -1,101 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title data-i18n="tematicasSgc">
-   Temáticas | SGC
-  </title>
-  <link href="../css/estilos.css" rel="stylesheet">
-  <script src="../js/traducciones.js" defer=""></script>
-    <script src="../js/idioma.js" defer=""></script>
-    <script defer="" src="../js/interfaz.js">
-  </script>
-  <script defer="" src="../js/tematicas-listado.js">
-  </script>
-  <script src="../js/sesion.js" defer=""></script>
- <link rel="stylesheet" href="../css/idioma.css"></head>
- <body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="tematicasSgc">Temáticas | SGC</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css"
+          integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <script src="../js/plantilla-bootstrap.js" defer></script>
+    <script src="../js/traducciones.js" defer></script>
+    <script src="../js/idioma.js" defer></script>
+    <script src="../js/interfaz.js" defer></script>
+    <script src="../js/tematicas-listado.js" defer></script>
+    <script src="../js/sesion.js" defer></script>
+</head>
+
+<body class="con-bootstrap">
     <a class="salto-contenido" href="#contenido" data-i18n="saltarAlContenido">Saltar al contenido</a>
     <div class="aplicacion">
-        <header class="cabecera">
-            <a class="cabecera__marca" href="inicio.html">
-                <img class="cabecera__logo" src="../img/logo-cenfotec.png" alt="Universidad CENFOTEC">
-            </a>
 
-            <span class="cabecera__nombre" data-i18n="gestionCurricular">Gestión curricular</span>
+        <header class="navbar navbar-expand-md cabecera" data-raiz="../"></header>
 
-        <form id="formulario-idioma" class="selector-idioma">
-    <label for="idioma" data-i18n="idioma">Idioma</label>
-    <select id="idioma" name="idioma">
-        <option value="es" lang="es">Español</option>
-        <option value="en" lang="en">English</option>
-    </select>
-    <button type="submit" data-i18n="aplicarIdioma">Aplicar</button>
-    <span class="selector-idioma__estado" id="estado-idioma" role="status" aria-live="polite"></span>
-</form></header>
-
-        <nav class="navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal">
-            <ul class="navegacion__lista">
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="inicio.html">
-                        <img class="icono-menu" src="../img/inicio.svg" alt=""> <span data-i18n="inicio">Inicio</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="usuarios.html">
-                        <img class="icono-menu" src="../img/usuarios.svg" alt=""> <span data-i18n="usuarios">Usuarios</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="catalogos.html" aria-current="page">
-                        <img class="icono-menu" src="../img/catalogos.svg" alt=""> <span data-i18n="catalogos">Catálogos</span> </a>
-                </li>
-
-                <li class="navegacion__item">
-                    <a class="navegacion__enlace" href="cursos.html">
-                        <img class="icono-menu" src="../img/cursos.svg" alt=""> <span data-i18n="cursos">Cursos</span> </a>
-                </li>
-            </ul>
-
-            <a class="navegacion__salir" href="login.html">
-                <img class="icono-menu" src="../img/cerrar.svg" alt=""> <span data-i18n="cerrarSesion">Cerrar sesión</span> </a>
-        </nav>
+        <nav class="navbar-expand-md navegacion" aria-label="Menú principal" data-i18n-aria-label="menuPrincipal" data-seccion="catalogos"></nav>
 
         <main class="contenido" id="contenido">
             <p class="ruta" data-i18n="catalogosTematicas">Catálogos / Temáticas</p>
+
             <section class="catalogo__cabecera">
                 <img class="icono" src="../img/catalogos.svg" alt="">
                 <div>
                     <h1 data-i18n="tematicas">Temáticas</h1>
                     <p data-i18n="catalogoInstitucional">Catálogo institucional</p>
                 </div>
-                <a class="boton boton--principal" href="tematicas-formulario.html" data-i18n="registrarTematica">Registrar temática</a>
+                <a class="btn btn-primary boton boton--principal" href="tematicas-formulario.html" data-i18n="registrarTematica">Registrar temática</a>
             </section>
+
             <section class="listado" aria-labelledby="titulo-listado">
                 <h2 id="titulo-listado" data-i18n="tematicasRegistradas">Temáticas registradas</h2>
+
                 <div class="listado__herramientas">
                     <div class="busqueda">
-                        <label class="busqueda__etiqueta" for="buscar" data-i18n="buscarPorCodigoONombre">Buscar por código o nombre</label>
-                        <input class="busqueda__control" id="buscar" name="busqueda" type="search" placeholder="Buscar temática..." autocomplete="off" aria-controls="tabla-tematicas" data-i18n-placeholder="buscarTematica">
+                        <label class="form-label busqueda__etiqueta" for="buscar" data-i18n="buscarPorCodigoONombre">Buscar por código o nombre</label>
+                        <input class="form-control busqueda__control" id="buscar" name="busqueda" type="search" placeholder="Buscar temática..." autocomplete="off" aria-controls="tabla-tematicas" data-i18n-placeholder="buscarTematica">
                     </div>
                 </div>
+
                 <p class="solo-lectores" id="cantidad" role="status"></p>
-                <div class="tabla-contenedor" role="region" aria-label="Listado con desplazamiento horizontal" tabindex="0" data-i18n-aria-label="listadoConDesplazamientoHorizontal">
-                    <table id="tabla-tematicas" class="tabla tabla--catalogo" hidden>
-                        <thead><tr>
-                            <th scope="col" data-i18n="codigo">Código</th>
-                            <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
-                            <th scope="col" data-i18n="descripcion">Descripción</th>
-                            <th scope="col" data-i18n="accion">Acción</th>
-                        </tr></thead>
+
+                <div class="table-responsive tabla-contenedor">
+                    <table id="tabla-tematicas" class="table tabla tabla--catalogo" hidden>
+                        <thead>
+                            <tr>
+                                <th scope="col" data-i18n="codigo">Código</th>
+                                <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
+                                <th scope="col" data-i18n="descripcion">Descripción</th>
+                                <th scope="col" data-i18n="accion">Acción</th>
+                            </tr>
+                        </thead>
                         <tbody id="registros"></tbody>
                     </table>
-                    <p class="estado-vacio" id="vacio" role="status" hidden></p>
+                    <p class="alert estado-vacio" id="vacio" role="status" hidden></p>
                 </div>
             </section>
-            <p class="aviso" id="aviso" role="alert" hidden></p>
+
+            <p class="alert aviso" id="aviso" role="alert" hidden></p>
         </main>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous" defer></script>
 </body>
 </html>
