@@ -90,9 +90,21 @@
     });
   }
 
-  function cargarCatalogos() {
+  function actualizarEscuelas() {
+    const select = campo("escuela");
+    const anterior = select.value;
     cargarOpciones("escuela", SGC.CursosDatos.leerEscuelas());
+    select.value = anterior;
+    if (select.selectedIndex < 0) select.selectedIndex = 0;
 
+    const sinEscuelas = select.options.length <= 1;
+    guardar.disabled = botonBorrador.disabled = sinEscuelas || guardando;
+    const mensaje = "No hay escuelas registradas. Debe registrar una escuela antes de crear cursos.";
+    if (sinEscuelas) mostrarAviso(mensaje, "advertencia");
+    else if (SGC.Idioma.original(aviso) === mensaje) aviso.hidden = true;
+  }
+
+  function cargarCatalogos() {
     Object.entries(catalogos).forEach(([id, claves]) => {
       cargarOpciones(id, leerCatalogo(claves));
     });
@@ -218,6 +230,7 @@
       // Comprueba que existe una sesión autorizada.
       SGC.CursosDatos.leer();
 
+      actualizarEscuelas();
       cargarCatalogos();
 
       if (idCurso !== null) {
@@ -233,13 +246,15 @@
       actualizarTitulo();
       panel.hidden = false;
 
-      if (campo("escuela").options.length <= 1) {
-        guardar.disabled = true;
-        mostrarAviso(
-          "No hay escuelas registradas. Debe registrar una escuela antes de crear cursos.",
-          "advertencia",
-        );
-      }
+      window.addEventListener("storage", (evento) => {
+        if (evento.storageArea === localStorage && (evento.key === "escuelas" || evento.key === null)) {
+          try { actualizarEscuelas(); }
+          catch (error) {
+            guardar.disabled = botonBorrador.disabled = true;
+            mostrarAviso(error.message, "advertencia");
+          }
+        }
+      });
     } catch (error) {
       if (/sesión|permisos|iniciar sesión|inactivo/i.test(error.message)) {
         window.location.replace("login.html");
