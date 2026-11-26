@@ -46,18 +46,21 @@ function limpiarMensajes() {
 }
 
 // Al editar, carga los datos en el mismo formulario de registro.
-if (modificando) {
+async function cargarEstado() {
+    if (!modificando) return;
+    botonGuardar.disabled = true;
     SGC.Idioma.texto(document.querySelector('title'), "Modificar estado del curso");
     SGC.Idioma.texto(document.getElementById("titulo-estado"), "Modificar estado del curso");
     SGC.Idioma.texto(document.getElementById("ruta-estado"), "Catálogos / Estados del curso / Modificar registro");
     SGC.Idioma.texto(botonGuardar, "Guardar cambios");
 
     try {
-        const estado = SGC.Datos.leer("estadosCurso").find(function (registro) {
+        const estado = (await SGC.EstadosCurso.listar()).find(function (registro) {
             return String(registro.codigo).trim().toUpperCase() === codigoOriginal.trim().toUpperCase();
         });
 
         if (estado) {
+            botonGuardar.disabled = false;
             campoCodigo.value = estado.codigo;
             campoNombre.value = estado.nombre;
             campoDescripcion.value = estado.descripcion || "";
@@ -66,12 +69,14 @@ if (modificando) {
             botonGuardar.disabled = true;
         }
     } catch (error) {
-        mostrarAviso("No se pudieron cargar los datos. Vuelva al listado y revise los registros.", "error");
+        mostrarAviso(error.sinRuta ? error.message : "No se pudieron cargar los datos. Vuelva al listado y revise los registros.", "error");
         botonGuardar.disabled = true;
     }
 }
 
-formulario.addEventListener("submit", function (evento) {
+cargarEstado();
+
+formulario.addEventListener("submit", async function (evento) {
     evento.preventDefault();
     if (botonGuardar.disabled) return;
     limpiarMensajes();
@@ -101,16 +106,24 @@ formulario.addEventListener("submit", function (evento) {
         hayErrores = true;
     }
 
+    if (hayErrores) {
+        mostrarAviso("Revise los campos señalados.", "error");
+        formulario.querySelector(".is-invalid").focus();
+        return;
+    }
+
+    botonGuardar.disabled = true;
+    let bloquear = false;
     try {
         // Vuelve a leer los datos para conservar los demás registros.
-        const estadosCurso = SGC.Datos.leer("estadosCurso");
+        const estadosCurso = await SGC.EstadosCurso.listar();
         const indice = modificando ? estadosCurso.findIndex(function (estado) {
             return String(estado.codigo).trim().toUpperCase() === codigoOriginal.trim().toUpperCase();
         }) : -1;
 
         if (modificando && indice === -1) {
             mostrarAviso("El estado ya no está disponible. Vuelva al listado.", "error");
-            botonGuardar.disabled = true;
+            bloquear = true;
             return;
         }
 
@@ -141,15 +154,7 @@ formulario.addEventListener("submit", function (evento) {
 
         const datos = { codigo: codigo, nombre: nombre, descripcion: descripcion };
 
-        if (modificando) {
-            const anterior = estadosCurso[indice];
-            // Conserva la referencia que ya utilizan los cursos.
-            estadosCurso[indice] = { ...anterior, ...datos, id: anterior.id || anterior.codigo };
-        } else {
-            estadosCurso.push({ ...datos, id: crypto.randomUUID() });
-        }
-
-        localStorage.setItem("estadosCurso", JSON.stringify(estadosCurso));
+        await SGC.EstadosCurso.guardar(datos, estadosCurso[indice]);
 
         if (modificando) {
             codigoOriginal = codigo;
@@ -164,7 +169,9 @@ formulario.addEventListener("submit", function (evento) {
             "estados-curso-listado.html"
         );
     } catch (error) {
-        mostrarAviso("No se pudo guardar el estado. Revise los datos guardados o el espacio disponible.", "error");
+        mostrarAviso(error.sinRuta || error.status === 409 ? error.message : "No se pudo guardar el estado. Intente nuevamente.", "error");
+    } finally {
+        botonGuardar.disabled = bloquear;
     }
 });
 

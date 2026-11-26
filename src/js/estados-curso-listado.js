@@ -11,21 +11,7 @@ function normalizarTexto(texto) {
         .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
-// Obtiene los estados guardados por la HU-23.
-function obtenerEstados() {
-    try {
-        const estados =
-            JSON.parse(localStorage.getItem("estadosCurso")) || [];
-
-        if (Array.isArray(estados)) {
-            return estados;
-        }
-    } catch (error) {
-        console.error("No fue posible cargar los estados del curso.", error);
-    }
-
-    return [];
-}
+let estados = [];
 
 // Agrega un estado como una nueva fila de la tabla.
 function agregarFila(estado) {
@@ -58,7 +44,6 @@ function agregarFila(estado) {
 
 // Muestra los estados cuyo código o nombre contiene el texto buscado.
 function mostrarEstados() {
-    const estados = obtenerEstados();
     const texto = normalizarTexto(campoBusqueda.value);
     const filtrados = estados.filter(function (estado) {
         return normalizarTexto(estado.codigo).includes(texto) ||
@@ -82,7 +67,16 @@ function mostrarEstados() {
     filtrados.forEach(agregarFila);
 }
 
-mostrarEstados();
+async function cargarListado() {
+    try {
+        estados = await SGC.EstadosCurso.listar();
+        mostrarEstados();
+        campoBusqueda.addEventListener("input", mostrarEstados);
+    } catch (error) {
+        tablaEstados.hidden = true;
+        SGC.Idioma.texto(mensajeListado, error.sinRuta ? error.message : "No se pudieron cargar los estados del curso.");
+        mensajeListado.hidden = false;
+    }
+}
 
-// Actualiza el listado cada vez que el usuario escribe o borra la búsqueda.
-campoBusqueda.addEventListener("input", mostrarEstados);
+cargarListado();
