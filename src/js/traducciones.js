@@ -7,6 +7,8 @@ SGC.Traducciones = {
     reportesPendientes: ["Los reportes de su perfil todavía no están disponibles.","Reports for your role are not available yet."],
     codigoFiltroEjemplo: ["Ej. 101", "E.g. 101"],
     nombreFiltroEjemplo: ["Escriba un nombre", "Enter a name"],
+    nombreOCorreoFiltroEjemplo: ["Escriba un nombre o correo", "Enter a name or email"],
+    nombreOCorreoBusqueda: ["Nombre o correo", "Name or email"],
     identificacionFiltroEjemplo: ["Escriba una identificación", "Enter an ID"],
     correoFiltroEjemplo: ["Ej. usuario@ucenfotec.ac.cr", "E.g. user@ucenfotec.ac.cr"],
     descripcionFiltroEjemplo: ["Escriba una descripción", "Enter a description"],
