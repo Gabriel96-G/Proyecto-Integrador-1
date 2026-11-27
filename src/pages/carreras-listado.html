@@ -64,7 +64,15 @@
                 </div>
             </section>
 
-            <p class="alert aviso" id="aviso" hidden></p>
+            <dialog id="confirmar-eliminar-carrera" class="mensaje-exito" aria-labelledby="pregunta-eliminar-carrera" aria-describedby="carrera-elegida">
+                <h2 id="pregunta-eliminar-carrera" data-i18n="confirmarEliminarCarrera">¿Eliminar esta carrera?</h2>
+                <p id="carrera-elegida"></p>
+                <form method="dialog" class="d-flex justify-content-center gap-2">
+                    <button value="cancelar" class="btn btn-secondary" autofocus data-i18n="cancelar">Cancelar</button>
+                    <button value="eliminar" class="btn btn-danger" data-i18n="eliminarEscuelaBoton">Eliminar</button>
+                </form>
+            </dialog>
+            <p class="alert aviso" id="aviso" role="alert" hidden></p>
         </main>
     </div>
 
