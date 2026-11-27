@@ -34,5 +34,40 @@ SGC.CarrerasDatos = (() => {
         return guardarRegistro(entrada);
     }
 
-    return { leer, leerEscuelas, guardar };
+    function comprobarEliminacion(id) {
+        const sesion = JSON.parse(sessionStorage.getItem('usuarioActual') || 'null');
+        const administrador = sesion?.id && SGC.Datos.leer('usuarios')
+            .find(u => String(u.id) === String(sesion.id));
+        if (!administrador || administrador.rol !== 'administrador' ||
+            (administrador.estado && administrador.estado !== 'activo')) {
+            throw new Error('Solo un administrador activo puede eliminar carreras.');
+        }
+        const registros = leer();
+        const carrera = id && registros.find(c => String(c.id) === String(id));
+        if (!carrera) throw new Error('La carrera ya no está disponible.');
+        // Los registros anteriores pueden guardar el código en lugar del identificador.
+        const referencias = [carrera.id, carrera.codigo].filter(v => v !== undefined && v !== null)
+            .map(v => SGC.Datos.normalizar(v));
+        const asociada = registro => [registro.carrera, ...(Array.isArray(registro.carreras)
+            ? registro.carreras : [])].some(v => v !== undefined && v !== null &&
+                referencias.includes(SGC.Datos.normalizar(v)));
+        if (SGC.Datos.leer('cursos').some(asociada)) {
+            throw new Error('No se puede eliminar la carrera porque tiene cursos asociados.');
+        }
+        if (SGC.Datos.leer('usuarios').some(asociada)) {
+            throw new Error('No se puede eliminar la carrera porque tiene usuarios asociados.');
+        }
+        return { registros, carrera };
+    }
+
+    async function eliminar(id) {
+        const retirar = () => {
+            const { registros, carrera } = comprobarEliminacion(id);
+            localStorage.setItem('carreras', JSON.stringify(registros.filter(c => c !== carrera)));
+        };
+        if (navigator.locks) return navigator.locks.request('sgc-carreras', retirar);
+        return retirar();
+    }
+
+    return { leer, leerEscuelas, guardar, comprobarEliminacion, eliminar };
 })();

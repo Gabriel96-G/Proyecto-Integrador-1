@@ -234,6 +234,13 @@ SGC.Traducciones = {
     gestionDeAcceso: ["Gestión de acceso","Access management"],
 
     // Carreras
+    confirmarEliminarCarrera: ["¿Eliminar esta carrera?", "Delete this degree program?"],
+    eliminarCarreraNombre: ["Eliminar carrera {nombre}", "Delete degree program {nombre}"],
+    permisoEliminarCarrera: ["Solo un administrador activo puede eliminar carreras.", "Only an active administrator can delete degree programs."],
+    carreraNoDisponibleEliminar: ["La carrera ya no está disponible.", "The degree program is no longer available."],
+    carreraCursosAsociados: ["No se puede eliminar la carrera porque tiene cursos asociados.", "This degree program cannot be deleted because it has associated courses."],
+    carreraUsuariosAsociados: ["No se puede eliminar la carrera porque tiene usuarios asociados.", "This degree program cannot be deleted because it has associated users."],
+    carreraEliminada: ["Se eliminó la carrera.", "The degree program was deleted."],
     carreraGuardada: ["La carrera se guardó con éxito.", "The degree program was saved successfully."],
     carreraModificada: ["La carrera se modificó con éxito.", "The degree program was updated successfully."],
     registrarCarreraSgc: ["Registrar carrera | SGC","Register degree program | SGC"],
