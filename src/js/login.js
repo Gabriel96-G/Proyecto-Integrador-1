@@ -13,6 +13,8 @@ function mostrarMensajeLogin(texto) {
 // Crea el usuario de prueba si todavía no existe.
 function prepararUsuarioPrueba() {
     const usuarios = SGC.Datos.leer("usuarios");
+    // Una lista existente puede estar vacía después de eliminar cuentas.
+    if (localStorage.getItem("usuarios") !== null || usuarios.length) return;
     const correoPrueba = "prueba@ucenfotec.ac.cr";
 
     const existe = usuarios.some(function (usuario) {

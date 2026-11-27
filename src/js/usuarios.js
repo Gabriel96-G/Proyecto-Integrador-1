@@ -3,6 +3,34 @@
     const formulario = document.getElementById('usuario-form');
     if (!formulario) {
         const buscar = document.getElementById('buscar');
+        const dialogo = document.getElementById('confirmar-eliminar-usuario');
+        let pendiente = null;
+        let eliminando = false;
+
+        function solicitarEliminacion(id) {
+            try {
+                const { usuario } = SGC.UsuariosDatos.comprobarEliminacion(id);
+                pendiente = id;
+                document.getElementById('usuario-elegido').textContent =
+                    [usuario.nombre, usuario.primerApellido, usuario.segundoApellido].filter(Boolean).join(' ') +
+                    ' · ' + usuario.correo;
+                dialogo.returnValue = '';
+                dialogo.showModal();
+            } catch (error) { fallo(error); }
+        }
+
+        dialogo.addEventListener('close', async () => {
+            const id = pendiente;
+            pendiente = null;
+            if (!id || dialogo.returnValue !== 'eliminar' || eliminando) return;
+            eliminando = true;
+            try {
+                await SGC.UsuariosDatos.eliminar(id);
+                listar();
+                aviso('Se eliminó el usuario.', 'confirmacion');
+            } catch (error) { fallo(error); }
+            finally { eliminando = false; buscar.focus(); }
+        });
         const etiquetas = ['Identificación', 'Nombre', 'Correo institucional', 'Rol', 'Estado', 'Acción'];
 
         function listar() {
@@ -41,7 +69,13 @@
                     else rol.textContent = usuario.rol;
                     const estado = (usuario.estado || 'activo') === 'activo' ? 'Activo' : 'Inactivo';
                     const accion = elemento('td');
-                    if (usuario.id) accion.append(editar('usuario-formulario.html', usuario.id));
+                    if (usuario.id) {
+                        const eliminar = elemento('button', 'btn btn-outline-danger btn-sm ms-2', 'Eliminar', true);
+                        eliminar.type = 'button';
+                        SGC.Idioma.atributo(eliminar, 'aria-label', 'Eliminar usuario ' + usuario.correo);
+                        eliminar.addEventListener('click', () => solicitarEliminacion(usuario.id));
+                        accion.append(editar('usuario-formulario.html', usuario.id), eliminar);
+                    }
                     else SGC.Idioma.texto(accion, 'Sin identificador');
                     fila.append(elemento('td', '', usuario.identificacion || '—'), celda,
                         elemento('td', '', usuario.correo), rol, elemento('td', '', estado, true), accion);

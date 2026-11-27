@@ -2,6 +2,14 @@ window.SGC = window.SGC || {};
 
 // Orden de los textos: [español, inglés].
 SGC.Traducciones = {
+    confirmarEliminarUsuario: ["¿Eliminar este usuario?", "Delete this user?"],
+    eliminarUsuarioNombre: ["Eliminar usuario {correo}", "Delete user {correo}"],
+    permisoEliminarUsuario: ["Solo un administrador activo puede eliminar usuarios.", "Only an active administrator can delete users."],
+    usuarioNoDisponibleEliminar: ["El usuario ya no está disponible.", "The user is no longer available."],
+    eliminarCuentaPropia: ["No puede eliminar su propia cuenta.", "You cannot delete your own account."],
+    usuarioCursosAsociados: ["No se puede eliminar el usuario porque tiene cursos asociados.", "This user cannot be deleted because they have associated courses."],
+    usuarioDirectorEscuela: ["No se puede eliminar el usuario porque es director de una escuela.", "This user cannot be deleted because they are a school director."],
+    usuarioEliminado: ["Se eliminó el usuario.", "The user was deleted."],
 
     accesoInterno: ["Acceso de usuarios internos","Internal user access"],
     reportesPendientes: ["Los reportes de su perfil todavía no están disponibles.","Reports for your role are not available yet."],
