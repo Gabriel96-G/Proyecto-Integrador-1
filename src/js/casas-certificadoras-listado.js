@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Mostrar un mensaje informativo o de error.
   function mostrarMensaje(texto, tipo) {
     SGC.Idioma.texto(mensajeListado, texto);
-    mensajeListado.className = tipo === "error" ? "aviso aviso--error" : "estado-vacio";
+    mensajeListado.className = tipo === "error" ? "alert alert-danger" : "alert estado-vacio";
     mensajeListado.setAttribute("role", tipo === "error" ? "alert" : "status");
     mensajeListado.hidden = false;
     tabla.hidden = true;
@@ -88,10 +88,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const fila = document.createElement("tr");
 
       const celdaCodigo = document.createElement("td");
+      celdaCodigo.className = "tabla__codigo";
       celdaCodigo.textContent = casa.codigo;
 
       const celdaNombre = document.createElement("td");
-      celdaNombre.className = "tabla__nombre";
       celdaNombre.textContent = casa.nombre;
 
       // HU-51: Opción para modificar una casa certificadora.
@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
       enlaceEditar.href =
         "casas-certificadoras-formulario.html?codigo=" +
         encodeURIComponent(casa.codigo);
+      SGC.Idioma.atributo(enlaceEditar, "aria-label", "Editar casa certificadora " + casa.nombre);
 
       celdaAcciones.appendChild(enlaceEditar);
 

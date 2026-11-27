@@ -13,6 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Misma clave utilizada en HU-38.
   const CLAVE_ALMACENAMIENTO = "metodologiasAprendizaje";
 
+  function mostrarMensaje(texto, error = false) {
+    tabla.hidden = true;
+    mensajeListado.className = error ? "alert alert-danger" : "alert estado-vacio";
+    mensajeListado.setAttribute("role", error ? "alert" : "status");
+    SGC.Idioma.texto(mensajeListado, texto);
+    mensajeListado.hidden = false;
+  }
+
   // HU-40: Buscar metodologías por código o nombre.
   function filtrarMetodologias(metodologias) {
     const busqueda = campoBusqueda.value.trim().toLowerCase();
@@ -41,9 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // CP-092: Mostrar mensaje cuando no existen registros.
       if (metodologias.length === 0) {
-        tabla.hidden = true;
-
-        SGC.Idioma.texto(mensajeListado, "No existen metodologías de aprendizaje registradas.");
+        mostrarMensaje("No existen metodologías de aprendizaje registradas.");
 
         return;
       }
@@ -53,21 +59,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // CP-095: Mostrar mensaje cuando no hay coincidencias.
       if (metodologiasFiltradas.length === 0) {
-        tabla.hidden = true;
-
-        SGC.Idioma.texto(mensajeListado, "No se encontraron metodologías que coincidan con la búsqueda.");
+        mostrarMensaje("No se encontraron metodologías que coincidan con la búsqueda.");
 
         return;
       }
 
       // CP-091: Mostrar las metodologías registradas.
       tabla.hidden = false;
+      mensajeListado.hidden = true;
       SGC.Idioma.texto(mensajeListado, "");
 
       metodologiasFiltradas.forEach(function (metodologia) {
         const fila = document.createElement("tr");
 
         const celdaCodigo = document.createElement("td");
+        celdaCodigo.className = "tabla__codigo";
         celdaCodigo.textContent = metodologia.codigo ?? "";
 
         const celdaNombre = document.createElement("td");
@@ -101,9 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       console.error("Error al cargar metodologías:", error);
 
-      tabla.hidden = true;
-
-      SGC.Idioma.texto(mensajeListado, "No fue posible cargar el listado de metodologías.");
+      mostrarMensaje("No fue posible cargar el listado de metodologías.", true);
     }
   }
 
