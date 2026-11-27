@@ -110,6 +110,14 @@
     });
   }
 
+  function actualizarAreasSefia() {
+    const select = campo("areaSefia");
+    const anterior = select.value;
+    cargarOpciones("areaSefia", SGC.Datos.leer("sefia"));
+    select.value = anterior;
+    if (select.selectedIndex < 0) select.selectedIndex = 0;
+  }
+
   function calcularTotalHoras() {
     const horasClase = campo("horasClase").value;
     const horasExtraclase = campo("horasExtraclase").value;
@@ -247,12 +255,27 @@
       panel.hidden = false;
 
       window.addEventListener("storage", (evento) => {
+        if (evento.storageArea === localStorage &&
+            ["areasSEFIA", "sgc.aylin.sprint1.v1", null].includes(evento.key)) {
+          try { actualizarAreasSefia(); }
+          catch (error) {
+            guardar.disabled = botonBorrador.disabled = true;
+            mostrarAviso(error.message, "advertencia");
+          }
+        }
         if (evento.storageArea === localStorage && (evento.key === "escuelas" || evento.key === null)) {
           try { actualizarEscuelas(); }
           catch (error) {
             guardar.disabled = botonBorrador.disabled = true;
             mostrarAviso(error.message, "advertencia");
           }
+        }
+      });
+      window.addEventListener("pageshow", () => {
+        try { actualizarAreasSefia(); }
+        catch (error) {
+          guardar.disabled = botonBorrador.disabled = true;
+          mostrarAviso(error.message, "advertencia");
         }
       });
     } catch (error) {

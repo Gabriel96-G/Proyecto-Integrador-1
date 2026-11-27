@@ -132,6 +132,11 @@ SGC.CursosDatos = (() => {
 
     const errores = SGC.CursosValidacion.validar(entrada, registros, escuelas);
 
+    if (entrada.areaSefia && !SGC.Datos.leer('sefia').some(area =>
+      String(area.id ?? area.codigo) === String(entrada.areaSefia))) {
+      errores.areaSefia = 'Seleccione un área S.E.F.I.A disponible en el catálogo.';
+    }
+
     if (Object.keys(errores).length > 0) {
       throw new Error(Object.values(errores)[0]);
     }
