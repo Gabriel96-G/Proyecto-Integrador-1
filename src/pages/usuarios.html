@@ -11,6 +11,7 @@
     <script src="../js/traducciones.js" defer></script>
     <script src="../js/idioma.js" defer></script>
     <script src="../js/almacenamiento.js" defer></script>
+    <script src="../js/usuarios-datos.js" defer></script>
     <script src="../js/interfaz.js" defer></script>
     <script src="../js/usuarios.js" defer></script>
     <script src="../js/sesion.js" defer></script>
@@ -94,6 +95,14 @@
                 </div>
             </section>
 
+            <dialog id="confirmar-eliminar-usuario" class="mensaje-exito" aria-labelledby="pregunta-eliminar-usuario" aria-describedby="usuario-elegido">
+                <h2 id="pregunta-eliminar-usuario" data-i18n="confirmarEliminarUsuario">¿Eliminar este usuario?</h2>
+                <p id="usuario-elegido"></p>
+                <form method="dialog" class="d-flex justify-content-center gap-2">
+                    <button value="cancelar" class="btn btn-secondary" autofocus data-i18n="cancelar">Cancelar</button>
+                    <button value="eliminar" class="btn btn-danger" data-i18n="eliminarEscuelaBoton">Eliminar</button>
+                </form>
+            </dialog>
             <p class="alert aviso" id="aviso" role="alert" hidden></p>
         </main>
     </div>
