@@ -138,6 +138,7 @@ SGC.CursosDatos = (() => {
 
     const ahora = new Date().toISOString();
     const anterior = indice >= 0 ? registros[indice] : null;
+    SGC.CatalogosCurso.validarReferencias(entrada, anterior);
 
     // HU-55 / CP-131: solo el propietario puede modificar su borrador.
     if (
@@ -178,13 +179,7 @@ SGC.CursosDatos = (() => {
   }
 
   async function guardar(entrada, comoBorrador = false) {
-    if (navigator.locks) {
-      return navigator.locks.request("sgc-cursos", () =>
-        guardarRegistro(entrada, comoBorrador),
-      );
-    }
-
-    return guardarRegistro(entrada, comoBorrador);
+    return SGC.CatalogosCurso.conBloqueo(() => guardarRegistro(entrada, comoBorrador));
   }
 
   // HU-55 / CP-130: guardar el curso con estado de borrador.

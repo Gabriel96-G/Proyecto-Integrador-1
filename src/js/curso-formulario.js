@@ -18,11 +18,9 @@
     estado: ["estadosCurso", "estadosCursos", "estados-curso"],
     areaSefia: ["areasSEFIA"],
     tematica: ["tematicas"],
-    metodologia: ["metodologiasAprendizaje"],
-    nivelComplejidad: ["nivelesComplejidad", "niveles-complejidad"],
+    ...SGC.CatalogosCurso.claves,
     modalidad: ["modalidades"],
     moneda: ["monedas"],
-    casaCertificadora: ["casasCertificadoras", "casas-certificadoras"],
   };
 
   function mostrarAviso(mensaje, tipo = "confirmacion") {
@@ -382,6 +380,29 @@
       guardar.disabled = false;
       botonBorrador.disabled = false;
     }
+  });
+
+  function actualizarCatalogosDeCurso(clave) {
+    if (panel.hidden) return;
+    try {
+      for (const [id, claves] of Object.entries(SGC.CatalogosCurso.claves)) {
+        if (clave !== null && !claves.includes(clave)) continue;
+        const select = campo(id);
+        const anterior = select.value;
+        cargarOpciones(id, SGC.CatalogosCurso.leer(id));
+        select.value = anterior;
+        if (select.selectedIndex < 0) select.selectedIndex = 0;
+      }
+    } catch (error) {
+      mostrarAviso(error.message, "advertencia");
+    }
+  }
+
+  window.addEventListener("storage", (evento) => {
+    if (evento.storageArea === localStorage) actualizarCatalogosDeCurso(evento.key);
+  });
+  window.addEventListener("pageshow", (evento) => {
+    if (evento.persisted) actualizarCatalogosDeCurso(null);
   });
 
   iniciar();

@@ -98,8 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Se ejecuta al presionar Guardar metodología.
-  formulario.addEventListener("submit", function (evento) {
-    evento.preventDefault();
+  function guardar() {
     limpiarMensajes();
 
     const codigo = campoCodigo.value.trim();
@@ -150,7 +149,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return (
           !esRegistroActual &&
-          normalizarCodigo(metodologia.codigo) === normalizarCodigo(codigo)
+          (normalizarCodigo(metodologia.codigo) === normalizarCodigo(codigo) ||
+            normalizarCodigo(metodologia.id) === normalizarCodigo(codigo))
         );
       });
 
@@ -199,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Actualizar el registro existente sin crear otro.
         metodologias[indiceOriginal] = {
           ...metodologias[indiceOriginal],
+          id: metodologias[indiceOriginal].id ?? codigoOriginal,
           codigo: codigo,
           nombre: nombre,
           descripcion: descripcion,
@@ -239,6 +240,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       mostrarAviso("No fue posible guardar la metodología. Intente nuevamente.", "error");
     }
+  }
+
+  formulario.addEventListener("submit", evento => {
+    evento.preventDefault();
+    SGC.CatalogosCurso.conBloqueo(guardar);
   });
 
   // Limpia los mensajes al restablecer el formulario.

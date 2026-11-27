@@ -17,7 +17,7 @@ const modificando = codigoOriginal !== null;
 
 // Agrega los valores iniciales solicitados si el catálogo todavía no existe.
 function crearNivelesIniciales() {
-    if (localStorage.getItem("nivelesComplejidad") === null) {
+    if (SGC.CatalogosCurso.claves.nivelComplejidad.every(clave => localStorage.getItem(clave) === null)) {
         const nivelesIniciales = [
             { codigo: "1", nombre: "Básico", descripcion: "Nivel básico." },
             { codigo: "2", nombre: "Intermedio", descripcion: "Nivel intermedio." },
@@ -73,7 +73,7 @@ try {
         SGC.Idioma.texto(document.getElementById("ruta-nivel"), "Catálogos / Niveles de complejidad / Modificar registro");
         SGC.Idioma.texto(botonGuardar, "Guardar cambios");
 
-        const nivel = SGC.Datos.leer("nivelesComplejidad").find(function (registro) {
+        const nivel = SGC.CatalogosCurso.leer("nivelComplejidad").find(function (registro) {
             return String(registro.codigo).trim() === codigoOriginal.trim();
         });
 
@@ -91,8 +91,7 @@ try {
     botonGuardar.disabled = true;
 }
 
-formulario.addEventListener("submit", function (evento) {
-    evento.preventDefault();
+function guardar() {
     if (botonGuardar.disabled) return;
     limpiarMensajes();
 
@@ -127,7 +126,7 @@ formulario.addEventListener("submit", function (evento) {
 
     try {
         // Vuelve a leer los datos para conservar los demás niveles.
-        const niveles = SGC.Datos.leer("nivelesComplejidad");
+        const niveles = SGC.CatalogosCurso.leer("nivelComplejidad");
         const indice = modificando ? niveles.findIndex(function (nivel) {
             return String(nivel.codigo).trim() === codigoOriginal.trim();
         }) : -1;
@@ -140,7 +139,8 @@ formulario.addEventListener("submit", function (evento) {
 
         // Al editar, no compara el nivel consigo mismo.
         const codigoRepetido = niveles.some(function (nivel, posicion) {
-            return posicion !== indice && String(nivel.codigo).trim() === codigo;
+            return posicion !== indice &&
+                (String(nivel.codigo).trim() === codigo || String(nivel.id).trim() === codigo);
         });
 
         const nombreRepetido = niveles.some(function (nivel, posicion) {
@@ -190,6 +190,11 @@ formulario.addEventListener("submit", function (evento) {
     } catch (error) {
         mostrarAviso("No se pudo guardar el nivel. Revise los datos guardados o el espacio disponible.", "error");
     }
+}
+
+formulario.addEventListener("submit", evento => {
+    evento.preventDefault();
+    SGC.CatalogosCurso.conBloqueo(guardar);
 });
 
 // Limpia los mensajes cuando se modifica un campo.

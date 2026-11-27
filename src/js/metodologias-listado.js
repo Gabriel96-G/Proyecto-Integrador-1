@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cuerpoTabla = document.getElementById("cuerpo-tabla-metodologias");
   const mensajeListado = document.getElementById("mensaje-listado");
   const campoBusqueda = document.getElementById("buscar-metodologias");
+  const agregarEliminar = SGC.EliminacionCatalogo.preparar("metodologia", cargarMetodologias, campoBusqueda);
 
   // Misma clave utilizada en HU-38.
   const CLAVE_ALMACENAMIENTO = "metodologiasAprendizaje";
@@ -96,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
         SGC.Idioma.atributo(enlaceEditar, 'aria-label', "Editar metodología " + metodologia.nombre);
 
         celdaAccion.appendChild(enlaceEditar);
+        agregarEliminar(celdaAccion, metodologia);
 
         fila.appendChild(celdaCodigo);
         fila.appendChild(celdaNombre);
@@ -113,6 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // HU-40: Actualizar el listado mientras el usuario escribe.
   campoBusqueda.addEventListener("input", cargarMetodologias);
+  window.addEventListener("pageshow", cargarMetodologias);
+  window.addEventListener("storage", evento => {
+    if (evento.key === CLAVE_ALMACENAMIENTO || evento.key === null) cargarMetodologias();
+  });
 
   // HU-39: Mostrar los registros al cargar la página.
   cargarMetodologias();

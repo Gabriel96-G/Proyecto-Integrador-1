@@ -348,6 +348,7 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
 .tabla__avatar { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; color: var(--color-principal); background: var(--color-seleccion); font-weight: 700; }
 .tabla__codigo { color: var(--color-principal); font-weight: 700; }
 .tabla__acciones { display: flex; flex-wrap: wrap; gap: 12px; }
+.tabla__acciones-catalogo > * { margin-inline-end: 8px; }
 .tabla--catalogo td { padding-block: 8px; }
 .estado-vacio { padding: 24px; color: var(--color-texto-secundario); text-align: center; }
 .insignia { display: inline-block; max-width: 100%; padding: 3px 12px; border-radius: 999px; color: var(--color-texto-secundario); background: var(--color-fondo); font-size: 14px; font-weight: 700; }
@@ -652,6 +653,9 @@ textarea.formulario__control { min-height: 140px; resize: vertical; }
   .con-bootstrap .tabla th:first-child { width: 4.35em; }
   .con-bootstrap .tabla th:nth-child(2) { width: 24%; }
   .con-bootstrap .tabla th:last-child { width: 4em; }
+  .con-bootstrap .tabla th.tabla__columna-acciones { width: 6.2em; }
+  .tabla__acciones-catalogo > * { margin-inline-end: 0; }
+  .tabla__acciones-catalogo .btn { display: block; max-width: 100%; min-height: 44px; }
 }
 
 /* HU-I2-18: usuarios, carreras, áreas S.E.F.I.A y temáticas con Bootstrap. */
