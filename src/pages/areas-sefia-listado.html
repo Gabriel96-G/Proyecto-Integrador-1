@@ -11,6 +11,7 @@
     <script src="../js/traducciones.js" defer></script>
     <script src="../js/idioma.js" defer></script>
     <script src="../js/almacenamiento.js" defer></script>
+    <script src="../js/areas-sefia-datos.js" defer></script>
     <script src="../js/interfaz.js" defer></script>
     <script src="../js/areas-sefia-listado.js" defer></script>
     <script src="../js/sesion.js" defer></script>
@@ -62,7 +63,15 @@
                 </div>
             </section>
 
-            <p class="alert aviso" id="aviso" hidden></p>
+            <dialog id="confirmar-eliminar-area" class="mensaje-exito" aria-labelledby="pregunta-eliminar-area" aria-describedby="area-elegida">
+                <h2 id="pregunta-eliminar-area" data-i18n="confirmarEliminarArea">¿Eliminar esta área S.E.F.I.A?</h2>
+                <p id="area-elegida"></p>
+                <form method="dialog" class="d-flex justify-content-center gap-2">
+                    <button value="cancelar" class="btn btn-secondary" autofocus data-i18n="cancelar">Cancelar</button>
+                    <button value="eliminar" class="btn btn-danger" data-i18n="eliminarEscuelaBoton">Eliminar</button>
+                </form>
+            </dialog>
+            <p class="alert aviso" id="aviso" role="alert" hidden></p>
         </main>
     </div>
 
