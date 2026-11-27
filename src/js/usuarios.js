@@ -20,7 +20,8 @@
                 const filtrados = registros.filter(usuario => {
                     const nombre = [usuario.nombre, usuario.primerApellido, usuario.segundoApellido]
                         .filter(Boolean).join(' ');
-                    return SGC.Datos.normalizar(nombre).includes(texto) &&
+                    return (SGC.Datos.normalizar(nombre).includes(texto) ||
+                        SGC.Datos.normalizar(usuario.correo).includes(texto)) &&
                         SGC.Datos.normalizar(usuario.identificacion).includes(identificacion) &&
                         SGC.Datos.normalizar(usuario.correo).includes(correo) &&
                         (!rol || usuario.rol === rol) &&
