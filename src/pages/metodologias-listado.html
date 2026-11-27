@@ -14,6 +14,9 @@
     <script src="../js/traducciones.js" defer=""></script>
     <script src="../js/idioma.js" defer=""></script>
     <script src="../js/interfaz.js" defer=""></script>
+    <script src="../js/almacenamiento.js" defer></script>
+    <script src="../js/catalogos-curso.js" defer></script>
+    <script src="../js/catalogos-eliminacion.js" defer></script>
     <script src="../js/metodologias-listado.js" defer=""></script>
     <script src="../js/sesion.js" defer=""></script>
 </head>
@@ -81,6 +84,16 @@
                 </div>
 
                 <!-- Tabla de registros -->
+                <p id="aviso-eliminacion" class="alert" role="status" hidden></p>
+                <dialog id="confirmar-eliminar" class="mensaje-exito" aria-labelledby="pregunta-eliminar" aria-describedby="registro-elegido">
+                    <h2 id="pregunta-eliminar" data-i18n="confirmarEliminarMetodologia">¿Eliminar esta metodología?</h2>
+                    <p id="registro-elegido"></p>
+                    <form method="dialog" class="d-flex justify-content-center gap-2">
+                        <button value="cancelar" class="btn btn-secondary" autofocus data-i18n="cancelar">Cancelar</button>
+                        <button value="eliminar" class="btn btn-danger" data-i18n="eliminarEscuelaBoton">Eliminar</button>
+                    </form>
+                </dialog>
+
                 <div class="table-responsive tabla-contenedor">
 
                     <table id="tabla-metodologias" class="table tabla tabla--catalogo" hidden>
@@ -90,7 +103,7 @@
                                 <th scope="col" data-i18n="codigo">Código</th>
                                 <th scope="col" data-i18n="nombreEtiqueta">Nombre</th>
                                 <th scope="col" data-i18n="descripcion">Descripción</th>
-                                <th scope="col" data-i18n="accion">Acción</th>
+                                <th scope="col" class="tabla__columna-acciones" data-i18n="accion">Acción</th>
                             </tr>
                         </thead>
 

@@ -65,14 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // HU-51: Cargar los datos de la casa seleccionada para modificar.
   if (modoEdicion) {
     try {
-      const datosGuardados = localStorage.getItem(CLAVE_ALMACENAMIENTO);
-      const casasCertificadoras = datosGuardados
-        ? JSON.parse(datosGuardados)
-        : [];
-
-      if (!Array.isArray(casasCertificadoras)) {
-        throw new Error("Formato de datos inválido.");
-      }
+      const casasCertificadoras = SGC.CatalogosCurso.leer("casaCertificadora");
 
       const casaSeleccionada = casasCertificadoras.find(function (casa) {
         return (
@@ -106,8 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Procesa el registro cuando el usuario guarda.
-  formulario.addEventListener("submit", function (evento) {
-    evento.preventDefault();
+  function guardar() {
     limpiarMensajes();
 
     const codigo = campoCodigo.value.trim();
@@ -141,13 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let casasCertificadoras;
 
     try {
-      const datosGuardados = localStorage.getItem(CLAVE_ALMACENAMIENTO);
-
-      casasCertificadoras = datosGuardados ? JSON.parse(datosGuardados) : [];
-
-      if (!Array.isArray(casasCertificadoras)) {
-        throw new Error("Formato de datos inválido.");
-      }
+      casasCertificadoras = SGC.CatalogosCurso.leer("casaCertificadora");
     } catch (error) {
       console.error("Error al leer casas certificadoras:", error);
 
@@ -259,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function () {
               normalizarCodigo(curso.casaCertificadora) ===
                 normalizarCodigo(codigoAnterior)
             ) {
-              curso.casaCertificadora = codigo;
+              curso.casaCertificadora = casasCertificadoras[indiceOriginal].id ?? codigo;
             }
           });
         }
@@ -333,6 +319,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       mostrarAviso("No fue posible guardar la casa certificadora.", "error");
     }
+  }
+
+  formulario.addEventListener("submit", evento => {
+    evento.preventDefault();
+    SGC.CatalogosCurso.conBloqueo(guardar);
   });
 
   // Limpiar mensajes cuando el usuario modifica los campos.

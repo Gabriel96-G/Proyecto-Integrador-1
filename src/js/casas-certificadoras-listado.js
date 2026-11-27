@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const mensajeListado = document.getElementById("mensaje-listado");
 
   const campoBusqueda = document.getElementById("buscar-casas-certificadoras");
-
-  const CLAVE_ALMACENAMIENTO = "casasCertificadoras";
+  const agregarEliminar = SGC.EliminacionCatalogo.preparar("casaCertificadora", cargarCasasCertificadoras, campoBusqueda);
 
   // Normalizar texto para realizar búsquedas.
   function normalizarTexto(texto) {
@@ -42,13 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let casasCertificadoras;
 
     try {
-      const datosGuardados = localStorage.getItem(CLAVE_ALMACENAMIENTO);
-
-      casasCertificadoras = datosGuardados ? JSON.parse(datosGuardados) : [];
-
-      if (!Array.isArray(casasCertificadoras)) {
-        throw new Error("Formato de datos inválido.");
-      }
+      casasCertificadoras = SGC.CatalogosCurso.leer("casaCertificadora");
     } catch (error) {
       console.error("Error al cargar casas certificadoras:", error);
 
@@ -106,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
       SGC.Idioma.atributo(enlaceEditar, "aria-label", "Editar casa certificadora " + casa.nombre);
 
       celdaAcciones.appendChild(enlaceEditar);
+      agregarEliminar(celdaAcciones, casa);
 
       fila.appendChild(celdaCodigo);
       fila.appendChild(celdaNombre);
@@ -125,7 +119,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("pageshow", cargarCasasCertificadoras);
   window.addEventListener("storage", evento => {
-    if (evento.key === CLAVE_ALMACENAMIENTO || evento.key === null) cargarCasasCertificadoras();
+    if (evento.key === null || SGC.CatalogosCurso.claves.casaCertificadora.includes(evento.key)) {
+      cargarCasasCertificadoras();
+    }
   });
 
   cargarCasasCertificadoras();

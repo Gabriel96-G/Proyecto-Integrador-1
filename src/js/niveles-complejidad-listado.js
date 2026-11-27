@@ -4,6 +4,7 @@ const tablaNiveles = document.getElementById("tabla-niveles");
 const cuerpoTabla = document.getElementById("cuerpo-tabla-niveles");
 const mensajeListado = document.getElementById("mensaje-listado");
 const campoBusqueda = document.getElementById("buscar-nivel");
+const agregarEliminarNivel = SGC.EliminacionCatalogo.preparar("nivelComplejidad", mostrarNiveles, campoBusqueda);
 
 // Permite buscar sin distinguir mayúsculas ni tildes.
 function normalizarTexto(texto) {
@@ -13,7 +14,7 @@ function normalizarTexto(texto) {
 
 // Agrega los valores iniciales si el catálogo todavía no existe.
 function crearNivelesIniciales() {
-    if (localStorage.getItem("nivelesComplejidad") === null) {
+    if (SGC.CatalogosCurso.claves.nivelComplejidad.every(clave => localStorage.getItem(clave) === null)) {
         const nivelesIniciales = [
             {
                 codigo: "1",
@@ -52,12 +53,7 @@ function crearNivelesIniciales() {
 // Obtiene los niveles guardados.
 function obtenerNiveles() {
     try {
-        const niveles =
-            JSON.parse(localStorage.getItem("nivelesComplejidad")) || [];
-
-        if (Array.isArray(niveles)) {
-            return niveles;
-        }
+        return SGC.CatalogosCurso.leer("nivelComplejidad");
     } catch (error) {
         console.error(
             "No fue posible cargar los niveles de complejidad.",
@@ -89,6 +85,7 @@ function agregarFila(nivel) {
     editar.href = "niveles-complejidad-formulario.html?codigo=" + encodeURIComponent(nivel.codigo);
     SGC.Idioma.atributo(editar, 'aria-label', "Editar nivel " + nivel.nombre);
     accion.appendChild(editar);
+    agregarEliminarNivel(accion, nivel);
 
     fila.appendChild(codigo);
     fila.appendChild(nombre);
@@ -129,3 +126,7 @@ mostrarNiveles();
 
 // Actualiza el listado al escribir o borrar la búsqueda.
 campoBusqueda.addEventListener("input", mostrarNiveles);
+window.addEventListener("pageshow", mostrarNiveles);
+window.addEventListener("storage", evento => {
+    if (evento.key === null || SGC.CatalogosCurso.claves.nivelComplejidad.includes(evento.key)) mostrarNiveles();
+});
